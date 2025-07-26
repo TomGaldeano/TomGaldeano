@@ -1,0 +1,24 @@
+.red_hover:hover{
+    color: red;
+}
+.blue_hover:hover{
+    color: blue;
+}
+.green_hover:hover{
+    color: green;
+}
+.gold_hover:hover{
+    color: gold;
+}
+.red_hover{
+    color: white;
+}
+.blue_hover{
+    color: white;
+}
+.green_hover{
+    color: white;
+}
+.gold_hover{
+    color: white;
+}

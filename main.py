@@ -24,6 +24,51 @@ app = Flask(__name__)
 def home():
     return render_template('home.html')
 
+@app.route('/programacion')
+def programacion():
+    return render_template('programacion.html')
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route('/programacion/css')
+def prog_css():
+    return render_template('prog_css.html')
+
+@app.route('/programacion/html')
+def prog_html():
+    return render_template('prog_html.html')
+
+@app.route('/programacion/js')
+def prog_js():
+    return render_template('prog_js.html')
+
+@app.route('/programacion/php')
+def prog_php():
+    return render_template('prog_php.html')
+
+@app.route('/programacion/python')
+def prog_python():
+    return render_template('prog_python.html')
+
+@app.route('/programacion/sql')
+def prog_sql():
+    return render_template('prog_sql.html')
+
+@app.route('/projects')
+def projects():
+    return render_template('projects.html')
+
+@app.route('/projects/personal')
+def pj_personal():
+    return render_template('pj_personal.html')
+
+@app.route('/projects/games')
+def pj_games():
+    return render_template('pj_games.html')
+
+@app.route('/projects/ordered')
+def pj_ordered():
+    return render_template('pj_ordered.html')
+
+if __name__ == '__main__':  
+    app.run(host='0.0.0.0', port=5001, debug=True)
+
+
