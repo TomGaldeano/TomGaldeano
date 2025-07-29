@@ -22,3 +22,9 @@
 .gold_hover{
     color: white;
 }
+.golden_link{
+    color: gold;
+}
+.golden_link:hover{
+    color: gold;
+}
