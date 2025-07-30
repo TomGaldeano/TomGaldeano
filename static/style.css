@@ -27,4 +27,5 @@
 }
 .golden_link:hover{
     color: gold;
+    text-decoration: none;
 }
