@@ -7,7 +7,7 @@
 <div class="row justify-content-left container d-flex mx-auto">
 <div>
     <p class="text-left" style="font-size: 1.2rem;"> 
-    To note down stuff i don't remember when looking <a href="https://www.w3schools.com/html" class="golden_link">at w3 schools</a> w3 schools guide and school
+    To note down stuff i don't remember when looking <a href="https://www.w3schools.com/html" target="_blank" class="golden_link" >at w3 schools</a> w3 schools guide and school
     </p>
 </div>
 <div class="row justify-content-md-left container d-flex mx-auto">
@@ -20,7 +20,7 @@
         <li class="text-left" style="font-size: 1.2rem;">include the lang attribute inside the &lthtml&gt tag, to declare the language of the Web page. This is meant to assist search engines and browsers </li>
         <li class="text-left" style="font-size: 1.2rem;">Atributes go inside an element to add or define its behaviour and appearance </li>
         <li class="text-left" style="font-size: 1.2rem;">Html paragraphs start in a new line </li>
-        <li class="text-left" style="font-size: 1.2rem;"> </li>
+        <li class="text-left" style="font-size: 1.2rem;"><li>
         <li class="text-left" style="font-size: 1.2rem;"> </li>
         <li class="text-left" style="font-size: 1.2rem;"> </li>
     </ul>  
@@ -42,14 +42,32 @@
         <li class="text-left" style="font-size: 1.2rem;">&ltsup&gt - <sup>Superscript text</sup></li> </li>
         <li class="text-left" style="font-size: 1.2rem;"><blockquote cite="http://www.worldwildlife.org/who/index.html">&ltblockquote cite="http://www.worldwildlife.org/who/index.html"&gt&lt/blockquote&gtDefines a bolck of text quoted from a source</blockquote> </li>  
         <li class="text-left" style="font-size: 1.2rem;">&ltq&gt&lt/q&gt<q>short quotes</q> </li>
-        <li class="text-left" style="font-size: 1.2rem;">&ltabbr&gt&lt/abbr&gt<abbr title="World Health Organization">WHO</abbr> abbreviation </li>
-        <li class="text-left" style="font-size: 1.2rem;">&ltcite&gt&lt/cite&gt<cite> tag defines the title of a creative work</cite> </li>
-        <li class="text-left" style="font-size: 1.2rem;">&ltbdo dir="rtl"&gt&lt/bdo&gt<bdo dir="rtl">Hello world</bdo> </li>
-        <li class="text-left" style="font-size: 1.2rem;"> </li>
-        <li class="text-left" style="font-size: 1.2rem;"> </li>
-        <li class="text-left" style="font-size: 1.2rem;"> </li>
-        <li class="text-left" style="font-size: 1.2rem;"> </li>
-        <li class="text-left" style="font-size: 1.2rem;"> </li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltabbr&gt&lt/abbr&gt<abbr title="World Health Organization">WHO</abbr> abbreviation</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltcite&gt&lt/cite&gt<cite> tag defines the title of a creative work</cite></li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltbdo dir="rtl"&gt&lt/bdo&gt<bdo dir="rtl">Hello world</bdo></li>
+        <li class="text-left" style="font-size: 1.2rem;">  &ltimg src="workplace.jpg" alt="Workplace" usemap="#workmap"&gt sets up image to use as map where you can click on parts of the images as links </li>
+            <ul>
+                <li class="text-left" style="font-size: 1.2rem;">&ltmap name="workmap"&gt</map></li>
+                <li class="text-left" style="font-size: 1.2rem;">&ltarea shape="poly" coords="40,259,103,161,128,147" alt="Phone" href="phone.htm"&gt coords of vertices</li>
+                <li class="text-left" style="font-size: 1.2rem;">&ltarea shape="rect"  alt="Computer" href="computer.htm"&gt right top coords and bottom left coords</li>
+                <li class="text-left" style="font-size: 1.2rem;">&ltarea shape="circle" coords="337,300,44" alt="Coffee" href="coffee.htm"&gt center coords and radius</li>
+                <li class="text-left" style="font-size: 1.2rem;">if shape is set to default the image area to click is the whole image. Coords a relative to top right corer and are positve </li>
+                <li class="text-left" style="font-size: 1.2rem;">&lt/map&gt</li>
+            </ul>z
+        <li class="text-left" style="font-size: 1.2rem;">&ltpicture&gt used  to specify image based on the scrren size and for format support</li>
+        <ul>
+            <li class="text-left" style="font-size: 1.2rem;">&ltsource media="(min-width: 650px)" srcset="img_food.jpg"&gt</li>
+            <li class="text-left" style="font-size: 1.2rem;">&ltsource media="(min-width: 465px)" srcset="img_car.jpg"&gt</li>
+            <li class="text-left" style="font-size: 1.2rem;">&ltimg src="img_girl.jpg"&gt&lt/picture&gt</li> 
+        </ul>
+        <li class="text-left" style="font-size: 1.2rem;">&ltcaption&gtTable haeader&lt/caption&gt can be put in after &lttable&gt to set a table header</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltcolgroup&gt&ltcol span="2" style="background-color: #D6EEEE"&gt&lt/colgroup&gt serves to make grupes of consecutive comuns to style and modify together empty ones can be made to style only the middle</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltdl&gt Described lists
+        <dl>
+            <dt>&ltdt&gt</dt>
+            <dd>&ltdd&gt&ltdl&gt</dd>
+        </dl> 
+         </li>
         <li class="text-left" style="font-size: 1.2rem;"> </li>
         <li class="text-left" style="font-size: 1.2rem;"> </li>
     </ul>
@@ -69,9 +87,21 @@
             <li> _parent - Opens the document in the parent frame</li>
             <li> _top - Opens the document in the full body of the window</li>
         </ul>
-        <li class="text-left" style="font-size: 1.2rem;"> </li>
-        <li class="text-left" style="font-size: 1.2rem;"> </li>
-        <li class="text-left" style="font-size: 1.2rem;"> </li>
+        <li class="text-left" style="font-size: 1.2rem;">href="#id" is a the bookmark to an id on the page and href="html_demo.html#id" takes to a local id in another page of the website</li>
+        <li class="text-left" style="font-size: 1.2rem;">onclick can be used to define an action when user clicks on an image or map for example via script</li>
+        <li class="text-left" style="font-size: 1.2rem;">onload can be used to run code when an asset is loaded</li>
+       <li class="text-left" style="font-size: 1.2rem;">In a table the colspan="n" attribute can be used to indicate how many columns it should be over.</li>
+       <li class="text-left" style="font-size: 1.2rem;">In a table the rowspan="n" attribute can be used to indicate how many columns it should be over.</li>
+       <li class="text-left" style="font-size: 1.2rem;">ordered list type</li>
+       <ul>
+            <li class="text-left" style="font-size: 1.2rem;">type="1" 	The list items will be numbered with numbers (default)</li>
+        <li class="text-left" style="font-size: 1.2rem;">type="A" 	The list items will be numbered with uppercase letters</li>
+        <li class="text-left" style="font-size: 1.2rem;">type="a" 	The list items will be numbered with lowercase letters</li>
+        <li class="text-left" style="font-size: 1.2rem;">type="I" 	The list items will be numbered with uppercase roman numbers</li>
+        <li class="text-left" style="font-size: 1.2rem;">type="i" 	The list items will be numbered with lowercase roman numbers</li>
+       </ul>
+       <li class="text-left" style="font-size: 1.2rem;"> </li> 
+       <li class="text-left" style="font-size: 1.2rem;"> </li>
     </ul>
 </div>
 </div>
