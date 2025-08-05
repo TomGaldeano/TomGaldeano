@@ -107,7 +107,12 @@
         <li class="text-left" style="font-size: 1.2rem;">The %ltlabel&gt&lt/label&gt element defines a label for several form elements.</li>
         <li class="text-left" style="font-size: 1.2rem;">The &ltselect&gt&lt/select&gt element defines a drop-down list</li>
         <li class="text-left" style="font-size: 1.2rem;">The &ltoption&gt&lt/option&gt element defines an option that can be selected</li>
-        <li class="text-left" style="font-size: 1.2rem;"> </li>
+        <li class="text-left" style="font-size: 1.2rem;">The $lttextarea&gt&lt/textarea&gt element defines a multi-line input field</li>
+        <li class="text-left" style="font-size: 1.2rem;">The &ltbutton type="button"&gt&lt/button&gt element defines a clickable button. YSe the type button for browsers to display it correctly</li>
+        <li class="text-left" style="font-size: 1.2rem;">The &ltfieldset&gt&lt/fieldest&gt element is used to group related data in a form.</li>
+        <li class="text-left" style="font-size: 1.2rem;">The &ltlegend&gt&lt/legend&gt element defines a caption for the &ltfieldset&gt element.</li>
+        <li class="text-left" style="font-size: 1.2rem;">The &ltdatalist&gt&lt/datalist&gt element specifies a list of pre-defined options for an &ltinput&gt element.</li>
+        <li class="text-left" style="font-size: 1.2rem;">The &ltoutput&gt&lt/output&gt element represents the result of a calculation (like one performed by a script).</li>
         <li class="text-left" style="font-size: 1.2rem;"> </li>
         <li class="text-left" style="font-size: 1.2rem;"> </li>
         <li class="text-left" style="font-size: 1.2rem;"> </li>
@@ -155,16 +160,32 @@
        <li class="text-left" style="font-size: 1.2rem;">enctype - Specifies how the form-data should be encoded when submitting it to the server (only for method="post")</li>
        <li class="text-left" style="font-size: 1.2rem;">name - Specifies the name of the form</li>
        <li class="text-left" style="font-size: 1.2rem;">rel - Specifies the relationship between a linked resource and the current document</li>
-       <li class="text-left" style="font-size: 1.2rem;"> </li>
-       <li class="text-left" style="font-size: 1.2rem;"> </li>
-       <li class="text-left" style="font-size: 1.2rem;"> </li>
-       <li class="text-left" style="font-size: 1.2rem;"> </li>
-       <li class="text-left" style="font-size: 1.2rem;"> </li>
-       <li class="text-left" style="font-size: 1.2rem;"> </li>
+       <li class="text-left" style="font-size: 1.2rem;">The rows attribute specifies the visible number of lines in a text area.</li>
+       <li class="text-left" style="font-size: 1.2rem;">The cols attribute specifies the visible width of a text area.</li>
+       <li class="text-left" style="font-size: 1.2rem;">The list attribute of the &ltinput&gt element, must refer to the id attribute of the &ltdatalist&gt element.</li>
+       <li class="text-left" style="font-size: 1.2rem;">checked 	Specifies that an input field should be pre-selected when the page loads (for type="checkbox" or type="radio")</li>
+       <li class="text-left" style="font-size: 1.2rem;">disabled 	Specifies that an input field should be disabled</li>
+       <li class="text-left" style="font-size: 1.2rem;">max 	Specifies the maximum value for an input field</li>
+       <li class="text-left" style="font-size: 1.2rem;">maxlength 	Specifies the maximum number of character for an input field</li>
+       <li class="text-left" style="font-size: 1.2rem;">min 	Specifies the minimum value for an input field</li>
+       <li class="text-left" style="font-size: 1.2rem;">pattern 	Specifies a regular expression to check the input value against</li>
+       <li class="text-left" style="font-size: 1.2rem;">readonly 	Specifies that an input field is read only (cannot be changed)</li>
+       <li class="text-left" style="font-size: 1.2rem;">required 	Specifies that an input field is required (must be filled out)</li>
+       <li class="text-left" style="font-size: 1.2rem;">size 	Specifies the width (in characters) of an input field</li>
+       <li class="text-left" style="font-size: 1.2rem;">step 	Specifies the legal number intervals for an input field</li>
+       <li class="text-left" style="font-size: 1.2rem;">value 	Specifies the default value for an input field</li>
+       <li class="text-left" style="font-size: 1.2rem;"></li>
+       <li class="text-left" style="font-size: 1.2rem;"></li>
+       <li class="text-left" style="font-size: 1.2rem;"></li>
+       <li class="text-left" style="font-size: 1.2rem;"></li>
+       <li class="text-left" style="font-size: 1.2rem;"></li>
+
+
+
     </ul>
 </div>
 <div class="row justify-content-md-left container d-flex mx-auto">
-      <h1 class="text-left" style="font-size: 3.4rem;"> forms</h1>  
+      <h1 class="text-left" style="font-size: 3.4rem;">Form Input types</h1>  
 </div>
 <div class="row justify-content-md-left container d-flex mx-auto">
     <ul>
@@ -173,9 +194,23 @@
         <li class="text-left" style="font-size: 1.2rem;">&ltinput type="checkbox"&gt 	Displays a checkbox (for selecting zero or more of many choices)</li>
         <li class="text-left" style="font-size: 1.2rem;">&ltinput type="submit"&gt 	Displays a submit button (for submitting the form)</li>
         <li class="text-left" style="font-size: 1.2rem;">&ltinput type="button"&gt 	Displays a clickable button</li>
-        <li class="text-left" style="font-size: 1.2rem;"> </li>
-        <li class="text-left" style="font-size: 1.2rem;"> </li>
-        <li class="text-left" style="font-size: 1.2rem;"> </li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="color"&gt Is used for input fields that should contain a color.</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="date"&gt  Is used for input fields that should contain a date, min and max attributes to add restrictions to dates</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="datetime-local"&gt Specifies a date and time input field, with no time zone</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="email"&gt is used for input fields that should contain an e-mail address.</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="file"&gt Defines a file-select field and a "Browse" button for file uploads.</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="hidden"&gt Defines a hidden input field (not visible to a user). A hidden field lets web developers include data that cannot be seen or modified by users when a form is submitted. A hidden field often stores what database record that needs to be updated when the form is submitted. can be modified with dev tools.</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="image"&gt Defines an image as a submit button.</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="month"&gt Allows the user to select a month and year.</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="number"&gt Defines a numeric input field, and can restricy wich numbers can be selcted</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="password"&gt</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="range"&gt</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="reset"&gt</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="search"&gt</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="tel"&gt</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="time"&gt</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="url"&gt</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="week"&gt</li>
     </ul>
 </div>
 <div class="row justify-content-md-left container d-flex mx-auto"></div>
@@ -201,7 +236,30 @@
         <label for="vehicle2"> I have a car</label><br>
         <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
         <label for="vehicle3"> I have a boat</label>
-    </form> 
+        <textarea name="message" rows="10" cols="30">
+        The cat was playing in the garden.
+        </textarea> 
+    </form>
+    <form>
+        <fieldset>
+            <legend>Personalia:</legend>
+            <label for="fname">First name:</label><br>
+            <input type="text" id="fname" name="fname" value="John"><br>
+            <label for="lname">Last name:</label><br>
+            <input type="text" id="lname" name="lname" value="Doe"><br><br>
+            <input type="submit" value="Submit">
+        </fieldset>
+</form>
+<form action="/action_page.php">
+  <input list="browsers">
+  <datalist id="browsers">
+    <option value="Edge">
+    <option value="Firefox">
+    <option value="Chrome">
+    <option value="Opera">
+    <option value="Safari">
+  </datalist>
+</form>  
 </div>
 </div>
 </body>
