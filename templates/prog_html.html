@@ -113,8 +113,8 @@
         <li class="text-left" style="font-size: 1.2rem;">The &ltlegend&gt&lt/legend&gt element defines a caption for the &ltfieldset&gt element.</li>
         <li class="text-left" style="font-size: 1.2rem;">The &ltdatalist&gt&lt/datalist&gt element specifies a list of pre-defined options for an &ltinput&gt element.</li>
         <li class="text-left" style="font-size: 1.2rem;">The &ltoutput&gt&lt/output&gt element represents the result of a calculation (like one performed by a script).</li>
-        <li class="text-left" style="font-size: 1.2rem;"> </li>
-        <li class="text-left" style="font-size: 1.2rem;"> </li>
+        <li class="text-left" style="font-size: 1.2rem;">The HTML &ltcanvas&gt&lt/canvas/&gt element is used to draw graphics on a web page.</li>
+        <li class="text-left" style="font-size: 1.2rem;">The HTML &ltsvg&gt&lt/svg&gt element is a container for SVG (Scalable Vector Graphics) graphics</li>
         <li class="text-left" style="font-size: 1.2rem;"> </li>
         <li class="text-left" style="font-size: 1.2rem;"> </li>
         <li class="text-left" style="font-size: 1.2rem;"> </li>
@@ -164,24 +164,32 @@
        <li class="text-left" style="font-size: 1.2rem;">The cols attribute specifies the visible width of a text area.</li>
        <li class="text-left" style="font-size: 1.2rem;">The list attribute of the &ltinput&gt element, must refer to the id attribute of the &ltdatalist&gt element.</li>
        <li class="text-left" style="font-size: 1.2rem;">checked 	Specifies that an input field should be pre-selected when the page loads (for type="checkbox" or type="radio")</li>
-       <li class="text-left" style="font-size: 1.2rem;">disabled 	Specifies that an input field should be disabled</li>
+       <li class="text-left" style="font-size: 1.2rem;">disabled 	Specifies that an input field should be disabled. data will not be sent when submitted</li>
        <li class="text-left" style="font-size: 1.2rem;">max 	Specifies the maximum value for an input field</li>
-       <li class="text-left" style="font-size: 1.2rem;">maxlength 	Specifies the maximum number of character for an input field</li>
+       <li class="text-left" style="font-size: 1.2rem;">maxlength 	Specifies the maximum number of character for an input field does not provide any feedback. So, if you want to alert the user, you must write JavaScript code.</li>
        <li class="text-left" style="font-size: 1.2rem;">min 	Specifies the minimum value for an input field</li>
        <li class="text-left" style="font-size: 1.2rem;">pattern 	Specifies a regular expression to check the input value against</li>
        <li class="text-left" style="font-size: 1.2rem;">readonly 	Specifies that an input field is read only (cannot be changed)</li>
        <li class="text-left" style="font-size: 1.2rem;">required 	Specifies that an input field is required (must be filled out)</li>
-       <li class="text-left" style="font-size: 1.2rem;">size 	Specifies the width (in characters) of an input field</li>
+       <li class="text-left" style="font-size: 1.2rem;">size 	Specifies the width (in characters) of an input field The default value for size is 20.</li>
        <li class="text-left" style="font-size: 1.2rem;">step 	Specifies the legal number intervals for an input field</li>
        <li class="text-left" style="font-size: 1.2rem;">value 	Specifies the default value for an input field</li>
-       <li class="text-left" style="font-size: 1.2rem;"></li>
-       <li class="text-left" style="font-size: 1.2rem;"></li>
-       <li class="text-left" style="font-size: 1.2rem;"></li>
-       <li class="text-left" style="font-size: 1.2rem;"></li>
-       <li class="text-left" style="font-size: 1.2rem;"></li>
-
-
-
+       <li class="text-left" style="font-size: 1.2rem;">The input value attribute specifies an initial value for an input field</li>
+       <li class="text-left" style="font-size: 1.2rem;">The input placeholder attribute specifies a short hint that describes the expected value of an input field (a sample value or a short description of the expected format). The short hint is displayed in the input field before the user enters a value.</li>
+       <li class="text-left" style="font-size: 1.2rem;">The input autofocus attribute specifies that an input field should automatically get focus when the page loads.</li>
+       <li class="text-left" style="font-size: 1.2rem;">The input list attribute refers to a &ltdatalist&gt element that contains pre-defined options for an &ltinput&gt element.</li>
+       <li class="text-left" style="font-size: 1.2rem;">The input formaction attribute specifies the URL of the file that will process the input when the form is submitted. Note: This attribute overrides the action attribute of the &ltform&gt element.</li>
+       <li class="text-left" style="font-size: 1.2rem;">The input formenctype attribute specifies how the form-data should be encoded when submitted (only for forms with method="post"). Note: This attribute overrides the enctype attribute of the &ltform&gt element.</li>
+       <li class="text-left" style="font-size: 1.2rem;">The input formtarget attribute specifies a name or a keyword that indicates where to display the response that is received after submitting the form. Note: This attribute overrides the target attribute of the &ltform&gt element.</li>
+       <li class="text-left" style="font-size: 1.2rem;">The input formnovalidate attribute specifies that an <input> element should not be validated when submitte. Note: This attribute overrides the novalidate attribute of the &ltform&gt element</li>
+        <li class="text-left" style="font-size: 1.2rem;"></li>
+        <li class="text-left" style="font-size: 1.2rem;"> </li>
+        <li class="text-left" style="font-size: 1.2rem;"> </li>
+        <li class="text-left" style="font-size: 1.2rem;"> </li>   
+        <li class="text-left" style="font-size: 1.2rem;"> </li>
+        <li class="text-left" style="font-size: 1.2rem;"> </li>
+        <li class="text-left" style="font-size: 1.2rem;"> </li>
+        <li class="text-left" style="font-size: 1.2rem;"> </li>   
     </ul>
 </div>
 <div class="row justify-content-md-left container d-flex mx-auto">
@@ -203,14 +211,18 @@
         <li class="text-left" style="font-size: 1.2rem;">&ltinput type="image"&gt Defines an image as a submit button.</li>
         <li class="text-left" style="font-size: 1.2rem;">&ltinput type="month"&gt Allows the user to select a month and year.</li>
         <li class="text-left" style="font-size: 1.2rem;">&ltinput type="number"&gt Defines a numeric input field, and can restricy wich numbers can be selcted</li>
-        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="password"&gt</li>
-        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="range"&gt</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="password"&gt Is used when the input field should contain a passwprd.</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="range"&gt Defines a control for entering a number whose exact value is not important (like a slider control). Default range is 0 to 100. Restrictions can be set on what numbers are accepted with the min, max, and step attributes</li>
         <li class="text-left" style="font-size: 1.2rem;">&ltinput type="reset"&gt</li>
-        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="search"&gt</li>
-        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="tel"&gt</li>
-        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="time"&gt</li>
-        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="url"&gt</li>
-        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="week"&gt</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="search"&gt Is used for search fields (behaves like a regular text field).</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="tel"&gt  Is used for input fields that should contain a telephone number.</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="time"&gt  Allows the user to select a time (no time zone).</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="url"&gt Is used for input fields that should contain a URL address</li>
+        <li class="text-left" style="font-size: 1.2rem;">&ltinput type="week"&gt Allows the user to select a week and year.</li>
+        <li class="text-left" style="font-size: 1.2rem;"> </li>
+        <li class="text-left" style="font-size: 1.2rem;"> </li>
+        <li class="text-left" style="font-size: 1.2rem;"> </li>
+        <li class="text-left" style="font-size: 1.2rem;"> </li>                
     </ul>
 </div>
 <div class="row justify-content-md-left container d-flex mx-auto"></div>
@@ -260,6 +272,35 @@
     <option value="Safari">
   </datalist>
 </form>  
+</div>
+<div class="row justify-content-md-left container d-flex mx-auto"></div>
+<table class="ws-table-all notranslate">
+<caption>SVG and Canvas comparison</caption>
+<tbody><tr>
+<th style="width:50%">SVG</th>
+<th style="width:50%">Canvas</th>
+</tr>
+<tr>
+<td>
+<ul>
+  <li>Resolution independent</li>
+  <li>Support for event handlers</li>
+  <li>Good text rendering capabilities</li>
+  <li>Slow rendering if complex</li>
+  <li>Not suited for game applications</li>
+</ul>
+</td>
+<td>
+<ul>
+  <li>Resolution dependent</li>
+  <li>No support for event handlers</li>
+  <li>Poor text rendering capabilities</li>
+  <li>You can save the resulting image as .png or .jpg</li>
+  <li>Well suited for graphic-intensive games</li>
+</ul>
+</td>
+</tr>
+</tbody></table>
 </div>
 </div>
 </body>
