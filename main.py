@@ -24,10 +24,6 @@ app = Flask(__name__)
 def home():
     return render_template('home.html')
 
-@app.route('/programacion')
-def programacion():
-    return render_template('programacion.html')
-
 @app.route('/programacion/css')
 def prog_css():
     return render_template('prog_css.html')
@@ -51,10 +47,6 @@ def prog_python():
 @app.route('/programacion/sql')
 def prog_sql():
     return render_template('prog_sql.html')
-
-@app.route('/projects')
-def projects():
-    return render_template('projects.html')
 
 @app.route('/projects/personal')
 def pj_personal():
