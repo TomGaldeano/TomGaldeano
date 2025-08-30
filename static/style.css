@@ -29,3 +29,10 @@
     color: gold;
     text-decoration: none;
 }
+.gray_link{
+    color: gray;
+}
+.gray_link:hover{
+    color: gray;
+    text-decoration: none;
+}
