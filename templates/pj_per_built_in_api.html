@@ -1,2 +1,82 @@
 {% include "header.html" %}
 {% include "pj_header.html" %}
+<!-- Add this just after your opening <body> tag or inside your main container -->
+<div class="container-fluid">
+<div class="row">
+  <!-- Sidebar -->
+  <nav class="col-md-1 d-none d-md-block sidebar" style="min-height:100vh;">
+    <div class="sidebar-sticky">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link gray_link" href="#theory">Theory</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link gray_link" href="#style-guide">Style Guide</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link gray_link" href="#elements">Elements</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link gray_link" href="#attributes">Attributes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link gray_link" href="#form-input_types">Form Input Types</a>
+        </li>          
+        <li class="nav-item">
+          <a class="nav-link gray_link" href="#form-examples">Form Examples</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Main content -->
+  <main class="col-md-11 ml-sm-auto px-4 justify-content-md-left">
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h1 class="text-left" style="font-size: 3.4rem;">Built in api showcase</h1>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <p class="text-left" style="font-size: 1.2rem;"> 
+      Basic implementations of the built in api in the browsers so i can copy it later if needed asi i am did from w3schools
+      </p>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h1 class="text-left" style="font-size: 3.4rem;">Geolocation API</h1>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <button onclick="getLocation()">Try It</button>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <p id="geo_demo"></p>
+    </div>
+    <script>
+      const x = document.getElementById("geo_demo");
+      function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, error);
+      } else {
+        x.innerHTML = "Geolocation is not supported by this browser."; }}
+        function success(position) {
+        x.innerHTML = "Latitude: " + position.coords.latitude +
+        "<br>Longitude: " + position.coords.longitude;  }
+      function error() {
+        alert("Sorry, no position available."); }
+    </script> 
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h1 class="text-left" style="font-size: 3.4rem;">Drag and drop API</h1>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h1 class="text-left" style="font-size: 3.4rem;">Web Storage API</h1>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h1 class="text-left" style="font-size: 3.4rem;">Web Worker API</h1>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h1 class="text-left" style="font-size: 3.4rem;">Server-Sent Events API</h1>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h1 class="text-left" style="font-size: 3.4rem;">Canvas API</h1>
+    </div>
+  </main>
+</div>
+</div>
+</body>
+</html>
