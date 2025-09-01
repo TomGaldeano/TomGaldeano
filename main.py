@@ -52,6 +52,14 @@ def prog_sql():
 def pj_personal():
     return render_template('pj_personal.html')
 
+@app.route('/projects/personal/div_showcase')
+def pj_per_div():
+    return render_template('pj_per_div.html')
+
+@app.route('/projects/personal/built_in_api_showcase')
+def pj_per_built_in_api():
+    return render_template('pj_per_built_in_api.html')
+
 @app.route('/projects/games')
 def pj_games():
     return render_template('pj_games.html')

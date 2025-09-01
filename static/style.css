@@ -1,38 +1,64 @@
 .red_hover:hover{
-    color: red;
+  color: red;
 }
 .blue_hover:hover{
-    color: blue;
+  color: blue;
 }
 .green_hover:hover{
-    color: green;
+  color: green;
 }
 .gold_hover:hover{
-    color: gold;
+  color: gold;
 }
 .red_hover{
-    color: white;
+  color: white;
 }
 .blue_hover{
-    color: white;
+  color: white;
 }
 .green_hover{
-    color: white;
+  color: white;
 }
 .gold_hover{
-    color: white;
+  color: white;
 }
 .golden_link{
-    color: gold;
+  color: gold;
 }
 .golden_link:hover{
-    color: gold;
-    text-decoration: none;
+  color: gold;
+  text-decoration: none;
 }
 .gray_link{
-    color: gray;
+  color: gray;
 }
 .gray_link:hover{
-    color: gray;
-    text-decoration: none;
+  color: gray;
+  text-decoration: none;
+}
+div.mycontainer {
+  width:100%;
+  overflow:auto;
+}
+div.mycontainer div {
+  width:33.3%;  
+  float:left;
+}
+.parent-inline {
+  font-size: 0;
+}
+.linediv {
+  width:33.3%;  
+  display:inline-block;
+  font-size: 16px; /* reset to normal */
+}
+.mycontainer2 {
+  display: flex;
+}
+.mycontainer2 > div {
+  width:33.3%;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 33.3% 33.3% 33.3%;
 }
