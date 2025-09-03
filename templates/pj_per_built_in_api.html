@@ -54,14 +54,43 @@
         navigator.geolocation.getCurrentPosition(success, error);
       } else {
         x.innerHTML = "Geolocation is not supported by this browser."; }}
-        function success(position) {
-        x.innerHTML = "Latitude: " + position.coords.latitude +
-        "<br>Longitude: " + position.coords.longitude;  }
-      function error() {
-        alert("Sorry, no position available."); }
+      function success(position) {
+        x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude + "<br>Acurracy: " + position.coords.accuracy + "<br>Altitude: " + position.coords.altitude + "<br>Altitude acurracy: " + position.coords.altitudeAccuracy + "<br>Heading: " + position.coords.heading + "<br>Speed: " + position.coords.speed + "<br>timestamp: " + position.timestamp;  }
+      function error(error) {
+        switch(error.code) {
+          case error.PERMISSION_DENIED:
+            x.innerHTML = "User denied the request for Geolocation."
+            break;
+          case error.POSITION_UNAVAILABLE:
+            x.innerHTML = "Location information is unavailable."
+            break;
+          case error.TIMEOUT:
+            x.innerHTML = "The request to get user location timed out."
+            break;
+          case error.UNKNOWN_ERROR:
+            x.innerHTML = "An unknown error occurred."
+            break; }}
     </script> 
     <div class="row justify-content-md-left container d-flex mx-auto">
       <h1 class="text-left" style="font-size: 3.4rem;">Drag and drop API</h1>
+    </div>
+    <script>
+      function dragstartHandler(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);}
+      function dragoverHandler(ev) {
+        ev.preventDefault();} 
+      function dropHandler(ev) {
+        ev.preventDefault();
+        const data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data)); }
+    </script>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+        <p>Drag the image into the rectangle:</p>
+    </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <div class="justify-content-md-center d-flex" style="width: 70px;height: 70px;padding: 10px;border: 1px solid #aaaaaa;" ondrop="dropHandler(event)"   ondragover="dragoverHandler(event)"><img id="img1" style="height:50px;width:50px;" src="{{ url_for('static', filename='pawn.png') }}" draggable="true" ondragstart="dragstartHandler(event)" width="336" height="69" alt="1"></div>
+        <div class="justify-content-md-center d-flex" style="width: 70px;height: 70px;padding: 10px;border: 1px solid #aaaaaa;background-color: #0ba443;" ondrop="dropHandler(event)"   ondragover="dragoverHandler(event)"></div>
+      </div>
     </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
       <h1 class="text-left" style="font-size: 3.4rem;">Web Storage API</h1>
@@ -80,3 +109,4 @@
 </div>
 </body>
 </html>
+<!-- a href="https://www.flaticon.com/free-icons/pawn" title="pawn icons">Pawn icons created by rizal2109 - Flaticon</a-->
