@@ -75,6 +75,13 @@
       <h1 class="text-left" style="font-size: 3.4rem;">Drag and drop API</h1>
     </div>
     <script>
+      
+    /* Script explained
+    Call preventDefault() to prevent the browser default handling of the data (default is open as link on drop)
+    Get the dragged data with the dataTransfer.getData() method. This method will return any data that was set to the same type in the setData() method
+    The dragged data is the id of the dragged element ("img1")
+    Append the dragged element into the drop element:*/
+
       function dragstartHandler(ev) {
         ev.dataTransfer.setData("text", ev.target.id);}
       function dragoverHandler(ev) {
@@ -88,25 +95,92 @@
         <p>Drag the image into the rectangle:</p>
     </div>
       <div class="row justify-content-md-left container d-flex mx-auto">
+        <!-- To make an element draggable, set the draggable attribute to true: -->
         <div class="justify-content-md-center d-flex" style="width: 70px;height: 70px;padding: 10px;border: 1px solid #aaaaaa;" ondrop="dropHandler(event)"   ondragover="dragoverHandler(event)"><img id="img1" style="height:50px;width:50px;" src="{{ url_for('static', filename='pawn.png') }}" draggable="true" ondragstart="dragstartHandler(event)" width="336" height="69" alt="1"></div>
         <div class="justify-content-md-center d-flex" style="width: 70px;height: 70px;padding: 10px;border: 1px solid #aaaaaa;background-color: #0ba443;" ondrop="dropHandler(event)"   ondragover="dragoverHandler(event)"></div>
       </div>
-    </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
       <h1 class="text-left" style="font-size: 3.4rem;">Web Storage API</h1>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+    <ul>
+      <li class="text-left" style="font-size: 1.2rem;">Web storage provides two objects for storing data in the browser:</li>
+      <li class="text-left" style="font-size: 1.2rem;"><code>window.localStorage</code> - stores data with no expiration date (data is not lost when the browser tab is closed)</li>
+      <li class="text-left" style="font-size: 1.2rem;"><code>window.sessionStorage</code> - stores data for one session (data is lost when the browser tab is closed)</li>
+      <li class="text-left" style="font-size: 1.2rem;">Use the <code>localStorage.getItem()</code> method to  retrieve the values set</li>
+      <li class="text-left" style="font-size: 1.2rem;">Use the <code>sessionlocalStorage.getItem()</code> method to  retrieve the values set</li>
+    </ul>
+    </div>
+    <script>
+      function clickCounter() {
+        const clicks = document.getElementById("result");
+        if (typeof(Storage) !== "undefined") {
+          if (localStorage.clickcount) {
+            localStorage.clickcount = Number(localStorage.clickcount)+1;
+          } else {
+            localStorage.clickcount = 1;}
+          clicks.innerHTML = "You have clicked the button " + localStorage.clickcount + " time(s)!";
+        } else {
+          clicks.innerHTML = "Sorry, no Web storage support!"; }}
+    </script>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h3>localStorage</h3>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+      <button onclick="clickCounter()" type="button">Click me!</button>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+      <p id="result"></p>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+      <p>Click the button to see the counter increase.</p>
+      </div>
     </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
       <h1 class="text-left" style="font-size: 3.4rem;">Web Worker API</h1>
     </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
+      <p>A web worker is an external JavaScript file that runs in the background, independently of other scripts, without affecting the performance of the page. You can continue to do whatever you want: clicking, selecting things, etc., while the web worker runs in the background.</p>
+      <p>Count numbers: <output id="result1"></output></p>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <button onclick="startWorker()">Start Worker</button>
+      <button onclick="stopWorker()">Stop Worker</button>
+    </div>
+    <script>
+    let w;
+      function startWorker() {
+        const worker = document.getElementById("result1");
+        if (typeof(Worker) !== "undefined") {
+          if (typeof(w) == "undefined") {
+            w = new Worker("{{ url_for('static', filename='demo_worker.js') }}"); }
+          w.onmessage = function(event) {
+            worker.innerHTML = event.data; };
+        } else {
+          worker.innerHTML = "Sorry! No Web Worker support.";} }
+      function stopWorker() {
+        w.terminate();
+        w = undefined; }
+    </script>
+    <div class="row justify-content-md-left container d-flex mx-auto">
       <h1 class="text-left" style="font-size: 3.4rem;">Server-Sent Events API</h1>
     </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
-      <h1 class="text-left" style="font-size: 3.4rem;">Canvas API</h1>
+      <p>A server-sent event is when a web page automatically gets messages/updates from a server.</p>
+      <p>Normally, a web page has to request data from the server, but with server-sent events, the updates are pushed automatically.</p>
+    </div>
+    <div id="output" class="row justify-content-md-left container d-flex mx-auto"><p>Time: <output id="output_time"></output></p></div>  
+    <script>
+      eventSource = new EventSource("/stream");
+      eventSource.onmessage = function(event) {
+        const output_time = document.getElementById("output_time");
+        output_time.innerHTML = event.data;};
+      eventSource.onerror = function(err) {
+        console.error("EventSource failed:", err); };
+    </script>
     </div>
   </main>
 </div>
-</div>
+</div>  
 </body>
 </html>
 <!-- a href="https://www.flaticon.com/free-icons/pawn" title="pawn icons">Pawn icons created by rizal2109 - Flaticon</a-->

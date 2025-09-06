@@ -1,8 +1,9 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, Response
 from flask_bootstrap import Bootstrap
 import werkzeug.security
 from functools import wraps
 from flask_wtf.csrf import CSRFProtect
+import time
 
 
 def create_app():
@@ -67,6 +68,14 @@ def pj_games():
 @app.route('/projects/ordered')
 def pj_ordered():
     return render_template('pj_ordered.html')
+
+@app.route("/stream")
+def stream():
+    def event_stream():
+        while True:
+            time.sleep(2)  # simulate new data every 2 sec
+            yield f"data: {time.strftime('%H:%M:%S')}\n\n"
+    return Response(event_stream(), mimetype="text/event-stream")
 
 if __name__ == '__main__':  
     app.run(host='0.0.0.0', port=5001, debug=True)
