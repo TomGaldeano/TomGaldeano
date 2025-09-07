@@ -8,22 +8,10 @@
     <div class="sidebar-sticky">
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link gray_link" href="#theory">Theory</a>
+          <a class="nav-link gray_link" href="#web_worker">Web Worker</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link gray_link" href="#style-guide">Style Guide</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#elements">Elements</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#attributes">Attributes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#form-input_types">Form Input Types</a>
-        </li>          
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#form-examples">Form Examples</a>
+          <a class="nav-link gray_link" href="#SSE">Server-Sent Events</a>
         </li>
       </ul>
     </div>
@@ -31,15 +19,15 @@
   <!-- Main content -->
   <main class="col-md-11 ml-sm-auto px-4 justify-content-md-left">
     <div class="row justify-content-md-left container d-flex mx-auto">
-      <h1 class="text-left" style="font-size: 3.4rem;">Built in api showcase</h1>
+      <h1 class="text-left ">Built in api showcase</h1>
     </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
-      <p class="text-left" style="font-size: 1.2rem;"> 
+      <p class="text-left main_content"> 
       Basic implementations of the built in api in the browsers so i can copy it later if needed asi i am did from w3schools
       </p>
     </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
-      <h1 class="text-left" style="font-size: 3.4rem;">Geolocation API</h1>
+      <h2 class="h2_big text-left ">Geolocation API</h2>
     </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
       <button onclick="getLocation()">Try It</button>
@@ -72,16 +60,14 @@
             break; }}
     </script> 
     <div class="row justify-content-md-left container d-flex mx-auto">
-      <h1 class="text-left" style="font-size: 3.4rem;">Drag and drop API</h1>
+      <h2 class="h2_big text-left ">Drag and drop API</h2>
     </div>
-    <script>
-      
+    <script>  
     /* Script explained
     Call preventDefault() to prevent the browser default handling of the data (default is open as link on drop)
     Get the dragged data with the dataTransfer.getData() method. This method will return any data that was set to the same type in the setData() method
     The dragged data is the id of the dragged element ("img1")
     Append the dragged element into the drop element:*/
-
       function dragstartHandler(ev) {
         ev.dataTransfer.setData("text", ev.target.id);}
       function dragoverHandler(ev) {
@@ -100,15 +86,15 @@
         <div class="justify-content-md-center d-flex" style="width: 70px;height: 70px;padding: 10px;border: 1px solid #aaaaaa;background-color: #0ba443;" ondrop="dropHandler(event)"   ondragover="dragoverHandler(event)"></div>
       </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
-      <h1 class="text-left" style="font-size: 3.4rem;">Web Storage API</h1>
+      <h2 class="h2_big text-left ">Web Storage API</h2>
     </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
     <ul>
-      <li class="text-left" style="font-size: 1.2rem;">Web storage provides two objects for storing data in the browser:</li>
-      <li class="text-left" style="font-size: 1.2rem;"><code>window.localStorage</code> - stores data with no expiration date (data is not lost when the browser tab is closed)</li>
-      <li class="text-left" style="font-size: 1.2rem;"><code>window.sessionStorage</code> - stores data for one session (data is lost when the browser tab is closed)</li>
-      <li class="text-left" style="font-size: 1.2rem;">Use the <code>localStorage.getItem()</code> method to  retrieve the values set</li>
-      <li class="text-left" style="font-size: 1.2rem;">Use the <code>sessionlocalStorage.getItem()</code> method to  retrieve the values set</li>
+      <li class="text-left main_content">Web storage provides two objects for storing data in the browser:</li>
+      <li class="text-left main_content"><code>window.localStorage</code> - stores data with no expiration date (data is not lost when the browser tab is closed)</li>
+      <li class="text-left main_content"><code>window.sessionStorage</code> - stores data for one session (data is lost when the browser tab is closed)</li>
+      <li class="text-left main_content">Use the <code>localStorage.getItem()</code> method to  retrieve the values set</li>
+      <li class="text-left main_content">Use the <code>sessionlocalStorage.getItem()</code> method to  retrieve the values set</li>
     </ul>
     </div>
     <script>
@@ -136,7 +122,7 @@
       </div>
     </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
-      <h1 class="text-left" style="font-size: 3.4rem;">Web Worker API</h1>
+      <h2 id="web_worker" class="text-left">Web Worker API</h2>
     </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
       <p>A web worker is an external JavaScript file that runs in the background, independently of other scripts, without affecting the performance of the page. You can continue to do whatever you want: clicking, selecting things, etc., while the web worker runs in the background.</p>
@@ -162,7 +148,7 @@
         w = undefined; }
     </script>
     <div class="row justify-content-md-left container d-flex mx-auto">
-      <h1 class="text-left" style="font-size: 3.4rem;">Server-Sent Events API</h1>
+      <h2 id="SSE" class="text-left">Server-Sent Events API</h2>
     </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
       <p>A server-sent event is when a web page automatically gets messages/updates from a server.</p>
