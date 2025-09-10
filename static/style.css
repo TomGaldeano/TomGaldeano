@@ -74,3 +74,14 @@ div.mycontainer div {
 .h1_big{
     font-size:3.4rem;
 }
+li.dotted {border-style: dotted;}
+li.dashed {border-style: dashed;}
+li.solid {border-style: solid;}
+li.double {border-style: double;}
+li.groove {border-style: groove;}
+li.ridge {border-style: ridge;}
+li.inset1 {border-style: inset;}
+li.outset1 {border-style: outset;}
+li.none {border-style: none;}
+li.hidden {border-style: hidden;}
+li.mix {border-style: dotted dashed solid double;}
