@@ -1,0 +1,393 @@
+{% include "header.html" %}
+{% include "prog/prog_header.html" %}
+<!-- Add this just after your opening <body> tag or inside your main container -->
+<div class="container-fluid">
+<div class="row">
+  <!-- Sidebar -->
+  <nav class="col-md-1 d-none d-md-block sidebar" style="min-height:100vh;">
+    <div class="sidebar-sticky">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link gray_link" href="#theory">Theory</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link gray_link" href="#style-guide">Style Guide</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link gray_link" href="#elements">Elements</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link gray_link" href="#attributes">Attributes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link gray_link" href="#form-input_types">Form Input Types</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link gray_link" href="#form-examples">Form Examples</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Main content -->
+  <main class="col-md-11 ml-sm-auto px-4 justify-content-md-left">
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h1 class="text-left h1_big">HTML</h1>
+    </div>
+    <div class="row justify-content-left container d-flex mx-auto">
+      <p class="text-left main_content">
+      To note down stuff i don't remember when looking <a href="https://www.w3schools.com/html" target="_blank" class="golden_link" >at w3 schools</a> w3 schools guide and school
+      </p>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left" id="theory">Theory</h2>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left main_content">Empty elements dont have a closing tabs </li>
+        <li class="text-left main_content">Elements are not case senitive </li>
+        <li class="text-left main_content">include the lang attribute inside the &lthtml&gt tag, to declare the language of the Web page. This is meant to assist search engines and browsers </li>
+        <li class="text-left main_content">Atributes go inside an element to add or define its behaviour and appearance </li>
+        <li class="text-left main_content">Html paragraphs start in a new line </li>
+        <li class="text-left main_content">A block-level element always starts on a new line, and the browsers automatically add some space before and after the element. They always take up the full width available </li>
+        <li class="text-left main_content">Block-Elemnts:&ltaddress&gt &ltarticle&gt &ltaside&gt &ltblockquote&gt &ltcanvas&gt &ltdd&gt &ltdiv&gt &ltdl&gt &ltdt&gt &ltfieldset&gt &ltfigcaption&gt &ltfigure&gt &ltfooter&gt &ltform&gt &lth1&gt-&lth6&gt &ltheader&gt &lthr&gt &ltli&gt &ltmain&gt &ltnav&gt &ltnoscript&gt &ltol&gt &ltp&gt &ltpre&gt &ltsection&gt &lttable&gt &lttfoot&gt &ltul&gt &ltvideo&gt.</li>
+        <li class="text-left main_content">An inline element does not start on a new line, and only takes up as much width as necess</li>
+        <li class="text-left main_content">Inline elements: &lta&gt &ltabbr&gt &ltacronym&gt &ltb&gt &ltbdo&gt &ltbig&gt &ltbr&gt &ltbutton&gt &ltcite&gt &ltcode&gt &ltdfn&gt &ltem&gt &lti&gt &ltimg&gt &ltinput&gt &ltkbd&gt &ltlabel&gt &ltmap&gt &ltobject&gt &ltoutput&gt &ltq&gt &ltsamp&gt &ltscript&gt &ltselect&gt &ltsmall&gt &ltspan&gt &ltstrong&gt &ltsub&gt &ltsup&gt &lttextarea&gt &lttime&gt &lttt&gt &ltvar&gt </li>
+        <li class="text-left main_content">div styling can be seen <a href="{{ url_for('pj_per_div')}}" class="golden_link">here</a></li>
+        <li class="text-left main_content">float and flexbox styling can be seen <a href="https://www.w3schools.com/html/html_layout.asp" st></a></li>
+        <li class="text-left main_content">charecters can be infroduced with a special name or with encoding in hex or decimal and can be refenrenced <a href="https://www.w3schools.com/charsets/ref_html_utf8.asp" class="golden_link">here</a></li>
+        <li class="text-left main_content">A commonly used HTML entity is the non-breaking space: &ampnbsp, the ampersand &ampamp &amp#38 (hex), &lt &amplt &gt &ampgt</li>
+        <li class="text-left main_content">Diacritical marks can be used in combination with alphanumeric characters to produce a character that is not present in the character set (encoding) used in the page ̃ 	a 	a&#771 a&amp#771</li>
+        <li class="text-left main_content">Only MP4, WebM, and Ogg video are supported by the HTML standard.</li>
+        <li class="text-left main_content">Only MP3, WAV, and Ogg audio are supported by the HTML standard.</li>
+        <li class="text-left main_content">All browsers have a set of built-in Web APIs to support complex operations, and to help accessing data. <a href="{{ url_for('pj_per_built_in_api')}}" class="golden_link">They use js here is some examples</a></li>
+      </ul>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left" id="style-guide">Style guide</h2>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left main_content">Always specify the alt attribute for images. This attribute is important if the image for some reason cannot be displayed.</li>
+        <li class="text-left main_content"><code>&ltmeta charset="utf-8" /&gt</code>If you expect XML/XHTML software to access your page, keep the closing slash (/), because it is required in XML and XHTML.</li>
+        <li class="text-left main_content">Some web servers (Apache, Unix) are case sensitive about file names: "london.jpg" cannot be accessed as "London.jpg". </li>
+        <li class="text-left main_content">Chromium browsers do not allow autoplay in most cases. However, muted autoplay is always allowed.</li>
+      </ul>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left" id ="elements">Elements</h2>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left main_content"><code>&ltbr&gt</code> makes a horizontal white space it is an empty element </li>
+        <li class="text-left main_content"><code>&lthr&gt</code> makes a horizontal line across the screen </li>
+        <li class="text-left main_content"><code>&ltstrong&gt</code> and <code>&ltb&gt</code> - <b>Bold text</b></p>
+        <li class="text-left main_content"><code>&lti&gt</code> and <code>&ltem&gt</code> - <i>Italic text</i> </li>
+        <li class="text-left main_content"><code>&ltmark&gt</code> - <mark>marked text</mark> </li>
+        <li class="text-left main_content"><code>&ltsmall&gt</code> - <small>Smaller text</small> </li>
+        <li class="text-left main_content"><code>&ltdel&gt</code> - <del>Deleted text</del> </li>
+        <li class="text-left main_content"><code>&ltins&gt</code> - <ins>Inserted text</ins> </li>
+        <li class="text-left main_content"><code>&ltsub&gt</code> - <sub>subscript text</sub> </li>
+        <li class="text-left main_content"><code>&ltsup&gt</code> - <sup>Superscript text</sup></li> </li>
+        <li class="text-left main_content"><blockquote cite="http://www.worldwildlife.org/who/index.html"><code>&ltblockquote cite="http://www.worldwildlife.org/who/index.html"&gt&lt/blockquote&gt</code>Defines a bolck of text quoted from a source</blockquote> </li>
+        <li class="text-left main_content"><code>&ltq&gt&lt/q&gt</code><q>short quotes</q> </li>
+        <li class="text-left main_content"><code>&ltabbr&gt&lt/abbr&gt</code><abbr title="World Health Organization">WHO</abbr> abbreviation</li>
+        <li class="text-left main_content"><code>&ltcite&gt&lt/cite&gt</code><cite> tag defines the title of a creative work</cite></li>
+        <li class="text-left main_content"><code>&ltbdo dir="rtl"&gt&lt/bdo&gt</code><bdo dir="rtl">Hello world</bdo></li>
+        <li class="text-left main_content"> <code>&ltimg src="workplace.jpg" alt="Workplace" usemap="#workmap"&gt</code> sets up image to use as map where you can click on parts of the images as links </li>
+          <ul>
+            <li class="text-left main_content"><code>&ltmap name="workmap"&gt</code></map></li>
+            <li class="text-left main_content"><code>&ltarea shape="poly" coords="40,259,103,161,128,147" alt="Phone" href="phone.htm"&gt</code> coords of vertices</li>
+            <li class="text-left main_content"><code>&ltarea shape="rect" alt="Computer" href="computer.htm"&gt</code> right top coords and bottom left coords</li>
+            <li class="text-left main_content"><code>&ltarea shape="circle" coords="337,300,44" alt="Coffee" href="coffee.htm"&gt</code> center coords and radius</li>
+            <li class="text-left main_content">if shape is set to default the image area to click is the whole image. Coords a relative to top right corer and are positve </li>
+            <li class="text-left main_content"><code>&lt/map&gt</code></li>
+          </ul>
+        <li class="text-left main_content"><code>&ltpicture&gt</code> used to specify image based on the scrren size and for format support</li>
+        <ul>
+          <li class="text-left main_content"><code>&ltsource media="(min-width: 650px)" srcset="img_food.jpg"&gt</code></li>
+          <li class="text-left main_content"><code>&ltsource media="(min-width: 465px)" srcset="img_car.jpg"&gt</code></li>
+          <li class="text-left main_content"><code>&ltimg src="img_girl.jpg"&gt&lt/picture&gt</code></li>
+        </ul>
+        <li class="text-left main_content"><code>&ltcaption&gtTable haeader&lt/caption&gt</code> can be put in after &lttable&gt to set a table header</li>
+        <li class="text-left main_content"><code>&ltcolgroup&gt&ltcol span="2" style="background-color: #D6EEEE"&gt&lt/colgroup&gt</code> serves to make grupes of consecutive comuns to style and modify together empty ones can be made to style only the middle</li>
+        <li class="text-left main_content"><code>&ltdl&gt</code> Described lists
+          <dl>
+            <dt><code>&ltdt&gt</code></dt>
+            <dd><code>&ltdd&gt&ltdl&gt</code></dd>
+          </dl>
+        </li>
+        <li class="text-left main_content"><code>&ltiframe src="demo_iframe.htm" height="200" width="300" title="Iframe Example"&gt&lt/iframe&gt</code> iframes are used to embed another document in the html document. can be target of link as shown in atributes</li>
+        <li class="text-left main_content">The HTML <code>&ltnoscript&gt&lt/noscript&gt</code> tag defines an alternate content to be displayed to users that have disabled scripts in their browser or have a browser that doesn't support scripts</li>
+        <li class="text-left main_content"><code>&ltarticle&gt</code>
+        <li class="text-left main_content">The <code>&ltkbd&gt&lt/kbd&gt</code> element defines keyboard input </li>
+        <li class="text-left main_content">The <code>&ltsamp&gt&lt/samp&gt</code> element defines sample output from a computer program</li>
+        <li class="text-left main_content">The <code>&ltcode&gt&lt/code&gt</code> element defines a piece of computer code</li>
+        <li class="text-left main_content">The <code>&ltvar&gt&lt/var&gt</code> element defines a variable in programming or in a mathematical expression</li>
+        <li class="text-left main_content">The <code>&ltsection&gt&lt/section&gt</code> element defines a section in a document.<q>A section is a thematic grouping of content, typically with a heading.</q></li>
+        <li class="text-left main_content">The <code>&ltaside&gt&lt/aside&gt</code> element defines some content aside from the content it is placed in (like a sidebar).</li>
+        <li class="text-left main_content"><code>&ltfigure&gt&lt/figure&gt</code> tag specifies self-contained content, </li>
+        <li class="text-left main_content">The <code>&ltfigcaption&gt tag defines a caption for a &ltfigure&gt element. The &ltfigcaption&gt</code> element can be placed as the first or as the last child of a &ltfigure&gt element.</li>
+        <li class="text-left main_content"><code><pre id="html_figure">&ltfigure&gt
+          &ltimg src="pic_trulli.jpg" alt="Trulli"&gt
+          &ltfigcaption&gtFig1. - Trulli, Puglia, Italy.&lt/figcaption&gt
+          &lt/figure&gt</pre></code></li>
+        <li class="text-left main_content">The <code>&ltlabel&gt&lt/label&gt</code> element defines a label for several form elements.</li>
+        <li class="text-left main_content">The <code>&ltselect&gt&lt/select&gt</code> element defines a drop-down list</li>
+        <li class="text-left main_content">The <code>&ltoption&gt&lt/option&gt</code> element defines an option that can be selected</li>
+        <li class="text-left main_content">The <code>&lttextarea&gt&lt/textarea&gt</code> element defines a multi-line input field</li>
+        <li class="text-left main_content">The <code>&ltbutton type="button"&gt&lt/button&gt</code> element defines a clickable button. YSe the type button for browsers to display it correctly</li>
+        <li class="text-left main_content">The <code>&ltfieldset&gt&lt/fieldest&gt</code> element is used to group related data in a form.</li>
+        <li class="text-left main_content">The <code>&ltlegend&gt&lt/legend&gt</code> element defines a caption for the &ltfieldset&gt element.</li>
+        <li class="text-left main_content">The <code>&ltdatalist&gt&lt/datalist&gt</code> element specifies a list of pre-defined options for an &ltinput&gt element.</li>
+        <li class="text-left main_content">The <code>&ltoutput&gt&lt/output&gt</code> element represents the result of a calculation (like one performed by a script).</li>
+        <li class="text-left main_content">The HTML <code>&ltcanvas&gt&lt/canvas/&gt</code> element is used to draw graphics on a web page.</li>
+        <li class="text-left main_content">The HTML <code>&ltsvg&gt&lt/svg&gt</code> element is a container for SVG (Scalable Vector Graphics) graphics</li>
+        <li class="text-left main_content">To show a video in HTML, use the <code>&ltvideo&gt&lt/video&gt</code> element. &ltsource&gt can be used to specify alternatives</li>
+        <li class="text-left main_content"><code>&lttrack&gt&lt/track&gt</code> 	Defines text tracks in media players</li>
+        <li class="text-left main_content">To play audio in HTML, use the <code>&ltaudio&gt&lt/video&gt element. &ltaudio&gt</code> can be used to specify alternatives</li>
+        <li class="text-left main_content">The <code>&ltobject&gt&lt/object&gt</code> element defines an embedded object within an HTML document. It was designed to embed plug-ins (like Java applets, PDF readers, and Flash Players(mostly not supported anymore)) in web pages, but can also be used to include HTML in HTML:</li>
+        <li class="text-left main_content">The <code>&ltembed&gt&lt/embed&gt</code> element also defines an embedded object within an HTML document. It is supported in browsers</li>
+      </ul>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left" id="attributes">Atributes</h2>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left main_content">genelral atribute title makes a tooltip when hovering over </li>
+        <li class="text-left main_content">in images width and length control the size of an image </li>
+        <li class="text-left main_content">in images the alt attribute is for if image does not load and for webpage readers </li>
+        <li class="text-left main_content"><code>&lta target="value"&gt$lt/a&gt</code> defines where the link opens </li>
+        <ul>
+          <li> _self - Default. Opens the document in the same window/tab as it was clicked</li>
+          <li> _blank - Opens the document in a new window or tab</li>
+          <li> _parent - Opens the document in the parent frame</li>
+          <li> _top - Opens the document in the full body of the window</li>
+        </ul>
+        <li class="text-left main_content">href="#id" is a the bookmark to an id on the page and href="html_demo.html#id" takes to a local id in another page of the website</li>
+        <li class="text-left main_content">onclick can be used to define an action when user clicks on an image or map for example via script</li>
+        <li class="text-left main_content">onload can be used to run code when an asset is loaded</li>
+        <li class="text-left main_content">In a table the colspan="n" attribute can be used to indicate how many columns it should be over.</li>
+        <li class="text-left main_content">In a table the rowspan="n" attribute can be used to indicate how many columns it should be over.</li>
+        <li class="text-left main_content">ordered list type</li>
+        <ul>
+          <li class="text-left main_content">type="1" 	The list items will be numbered with numbers (default)</li>
+          <li class="text-left main_content">type="A" 	The list items will be numbered with uppercase letters</li>
+          <li class="text-left main_content">type="a" 	The list items will be numbered with lowercase letters</li>
+          <li class="text-left main_content">type="I" 	The list items will be numbered with uppercase roman numbers</li>
+          <li class="text-left main_content">type="i" 	The list items will be numbered with lowercase roman numbers</li>
+        </ul>
+        <li class="text-left main_content"><code>&ltiframe src="demo_iframe.htm" name="iframe_a" title="Iframe Example"&gt&lt/iframe&gt</code> &ltp&gt&lta href="https://www.w3schools.com" target="iframe_a"&gtW3Schools.com&lt/a&gt&lt/p&gt iframe being target of link</li>
+        <li class="text-left main_content"><code>&ltmain&gt&lt/main&gt</code>	Specifies the main content of a document</li>
+        <li class="text-left main_content"><code>&lttime&gt&lt/time&gt</code>	Defines a date/time</li>
+        <li class="text-left main_content"><code>&ltdetails&gt&lt/details&gt</code> 	Defines additional details that the user can view or hide</li>
+        <li class="text-left main_content"><code>&ltsummary&gt&lt/summary&gt</code> Defines a visible heading for a &ltdetails&gt element</li>
+        <li class="text-left main_content">The action attribute defines the action to be performed when the form is submitted</li>
+        <li class="text-left main_content">method attribute specifies the HTTP method to be used when submitting the form data. method="post"</li>
+        <li class="text-left main_content">autocomplete attribute specifies whether a form should have autocomplete on or off. When on, the browser automatically completes values based on values that the user has entered before.</li>
+        <li class="text-left main_content">The novalidate attribute is a boolean attribute. It specifies that the form-data (input) should not be validated when submitted.</li>
+        <li class="text-left main_content">enctype - Specifies how the form-data should be encoded when submitting it to the server (only for method="post")</li>
+        <li class="text-left main_content">name - Specifies the name of the form</li>
+        <li class="text-left main_content">rel - Specifies the relationship between a linked resource and the current document</li>
+        <li class="text-left main_content">The rows attribute specifies the visible number of lines in a text area.</li>
+        <li class="text-left main_content">The cols attribute specifies the visible width of a text area.</li>
+        <li class="text-left main_content">The list attribute of the <code>&ltinput&gt</code> element, must refer to the id attribute of the &ltdatalist&gt element.</li>
+        <li class="text-left main_content">checked 	Specifies that an input field should be pre-selected when the page loads (for type="checkbox" or type="radio")</li>
+        <li class="text-left main_content">disabled 	Specifies that an input field should be disabled. data will not be sent when submitted</li>
+        <li class="text-left main_content">max 	Specifies the maximum value for an input field</li>
+        <li class="text-left main_content">maxlength 	Specifies the maximum number of character for an input field does not provide any feedback. So, if you want to alert the user, you must write JavaScript code.</li>
+        <li class="text-left main_content">min 	Specifies the minimum value for an input field</li>
+        <li class="text-left main_content">pattern 	Specifies a regular expression to check the input value against</li>
+        <li class="text-left main_content">readonly 	Specifies that an input field is read only (cannot be changed)</li>
+        <li class="text-left main_content">required 	Specifies that an input field is required (must be filled out)</li>
+        <li class="text-left main_content">size 	Specifies the width (in characters) of an input field The default value for size is 20.</li>
+        <li class="text-left main_content">step 	Specifies the legal number intervals for an input field</li>
+        <li class="text-left main_content">value 	Specifies the default value for an input field</li>
+        <li class="text-left main_content">The input value attribute specifies an initial value for an input field</li>
+        <li class="text-left main_content">The input placeholder attribute specifies a short hint that describes the expected value of an input field (a sample value or a short description of the expected format). The short hint is displayed in the input field before the user enters a value.</li>
+        <li class="text-left main_content">The input autofocus attribute specifies that an input field should automatically get focus when the page loads.</li>
+        <li class="text-left main_content">The input list attribute refers to a &ltdatalist&gt element that contains pre-defined options for an &ltinput&gt element.</li>
+        <li class="text-left main_content">The input formaction attribute specifies the URL of the file that will process the input when the form is submitted. Note: This attribute overrides the action attribute of the &ltform&gt element.</li>
+        <li class="text-left main_content">The input formenctype attribute specifies how the form-data should be encoded when submitted (only for forms with method="post"). Note: This attribute overrides the enctype attribute of the &ltform&gt element.</li>
+        <li class="text-left main_content">The input formtarget attribute specifies a name or a keyword that indicates where to display the response that is received after submitting the form. Note: This attribute overrides the target attribute of the &ltform&gt element.</li>
+        <li class="text-left main_content">The input formnovalidate attribute specifies that an &ltinput&gt element should not be validated when submitte. Note: This attribute overrides the novalidate attribute of the &ltform&gt element</li>
+        <li class="text-left main_content">controls attribute adds video controls, like play, pause, and volume. in media video</li>
+        <li class="text-left main_content">To start a video automatically, use the autoplay attribute</li>
+        <li class="text-left main_content">To start a video muted, use the muted attribute for muted autoplay use muted autoplay</li>
+        <li class="text-left main_content">To make an element draggable, set the draggable attribute to true</li>
+        <li class="text-left main_content">The ondragover attrribute of the <div> element calls a function (dragoverHandler(ev)), that specifies where the dragged data can be dropped.</li>
+      </ul>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left" id="form-input_types">Form Input types</h2>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left main_content"><code>&ltinput type="text"&gt</code> 	Displays a single-line text input field</li>
+        <li class="text-left main_content"><code>&ltinput type="radio"&gt</code> 	Displays a radio button (for selecting one of many choices)</li>
+        <li class="text-left main_content"><code>&ltinput type="checkbox"&gt</code> 	Displays a checkbox (for selecting zero or more of many choices)</li>
+        <li class="text-left main_content"><code>&ltinput type="submit"&gt</code> 	Displays a submit button (for submitting the form)</li>
+        <li class="text-left main_content"><code>&ltinput type="button"&gt</code> 	Displays a clickable button</li>
+        <li class="text-left main_content"><code>&ltinput type="color"&gt</code> Is used for input fields that should contain a color.</li>
+        <li class="text-left main_content"><code>&ltinput type="date"&gt</code> Is used for input fields that should contain a date, min and max attributes to add restrictions to dates</li>
+        <li class="text-left main_content"><code>&ltinput type="datetime-local"&gt</code> Specifies a date and time input field, with no time zone</li>
+        <li class="text-left main_content"><code>&ltinput type="email"&gt</code> is used for input fields that should contain an e-mail address.</li>
+        <li class="text-left main_content"><code>&ltinput type="file"&gt</code> Defines a file-select field and a "Browse" button for file uploads.</li>
+        <li class="text-left main_content"><code>&ltinput type="hidden"&gt</code> Defines a hidden input field (not visible to a user). A hidden field lets web developers include data that cannot be seen or modified by users when a form is submitted. A hidden field often stores what database record that needs to be updated when the form is submitted. can be modified with dev tools.</li>
+        <li class="text-left main_content"><code>&ltinput type="image"&gt</code> Defines an image as a submit button.</li>
+        <li class="text-left main_content"><code>&ltinput type="month"&gt</code> Allows the user to select a month and year.</li>
+        <li class="text-left main_content"><code>&ltinput type="number"&gt</code> Defines a numeric input field, and can restricy wich numbers can be selcted</li>
+        <li class="text-left main_content"><code>&ltinput type="password"&gt</code> Is used when the input field should contain a passwprd.</li>
+        <li class="text-left main_content"><code>&ltinput type="range"&gt</code> Defines a control for entering a number whose exact value is not important (like a slider control). Default range is 0 to 100. Restrictions can be set on what numbers are accepted with the min, max, and step attributes</li>
+        <li class="text-left main_content"><code>&ltinput type="reset"&gt</code></li>
+        <li class="text-left main_content"><code>&ltinput type="search"&gt</code> Is used for search fields (behaves like a regular text field).</li>
+        <li class="text-left main_content"><code>&ltinput type="tel"&gt</code> Is used for input fields that should contain a telephone number.</li>
+        <li class="text-left main_content"><code>&ltinput type="time"&gt</code> Allows the user to select a time (no time zone).</li>
+        <li class="text-left main_content"><code>&ltinput type="url"&gt</code> Is used for input fields that should contain a URL address</li>
+        <li class="text-left main_content"><code>&ltinput type="week"&gt</code> Allows the user to select a week and year.</li>
+      </ul>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left">Youtube embedded api </h2>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left main_content">Youtube videos can be embedded in an iframe</li>
+        <li class="text-left main_content">mute=1 after autoplay=1 to let your video start playing automatically (but muted). src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1"</li>
+        <li class="text-left main_content">Youtube Playlist. A comma separated list of videos to play (in addition to the original URL).</li>
+        <li class="text-left main_content">Add playlist=videoID and loop=1</li>
+        <li class="text-left main_content">controls=0 - Player controls does not display. controls=1 (default) - Player controls is displayed.</li>
+      </ul>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left" id="form-examples">Form Examples</h2>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <h4 class="h4_big text-left">Dropdown</h4>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <form>
+          <label for="cars">Choose a car:</label>
+          <select id="cars" name="cars">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+          </select>
+        </form>
+      </div>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <h4 class="h4_big text-left">Single Selection</h4>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <form>
+          <input type="radio" id="html" name="fav_language" value="HTML">
+          <label for="html">HTML</label><br>
+          <input type="radio" id="css" name="fav_language" value="CSS">
+          <label for="css">CSS</label><br>
+          <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+          <label for="javascript">JavaScript</label>
+        </form>
+      </div>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <h4 class="h4_big text-left">Multiple Selection</h4>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <form>
+          <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+          <label for="vehicle1"> I have a bike</label><br>
+          <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+          <label for="vehicle2"> I have a car</label><br>
+          <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+          <label for="vehicle3"> I have a boat</label>
+        </form>
+      </div>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <h4 class="h4_big text-left">Textarea</h4>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <form>
+          <textarea name="message" rows="10" cols="30">
+          The cat was playing in the garden.
+          </textarea>
+        </form>
+      </div>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <h4 class="h4_big text-left">Textfield</h4>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <form>
+          <fieldset>
+            <legend>Personalia:</legend>
+            <label for="fname">First name:</label><br>
+            <input type="text" id="fname" name="fname" value="John"><br>
+            <label for="lname">Last name:</label><br>
+            <input type="text" id="lname" name="lname" value="Doe"><br><br>
+            <input type="submit" value="Submit">
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <h4 class="h4_big text-left">Uses php which is not implemented</h4>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <form action="/action_page.php">
+          <input list="browsers">
+          <datalist id="browsers">
+            <option value="Edge">
+            <option value="Firefox">
+            <option value="Chrome">
+            <option value="Opera">
+            <option value="Safari">
+          </datalist>
+        </form>
+      </div>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h6 class="text-left">SVG vs Canvas</h6>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <table class="ws-table-all notranslate">
+        <tbody>
+          <legend>SVG and Canvas comparison</legend>
+          <tr>
+            <th style="width:50%">SVG</th>
+            <th style="width:50%">Canvas</th>
+          </tr>
+          <tr>
+            <td>
+              <ul>
+                <li>Resolution independent</li>
+                <li>Support for event handlers</li>
+                <li>Good text rendering capabilities</li>
+                <li>Slow rendering if complex</li>
+                <li>Not suited for game applications</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Resolution dependent</li>
+                <li>No support for event handlers</li>
+                <li>Poor text rendering capabilities</li>
+                <li>You can save the resulting image as .png or .jpg</li>
+                <li>Well suited for graphic-intensive games</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+</div>
+</body>
+</html>

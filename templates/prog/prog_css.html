@@ -1,0 +1,307 @@
+{% include "header.html" %}
+{% include "prog/prog_header.html" %}
+<div class="container-fluid">
+<div class="row">
+  <!-- Sidebar -->
+  <nav class="col-md-1 d-none d-md-block sidebar" style="min-height:100vh;">
+    <div class="sidebar-sticky">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link gray_link" href="#elements">Elements</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link gray_link" href="#attributes">Attributes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link gray_link" href="#colors">Colors</a>
+        </li>          
+        <li class="nav-item">
+          <a class="nav-link gray_link" href="#backgrounds">Backgrounds</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link gray_link" href="#borders">Borders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link gray_link" href="#margins">Margins</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link gray_link" href="#padding">Padding</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link gray_link" href="#box_model">Box model</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link gray_link" href="#outline">Outline</a>
+        </li>        
+      </ul>
+    </div>
+  </nav>
+  <!-- Main content -->
+  <main class="col-md-11 ml-sm-auto px-4 justify-content-md-left">
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h1 class="text-left" style="font-size: 3.4rem;">CSS</h1>    
+    <div class="row justify-content-md-left container d-flex mx-auto">
+    </div>
+      <p class="text-left main_content">To note down stuff i don't remember when looking in this case most of it <a href="https://www.w3schools.com/css" target="_blank" class="golden_link">at w3 schools</a> w3 schools guide and school</p>
+    </div>
+        <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left">Theory</h2> 
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left main_content">There are three ways of inserting a style sheet. they apply Inline, external and internal depending on order and browser default</li>
+          <ul>
+            <li class="text-left main_content">External css: Uses external file</li>
+            <li class="text-left main_content">Internal css: in the &lt </li> 
+            <li class="text-left main_content">Inline css: In the respective element's style attribute</li>
+          </ul>
+          <li class="text-left main_content">order of stylesheets are the lower it is the more important it is</li>
+          <li class="text-left main_content">/* This is a single-line comment */</li> 
+          <li class="text-left main_content">Correct properties but invalid values will be ignored.</li>
+          <li class="text-left main_content">Top and bottom margins of elements are sometimes collapsed into a single margin that is equal to the largest of the two margins.</li>
+          <li class="text-left main_content">If you use both the width property and the max-width property on the same element, and the value of the width property is larger than the max-width property; the max-width property value will be used!</li>
+          <li class="text-left main_content"><code>max-width</code> is useful to so that if screen is smaller than with it does not resert to scrolling</li>
+          <li class="text-left main_content">Box Model definitions</li>
+          <ul>   
+            <li class="text-left main_content">Content - The content of the box, where text and images appear</li>
+            <li class="text-left main_content">Padding - Clears an area around the content. The padding is transparent</li>
+            <li class="text-left main_content">Border - A border that goes around the padding and content</li>
+            <li class="text-left main_content">Margin - Clears an area outside the border. The margin is transparent</li>
+          </ul>
+      </ul>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left">Element selection</h2> 
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left main_content">#id - Selects the element with that id</li>
+        <li class="text-left main_content">.class - Selects the elements with that class</li>
+        <li class="text-left main_content">* - Selects all the elements</li>
+        <li class="text-left main_content">element - selects all those elements</li>
+        <li class="text-left main_content">element, element, ... - selects all those elements</li>
+        <li class="text-left main_content">element.class applies only to that element if it has the class</li>
+        <li class="text-left main_content">element element applies to that element inside another element</li>
+        <li class="text-left main_content">element > element applies to that element that is a child of another element</li>
+        <li class="text-left main_content">element + element applies to that element that is immediately preceded by another element</li>
+        <li class="text-left main_content">element ~ element applies to that element that is preceded by another element</li>
+        <li class="text-left main_content">[attribute] - Selects elements with a specific attribute</li>
+        <li class="text-left main_content">[attribute=value] - Selects elements with a specific attribute value</li>
+        <li class="text-left main_content">[attribute~=value] - Selects elements with a specific attribute value in a space-separated list</li>
+        <li class="text-left main_content">[attribute|=value] - Selects elements with a specific attribute value in a hyphen-separated list</li>
+        <li class="text-left main_content">[attribute^=value] - Selects elements with an attribute value starting with a certain value</li>
+        <li class="text-left main_content">[attribute$=value] - Selects elements with an attribute value ending with a certain value</li>
+        <li class="text-left main_content">[attribute*=value] - Selects elements with an attribute value containing a certain value</li>
+        <li class="text-left main_content">element:pseudo-class - Selects elements based on a certain state</li>
+        <li class="text-left main_content">element::pseudo-element - Selects and styles a part of an element</li>
+      </ul>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left">Text</h2> 
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left main_content"><code>font-family</code> changes the font </li>
+        <li class="text-left main_content"><code>font-size</code> affects the size of the text </li>
+        <li class="text-left main_content"><code>text-align</code> affects the text's position, options are: left, right, center, justify</li>
+        <li class="text-left main_content"><code>text-align-last</code> aligns last line of text same options as text-align but adding: auto, start, end</li>
+        <li class="text-left main_content"><code>color</code> changes the color of the text </li>
+        <li class="text-left main_content"><code>vertical-align</code>allows for baseline, (default), <span style="vertical-align: super;">super</span>, <span style="vertical-align: sub;">sub</span>, <span style="vertical-align:text-top;">top</span>, <span class="vertical-align:text-bottom">bottom</span></li>
+        <li class="text-left main_content"><code>text-decoration: none; or text-decoration: underline;</code> defines if the text is underlined or not works on links</li>
+        <li class="text-left main_content"></li>
+      </ul>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left" id="colors">Colors</h2> 
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left" style="font-size: 1.2rem; border:2px solid Tomato;">How to make color border <code>style="border:2px solid Tomato;"</code></li>
+        <li class="text-left main_content">rgba(255, 99, 71, 0.2). The alpha parameter is a number between 0.0 (fully transparent) and 1.0 (not transparent at all) </li>
+        <li class="text-left main_content">hsl(hue, saturation, lightness) </li>
+          <ul>
+            <li class="text-left main_content">Hue is a degree on the color wheel from 0 to 360. 0 is red, 120 is green, and 240 is blue. </li>
+            <li class="text-left main_content">Saturation is a percentage value. 0% means a shade of gray, and 100% is the full color. </li>
+            <li class="text-left main_content">Lightness is also a percentage value. 0% is black, and 100% is white. </li>
+          </ul>
+        <li class="text-left main_content">HSLA is the same as with RGBA</li>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"></li>
+      </ul>
+    </div>
+        <div class="row justify-content-md-left container d-flex mx-auto" id="backgrounds">
+      <h2 class="h2_big text-left">Backgrounds</h2> 
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left main_content"><code>background-color</code> changes the background of the page or element</li>
+        <li class="text-left main_content"><code>background-image url("img_tree.png")</code>. By default, the image is repeated so it covers the entire element.</li>
+        <li class="text-left main_content"><code>background-repeat</code> property sets if/how a background image will be repeated. They are no-repeat repeat-x repeat-y</li>
+        <li class="text-left main_content"><code>background-position right top;</code> this sets the image at top right</li>
+        <li class="text-left main_content"><code>background-attachment</code> property specifies whether the background image should scroll or be fixed options are fixed scroll</li>
+        <li class="text-left main_content"><code>background-clip</code> specifies whether an element's background, either the color or image, extends underneath its border. Initial Value: border-box .Values: border-box, padding-box, content-box, text.</li>
+        <li class="text-left main_content"><code>background-origin</code> CSS property determines the background positioning area, that is the position of the origin of an image specified using the background-image CSS property. Initial Value: padding-box. Values: border-box, padding-box, content-box.</li>
+        <li class="text-left main_content"><code>background-size</code> Specifies the size of the background image(s)</li>
+      </ul>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left" id="borders">Borders</h2> 
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left main_content">border properties allow you to specify the style, width, and color of an element's border. Some display weird here</li>
+        <ul>
+          <li class="text-left main_content dotted">A dotted border.</li>
+          <li class="text-left main_content dashed">A dashed border.</li>
+          <li class="text-left main_content solid">A solid border.</li>
+          <li class="text-left main_content double">A double border.</li>
+          <li class="text-left main_content groove">A groove border.</li>
+          <li class="text-left main_content ridge">A ridge border.</li>
+          <li class="text-left main_content inset1">An inset border.</li>
+          <li class="text-left main_content outset1">An outset border.</li>
+          <li class="text-left main_content none">No border.</li>
+          <li class="text-left main_content hidden">A hidden border.</li>
+          <li class="text-left main_content mix">A mixed border.</li>
+          <li class="text-left main_content"><p class="dotted">A dotted border.</p></li>
+        </ul>
+        <li class="text-left main_content"><code>border-width: 5px:</code>borders are 5px. They can be specified individually with <code>border-top-width, border-right-width, border-bottom-width and border-left-width</code></li>
+        <li class="text-left main_content"><code>border-width: 20px 5px;</code>20px top and bottom, 5px on the sides</li>
+        <li class="text-left main_content"><code>border-width: 25px 10px 4px 35px; 25px top, 10px</code>right, 4px bottom and 35px left</li>
+        <li class="text-left main_content"><code>border-color: red green blue yellow;</code>same notation and order as in width and can be specified individually with <code>border-top-color, border-right-color, border-bottom-color and border-left-color</code></li>
+        <li class="text-left main_content"><code>border-style:solid;</code> same as above but can do three only and can be specified individually with <code>border-top-style, border-right-style, border-bottom-style and border-left-style</code></li>
+        <li class="text-left main_content"><code>border-radius: 50px;</code> this makes rounded corners</li>
+        <li class="text-left main_content"><code>border: 5px solid red;</code> shorthand for one border</li>
+        <li class="text-left main_content"><code>border-left: 6px solid red;</code> shorthand for one border</li>
+        <li class="text-left main_content"><code></code></li>
+        <li class="text-left main_content"><code></code></li>
+        <li class="text-left main_content"><code></code></li>                
+      </ul>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left" id="margins">Margins</h2> 
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left main_content"><code>margin-top</code>sets the top margin of an element</li>
+        <li class="text-left main_content"><code>margin-right</code>sets the right margin of an element</li>
+        <li class="text-left main_content"><code>margin-bottom</code>sets the bottom margin of an element</li>
+        <li class="text-left main_content"><code>margin-left</code>sets the left margin of an element</li>
+        <li class="text-left main_content"><code>margin: 25px 50px 75px 100px;</code> this sets the margin in clockwise order starting from top</li>
+        <li class="text-left main_content"><code>margin: 25px 50px 75px;</code> this sets the top margin to 25px, right and left to 50px, and bottom to 75px</li>
+        <li class="text-left main_content"><code>margin: 25px 50px;</code> this sets the top and bottom margins to 25px, and the right and left margins to 50px</li>
+        <li class="text-left main_content"><code>margin</code> sets all the margins of an element (top, right, bottom, left)</li>
+        <li class="text-left main_content"><code>margin: auto;</code>The element will then take up the specified width, and the remaining space will be split equally between the left and right margins.</li>
+        <li class="text-left main_content"><code>margin: inherit</code>let the margin be inherited from the parent element.</li>
+        <li class="text-left main_content">Top and bottom margins of elements are sometimes collapsed into a single margin that is equal to the largest of the two margins. <b>Note</b>: Margin collapse only happens with top and bottom margins! Not left and right margins</li>      
+      </ul>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left" id="padding">Padding</h2> 
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left main_content"><code>padding-top</code>sets the top padding of an element</li>
+        <li class="text-left main_content"><code>padding-right</code>sets the right padding of an element</li>
+        <li class="text-left main_content"><code>padding-bottom</code>sets the bottom padding of an element</li>
+        <li class="text-left main_content"><code>padding-left</code>sets the left padding of an element</li>
+        <li class="text-left main_content"><code>padding: 25px 50px 75px 100px;</code> this sets the padding in clockwise order starting from top</li>
+        <li class="text-left main_content"><code>padding: 25px 50px 75px;</code> this sets the top padding to 25px, right and left to 50px, and bottom to 75px</li>
+        <li class="text-left main_content"><code>padding: 25px 50px;</code> this sets the top and bottom paddings to 25px, and the right and left paddings to 50px</li>
+        <li class="text-left main_content"><code>padding</code> sets all the paddings of an element (top, right, bottom, left)</li>
+      </ul>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left">Box model</h2> 
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left main_content"><code>box-sizing </code>defines how the width and height of an element are calculated: should they include padding and borders, or not.</li>
+        <ul>
+          <li class="text-left main_content"><code>box-sizing:content-box;</code>This is default. The width and height properties includes only the content (border and padding are not included)</li>
+          <li class="text-left main_content"><code>box-sizing:border-box;</code>The width and height properties includes content, padding and border</li>
+        </ul>
+        <li class="text-left main_content"><code>max-width</code>property is used to set the maximum width of an element.</li>
+        <li class="text-left main_content"><code>height</code>and <code>width</code>properties are used to set the height and width of an element. And have the following property values</li>
+        <ul>
+          <li class="text-left main_content"><code>auto</code>Default. browsert calculates the height and width</li>
+          <li class="text-left main_content">defined in px, cm, em ..</li>
+          <li class="text-left main_content"><code>%</code>defines width or height in percent of the containing block</li>
+          <li class="text-left main_content"><code>initial</code> sets the height or width to its default value</li>
+          <li class="text-left main_content"><code>inherit</code>inherits values from parent value</li>
+        </ul>
+        <li class="text-left main_content"><code>min-width</code>property used to set the minimum width of an element.</li>
+        <li class="text-left main_content"><code>max-height</code>property used to set the maximum height of an element.</li>
+        <li class="text-left main_content"><code>min-height</code>property uded to set the minumum height of an element.</li>
+      </ul>
+    </div>
+    <div id="box-example" class="box-margin">
+      <div class="box-border">
+        <div class="box-padding">
+          <p class="box-content"></p>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left" id="outline">outline</h2> 
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left main_content"><code>outline-style</code>defines the type of outline. same options as <code>border-style</code></li>
+        <li class="text-left main_content"><code>outline-color</code>sets the color of the ouline</li>
+        <li class="text-left main_content"><code>outline-width</code>specifies witdth of browser</li>
+        <li class="text-left main_content"><code>outline-offset</code>adds space between border and outline. can be negative to place it inside the border</li>
+        <li class="text-left main_content"><code>outline-left</code>sets the left outline of an element</li>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"><code>outline-offset</code> property adds a space between an outline and the edge/border of an element. The space between an element and its outline is transparent. Can be negative to go inside elemnt</li>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"></li>
+      </ul>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left">Links</h2> 
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"></li>
+      </ul>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left">Links</h2> 
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"></li>
+      </ul>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left">Links</h2> 
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"></li>
+        <li class="text-left main_content"></li>
+      </ul>
+    </div>            
+  </main>
+</div>
+</div>
+</body>
+</html>

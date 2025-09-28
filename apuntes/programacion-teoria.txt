@@ -1,0 +1,35 @@
+nivel fisico logica digital
+    circuitos combinacionales (logica)
+    circuitos secuenciales (memeoria)
+nivel microarquitectura (cpu, memoria, BUS, perifericos). Unidades funcionales:
+  -CPU(Central Processsing Unit)
+  -ALU Arithmetic logical unit (op aritmeticas y logicas) tiene registro (memoria ultra-rapida funciona como cache pero mas rapido)
+  -Unidad de control: (ejecuta instrucciones) (memoria ultra-rapida funciona como cache pero mas rapido) Receives orders in assemly code
+nivel 3 perifericos
+nivel 4 BUS's
+  Datos:Dato a ecscribir o leer
+  Control:Operacion a escribir (2 cables)
+  Dirección:Donde se va a leer o escribir
+ 
+
+Arquitectura von neumann: Dato + instrucciones se alamacenan en memoria. memoria y debe ser inf rapida, inf capacidad y memoria persistente
+
+memeoria principal (RAM) memoria principal, es volatil, necesaria para programas
+memoria secuandaria (SSD) no es volatil
+Datos se escriben y leen por cantidad de bits que puedan transmitir por el maximo que  se pueden escribir.
+ej control(0-read,1-write) dato(111) dirección(001)
+
+flags o bits de estado en cpu tienen info sobre la resolucion: z=zero, S=signo(>0-1,<0-0), O=overflow
+IP registro(almacena la instruccion)
+
+Assembly 
+ORG 200H -save program at 200H
+MOV AX,20H saves 20 in hex at AX
+MOV DX,30H
+ADD AX,DX -add AX and DX and write at AX(first position)
+END
+
+tipos de datos primitivos (int, char, float bool) (entero, caracter, decimal, bool)
+
+'a' char
+"a" string
