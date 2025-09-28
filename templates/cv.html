@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Name - CV</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0;
+      color: #222;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 32px;
+      border-radius: 8px;
+    }
+    h1, h2, h3 {
+      margin-top: 0;
+      color: #2a4d69;
+    }
+    h1 {
+      font-size: 2.5rem;
+      border-bottom: 2px solid #2a4d69;
+      padding-bottom: 8px;
+      margin-bottom: 24px;
+    }
+    .contact {
+      margin-bottom: 24px;
+      font-size: 1.1rem;
+    }
+    .section {
+      margin-bottom: 32px;
+    }
+    .section-title {
+      font-size: 1.3rem;
+      color: #4b86b4;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 4px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    .job, .edu {
+      margin-bottom: 16px;
+    }
+    .job-title, .edu-title {
+      font-weight: bold;
+      color: #2a4d69;
+    }
+    .job-date, .edu-date {
+      color: #888;
+      font-size: 0.95em;
+      float: right;
+    }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .skills-list li {
+      background: #e7eff6;
+      color: #2a4d69;
+      padding: 6px 14px;
+      border-radius: 16px;
+      font-size: 1em;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Your Name</h1>
+    <div class="contact">
+      <span>Email: <a href="mailto:your@email.com">your@email.com</a></span> |
+      <span>Phone: +123 456 7890</span> |
+      <span>GitHub: <a href="https://github.com/yourusername" target="_blank">yourusername</a></span>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Profile</div>
+      <p>
+        Brief summary about yourself, your experience, and your career goals. Keep it concise and relevant.
+      </p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Experience</div>
+      <div class="job">
+        <span class="job-title">Job Title</span>
+        <span class="job-date">2022 – Present</span><br>
+        <span>Company Name, Location</span>
+        <ul>
+          <li>Responsibility or achievement #1</li>
+          <li>Responsibility or achievement #2</li>
+        </ul>
+      </div>
+      <div class="job">
+        <span class="job-title">Previous Job Title</span>
+        <span class="job-date">2020 – 2022</span><br>
+        <span>Previous Company, Location</span>
+        <ul>
+          <li>Responsibility or achievement #1</li>
+          <li>Responsibility or achievement #2</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Education</div>
+      <div class="edu">
+        <span class="edu-title">Degree Name</span>
+        <span class="edu-date">2016 – 2020</span><br>
+        <span>University Name, Location</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Skills</div>
+      <ul class="skills-list">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>Python</li>
+        <li>Git</li>
+        <!-- Add more skills as needed -->
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
