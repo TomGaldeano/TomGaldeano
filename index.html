@@ -52,10 +52,10 @@
     }
     .job-title, .edu-title {
       font-weight: bold;
-      color: #2a4d69;
+      color: #15400a;
     }
     .job-date, .edu-date {
-      color: #888;
+      color: #000000;
       font-size: 0.95em;
       float: right;
     }
@@ -69,7 +69,7 @@
     }
     .skills-list li {
       background: #bab9b9;
-      color: #2a4d69;
+      color: #15400a;
       padding: 6px 14px;
       border-radius: 16px;
       font-size: 1em;
@@ -89,13 +89,14 @@
     <h1>Tomas Galdeano Williams</h1>
     <div class="contact">
       <span>Email: <a href="mailto:your@email.com">your@email.com</a></span> |
-      <span>Phone: +123 456 7890</span> |
+      <span id="phone">Phone: +123 456 7890</span> |
       <span>GitHub: <a href="https://github.com/yourusername" target="_blank">yourusername</a></span>
     </div>
 
     <div class="section">
-      <div class="section-title">Profile</div>
-      <p>
+      <div id="perfil" class="section-title">Profile</div>
+      <p id="perfil-texto">
+        
         Brief summary about yourself, your experience, and your career goals. Keep it concise and relevant.
       </p>
     </div>
@@ -112,12 +113,10 @@
         </ul>
       </div>
       <div class="job">
-        <span class="job-title">Projects</span>
-        <span class="job-date">2020 – 2022</span><br>
-        <span>Previous Company, Location</span>
+        <span class="projects-title">Projects</span>
         <ul>
-          <li>Responsibility or achievement #1</li>
-          <li>Responsibility or achievement #2</li>
+          <li><a href="www.breadtombakery.com">Bakery website</a></li>
+          <li><a href="">Achievement #2</a></li>
         </ul>
       </div>
     </div>
@@ -127,7 +126,7 @@
       <div class="edu">
         <span class="edu-title">Degree Name</span>
         <span class="edu-date">2016 – 2020</span><br>
-        <span>University Name, Location</span>
+        <span>Colegio Montserrat, Madrid España</span>
       </div>
     </div>
 
@@ -141,7 +140,6 @@
         <li>Git</li>
         <li>C</li>
         <li>Bash</li>
-        <!-- Add more skills as needed -->
       </ul>
     </div>
   </div>

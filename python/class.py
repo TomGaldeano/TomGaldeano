@@ -31,3 +31,11 @@ edad += 1
 dado = random.randint(a=1,b=6)
 dado2 = random.randint(1,49)
 print(dado,dado2)
+
+
+b = 1
+while (b <= 10 or b==3):   
+    print(b)
+    b+= 1
+b=2
+print((b <= 10 or b==3))
