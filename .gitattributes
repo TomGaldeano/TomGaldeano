@@ -1,0 +1,8 @@
+# Enforce LF line endings for source code
+* text=auto eol=lf
+
+# Explicit rules (optional, but clearer)
+*.js  text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.md  text eol=lf
