@@ -32,10 +32,26 @@ dado = random.randint(a=1,b=6)
 dado2 = random.randint(1,49)
 print(dado,dado2)
 
+tirada = random.randint(1,6)
+if tirada<3:
+    print("fallado")
+elif tirada <5:
+    print("herido")
+else:
+    print("matado")
 
-b = 1
-while (b <= 10 or b==3):   
-    print(b)
-    b+= 1
-b=2
-print((b <= 10 or b==3))
+count=0
+keep_on = True
+while keep_on:
+    count += 1
+    if random.randint(1,6) == 6:
+        print(count)
+        keep_on=False
+"""
+a = str(("23, 15, 18, 12, 4"))
+a=a.split(", ")
+print(type(a),a)
+"""
+for i in [""]:
+    for j in [1,2,2]:
+        print(j)
