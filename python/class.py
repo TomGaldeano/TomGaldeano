@@ -28,30 +28,34 @@ edad = int(input("cuantos años tienes?:"))
 print(f"Tu nombre es {nombre} y tienes {edad} años")
 edad += 1
 """
+
 dado = random.randint(a=1,b=6)
-dado2 = random.randint(1,49)
+dado2 = random.randint(1,6)
 print(dado,dado2)
+cont=1
+while dado != dado2:
+    ado = random.randint(a=1,b=6)
+    dado2 = random.randint(1,6)
+    print(dado,dado2)
+    cont += 1
+if cont == 1: print("solo una tirada")
+print(cont)
 
-tirada = random.randint(1,6)
-if tirada<3:
-    print("fallado")
-elif tirada <5:
-    print("herido")
-else:
-    print("matado")
-
-count=0
-keep_on = True
-while keep_on:
-    count += 1
-    if random.randint(1,6) == 6:
-        print(count)
-        keep_on=False
 """
 a = str(("23, 15, 18, 12, 4"))
 a=a.split(", ")
 print(type(a),a)
 """
-for i in [""]:
-    for j in [1,2,2]:
-        print(j)
+
+def fibonnaci(n=25):
+    a = 0
+    b = 1
+    i = 2
+    print(f"1-{a}")
+    print(f"2-{b}")
+    while (i<n):
+        i += 1
+        c = a + b
+        a = b
+        b = c
+        print(f"{i}-{b}")
