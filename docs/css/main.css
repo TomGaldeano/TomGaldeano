@@ -13,7 +13,7 @@ body {
     padding: 32px;
     border-radius: 8px;
 }
-a {
+a, a:visited, #Spanish, #English {
     color: #051f8a;
     text-decoration: none;
 }
@@ -74,11 +74,15 @@ ul {
     border-radius: 16px;
     font-size: 1em;
 }
-.skills-list li:hover {
+.skills-list li:hover{
     background: #15400a;
     color: #ffffff;
     transition: background 0.5s, color 0.5s;
-}       
+}
+.skills-list li:hover a {
+    color: inherit;
+    text-decoration: none;
+}
 @media (max-width: 600px) {
     .container {
     padding: 12px;
@@ -86,4 +90,8 @@ ul {
     h1 {
     font-size: 1.5rem;
     }
+}
+ #Spanish:hover, #English:hover {
+  color: white;
+  text-decoration: none;   
 }
