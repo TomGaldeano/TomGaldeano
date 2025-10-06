@@ -69,7 +69,7 @@ const translations = {
     copyright: "&copy; 2024 Tom Galdeano. Todos los derechos reservados."
   }
 };
-
+const light_dark = document.querySelector('#color_changer');
 // Add IDs/classes to HTML for translatable elements if needed
 document.addEventListener("DOMContentLoaded", function() {
   // Add IDs to job elements if missing
@@ -144,11 +144,20 @@ function translatePage(lang) {
   document.querySelector("footer p").innerHTML = translations[lang].copyright;
   // Programming Skills section intentionally not translated
 }
-
+function light_theme(){
+  document.body.classList.toggle('dark');
+}
+function dark_theme(){
+  document.body.classList.toggle('light');
+}
 // Language switcher
 document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("Spanish").onclick = () => translatePage("es");
   document.getElementById("English").onclick = () => translatePage("en");
+});
+light_dark.addEventListener('click', function() {
+    light_theme()
+    dark_theme()
 });
 
 // Default language

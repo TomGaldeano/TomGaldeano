@@ -22,15 +22,12 @@ li {
 }
 .light-theme {
   background-color: var(--green);
-  color: var(--black);
-  --btnBg: var(--black);
-  --btnFontColor: var(--white);
+}
+.light-theme2{
+  color: white;
 }
 .dark-theme {
-  --bg: var(--black);
   color: var(--green);
-  --btnBg: var(--green);
-  --btnFontColor: var(--black);
   background-color: var(--black);
 }
 .btn {
