@@ -1,31 +1,39 @@
-.light {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: #f7f7f7;
-    margin: 0;
-    padding: 0;
-    color: #000000;
+:root {
+  --green: #15400a;
+  --white: #FFFFFF;
+  --black: #000000;
+  --grey: #f0f0f0;
+  --blue: #051f8a;
+ 
 }
 .dark{
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: #000000;
-    margin: 0;
-    padding: 0;
-    color: #ffffff;
+  --green: #00ff00;
+  --grey: #363636;
+  --black: #FFFFFF;
+  --white: #000000;
+  --blue: aqua;
 }
 #color_changer{
-    position: absolute;
-    right:20px;
+    position: relative;
+    float: right;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--black);
+    border: 3px solid var(--white);
+    outline: 3px solid var(--black);
 }
-.container {
+.container{
     max-width: 800px;
     margin: 40px auto;
-    background: #c0c0c0;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     padding: 32px;
     border-radius: 8px;
-}
+    background: var(--grey);
+    color: var(--black);
+}   
 a, a:visited, #Spanish, #English {
-    color: #051f8a;
+    color: var(--blue);
     text-decoration: none;
 }
 a:hover {
@@ -33,11 +41,11 @@ a:hover {
 }
 h1, h2, h3 {
     margin-top: 0;
-    color: #15400a;
+    color: var(--green);
+    border-bottom: 2px solid var(--green);
 }
 h1 {
     font-size: 2.5rem;
-    border-bottom: 2px solid #15400a;
     padding-bottom: 8px;
     margin-bottom: 24px;
 }
@@ -50,9 +58,9 @@ h1 {
 }
 .section-title {
     font-size: 1.3rem;
-    color: #15400a;
+    color: var(--green);
     margin-bottom: 12px;
-    border-bottom: 1px solid #15400a;
+    border-bottom: 1px solid var(--green);
     padding-bottom: 4px;
 }
 ul {
@@ -63,31 +71,31 @@ ul {
 }
 .job-title, .edu-title, .projects-title {
     font-weight: bold;
-    color: #15400a;
+    color: var(--green);
 }
 .job-date, .edu-date {
-    color: #000000;
+    color: var(--black);
     font-size: 0.95em;
     float: right;
 }
-.skills-list {
+.skills-list{
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     list-style: none;
     padding: 0;
     margin: 0;
+    color: var(--black);
 }
 .skills-list li {
-    background: #ffffff;
-    color: #000000;
     padding: 6px 14px;
     border-radius: 16px;
     font-size: 1em;
 }
+
 .skills-list li:hover{
-    background: #15400a;
-    color: #ffffff;
+    background: var(--green);
+    color: var(--white);
     transition: background 0.5s, color 0.5s;
 }
 .skills-list li:hover a {
@@ -103,6 +111,6 @@ ul {
     }
 }
  #Spanish:hover, #English:hover {
-  color: white;
+  color: var(--white);
   text-decoration: none;   
 }

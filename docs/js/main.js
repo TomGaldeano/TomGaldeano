@@ -11,7 +11,7 @@ const translations = {
     garage_desc: "Customer service and support",
     chess_teacher: "Chess teacher for kids",
     chess_date: "2017 – 2018",
-    chess_desc: "Customer service and support",
+    chess_desc: "Teaching chess to kids",
     projects: "Projects",
     websites: "Websites",
     bakery_website: "Bakery website",
@@ -28,7 +28,7 @@ const translations = {
     english: "Native English",
     skills: "Skills",
     driving_license: "Driving license",
-    good_baker: "Good baker",
+    good_baker: "Baker",
     printing: "3d printing",
     chess: "chess",
     programming_skills: "Programming Skills",
@@ -45,7 +45,7 @@ const translations = {
     garage_desc: "Atención y soporte al cliente",
     chess_teacher: "Profesor de ajedrez para niños",
     chess_date: "2017 – 2018",
-    chess_desc: "Atención y soporte al cliente",
+    chess_desc: "Enseñando ajedrez a niños",
     projects: "Proyectos",
     websites: "Sitios web",
     bakery_website: "Sitio web de panadería",
@@ -62,7 +62,7 @@ const translations = {
     english: "Inglés nativo",
     skills: "Habilidades",
     driving_license: "Carnet de conducir",
-    good_baker: "Buen panadero",
+    good_baker: "Panadero",
     printing: "Impresión 3D",
     chess: "ajedrez",
     programming_skills: "Habilidades de programación",
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function() {
       jobElem.querySelector("ul li").id = "chess-desc";
     }
   });
-
+});
   // Add IDs to project links
   document.querySelectorAll(".projects .skills-list li").forEach((liElem, idx) => {
     if (idx === 0) liElem.querySelector("a").id = "bakery-website";
@@ -99,14 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
     eduElem.querySelector("span:not(.edu-title):not(.edu-date)").id = idx === 0 ? "colegio" : "ies";
   });
 
-  // Add IDs to skills
-  document.querySelectorAll(".section")[5].querySelectorAll(".skills-list li").forEach((liElem, idx) => {
-    if (idx === 0) liElem.id = "driving-license";
-    if (idx === 1) liElem.id = "good-baker";
-    if (idx === 2) liElem.id = "printing";
-    if (idx === 3) liElem.querySelector("a").id = "chess";
-  });
-});
+
 
 // Helper to translate by key
 function translatePage(lang) {
@@ -132,33 +125,24 @@ function translatePage(lang) {
   document.getElementById("fp").textContent = translations[lang].fp;
   document.getElementById("fp-date").textContent = translations[lang].fp_date;
   document.getElementById("ies").textContent = translations[lang].ies;
-  document.querySelectorAll(".section-title")[4].textContent = translations[lang].languages;
+  // Use IDs for these section titles:
+  document.getElementById("languages-title").textContent = translations[lang].languages;
   document.getElementById("Spanish").textContent = translations[lang].spanish;
   document.getElementById("English").textContent = translations[lang].english;
-  document.querySelectorAll(".section-title")[5].textContent = translations[lang].skills;
-  document.querySelectorAll(".section-title")[6].textContent = translations[lang].programming_skills;
+  document.getElementById("skills-title").textContent = translations[lang].skills;
+  document.getElementById("programming-skills-title").textContent = translations[lang].programming_skills;
   document.getElementById("driving-license").textContent = translations[lang].driving_license;
   document.getElementById("good-baker").textContent = translations[lang].good_baker;
   document.getElementById("printing").textContent = translations[lang].printing;
   document.getElementById("chess").textContent = translations[lang].chess;
   document.querySelector("footer p").innerHTML = translations[lang].copyright;
-  // Programming Skills section intentionally not translated
 }
-function light_theme(){
-  document.body.classList.toggle('dark');
-}
-function dark_theme(){
-  document.body.classList.toggle('light');
-}
+
 // Language switcher
 document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("Spanish").onclick = () => translatePage("es");
   document.getElementById("English").onclick = () => translatePage("en");
 });
 light_dark.addEventListener('click', function() {
-    light_theme()
-    dark_theme()
+document.body.classList.toggle('dark');
 });
-
-// Default language
-translatePage("en");
