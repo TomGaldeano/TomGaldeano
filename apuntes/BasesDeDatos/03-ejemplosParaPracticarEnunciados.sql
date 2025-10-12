@@ -50,7 +50,7 @@ INNER JOIN pagos on pedidos.id_pedido=pagos.id_pedido order by pedidos.id_pedido
 --      - precio_unitario  (dp.precio_unitario)
 --    Orden: producto ASC.
 SELECT productos.nombre as nombre, detalle_pedido.cantidad as cantidad, detalle_pedido.precio_unitario as precio_unitario from productos 
-join detalle_pedido on productos.id_producto=detalle_pedido.id_producto order by productos.nombre asc;
+join detalle_pedido on productos.id_producto=detalle_pedido.id_producto where productos.id_producto = 10 order by productos.nombre asc;
 -- 8) Listar pedidos con estado 'entregado' con nombre del cliente y fecha del pedido.
 --    Columnas y alias:
 --      - pedido        (p.id_pedido)
@@ -58,14 +58,15 @@ join detalle_pedido on productos.id_producto=detalle_pedido.id_producto order by
 --      - fecha_pedido  (p.fecha_pedido)
 --    Orden: fecha_pedido ASC; en empate, pedido ASC.
 SELECT pedidos.id_pedido as pedido, clientes.nombre as cliente, pedidos.fecha_pedido as fecha_pedido from clientes join pedidos on clientes.id_cliente=pedidos.id_cliente
-order by pedidos.fecha_pedido asc, pedidos.id_pedido asc;
+where pedidos.estado = "entregado" order by pedidos.fecha_pedido asc, pedidos.id_pedido asc;
 -- 9) Calcular la suma total pagada por cada pedido que tenga al menos un pago.
 --    Columnas y alias:
 --      - pedido        (p.id_pedido)
 --      - total_pagado  (SUM(pa.total_pagado))
 --    Agrupación: por p.id_pedido exclusivamente.
 --    Orden: total_pagado DESC; en empate, pedido ASC.
-SELECT pedidos.id_pedido as pedido, sum(pagos.total_pagado) as total_pagado from pedidos join pagos on pedidos.id_pedido=pagos.id_pedido group by pedidos.id_pedido
+SELECT pedidos.id_pedido as pedido, sum(pagos.total_pagado) as total_pagado from pedidos 
+join pagos on pedidos.id_pedido=pagos.id_pedido where pagos.total_pagado group by pedidos.id_pedido
 order by sum(pagos.total_pagado) desc, pedidos.id_pedido asc;
 -- 10) Contar el número de pedidos realizados por cada cliente.
 --     Columnas y alias:
@@ -81,20 +82,33 @@ group by clientes.id_cliente, clientes.nombre order by count(pedidos.id_pedido) 
 --       - total_pedidos  (COUNT(p.id_pedido))
 --     Agrupación: por c.id_cliente y c.nombre.
 --     Orden: total_pedidos DESC; en empate, cliente ASC.
-
+select clientes.nombre as nombre, count(pedidos.id_pedido) as total_pedidos from clientes join pedidos 
+on clientes.id_cliente = pedidos.id_cliente group by clientes.id_cliente, clientes.nombre 
+having count(pedidos.id_pedido)>3 order by count(clientes.id_cliente) desc,
+clientes.nombre asc;
 -- 12) Calcular los ingresos totales por cada producto (cantidad * precio_unitario) considerando SOLO líneas existentes.
 --     Columnas y alias:
 --       - producto  (pr.nombre)
 --       - ingresos  (SUM(dp.cantidad * dp.precio_unitario))
 --     Agrupación: por pr.id_producto y pr.nombre.
 --     Orden: ingresos DESC; en empate, producto ASC.
+select productos.nombre as producto, sum(detalle_pedido.cantidad*detalle_pedido.precio_unitario) as ingresos
+from productos join detalle_pedido on productos.id_producto = detalle_pedido.id_producto
+where detalle_pedido.cantidad is  not null and detalle_pedido.precio_unitario is not null
+group by productos.id_producto, productos.nombre 
+order by sum(detalle_pedido.cantidad*detalle_pedido.precio_unitario) desc, productos.nombre asc;
 -- 13) Listar los productos cuyo ingreso total (cantidad * precio_unitario) sea superior a 10.000,00 euros.
 --     Columnas y alias:
 --       - producto  (pr.nombre)
 --       - ingresos  (SUM(dp.cantidad * dp.precio_unitario))
 --     Agrupación: por pr.id_producto y pr.nombre.
 --     Orden: ingresos DESC; en empate, producto ASC.
-
+select productos.nombre as producto, sum(detalle_pedido.cantidad*detalle_pedido.precio_unitario) as ingresos
+from productos join detalle_pedido on productos.id_producto = detalle_pedido.id_producto
+where detalle_pedido.cantidad is  not null and detalle_pedido.precio_unitario is not null
+group by productos.id_producto, productos.nombre 
+having sum(detalle_pedido.cantidad*detalle_pedido.precio_unitario) > 10000
+order by sum(detalle_pedido.cantidad*detalle_pedido.precio_unitario) desc, productos.nombre asc;
 -- 14) Listar los pedidos cuyo estado sea 'entregado' O 'enviado' y cuyo cliente tenga país 'España' O 'México'.
 --     Columnas y alias:
 --       - pedido   (p.id_pedido)
@@ -102,6 +116,10 @@ group by clientes.id_cliente, clientes.nombre order by count(pedidos.id_pedido) 
 --       - pais     (c.pais)
 --       - estado   (p.estado)
 --     Orden: pais ASC, luego estado ASC y finalmente pedido ASC.
+select pedidos.id_pedido as pedido, clientes.nombre as cliente, clientes.pais as pais, pedidos.estado as estado
+from clientes join pedidos on clientes.id_cliente = pedidos.id_cliente
+where (pedidos.estado="entregado" or pedidos.estado="enviado") and (clientes.pais="España" or clientes.pais="México")
+order by clientes.pais asc, pedidos.estado asc, pedidos.id_pedido;
 -- 15) Listar productos con precio_unitario > 200 en líneas pertenecientes a pedidos CANCELADOS.
 --     Columnas y alias (sin duplicados en misma consulta):
 --       - producto        (pr.nombre)
@@ -109,7 +127,12 @@ group by clientes.id_cliente, clientes.nombre order by count(pedidos.id_pedido) 
 --       - estado          (p.estado)
 --     Selección DISTINCT para evitar filas repetidas por combinaciones idénticas.
 --     Orden: precio_unitario DESC; en empate, producto ASC.
-
+select distinct productos.nombre as producto, detalle_pedido.precio_unitario 
+as precio_unitario, pedidos.estado as estado
+from productos join detalle_pedido on productos.id_producto = detalle_pedido.id_producto
+join pedidos on pedidos.id_pedido = detalle_pedido.id_pedido 
+where detalle_pedido.precio_unitario > 200 and pedidos.estado = "cancelado"
+order by detalle_pedido.precio_unitario desc, productos.nombre asc;
 -- 16) Listar clientes registrados en 2024 que tengan al menos un pedido en estado 'pendiente' O 'enviado' (no entregado ni cancelado).
 --     Columnas y alias (sin duplicados por cliente-estado):
 --       - cliente        (c.nombre)
@@ -117,3 +140,7 @@ group by clientes.id_cliente, clientes.nombre order by count(pedidos.id_pedido) 
 --       - estado         (p.estado)
 --     DISTINCT para evitar múltiples filas idénticas por mismo cliente y estado.
 --     Orden: cliente ASC, y en empate por estado ASC.
+select distinct clientes.nombre as cliente, clientes.fecha_registro as fecha_registro, pedidos.estado as estado
+from clientes join pedidos on clientes.id_cliente = pedidos.id_cliente
+where (pedidos.estado="pendiente" or pedidos.estado = "enviado") and year(clientes.fecha_registro)=2024
+order by clientes.nombre asc, pedidos.estado asc;

@@ -13,7 +13,6 @@ const translations = {
     chess_date: "2017 – 2018",
     chess_desc: "Teaching chess to kids",
     projects: "Projects",
-    websites: "Websites",
     bakery_website: "Bakery website",
     portfolio_page: "Portfolio page",
     education: "Education",
@@ -47,7 +46,6 @@ const translations = {
     chess_date: "2017 – 2018",
     chess_desc: "Enseñando ajedrez a niños",
     projects: "Proyectos",
-    websites: "Sitios web",
     bakery_website: "Sitio web de panadería",
     portfolio_page: "Página de portafolio",
     education: "Educación",
@@ -115,7 +113,6 @@ function translatePage(lang) {
   document.getElementById("chess-date").textContent = translations[lang].chess_date;
   document.getElementById("chess-desc").textContent = translations[lang].chess_desc;
   document.querySelectorAll(".section-title")[2].textContent = translations[lang].projects;
-  document.querySelector(".projects-title").textContent = translations[lang].websites;
   document.getElementById("bakery-website").textContent = translations[lang].bakery_website;
   document.getElementById("portfolio-page").textContent = translations[lang].portfolio_page;
   document.querySelectorAll(".section-title")[3].textContent = translations[lang].education;
