@@ -70,6 +70,7 @@
             <li class="text-left main_content">Padding - Clears an area around the content. The padding is transparent</li>
             <li class="text-left main_content">Border - A border that goes around the padding and content</li>
             <li class="text-left main_content">Margin - Clears an area outside the border. The margin is transparent</li>
+            <li class="text-left main_content">Fallback Fonts are used as a font can not always be found or is loaded wrong so many should be added in the font-family property common ones are Serif, Sans-serif, Monospace, Cursive, Fantasy</li>
           </ul>
       </ul>
     </div>
@@ -105,10 +106,13 @@
     </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
       <ul>
+        <li class="text-left main_content">Fonts can be imported such as fom google who has more than 1000 fonts and has effects that can be added too</li>
         <li class="text-left main_content"><code>font-family</code> changes the font of the text. Example: <code>font-family: Arial, sans-serif;</code></li>
         <li class="text-left main_content"><code>font-size</code> sets the size of the text. Example: <code>font-size: 16px;</code></li>
-        <li class="text-left main_content"><code>font-weight</code> sets the thickness of the text. Example: <code>font-weight: bold;</code></li>
+        <li class="text-left main_content"><code>font-weight</code> sets the thickness of the text. Options: (normal, bold, bolder, lighter, 100-900 value 400 is normal 700 bold) Example: <code>font-weight: bold;</code></li>
         <li class="text-left main_content"><code>font-style</code> sets the style of the text (normal, italic, oblique). Example: <code>font-style: italic;</code></li>
+        <li class="text-left main_content"><code>font-variant</code> sets the uncapped chars to small-caps. Options:normal, small caps. Example: <code>font-variant: small-caps;</code></li>
+        <li class="text-left main_content"><code>font</code> shorthand for font-style, font-variant, font-weight, font-size/line-height, font-family. Example: <code>font: italic small-caps bold 16px/1.5 Arial, sans-serif;</code></li>  
         <li class="text-left main_content"><code>text-align</code> aligns the text horizontally. Options: left, right, center, justify.</li>
         <li class="text-left main_content"><code>text-align-last</code> aligns the last line of text. Options: auto, left, right, center, justify, start, end.</li>
         <li class="text-left main_content"><code>color</code> sets the color of the text. Example: <code>color: #333;</code></li>
@@ -121,7 +125,7 @@
         <li class="text-left main_content"><code>text-decoration-style</code> sets the style of the text decoration (solid, double, dotted, dashed, wavy). Example: <code>text-decoration-style: wavy;</code></li>
         <li class="text-left main_content"><code>text-decoration-thickness</code> sets the thickness of the text decoration. Example: <code>text-decoration-thickness: 2px;</code></li>        
         <li class="text-left main_content"><code>text-decoration</code> shorthand. line is required rest are optional <code>text-decoration: underline overline;</code></li>
-        <li class="text-left main_content"><code>text-shadow</code> adds shadow to text. Example: <code>text-shadow: 2px 2px 5px #888;</code></li>
+        <li class="text-left main_content"><code>text-shadow</code> adds shadow to text. values hrizontal sahdow, vertical shadow, blur effect, color. Example: <code>text-shadow: 2px 2px 5px #888;</code> more than one shadow can be added <code>text-shadow: 0 0 3px #ff0000, 0 0 5px #0000ff;</code></li>
         <li class="text-left main_content"><code>vertical-align</code> aligns text vertically (baseline, sub, super, top, bottom, middle, text-top, text-bottom).</li>
         <li class="text-left main_content"><code>white-space</code> controls how whitespace is handled. Example: <code>white-space: pre;</code></li>
         <li class="text-left main_content"><code>overflow-wrap</code> and <code>word-break</code> control how words break onto the next line.</li>
