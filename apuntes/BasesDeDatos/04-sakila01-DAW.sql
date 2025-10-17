@@ -46,15 +46,24 @@ from store s join staff using(store_id) join payment p on p.staff_id = staff.sta
 group by s.store_id order by avg(p.amount) desc;
 -- 6) Ventas totales por categoría ordenadas
 select c.name, sum(p.amount) as income
-from category c join film_category fc on fc.category_id= c.category_id join film f on fc.film_id=f.film_id join inventory i on f.film_id=i.film_id join rental r on r.inventory_id = i.inventory_id join payment p on p.rental_id = r.rental_id
+from category c join film_category fc on fc.category_id= c.category_id 
+join film f on fc.film_id=f.film_id 
+join inventory i on f.film_id=i.film_id 
+join rental r on r.inventory_id = i.inventory_id 
+join payment p on p.rental_id = r.rental_id
 group by c.name order by sum(p.amount) desc;
 -- 7) Actores con al menos diez películas de categorías distintas
 select a.first_name, a.last_name, count(distinct c.name) as different_genres
-from actor a join film_actor ac on a.actor_id=ac.actor_id join film f on ac.film_id=f.film_id 
-join film_category fc on f.film_id=fc.film_id join category c on fc.category_id=c.category_id
+from actor a 
+join film_actor ac on a.actor_id=ac.actor_id 
+join film f on ac.film_id=f.film_id 
+join film_category fc on f.film_id=fc.film_id 
+join category c on fc.category_id=c.category_id
 group by a.actor_id having count(distinct c.name);
 -- 8) Tiendas con más stock disponible
-select * from store
+select store_id, count(inventory_id) as stock from store join inventory using(store_id) where inventory_in_stock(inventory_id) group by store_id;
 -- 9) Diez películas con mayor diferencia entre coste de reposición y tarifa de alquiler
+select title, replacement_cost - rental_rate as diff from film order by diff desc;
 -- 10) Películas con más de tres actores y duración menor a 90 minutos
+select title, count(distinct actor_id) as num_act from film f join film_actor fa using(film_id) where num_act > 3 group by num_act
 -- 11) Cliente que más ha gastado
