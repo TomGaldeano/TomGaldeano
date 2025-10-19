@@ -3,39 +3,63 @@
 <div class="container-fluid">
 <div class="row">
   <!-- Sidebar -->
-  <nav class="col-md-1 d-none d-md-block sidebar" style="min-height:100vh;">
+  <nav class="col-md-1 d-none d-md-block sidebar" style="min-height:100vh;" aria-label="CSS topics">
     <div class="sidebar-sticky">
-      <ul class="nav flex-column">
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#elements">Elements</a>
+      <ul class="nav flex-column small" role="menu">
+        <li class="nav-item" role="none">
+          <a class="nav-link gray_link" role="menuitem" href="#elements">Elements</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#text">Text</a>
+        <li class="nav-item" role="none">
+          <a class="nav-link gray_link" role="menuitem" href="#text">Text</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#attributes">Attributes</a>
+        <li class="nav-item" role="none">
+          <a class="nav-link gray_link" role="menuitem" href="#attributes">Attributes</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#colors">Colors</a>
-        </li>          
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#backgrounds">Backgrounds</a>
+        <li class="nav-item" role="none">
+          <a class="nav-link gray_link" role="menuitem" href="#colors">Colors</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#borders">Borders</a>
+        <li class="nav-item" role="none">
+          <a class="nav-link gray_link" role="menuitem" href="#backgrounds">Backgrounds</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#margins">Margins</a>
+        <li class="nav-item" role="none">
+          <a class="nav-link gray_link" role="menuitem" href="#borders">Borders</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#padding">Padding</a>
+        <li class="nav-item" role="none">
+          <a class="nav-link gray_link" role="menuitem" href="#margins">Margins</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#box_model">Box model</a>
+        <li class="nav-item" role="none">
+          <a class="nav-link gray_link" role="menuitem" href="#padding">Padding</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#outline">Outline</a>
-        </li>        
+        <li class="nav-item" role="none">
+          <a class="nav-link gray_link" role="menuitem" href="#box_model">Box model</a>
+        </li>
+        <li class="nav-item" role="none">
+          <a class="nav-link gray_link" role="menuitem" href="#outline">Outline</a>
+        </li>
+        <li class="nav-item" role="none">
+          <a class="nav-link gray_link" role="menuitem" href="#links">Links</a>
+        </li>
+        <li class="nav-item" role="none">
+          <a class="nav-link gray_link" role="menuitem" href="#lists">Lists</a>
+        </li>
+        <li class="nav-item" role="none">
+          <a class="nav-link gray_link" role="menuitem" href="#tables">Tables</a>
+        </li>
+        <li class="nav-item" role="none">
+          <a class="nav-link gray_link" role="menuitem" href="#display">Display</a>
+        </li>
+        <li class="nav-item" role="none">
+          <a class="nav-link gray_link" role="menuitem" href="#clearfix">Clearfix</a>
+        </li>
+        <li class="nav-item" role="none">
+          <a class="nav-link gray_link" role="menuitem" href="#pseudo-classes">Pseudo classes</a>
+        </li>
+        <li class="nav-item" role="none">
+          <a class="nav-link gray_link" role="menuitem" href="#pseudo-elements">Pseudo Elements</a>
+        </li>
+        <li class="nav-item" role="none">
+          <a class="nav-link gray_link" role="menuitem" href="#images">Images</a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -72,6 +96,8 @@
             <li class="text-left main_content">Margin - Clears an area outside the border. The margin is transparent</li>
             <li class="text-left main_content">Fallback Fonts are used as a font can not always be found or is loaded wrong so many should be added in the font-family property common ones are Serif, Sans-serif, Monospace, Cursive, Fantasy</li>
           </ul>
+          <li class="text-left main-content">&ltdiv&gt elements are block elements, and will start on a new line and take up the full width available. However, if we use float: left we can make the <div> elements to float next to each other</li>
+          
       </ul>
     </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
@@ -97,7 +123,7 @@
         <li class="text-left main_content">[attribute$=value] - Selects elements with an attribute value ending with a certain value</li>
         <li class="text-left main_content">[attribute*=value] - Selects elements with an attribute value containing a certain value</li>
         <li class="text-left main_content">element:pseudo-class - Selects elements based on a certain state</li>
-        <li class="text-left main_content">element::pseudo-element - Selects and styles a part of an element</li>
+        <li class="text-left main_content">element::pseudo-element - Selects and styles a part and or state of an element</li>
         
       </ul>
     </div>
@@ -197,7 +223,7 @@
         <li class="text-left main_content"><code>border-style:solid;</code> same as above but can do three only and can be specified individually with <code>border-top-style, border-right-style, border-bottom-style and border-left-style</code></li>
         <li class="text-left main_content"><code>border-radius: 50px;</code> this makes rounded corners</li>
         <li class="text-left main_content"><code>border: 5px solid red;</code> shorthand for one border</li>
-        <li class="text-left main_content"><code>border-left: 6px solid red;</code> shorthand for one border</li>              
+        <li class="text-left main_content"><code>border-left: 6px solid red;</code> shorthand for one border</li>             
       </ul>
     </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
@@ -278,7 +304,7 @@
       </ul>
     </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
-      <h2 class="h2_big text-left">Links</h2> 
+      <h2 class="h2_big text-left" id="links">Links</h2> 
     </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
       <ul>
@@ -290,14 +316,10 @@
           <li class="text-left main_content"><code>a:active</code> a link the moment it is clicked</li>
         </ul>
         <li class="text-left main_content">:hover must come after :link and :visited</li>
-        <li class="text-left main_content">:active must come after :hover</li>
-        <li class="text-left main_content"></li>
-        <li class="text-left main_content"></li>
-        <li class="text-left main_content"></li>
       </ul>
     </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
-      <h2 class="h2_big text-left">Lists</h2> 
+      <h2 class="h2_big text-left" id="lists">Lists</h2> 
     </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
       <ul>
@@ -328,13 +350,14 @@
           <li class="text-left main_content" style="list-style-type: upper-alpha;"><code>upper-alpha</code>Uppercase letters (A, B, C, D, E, ...)</li>
           <li class="text-left main_content" style="list-style-type: none;"><code>none</code>No marker</li>
         </ol>
+        </ul>
         <li class="text-left main_content"><code>list-style-position</code>specifies the position of the marker (inside or outside the content flow)</li>
         <li class="text-left main_content"><code>list-style-image</code>specifies an image for the marker</li>
         <li class="text-left main_content"><code>list-style</code> shorthand order is type position image. If one is missing the default will be used</li>
       </ul>
     </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
-      <h2 class="h2_big text-left">Tables</h2> 
+      <h2 class="h2_big text-left" id="tables">Tables</h2> 
     </div>
     <div class="row justify-content-md-left container d-flex mx-auto">
       <ul>
@@ -349,7 +372,139 @@
         <li class="text-left main_content"><code>empty-cells</code> controls whether to show borders and background on empty cells. Example: <code>empty-cells: show;</code></li>
         <li class="text-left main_content"><code>overflow-x:auto;</code>used to make the table responsive</li>
       </ul>
-    </div>            
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left" id="display">Dispay</h2> 
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left main_content"><code>display</code> specifies the display behavior of an element. Common values are block, inline, inline-block, none, flex, grid, table. none hides it</li>
+        <li class="text-left main_content">An element with display: inline-block will appear on the same line as other inline or inline-block elements. In addition, you can set the width, height, margin-top, and margin-bottom properties for the element (like block elements).</li>
+        <li class="text-left main_content"><code>visibility:hidden;</code>hides an element</li>
+        <li class="text-left main_content"><code>position</code> specifies the type of positioning method used for an element. Common values are static, relative, absolute, fixed, sticky</li>
+        <li class="text-left main_content"><code>top, right, bottom, left</code> specify the offset of a positioned element. They work with relative, absolute, fixed, and sticky positioning</li>
+        <li class="text-left main_content"><code>z-index</code> specifies the stack order of positioned elements. Higher values are in front of lower values</li>
+        <li class="text-left main_content"><code>float</code> specifies whether an element should float to the left or right of its container. Common values are left, right, none</li>
+        <li class="text-left main_content"><code>clear</code> specifies whether an element can be next to floating elements or must be moved down below them. Common values are left, right, both, none</li>
+        <li class="text-left main_content"><code>overflow</code> specifies what happens if content overflows an element's box. Common values are visible, hidden, scroll, auto</li>
+        <ul>
+          <li class="text-left main_content"><code>overflow-x</code> specifies what happens if content overflows an element's box horizontally. Common values are visible, hidden, scroll, auto</li>
+          <li class="text-left main_content"><code>overflow-y</code> specifies what happens if content overflows an element's box vertically. Common values are visible, hidden, scroll, auto</li>
+          <li class="text-left main_content"><code>overflow-wrap</code> Specifies whether or not the browser can break lines with long words, if they overflow its container</li>
+          <li class="text-left main_content"><code>overflow-anchor</code>Makes it possible to turn off scroll anchoring</li>
+        </ul>
+      </ul>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left" id="clearfix">Clearfix</h2> 
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto" style="overflow: hidden;">
+      <h4>Without Clearfix</h4>
+      <div class="container">
+        <p>The image is floated to the right. It is also taller than the element containing it, so it overflows outside of its container:</p>
+      </div>
+    <div class="justify-content-md-left container" style="height:200px;">
+      <div class="div-clearfix">
+        <div class="img-clearfix" style="width:170px;height:170px;background-color:blue;"></div>
+        Lorem ipsum dolor sit amet, consetetur adipiscing elit. Phasellus imperdiet...
+      </div>
+    </div>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 style="clear:right">Using the Clearfix Hack</h2>
+      <div class="container">
+       <p>Add the clearfix hack to the containing element, to fix this problem:</p>
+      </div>
+      <div class="clearfix div-clearfix container">
+        <div class="img-clearfix" style="width:170px;height:170px;background-color:blue;"></div>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet...
+    </div>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left" id="pseudo-classes">Pseudo class</h2>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-ledt main_content">A CSS pseudo-class is a keyword that can be added to a selector, to define a style for a special state of an element.</li>
+        <li class="text-left main_content"><code>:link</code> applies to links that have not yet been visited.</li>
+        <li class="text-left main_content"><code>:visited</code> applies to links that have been visited by the user.</li>
+        <li class="text-left main_content"><code>:hover</code> applies when the user designates an element (with some pointing device), but does not activate it. For example, a visual user agent could apply this pseudo-class when the cursor hovers over a box generated by the element.</li>
+        <li class="text-left main_content"><code>:active</code> applies while an element is being activated by the user. For example, between the times the user presses the mouse button and releases it.</li>
+        <li class="text-left main_content"><code>:focus</code> applies while an element has the focus (accepts keyboard or mouse events, or other forms).</li>
+        <li class="text-left main_content"><code>:nth-child(n)</code> matches elements based on their position among a group of siblings. The argument n can be a number, a keyword, or a formula.</li>
+        <li class="text-left main_content"><code>:first-child</code> matches an element that is the first child of its parent.</li>
+        <li class="text-left main_content"><code>:last-child</code> matches an element that is the last child of its parent.</li>
+        <li class="text-left main_content"><code>:not(selector)</code> matches every element that is not represented by the argument.</li>
+      </ul>
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left" id="pseudo-elements">Pseudo Elements</h2> 
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left main_content">A CSS pseudo-element is used to style specified parts of an element.</li>
+        <li class="text-left main_content"><code>::before</code> can be used to insert content before the content of an element. Example: <code>p::before { content: "Note: "; }</code></li>
+        <li class="text-left main_content"><code>::after</code> can be used to insert content after the content of an element. Example: <code>p::after { content: " (end of paragraph)"; }</code></li>
+        <li class="text-left main_content"><code>::first-letter</code> can be used to style the first letter of an element. Example: <code>p::first-letter { font-size: 200%; }</code></li>
+        <li class="text-left main_content"><code>::first-line</code> can be used to style the first line of an element. Example: <code>p::first-line { font-variant: small-caps; }</code></li>
+        <li class="text-left main_content"><code>::selection</code> can be used to style the portion of an element that is selected by the user. Example: <code>p::selection { background: yellow; color: black; }</code></li> 
+        <li class="text-left main_content"><code>::placeholder</code> can be used to style the placeholder text of an input field. Example: <code>input::placeholder { color: gray; font-style: italic; }</code></li>
+        <li class="text-left main_content"><code>::marker</code> can be used to style the marker of a list item. Example: <code>li::marker { color: red; font-size: 150%; }</code></li>
+        <li class="text-left main_content"><code>::backdrop</code> can be used to style the backdrop of a modal element. Example: <code>dialog::backdrop { background: rgba(0, 0, 0, 0.5); }</code></li>
+      </ul>
+    </div>
+
+    <!-- Images section -->
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <h2 class="h2_big text-left" id="images">Images</h2> 
+    </div>
+    <div class="row justify-content-md-left container d-flex mx-auto">
+      <ul>
+        <li class="text-left main_content"><code>&lt;img&gt;</code> element: always include <code>alt</code> for accessibility. Provide <code>width</code> and <code>height</code> attributes to prevent layout shift.</li>
+        <li class="text-left main_content"><code>responsive</code> images: use CSS to scale images while preserving aspect ratio:
+          <br><code>img { max-width: 100%; height: auto; display: block; }</code>
+        </li>
+        <li class="text-left main_content"><code>center</code> an image: <code>img { display: block; margin: 0 auto; }</code></li>
+        <li class="text-left main_content"><code>object-fit</code> controls how the image fills its box (useful for fixed-size boxes):
+          <br><code>.thumb { width: 200px; height: 140px; object-fit: cover; }</code>
+        </li>
+        <li class="text-left main_content"><code>srcset</code> and <code>&lt;picture&gt;</code> let the browser choose an appropriate image for device resolution and size:
+          <br><code>&lt;img src="small.jpg" srcset="small.jpg 480w, medium.jpg 800w, large.jpg 1200w" sizes="(max-width:600px) 100vw, 600px" alt="..."/&gt;</code>
+        </li>
+        <li class="text-left main_content"><code>&lt;picture&gt;</code> example for art-direction:
+          <br><code>&lt;picture&gt;<br>&nbsp;&nbsp;&lt;source media="(min-width:800px)" srcset="wide.jpg"&gt;<br>&nbsp;&nbsp;&lt;img src="narrow.jpg" alt="..."&gt;<br>&lt;/picture&gt;</code>
+        </li>
+        <li class="text-left main_content"><code>lazy loading</code>: use <code>loading="lazy"</code> on &lt;img&gt; to defer offscreen images.</li>
+        <li class="text-left main_content"><code>image-rendering</code> influences scaling algorithm (useful for pixel art):
+          <br><code>img.pixel { image-rendering: crisp-edges; }</code>
+        </li>
+        <li class="text-left main_content"><code>filters</code> apply visual effects with CSS:
+          <br><code>img { filter: grayscale(50%) blur(1px) contrast(110%); }</code>
+        </li>
+        <li class="text-left main_content"><code>rounded</code> corners and shadows:
+          <br><code>img { border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.12); }</code>
+        </li>
+        <li class="text-left main_content"><code>background-image</code> vs &lt;img&gt;: use background images for decorative content, &lt;img&gt; for semantic/content images (with alt).</li>
+        <li class="text-left main_content"><code>figure &amp; figcaption</code> wrap images with captions:
+          <br><code>&lt;figure&gt;&lt;img src="..." alt="..."&gt;&lt;figcaption&gt;Caption text&lt;/figcaption&gt;&lt;/figure&gt;</code>
+        </li>
+        <li class="text-left main_content"><code>aspect-ratio</code> keep layout boxes stable:
+          <br><code>.media { aspect-ratio: 16 / 9; width: 100%; }</code>
+        </li>
+        <li class="text-left main_content">Make images keyboard-focusable and accessible when interactive: add <code>tabindex="0"</code> and an accessible label or use a proper &lt;button&gt; or &lt;a&gt; wrapper with <code>aria-label</code>.</li>
+        <li class="text-left main_content">Tip — always provide multiple sizes/formats (webp + jpg) via <code>srcset</code>/<code>&lt;picture&gt;</code> to improve performance on varied devices.</li>
+      </ul>
+
+      <!-- small demo figure -->
+      <figure style="max-width:480px; margin: 1rem 0;">
+        <picture>
+          <source srcset="/static/img/example-large.webp" type="image/webp" media="(min-width:800px)">
+          <source srcset="/static/img/example-small.webp" type="image/webp">
+          <img src="/static/img/example-small.jpg" alt="Example image" loading="lazy" style="width:100%; height:auto; border-radius:6px; display:block;">
+        </picture>
+        <figcaption class="text-left main_content" style="font-size:0.95rem; color:#666;">Example: responsive picture element with lazy loading</figcaption>
+      </figure>
+    </div>
   </main>
 </div>
 </div>

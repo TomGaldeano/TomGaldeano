@@ -119,3 +119,14 @@ html, body {
     padding: 0;
     background: #f0f0f0;
 }
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.img-clearfix{
+  float: left;
+}
+.div-clearfix{
+  border:1px solid black; padding:10px; margin:10px;
+}
