@@ -36,6 +36,13 @@ class ImageConverter(object):
         img.show()
         img.close()
 
+    def web_size(self,filename):
+        with Image.open(filename) as img:
+            thumbnail_height = int(IMAGE_WIDTH / GOLDEN_RATiO)
+            img.thumbnail((IMAGE_WIDTH, thumbnail_height))
+            img.save(os.path.join(self.output_folder, os.path.basename(filename)))
+            img.close()
+
     def jpeg_to_jpg(self,filename,remove=True):
         if not os.path.exists(self.output_folder):
             os.makedirs(self.output_folder)

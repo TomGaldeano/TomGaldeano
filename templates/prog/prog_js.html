@@ -1,5 +1,19 @@
 {% include "header.html" %}
 {% include "prog/prog_header.html" %}
+<div class="container-fluid">
+<div class="row">
+  <!-- Sidebar -->
+  <nav class="col-md-1 d-none d-md-block sidebar" style="min-height:100vh;" aria-label="CSS topics">
+    <div class="sidebar-sticky">
+      <ul class="nav flex-column small" role="menu">
+        <li class="nav-item" role="none">
+          <a class="nav-link gray_link" role="menuitem" href="#elements">Theory n  </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Main content -->
+  <main class="col-md-11 ml-sm-auto px-4 justify-content-md-left">
 <div class="row justify-content-md-left container d-flex mx-auto">
     <h1 class="text-left h1_big">JS</h1>
 </div>
@@ -119,6 +133,6 @@
     <li class="text-left main_content"></li>
     </ul>
 </div>
-<script src="{{ url_for('static', filename='prog_js.js') }}"></script>
+<script src="{{ url_for('static', filename='js/prog_js.js') }}"></script>
 </body>
 </html>

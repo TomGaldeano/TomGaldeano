@@ -138,7 +138,7 @@
         const worker = document.getElementById("result1");
         if (typeof(Worker) !== "undefined") {
           if (typeof(w) == "undefined") {
-            w = new Worker("{{ url_for('static', filename='demo_worker.js') }}"); }
+            w = new Worker("{{ url_for('static', filename='js/demo_worker.js') }}"); }
           w.onmessage = function(event) {
             worker.innerHTML = event.data; };
         } else {
