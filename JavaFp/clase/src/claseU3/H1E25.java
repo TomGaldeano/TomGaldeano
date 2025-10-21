@@ -10,9 +10,8 @@ public class H1E25 {
 		float sueldo = entrada.nextFloat();
 		System.out.println("Introduce la antiguedad");
 		int antiguedad = entrada.nextInt();
-		if (antiguedad > 10) {
-			System.out.println(sueldo*1.1);
-			
+		if(sueldo>10) {
+			System.out.println(sueldo*1.1);		
 		} else if(antiguedad > 5){
 			System.out.println(sueldo*1.07);
 
