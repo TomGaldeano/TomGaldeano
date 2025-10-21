@@ -15,21 +15,45 @@ from language join film using (language_id) group by language_id;
 select language_id, language.name as language_name, avg(film.length) as avg_length
 from language join film using (language_id) group by language_id having avg(film.length) > 110;
 -- 5:  Para cada película, muestra cuántas copias hay en el inventario.
-select film_id, 
-from film join inventory using(inventory_id) 
+select film_id, title, count(inventory_id) as copies
+from film join inventory using(film_id) group by film_id;
 -- 6:  Lista solo las películas que tienen al menos 5 copias en inventario.
+select film_id, title, count(inventory_id) as copies
+from film join inventory using(film_id) group by film_id having count(inventory_id)>4;
 -- 7:  Para cada artículo de inventario, cuenta cuántos alquileres se han realizado.
+select inventory_id, count(rental_id) as rentals 
+from inventory join rental using(inventory_id) group by inventory_id;
 -- 8:  Para cada cliente, muestra cuántos alquileres ha realizado en total.
+select customer_id, first_name,last_name,count(rental_id) as total_rentals 
+from customer join rental using(customer_id) group by customer_id;     
 -- 9:  Lista los clientes con 30 o más alquileres acumulados.
+select customer_id, first_name,last_name,count(rental_id) as total_rentals 
+from customer join rental using(customer_id) group by customer_id having count(rental_id)>29; 
 -- 10:  Para cada cliente, muestra el total de pagos (suma en euros/dólares) que ha realizado.
+select customer_id, first_name,last_name,sum(amount) as total_amount
+from customer join payment using(customer_id) group by customer_id; 
 -- 11:  Muestra los clientes cuyo importe total pagado es al menos 200.
+select customer_id, first_name,last_name,sum(amount) as total_amount
+from customer join payment using(customer_id) group by customer_id having sum(amount)>200; 
 -- 12:  Para cada empleado (staff), muestra el número de pagos que ha procesado.
+select staff_id, first_name, last_name, count(payment_id) as payments_processed 
+from staff join payment using (staff_id) group by staff_id;
 -- 13:  Para cada empleado, muestra el importe total procesado.
+select staff_id, first_name, last_name, sum(amount) as payments_processed 
+from staff join payment using (staff_id) group by staff_id;
 -- 14:  Para cada tienda, cuenta cuántos artículos de inventario tiene.
+select store_id, count(store_id) as total_inventory_items
+from store join inventory using(store_id) group by store_id;
 -- 15:  Para cada tienda, cuenta cuántos clientes tiene asignados.
+select store_id, count(store_id) as customers_in_store
+from store join customer using(store_id) group by store_id;
 -- 16:  Para cada tienda, cuenta cuántos empleados (staff) tiene asignados.
+select store_id, count(staff_id) as staff_in_store
+from store join staff using(store_id) group by store_id;
 -- 17:  Para cada dirección (address), cuenta cuántas tiendas hay ubicadas ahí (debería ser 0/1 en datos estándar).
+select address_id, address, count(address_id) from  store join address using (address_id) group by address_id;
 -- 18:  Para cada dirección, cuenta cuántos empleados residen en esa dirección.
+select address_id, address, count(address_id) from  staff join address using (address_id) group by address_id;
 -- 19:  Para cada dirección, cuenta cuántos clientes residen ahí.
 -- 20:  Para cada ciudad, cuenta cuántas direcciones hay registradas.
 -- 21:  Para cada país, cuenta cuántas ciudades existen.
