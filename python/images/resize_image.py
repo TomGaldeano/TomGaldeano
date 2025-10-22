@@ -5,8 +5,7 @@ import struct
 from math import sqrt
 import numpy as np
 
-GOLDEN_RATiO = (1 + 5 ** 0.5) / 2
-IMAGE_WIDTH = 2000
+
 """
 Convert a B/W image to a watertight STL heightmap (with sides and base).
 For 3D printing.
@@ -23,41 +22,37 @@ class ImageConverter(object):
     def __init__(self,output_folder,input_folder):
         self.output_folder = output_folder
         self.input_folder = input_folder
+        self.golden_ratio = (1 + 5 ** 0.5) / 2
+        self.default_width = 2000
+
+    def load_image(self,filename):
+        self.img=1
+        path = os.path.join(self.input_folder+filename)
+        self.img = Image.open(path)
+
+    def save_image(self,filename):
+        path = os.path.join(self.output_folder+filename)
+        self.img.save(path)
+        self.img.close()
     
-    def black_white(self,filename):
-        path = os.path.join(self.output_folder+filename+".jpg")
-        img = Image.open(path).convert("L")  # grayscale
+    def black_white(self):
+        img= self.img.convert("L")  # grayscale
         matr = np.asarray(img)
-        matr_temp = matr.copy()
-        for i in matr:
-            for j in i:
-                if j < 127:
-                    pass
-        img.show()
-        img.close()
+        matr = matr/255
+        matr = matr.round(decimals=0)
+        matr = matr*255
+        img = Image.fromarray(matr)
 
     def web_size(self,filename):
         with Image.open(filename) as img:
-            thumbnail_height = int(IMAGE_WIDTH / GOLDEN_RATiO)
-            img.thumbnail((IMAGE_WIDTH, thumbnail_height))
+            thumbnail_height = int(self.default_width / self.golden_ratio)
+            img.thumbnail((self.default_width, thumbnail_height))
             img.save(os.path.join(self.output_folder, os.path.basename(filename)))
             img.close()
 
-    def jpeg_to_jpg(self,filename,remove=True):
-        if not os.path.exists(self.output_folder):
-            os.makedirs(self.output_folder)
-        if filename.endswith(".jpeg") or filename.endswith(".JPEG"):
-            with Image.open(filename) as img:
-                img.save(os.path.join(self.output_folder, os.path.splitext(filename)[0] + ".jpg"))
-                img.close()
-            if remove:
-                os.remove(filename)
-
-    def SingleImage(self,filename):
-        with Image.open(os.path.join(input, filename)) as img:
-            thumbnail_height = int(IMAGE_WIDTH / GOLDEN_RATiO)
-            img.thumbnail((IMAGE_WIDTH, thumbnail_height))
-            img.save(os.path.join(self.output, filename))
+    def resize_image(self):
+            thumbnail_height = int(self.default_width / self.golden_ratio)
+            self.img.thumbnail((self.default_width, thumbnail_height))
 
     def folder_conversion(self,input_folder,output_folder):
         files = os.listdir(input_folder)
@@ -66,23 +61,24 @@ class ImageConverter(object):
         for filename in files:
             if filename.endswith(".jpg"):
                 with Image.open(os.path.join(input_folder, filename)) as img:
-                    thumbnail_height = int(IMAGE_WIDTH / GOLDEN_RATiO)
-                    img.thumbnail((IMAGE_WIDTH, thumbnail_height))
+                    thumbnail_height = int(self.default_width / self.golden_ratio)
+                    img.thumbnail((self.default_width, thumbnail_height))
                     img.save(os.path.join(output_folder, filename))
 
-    def load_image_as_heightmap(path, max_size=None, invert=False):
-        im = Image.open(path).convert("L")  # grayscale
+    def load_image_as_heightmap(self, max_size=None, invert=False):
+        img = self.img
+        img = img.convert("L")  # grayscale
         if max_size:
-            w, h = im.size
+            w, h = img.size
             factor = min(1.0, float(max_size) / max(w, h))
             if factor < 1.0:
-                im = im.resize((int(w * factor), int(h * factor)), Image.LANCZOS)
-        arr = np.asarray(im, dtype=np.float32) / 255.0  # normalize 0..1
+                img = img.resize((int(w * factor), int(h * factor)), Image.LANCZOS)
+        arr = np.asarray(img, dtype=np.float32) / 255.0  # normalize 0..1
         if invert:
             arr = 1.0 - arr
         return arr  # shape (H, W)
 
-    def build_vertices(heightmap, scale_x=1.0, scale_y=1.0, scale_z=1.0):
+    def build_vertices(self,heightmap, scale_x=1.0, scale_y=1.0, scale_z=1.0):
         H, W = heightmap.shape
         xs = np.arange(W) * scale_x
         ys = np.arange(H) * scale_y
@@ -173,8 +169,8 @@ class ImageConverter(object):
                 f.write(struct.pack("<3f", *v3))
                 f.write(struct.pack("<H", 0))
 
-    def img_to_stl(self, filename, scale_x=1.0,scale_y=1.0,scale_z=5.0, max_size=400, invert="store_true"):
-        hm = self.load_image_as_heightmap(filename, max_size=max_size, invert=invert)
+    def img_to_stl(self, scale_x=1.0,scale_y=1.0,scale_z=5.0, max_size=400, invert="store_true"):
+        hm = self.load_image_as_heightmap(max_size=1000, invert=invert)
         verts = self.build_vertices(hm, scale_x, scale_y, scale_z)
         tris = []
         tris += self.add_surface_triangles(verts)
@@ -185,4 +181,6 @@ class ImageConverter(object):
 
 if __name__ == "__main__":
     converter = ImageConverter(input_folder="../patata/",output_folder="../patata/")
-    converter.black_white("img1")
+    converter.load_image("img3.jpg")
+    converter.img_to_stl()
+    converter.save_image("img3.jpg")
