@@ -1,6 +1,5 @@
 from PIL import Image
 import os
-import argparse
 import struct
 from math import sqrt
 import numpy as np
@@ -43,12 +42,21 @@ class ImageConverter(object):
         matr = matr*255
         img = Image.fromarray(matr)
 
-    def web_size(self,filename):
-        with Image.open(filename) as img:
-            thumbnail_height = int(self.default_width / self.golden_ratio)
-            img.thumbnail((self.default_width, thumbnail_height))
-            img.save(os.path.join(self.output_folder, os.path.basename(filename)))
-            img.close()
+    def web_size(self,filename,type_image):
+        sizes =  {"background_image":{'phone': 800, 'computer': 1600},
+                  "Hero_image":{'phone': 800, 'computer': 1600},
+                  "banner_image":{'phone': 800, 'computer': 1600},
+                  "blog_image":{'phone': 800, 'computer': 1600},
+                  "logo_square":{'phone': 800, 'computer': 1600},
+                  "thumbnail":{'phone': 800, 'computer': 1600},
+                  "favivon":{'phone': 800, 'computer': 1600},
+                  "product":{'phone': 800, 'computer': 1600}
+                  }
+        for size_type in sizes[type_image]:
+            thumbnail_height = int(width / self.golden_ratio)
+            self.img.thumbnail((_width, thumbnail_height))
+            self.save(os.path.join(folder, os.path.basename(filename)))
+
 
     def resize_image(self):
             thumbnail_height = int(self.default_width / self.golden_ratio)
