@@ -13,7 +13,8 @@ public class H2E19 {
 		while(cont<=MAX_NUM) {			
 			System.out.print(cont*num+" ");
 			cont ++;
-		}		
+		}
+		entrada.close();
 
 	}
 

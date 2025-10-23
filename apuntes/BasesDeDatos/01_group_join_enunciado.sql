@@ -117,9 +117,12 @@ from film join film_actor using(film_id) join actor using (actor_id) where relea
 select category_id, name as category_name, avg(length) as avg_len
 from category join film_category using(category_id) join film using(film_id) group by category_id having avg(length)>120;
 -- 40:  Para cada idioma, suma las tarifas de alquiler (rental_rate) de todas sus películas.
-select
-from
+
+
+select language_id, language.name as language_name, sum(rental_rate) as total_rental_rate
+from language join film using (language_id) group by language_id;
 -- 41:  Para cada cliente, cuenta cuántos alquileres realizó en fines de semana (SÁB-DO) usando DAYOFWEEK (1=Domingo).
+
 -- 42:  Para cada actor, muestra el total de títulos distintos en los que participa (equivale a COUNT DISTINCT, sin subconsulta).
 -- 43:  Para cada ciudad, cuenta cuántos clientes residen ahí (customer -> address -> city).
 -- 44:  Para cada categoría, muestra cuántos actores distintos participan en películas de esa categoría.

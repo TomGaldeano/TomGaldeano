@@ -18,6 +18,7 @@ public class H1E01 {
 		} else {
 			System.out.println("el numero no es vailido");
 		}
+		entrada.close();
 	}
 
 }

@@ -1,0 +1,16 @@
+package claseU3;
+
+import java.util.Scanner;
+
+public class H2E16 {
+	public static void main(String[] args) {
+		int i = 0,num=0;
+		Scanner entrada = new Scanner(System.in);
+		System.out.println("Numero de asteriscos a imprimir");
+		num= entrada.nextInt();
+		entrada.close();
+		for (i=1;i<=num;i++) {
+			System.out.print("*");
+		}	
+		}
+}

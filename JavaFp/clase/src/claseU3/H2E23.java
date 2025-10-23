@@ -20,6 +20,7 @@ public class H2E23 {
 		} else {
 			System.out.println("Ha habido un error");
 		}
+		entrada.close();
 
 	}
 

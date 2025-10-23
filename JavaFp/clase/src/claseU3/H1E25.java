@@ -21,5 +21,6 @@ public class H1E25 {
 		}else {
 			System.out.println(sueldo*1.03);			
 		}
+		entrada.close();
 	}
 }

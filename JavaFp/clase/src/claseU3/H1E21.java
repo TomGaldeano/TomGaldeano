@@ -27,7 +27,7 @@ public class H1E21 {
 			int lado3 = entrada.nextInt();
 			System.out.println("Permimetro: "+(lado1+lado2+lado3));
 		}
-		
+		entrada.close();
 	}
 
 }

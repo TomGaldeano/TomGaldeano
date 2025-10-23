@@ -67,6 +67,8 @@ public class H1E5 {
 				System.out.println(num1);
 				System.out.println(num2);			
 			}
+			
 		}
+		entrada.close();
 		}
 }
