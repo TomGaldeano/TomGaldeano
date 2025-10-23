@@ -1,12 +1,4 @@
 """
-Ejercicios genéricos de programación 2
-Este boletín de ejercicios está orientado a practicar con todo lo visto en el boletín 1
-1. Escribir un programa que nos pida tres palabras por teclado en cualquier orden y nos
-las muestre en pantalla ordenadas alfabeticamente en orden ascendente
-2. Idem al anterior pero ordenando ahora en orden descendente
-3. Escribir un programa que pida un número por teclado al usuario que simule ser el
-precio de un artículo y escriba el resultado de aplicarle el IVA del 21%. El resultado
-debe de estar redondeado a dos decimales.
 4. Escribir un programa que nos pida por teclado dos calificaciones numéricas de un
 alumno y nos muestre la media aritmética resultante redondeada sin decimales. Las
 notas introducidas deben de estar entre 0 y 10 y admiten decimales. Caso de que una
@@ -25,7 +17,7 @@ multiplicar de dicho número del 1 al 10. Por ejemplo, si introducimos el 74 el
 resultado será algo así:
 74 x 1 = 74
 74 x 2 = 148
-…
+...
 74 x 10 = 740
 8. Escribe un programa que pida un número por teclado y escriba todos sus divisores
 separados por comas (y evitando poner una coma al final). Por ejemplo, si el número
@@ -75,12 +67,44 @@ Para convertir de ºK a ºC use la fórmula: ºC = ºK – 273.15
 Para convertir de ºC a ºK use la fórmula: ºK = ºC + 273.15.
 Para convertir de ºF a ºK use la fórmula: ºK = 5/9 (ºF – 32) + 273.15.
 Para convertir de ºK a ºF use la fórmula: ºF = 1.8(ºK – 273.15) + 32.
-José María Morales Vázquez Página 2
-Ejercicios genéricos de programación 2
 18. La tabla de tarifas impositivas en España para 2022 es la siguiente:
 Escribe un programa que le pida al usuario su sueldo anual (lógicamente puede ser
 un número con decimales) y le informe que porcentaje de retención le corresponde, el
 importe de la misma y el importe neto restante que cobrará.
 """
 def ej1():
+    """
+    1. Escribir un programa que nos pida tres palabras por teclado en cualquier orden y nos
+    las muestre en pantalla ordenadas alfabeticamente en orden ascendente
+
+    """
+    palabras = []
+    for i in range(3):
+        palabra = input("Introduce una palabra: ")
+        palabras.append(palabra)
+    palabras.sort()
+    for i in palabras:
+        print(i)
+
+def ej2():
+    """
+    2. Idem al anterior pero ordenando ahora en orden descendente
+    """
+    palabras = []
+    for i in range(3):
+        palabra = input("Introduce una palabra: ")
+        palabras.append(palabra)
+    palabras.sort(reverse=True)
+    for i in palabras:
+        print(i)
+
+"""
+3. Escribir un programa que pida un número por teclado al usuario que simule ser el
+precio de un artículo y escriba el resultado de aplicarle el IVA del 21%. El resultado
+debe de estar redondeado a dos decimales.
+"""
+
+
+if __name__ == "__main__":
+    ej2()
     pass

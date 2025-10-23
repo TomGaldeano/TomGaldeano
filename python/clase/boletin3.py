@@ -1,11 +1,5 @@
 """
-1. Escribir un programa que pida una contraseña por teclado (dos veces) y si no
-coinciden nos lo vuelva a pedir hasta que lo hagan
-2. Modifica el programa anterior para que cuando coincidan ambas contraseñas nos
-informe del número de intentos inválidos
-3. Escribir un programa que nos pida nuestro nombre y apellidos (dos peticiones
-diferentes hechas en ese orden) y nos lo escriba formateado de la siguiente forma:
-Morales Vázquez, José María
+  
 4. Escribir un programa que pida por teclado una cadena de texto y la escriba en sin
 espacios en blanco (si los hubiera). Además, nos debe de decir el número de espacios
 que ha encontrado y suprimido.
@@ -52,4 +46,41 @@ Que la fecha sea totalmente válida teniendo en cuenta incluso los años que son
 bisiestos (aquellos que son divisibles entre cuatro).
 """
 def ej1():
+    """"
+    1. Escribir un programa que pida una contraseña por teclado (dos veces) y si no
+    coinciden nos lo vuelva a pedir hasta que lo hagan
+    """
+    while True:
+        pwd1 = input("Introduce la contraseña: ")
+        pwd2 = input("Vuelve a introducir la contraseña: ")
+        if pwd1 == pwd2:
+            print("Contraseñas coinciden.")
+            break
+        else:
+            print("Contraseñas no coinciden. Inténtalo de nuevo.")
+
+def ej2():
+    """
+    2. Modifica el programa anterior para que cuando coincidan ambas contraseñas nos
+    informe del número de intentos inválidos
+    """
+    invalid_attempts = 0
+    while True:
+        pwd1 = input("Introduce la contraseña: ")
+        pwd2 = input("Vuelve a introducir la contraseña: ")
+        if pwd1 == pwd2:
+            print(f"Contraseñas coinciden. Número de intentos inválidos: {invalid_attempts}")
+            break
+
+def ej3():
+    """"
+    3. Escribir un programa que nos pida nuestro nombre y apellidos (dos peticiones
+    diferentes hechas en ese orden) y nos lo escriba formateado de la siguiente forma:
+    Morales Vázquez, José María
+    """
+    nombre = input("Introduce tu nombre: ")
+    apellidos = input("Introduce tus apellidos: ")
+    print(f"{apellidos}, {nombre}")
+
+if __name__ == "__main__":  
     pass
