@@ -871,13 +871,24 @@ FROM
     store USING (address_id)
 GROUP BY country_id;
 -- 77:  Para cada cliente, cuenta los alquileres en los que la devolución (return_date) fue el mismo día del alquiler.
-SELECT  customer_id, first_name, last_name, COUNT(rental_id) AS same_day_returns
-FROM customer JOIN rental USING (customer_id)
+SELECT  p.customer_id, first_name, last_name, COUNT(rental_id) AS same_day_returns
+FROM customer c join payment p USING (customer_id) join rental using(rental_id)
 WHERE DATE(rental_date) = DATE(return_date) GROUP BY customer_id;
+
+SELECT  c.customer_id, first_name, last_name, COUNT(rental_id) AS same_day_returns
+FROM payment p join rental r USING (rental_id) join customer c using(customer_id)
+WHERE DATE(rental_date) = DATE(return_date) GROUP BY c.customer_id;
 -- 78:  Para cada tienda, cuenta cuántos clientes distintos realizaron pagos en 2005.
-SELECT  store.store_id, COUNT(DISTINCT customer_id) AS distinct_customer_2025
-FROM store JOIN customer USING (address_id)  JOIN payment USING (customer_id)
-WHERE YEAR(payment_date) = 2005 GROUP BY store.store_id;
+SELECT 
+    store_id,
+    COUNT(DISTINCT customer_id) AS distinct_customer_2005
+FROM
+    staff
+        JOIN
+    payment USING (staff_id)
+WHERE
+    YEAR(payment_date) = 2005
+GROUP BY store_id;
 -- 79:  Para cada categoría, cuenta cuántas películas con título de longitud > 15 han sido alquiladas.
 SELECT 
     category_id, name AS category_name, COUNT(inventory_id)
@@ -930,9 +941,20 @@ FROM
 GROUP BY HOUR(rental_date)
 ORDER BY HOUR(rental_date);
 -- 83:  Para cada tienda, muestra la media de length de las películas alquiladas en 2005 y filtra las tiendas con media >= 100.
-SELECT  store_id, AVG(length) AS avg_length_2005
-FROM store JOIN inventory USING (store_id) JOIN film USING (film_id)
-GROUP BY store_id HAVING AVG(length) > 100;
+SELECT 
+    store_id, AVG(length) AS avg_length_2005
+FROM
+    store
+        JOIN
+    inventory USING (store_id)
+        JOIN
+    film USING (film_id)
+        JOIN
+    rental USING (inventory_id)
+WHERE
+    YEAR(rental_date) = 2005
+GROUP BY store_id
+HAVING AVG(length) > 100;
 -- 84:  Para cada categoría, muestra la media de replacement_cost de las películas alquiladas un domingo.
 SELECT 
     category_id, name AS category_name, AVG(replacement_cost)
@@ -1010,13 +1032,37 @@ WHERE
     YEAR(rental_date) = 2005
 GROUP BY customer_id;
 -- 89:  Para cada categoría, calcula la longitud media de títulos (número de caracteres) de sus películas alquiladas.
-select category_id, name as category_name, avg(length(title)) as avg_title_len_rented
-from category join film_category using (category_id) join film using (film_id)
-join inventory using (film_id) where inventory_in_stock(inventory_id)=1 group by category_id;
+SELECT 
+    category_id,
+    name AS category_name,
+    AVG(LENGTH(title)) AS avg_title_len_rented
+FROM
+    category
+        JOIN
+    film_category USING (category_id)
+        JOIN
+    film USING (film_id)
+        JOIN
+    inventory USING (film_id)
+        JOIN
+    rental USING (inventory_id)
+WHERE
+    rental_date IS NOT NULL
+GROUP BY category_id;
 -- 90:  Para cada tienda, cuenta cuántos clientes distintos alquilaron en el primer trimestre de 2006 (enero-marzo).
-SELECT store_id, COUNT(distinct rental.customer_id) AS distinct_customers_q1_2006
-FROM store JOIN staff USING (store_id) JOIN payment USING (staff_id) JOIN rental USING (rental_id)    
-WHERE MONTH(rental_date) > 1 AND YEAR(rental_date)=2006 GROUP BY store_id;
+SELECT 
+    store_id,
+    COUNT(DISTINCT r.customer_id) AS distinct_customers_q1_2006
+FROM
+    store
+        JOIN
+    inventory USING (store_id)
+        JOIN
+    rental r USING (inventory_id)
+WHERE
+    YEAR(rental_date) = 2006
+        AND MONTH(rental_date) < 4
+GROUP BY store_id;
 -- 91:  Para cada país, cuenta cuántas categorías diferentes han sido alquiladas por clientes residentes en ese país.
 SELECT 
     country_id,
@@ -1109,18 +1155,20 @@ WHERE
         AND INVENTORY_IN_STOCK(inventory_id) = 1
 GROUP BY language_id;
 -- 97:  Para cada país, suma el importe total de pagos realizados por clientes residentes y filtra países con total >= 1000.
-select country_id, country, sum(amount) as total_amount
-from country join city using (country_id) join address using (city_id) join customer using (address_id) join payment using (customer_id)
-group by country_id having sum(amount) >= 1000;
-
-select country_id, country, sum(amount) as total_amount
-from country join city using (country_id) join address using (city_id) join customer using (address_id) join rental using (customer_id)
-join payment using (rental_id)
-group by country_id having sum(amount) >= 1000;
-
-select country_id, country, sum(amount) as total_amount
-from country join city using (country_id) join address using (city_id) join customer using (address_id) join payment using (customer_id)
-where customer group by country_id having sum(amount) >= 1000;
+SELECT 
+    country_id, country, SUM(amount) AS total_amount
+FROM
+    country
+        JOIN
+    city USING (country_id)
+        JOIN
+    address USING (city_id)
+        JOIN
+    customer USING (address_id)
+        JOIN
+    payment USING (customer_id)
+GROUP BY country_id
+HAVING SUM(amount) >= 1000;
 -- 98:  Para cada cliente, cuenta cuántos días han pasado entre su primer y su último alquiler en 2005 (diferencia de fechas), mostrando solo clientes con >= 5 alquileres en 2005.
 --     (Se evita subconsulta calculando sobre el conjunto agrupado por cliente y usando MIN/MAX de rental_date en 2005.
 SELECT 
@@ -1168,4 +1216,4 @@ WHERE
         AND INVENTORY_IN_STOCK(inventory_id) = 0
 GROUP BY category_id
 ORDER BY AVG(length) DESC;
--- 72 77 78 83 89 90 97
+-- 72 77
