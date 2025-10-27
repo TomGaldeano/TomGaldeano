@@ -811,8 +811,8 @@ JOIN rental USING (inventory_id) JOIN payment p USING (rental_id)
 GROUP BY p.staff_id , category_id ORDER BY category_id;
 
 SELECT  store_id, category_id, name AS category_name, SUM(amount) AS revenue
-FROM staff join store using(store_id)  JOIN  inventory USING (st_id) JOIN  film_category USING (film_id) JOIN category USING (category_id) 
-JOIN rental USING (inventory_id) JOIN payment USING (rental_id)
+from payment join staff using(staff_id) join store using (store_id) 
+join inventory using(store_id) join film using(film_id) join film_category using (film_id) join category using (category_id)
 GROUP BY store_id , category_id ORDER BY category_id;
 
 SELECT  store_id, category_id, name AS category_name, SUM(amount) AS revenue
