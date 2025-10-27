@@ -1,181 +1,187 @@
 {% include "header.html" %}
 {% include "prog/prog_header.html" %}
 </body>
+
 </html>
 <div class="container-fluid">
-<div class="row">
-  <!-- Sidebar -->
-  <nav class="col-md-1 d-none d-md-block sidebar" style="min-height:100vh;">
-    <div class="sidebar-sticky">
-      <ul class="nav flex-column">
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#variables">Variables</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#Inbuilt_Methods">Inbuilt Methods</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#conditionals">Conditionals</a>
-        </li>          
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#loops">Loops</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="functions">Functions</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#classes">Classes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#strings">String Methods</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#"></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#"></a>
-        </li>        
-      </ul>
-    </div>
-  </nav>
-  <!-- Main content -->
-  <main class="col-md-11 ml-sm-auto px-4 justify-content-md-left">
-    <div class="row justify-content-md-left container d-flex mx-auto">
-      <h1 class="text-left h1_big">Pyhton</h1>
-    </div>
-    <div class="row justify-content-left container d-flex mx-auto">
-      <p class="text-left main_content">To have personal notes from <a href="https://www.w3schools.com/c" target="_blank" class="golden_link" >w3 schools</a> to act as a cheatsheet</p>
-    </div>
-    <div class="row justify-content-md-left container d-flex mx-auto">
-      <h2 class="h2_big text-left" id="theory">Theory</h2>
-    </div>
-    <div class="row justify-content-md-left container d-flex mx-auto">
-      <ul>
-        <li class="text-left main_content">Interpeted, object oriented languaje</li>
-        <li class="text-left main_content">Python uses indentation to indicate a block of code.</li>
-        <li class="text-left main_content">Same number of spaces must be used in indented block of code</li>
-        <li class="text-left main_content"></li>
-        <li class="text-left main_content"></li>
-        <li class="text-left main_content"></li>
-        <li class="text-left main_content"></li>
-        <li class="text-left main_content"></li>
-        <li class="text-left main_content"></li>
-        <li class="text-left main_content"></li>
-        <li class="text-left main_content"></li>
-        <li class="text-left main_content"></li>
-      </ul>
-    </div>
-    <div class="row justify-content-md-left container d-flex mx-auto">
-      <h2 class="h2_big text-left" id="variables">Variables</h2>
-    </div>
-    <div class="row justify-content-md-left container d-flex mx-auto">
-      <ul>
-        <li class="text-left main_content">Variable types</li>
-        <ul>
-          <li class="text-left main_content">int <code>x = 4</code></li>
-          <li class="text-left main_content">float <code>y = 4.5</code></li>
-          <li class="text-left main_content">complex <code>x = 4+4j</code></li>
-          <li class="text-left main_content">list</li>
-          <li class="text-left main_content">tuple</li>
-          <li class="text-left main_content">range</li>
-          <li class="text-left main_content">str</li>
-          <li class="text-left main_content">dict</li>
-          <li class="text-left main_content">set</li>
-          <li class="text-left main_content">frozenset</li>
-          <li class="text-left main_content">bool</li>
-          <li class="text-left main_content">bytes</li>
-          <li class="text-left main_content">bytearray</li>
-          <li class="text-left main_content">memoryview</li>
+  <div class="row">
+    <!-- Sidebar -->
+    <nav class="col-md-1 d-none d-md-block sidebar" style="min-height:100vh;">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link gray_link" href="#variables">Variables</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link gray_link" href="#Inbuilt_Methods">Inbuilt Methods</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link gray_link" href="#conditionals">Conditionals</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link gray_link" href="#loops">Loops</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link gray_link" href="functions">Functions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link gray_link" href="#classes">Classes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link gray_link" href="#strings">String Methods</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link gray_link" href="#"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link gray_link" href="#"></a>
+          </li>
         </ul>
-        <li class="text-left main_content"># means a single line comment</li>
-        <li class="text-left main_content">triple double quotes or triple single lines of code mean a multiline comment and can be used in strungs</li>
-        <li class="text-left main_content">strings can be defined with single or doube quotes</li>
-        <li class="text-left main_content">Casting in python is used so that the passed value is of the type desired</li>
+      </div>
+    </nav>
+    <!-- Main content -->
+    <main class="col-md-11 ml-sm-auto px-4 justify-content-md-left">
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <h1 class="text-left h1_big">Pyhton</h1>
+      </div>
+      <div class="row justify-content-left container d-flex mx-auto">
+        <p class="text-left main_content">To have personal notes from <a href="https://www.w3schools.com/c"
+            target="_blank" class="golden_link">w3 schools</a> to act as a cheatsheet</p>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <h2 class="h2_big text-left" id="theory">Theory</h2>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
         <ul>
-          <li class="text-left main_content">int()</li>
-          <li class="text-left main_content">float()</li>
-          <li class="text-left main_content">str()</li>
-          <li class="text-left main_content">list()</li>
-          <li class="text-left main_content">tuple()</li>
-          <li class="text-left main_content">set()</li>
-          <li class="text-left main_content">dict()</li>
+          <li class="text-left main_content">Interpeted, object oriented languaje</li>
+          <li class="text-left main_content">Python uses indentation to indicate a block of code.</li>
+          <li class="text-left main_content">Same number of spaces must be used in indented block of code</li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
         </ul>
-        <li class="text-left main_content">
-          Variables in Python are created when you assign a value to them. No need to declare the type explicitly.
-          <br>
-          <code>x = 5<br>y = "Hello"</code>
-        </li>
-        <li class="text-left main_content">
-          Variable names must start with a letter or underscore, and can contain letters, numbers, and underscores.
-          <br>
-          <code>_my_var = 10<br>myVar2 = 20</code>
-        </li>
-        <li class="text-left main_content">
-          Python is case-sensitive: <code>myvar</code>, <code>MyVar</code>, and <code>MYVAR</code> are different variables.
-        </li>
-        <li class="text-left main_content">
-          You can assign multiple values to multiple variables in one line:
-          <br>
-          <code>a, b, c = 1, 2, 3</code>
-        </li>
-        <li class="text-left main_content">
-          You can assign the same value to multiple variables:
-          <br>
-          <code>x = y = z = "Python"</code>
-        </li>
-        <li class="text-left main_content">
-          To swap values between variables:
-          <br>
-          <code>a, b = b, a</code>
-        </li>
-        <li class="text-left main_content">
-          Use <code>type()</code> to check the type of a variable:
-          <br>
-          <code>x = 5<br>print(type(x))  # &lt;class 'int'&gt;</code>
-        </li>
-        <li class="text-left main_content">
-          You can change the type of a variable by assigning a value of a different type:
-          <br>
-          <code>x = 5<br>x = "Now I'm a string"</code>
-        </li>
-        <li class="text-left main_content">
-          Variables can be deleted using <code>del</code>:
-          <br>
-          <code>x = 10<br>del x</code>
-        </li>
-        <li class="text-left main_content">
-          Constants are usually named in all uppercase, but Python does not enforce constant values:
-          <br>
-          <code>PI = 3.14159</code>
-        </li>
-      </ul>
-    </div>
-    <div class="row justify-content-md-left container d-flex mx-auto">
-      <h2 class="h2_big text-left" id="Inbuilt_Methods">Inbuilt methods</h2>
-    </div>
-    <div class="row justify-content-md-left container d-flex mx-auto">
-      <ul>
-        <li class="text-left main_content"><code>print(a,b.sep="  ",end="\n")</code> sep changes the in between element separation and end the end string default is \n</li>
-        <li class="text-left main_content"></li>
-        <li class="text-left main_content"></li>
-        <li class="text-left main_content"></li>
-        <li class="text-left main_content"></li>
-        <li class="text-left main_content"></li>
-        <li class="text-left main_content"></li>
-        <li class="text-left main_content"></li>
-        <li class="text-left main_content"></li>
-        <li class="text-left main_content"></li>
-        <li class="text-left main_content"></li>
-      </ul>
-    <div class="row justify-content-md-left container d-flex mx-auto">
-      <h2 class="h2_big text-left" id="conditionals">Conditionals</h2>
-    </div>
-    <div class="row justify-content-md-left container d-flex mx-auto">
-      <ul>
-        <li class="text-left main_content">
-          Python uses <code>if</code>, <code>elif</code>, and <code>else</code> for conditional statements.
-          <br>
-          <code>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <h2 class="h2_big text-left" id="variables">Variables</h2>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <ul>
+          <li class="text-left main_content">Variable types</li>
+          <ul>
+            <li class="text-left main_content">int <code>x = 4</code></li>
+            <li class="text-left main_content">float <code>y = 4.5</code></li>
+            <li class="text-left main_content">complex <code>x = 4+4j</code></li>
+            <li class="text-left main_content">list</li>
+            <li class="text-left main_content">tuple</li>
+            <li class="text-left main_content">range</li>
+            <li class="text-left main_content">str</li>
+            <li class="text-left main_content">dict</li>
+            <li class="text-left main_content">set</li>
+            <li class="text-left main_content">frozenset</li>
+            <li class="text-left main_content">bool</li>
+            <li class="text-left main_content">bytes</li>
+            <li class="text-left main_content">bytearray</li>
+            <li class="text-left main_content">memoryview</li>
+          </ul>
+          <li class="text-left main_content"># means a single line comment</li>
+          <li class="text-left main_content">triple double quotes or triple single lines of code mean a multiline
+            comment and can be used in strungs</li>
+          <li class="text-left main_content">strings can be defined with single or doube quotes</li>
+          <li class="text-left main_content">Casting in python is used so that the passed value is of the type desired
+          </li>
+          <ul>
+            <li class="text-left main_content">int()</li>
+            <li class="text-left main_content">float()</li>
+            <li class="text-left main_content">str()</li>
+            <li class="text-left main_content">list()</li>
+            <li class="text-left main_content">tuple()</li>
+            <li class="text-left main_content">set()</li>
+            <li class="text-left main_content">dict()</li>
+          </ul>
+          <li class="text-left main_content">
+            Variables in Python are created when you assign a value to them. No need to declare the type explicitly.
+            <br>
+            <code>x = 5<br>y = "Hello"</code>
+          </li>
+          <li class="text-left main_content">
+            Variable names must start with a letter or underscore, and can contain letters, numbers, and underscores.
+            <br>
+            <code>_my_var = 10<br>myVar2 = 20</code>
+          </li>
+          <li class="text-left main_content">
+            Python is case-sensitive: <code>myvar</code>, <code>MyVar</code>, and <code>MYVAR</code> are different
+            variables.
+          </li>
+          <li class="text-left main_content">
+            You can assign multiple values to multiple variables in one line:
+            <br>
+            <code>a, b, c = 1, 2, 3</code>
+          </li>
+          <li class="text-left main_content">
+            You can assign the same value to multiple variables:
+            <br>
+            <code>x = y = z = "Python"</code>
+          </li>
+          <li class="text-left main_content">
+            To swap values between variables:
+            <br>
+            <code>a, b = b, a</code>
+          </li>
+          <li class="text-left main_content">
+            Use <code>type()</code> to check the type of a variable:
+            <br>
+            <code>x = 5<br>print(type(x))  # &lt;class 'int'&gt;</code>
+          </li>
+          <li class="text-left main_content">
+            You can change the type of a variable by assigning a value of a different type:
+            <br>
+            <code>x = 5<br>x = "Now I'm a string"</code>
+          </li>
+          <li class="text-left main_content">
+            Variables can be deleted using <code>del</code>:
+            <br>
+            <code>x = 10<br>del x</code>
+          </li>
+          <li class="text-left main_content">
+            Constants are usually named in all uppercase, but Python does not enforce constant values:
+            <br>
+            <code>PI = 3.14159</code>
+          </li>
+        </ul>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <h2 class="h2_big text-left" id="Inbuilt_Methods">Inbuilt methods</h2>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <ul>
+          <li class="text-left main_content"><code>print(a,b.sep="  ",end="\n")</code> sep changes the in between
+            element separation and end the end string default is \n</li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+        </ul>
+        <div class="row justify-content-md-left container d-flex mx-auto">
+          <h2 class="h2_big text-left" id="conditionals">Conditionals</h2>
+        </div>
+        <div class="row justify-content-md-left container d-flex mx-auto">
+          <ul>
+            <li class="text-left main_content">
+              Python uses <code>if</code>, <code>elif</code>, and <code>else</code> for conditional statements.
+              <br>
+              <code>
             x = 10<br>
             if x &gt; 5:<br>
             &nbsp;&nbsp;print("x is greater than 5")<br>
@@ -184,269 +190,272 @@
             else:<br>
             &nbsp;&nbsp;print("x is less than 5")
           </code>
-        </li>
-        <li class="text-left main_content">
-          Indentation is required for code blocks inside conditionals.
-        </li>
-        <li class="text-left main_content">
-          You can use logical operators: <code>and</code>, <code>or</code>, <code>not</code>.
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              Indentation is required for code blocks inside conditionals.
+            </li>
+            <li class="text-left main_content">
+              You can use logical operators: <code>and</code>, <code>or</code>, <code>not</code>.
+              <br>
+              <code>
             if x &gt; 5 and x &lt; 20:<br>
             &nbsp;&nbsp;print("x is between 5 and 20")
           </code>
-        </li>
-        <li class="text-left main_content">
-          The ternary operator allows for one-line conditionals:
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              The ternary operator allows for one-line conditionals:
+              <br>
+              <code>
             result = "Yes" if x &gt; 5 else "No"
           </code>
-        </li>
-      </ul>
-    </div>
-    <div class="row justify-content-md-left container d-flex mx-auto">
-      <h2 class="h2_big text-left" id="loops">Loops</h2>
-    </div>
-    <div class="row justify-content-md-left container d-flex mx-auto">
-      <ul>
-        <li class="text-left main_content">
-          <code>for</code> loops iterate over sequences (lists, tuples, strings, etc.):
-          <br>
-          <code>
+            </li>
+          </ul>
+        </div>
+        <div class="row justify-content-md-left container d-flex mx-auto">
+          <h2 class="h2_big text-left" id="loops">Loops</h2>
+        </div>
+        <div class="row justify-content-md-left container d-flex mx-auto">
+          <ul>
+            <li class="text-left main_content">
+              <code>for</code> loops iterate over sequences (lists, tuples, strings, etc.):
+              <br>
+              <code>
             for i in range(5):<br>
             &nbsp;&nbsp;print(i)
           </code>
-        </li>
-        <li class="text-left main_content">
-          <code>while</code> loops repeat as long as a condition is true:
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              <code>while</code> loops repeat as long as a condition is true:
+              <br>
+              <code>
             count = 0<br>
             while count &lt; 5:<br>
             &nbsp;&nbsp;print(count)<br>
             &nbsp;&nbsp;count += 1
           </code>
-        </li>
-        <li class="text-left main_content">
-          <code>break</code> exits the loop early, <code>continue</code> skips to the next iteration.
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              <code>break</code> exits the loop early, <code>continue</code> skips to the next iteration.
+              <br>
+              <code>
             for i in range(10):<br>
             &nbsp;&nbsp;if i == 5:<br>
             &nbsp;&nbsp;&nbsp;&nbsp;break<br>
             &nbsp;&nbsp;print(i)
           </code>
-        </li>
-        <li class="text-left main_content">
-          <code>else</code> can be used with loops and runs if the loop completes without a <code>break</code>:
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              <code>else</code> can be used with loops and runs if the loop completes without a <code>break</code>:
+              <br>
+              <code>
             for i in range(3):<br>
             &nbsp;&nbsp;print(i)<br>
             else:<br>
             &nbsp;&nbsp;print("Done!")
           </code>
-        </li>
-        <li class="text-left main_content">
-          You can loop over lists, strings, dictionaries, etc.:
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              You can loop over lists, strings, dictionaries, etc.:
+              <br>
+              <code>
             for char in "Python":<br>
             &nbsp;&nbsp;print(char)
           </code>
-        </li>
-      </ul>
-    </div>
-    <div class="row justify-content-md-left container d-flex mx-auto">
-      <h2 class="h2_big text-left" id="functions">Functions</h2>
-    </div>
-    <div class="row justify-content-md-left container d-flex mx-auto">
-      <ul>
-        <li class="text-left main_content">
-          Functions are defined using <code>def</code>:
-          <br>
-          <code>
+            </li>
+          </ul>
+        </div>
+        <div class="row justify-content-md-left container d-flex mx-auto">
+          <h2 class="h2_big text-left" id="functions">Functions</h2>
+        </div>
+        <div class="row justify-content-md-left container d-flex mx-auto">
+          <ul>
+            <li class="text-left main_content">
+              Functions are defined using <code>def</code>:
+              <br>
+              <code>
             def greet(name):<br>
             &nbsp;&nbsp;print("Hello, " + name)
           </code>
-        </li>
-        <li class="text-left main_content">
-          Call a function by its name:
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              Call a function by its name:
+              <br>
+              <code>
             greet("Tom")
           </code>
-        </li>
-        <li class="text-left main_content">
-          Functions can return values using <code>return</code>:
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              Functions can return values using <code>return</code>:
+              <br>
+              <code>
             def add(a, b):<br>
             &nbsp;&nbsp;return a + b<br>
             result = add(2, 3)
           </code>
-        </li>
-        <li class="text-left main_content">
-          Default parameter values:
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              Default parameter values:
+              <br>
+              <code>
             def greet(name="World"):<br>
             &nbsp;&nbsp;print("Hello, " + name)
           </code>
-        </li>
-        <li class="text-left main_content">
-          Use <code>*args</code> for variable number of positional arguments, <code>**kwargs</code> for keyword arguments:
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              Use <code>*args</code> for variable number of positional arguments, <code>**kwargs</code> for keyword
+              arguments:
+              <br>
+              <code>
             def demo(*args, **kwargs):<br>
             &nbsp;&nbsp;print(args, kwargs)
           </code>
-        </li>
-        <li class="text-left main_content">
-          Functions can be nested and can be assigned to variables.
-        </li>
-      </ul>
-    </div>
-    <div class="row justify-content-md-left container d-flex mx-auto">
-      <h2 class="h2_big text-left" id="classes">Classes</h2>
-    </div>
-    <div class="row justify-content-md-left container d-flex mx-auto">
-      <ul>
-        <li class="text-left main_content">
-          Classes are defined using <code>class</code>:
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              Functions can be nested and can be assigned to variables.
+            </li>
+          </ul>
+        </div>
+        <div class="row justify-content-md-left container d-flex mx-auto">
+          <h2 class="h2_big text-left" id="classes">Classes</h2>
+        </div>
+        <div class="row justify-content-md-left container d-flex mx-auto">
+          <ul>
+            <li class="text-left main_content">
+              Classes are defined using <code>class</code>:
+              <br>
+              <code>
             class Person:<br>
             &nbsp;&nbsp;def __init__(self, name):<br>
             &nbsp;&nbsp;&nbsp;&nbsp;self.name = name<br>
             &nbsp;&nbsp;def greet(self):<br>
             &nbsp;&nbsp;&nbsp;&nbsp;print("Hello, " + self.name)
           </code>
-        </li>
-        <li class="text-left main_content">
-          Create an object (instance) of a class:
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              Create an object (instance) of a class:
+              <br>
+              <code>
             p = Person("Tom")<br>
             p.greet()
           </code>
-        </li>
-        <li class="text-left main_content">
-          <code>__init__</code> is the constructor method, called when an object is created.
-        </li>
-        <li class="text-left main_content">
-          Use <code>self</code> to access instance variables and methods.
-        </li>
-        <li class="text-left main_content">
-          Classes can inherit from other classes:
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              <code>__init__</code> is the constructor method, called when an object is created.
+            </li>
+            <li class="text-left main_content">
+              Use <code>self</code> to access instance variables and methods.
+            </li>
+            <li class="text-left main_content">
+              Classes can inherit from other classes:
+              <br>
+              <code>
             class Student(Person):<br>
             &nbsp;&nbsp;def study(self):<br>
             &nbsp;&nbsp;&nbsp;&nbsp;print(self.name + " is studying.")
           </code>
-        </li>
-        <li class="text-left main_content">
-          You can override methods in child classes.
-        </li>
-      </ul>
-    </div>
-    <div class="row justify-content-md-left container d-flex mx-auto">
-      <h2 class="h2_big text-left" id="strings">String Inbuilt Methods</h2>
-    </div>
-    <div class="row justify-content-md-left container d-flex mx-auto">
-      <ul>
-        <li class="text-left main_content">
-          <code>len(s)</code> — Returns the length of the string.
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              You can override methods in child classes.
+            </li>
+          </ul>
+        </div>
+        <div class="row justify-content-md-left container d-flex mx-auto">
+          <h2 class="h2_big text-left" id="strings">String Inbuilt Methods</h2>
+        </div>
+        <div class="row justify-content-md-left container d-flex mx-auto">
+          <ul>
+            <li class="text-left main_content">
+              <code>len(s)</code> — Returns the length of the string.
+              <br>
+              <code>
             s = "Python"<br>
             print(len(s))  # 6
           </code>
-        </li>
-        <li class="text-left main_content">
-          <code>s.lower()</code> — Converts all characters to lowercase.
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              <code>s.lower()</code> — Converts all characters to lowercase.
+              <br>
+              <code>
             print("HELLO".lower())  # hello
           </code>
-        </li>
-        <li class="text-left main_content">
-          <code>s.upper()</code> — Converts all characters to uppercase.
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              <code>s.upper()</code> — Converts all characters to uppercase.
+              <br>
+              <code>
             print("hello".upper())  # HELLO
           </code>
-        </li>
-        <li class="text-left main_content">
-          <code>s.strip()</code> — Removes leading and trailing whitespace.
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              <code>s.strip()</code> — Removes leading and trailing whitespace.
+              <br>
+              <code>
             print("  hello  ".strip())  # hello
           </code>
-        </li>
-        <li class="text-left main_content">
-          <code>s.replace(old, new)</code> — Replaces all occurrences of <code>old</code> with <code>new</code>.
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              <code>s.replace(old, new)</code> — Replaces all occurrences of <code>old</code> with <code>new</code>.
+              <br>
+              <code>
             print("banana".replace("a", "o"))  # bonono
           </code>
-        </li>
-        <li class="text-left main_content">
-          <code>s.split(sep)</code> — Splits the string into a list using <code>sep</code> as the separator.
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              <code>s.split(sep)</code> — Splits the string into a list using <code>sep</code> as the separator.
+              <br>
+              <code>
             print("a,b,c".split(","))  # ['a', 'b', 'c']
           </code>
-        </li>
-        <li class="text-left main_content">
-          <code>s.find(sub)</code> — Returns the lowest index of <code>sub</code> in the string, or -1 if not found.
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              <code>s.find(sub)</code> — Returns the lowest index of <code>sub</code> in the string, or -1 if not found.
+              <br>
+              <code>
             print("hello".find("e"))  # 1
           </code>
-        </li>
-        <li class="text-left main_content">
-          <code>s.startswith(prefix)</code> — Returns True if the string starts with <code>prefix</code>.
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              <code>s.startswith(prefix)</code> — Returns True if the string starts with <code>prefix</code>.
+              <br>
+              <code>
             print("python".startswith("py"))  # True
           </code>
-        </li>
-        <li class="text-left main_content">
-          <code>s.endswith(suffix)</code> — Returns True if the string ends with <code>suffix</code>.
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              <code>s.endswith(suffix)</code> — Returns True if the string ends with <code>suffix</code>.
+              <br>
+              <code>
             print("python".endswith("on"))  # True
           </code>
-        </li>
-        <li class="text-left main_content">
-          <code>s.isdigit()</code> — Returns True if all characters in the string are digits.
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              <code>s.isdigit()</code> — Returns True if all characters in the string are digits.
+              <br>
+              <code>
             print("123".isdigit())  # True
           </code>
-        </li>
-        <li class="text-left main_content">
-          <code>s.isalpha()</code> — Returns True if all characters in the string are alphabetic.
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              <code>s.isalpha()</code> — Returns True if all characters in the string are alphabetic.
+              <br>
+              <code>
             print("abc".isalpha())  # True
           </code>
-        </li>
-        <li class="text-left main_content">
-          <code>s.join(list)</code> — Joins elements of a list into a string, separated by <code>s</code>.
-          <br>
-          <code>
+            </li>
+            <li class="text-left main_content">
+              <code>s.join(list)</code> — Joins elements of a list into a string, separated by <code>s</code>.
+              <br>
+              <code>
             print("-".join(["a", "b", "c"]))  # a-b-c
           </code>
-        </li>
-      </ul>
-    </div>
-  </main>
-</div>
+            </li>
+            <li class="text-left main_content"><code>''.join(reversed('some string'))</code>reverses a string</li>
+          </ul>
+        </div>
+    </main>
+  </div>
 </div>
 <script src="{{url_for('static',filename='main.js')}}"></script>
 </body>
+
 </html>

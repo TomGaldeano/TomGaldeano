@@ -1,160 +1,211 @@
 {% include "header.html" %}
 {% include "prog/prog_header.html" %}
 <div class="container-fluid">
-<div class="row">
-  <!-- Sidebar -->
-  <nav class="col-md-1 d-none d-md-block sidebar" style="min-height:100vh;">
-    <div class="sidebar-sticky">
-      <ul class="nav flex-column">
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#git_commit">Git commit</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#git_log">Git log</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#git_branches">Git branches</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#git_push">Git push</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#git_remove">Git remove</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#git_stash">Git stash</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#git_reset">Git reset and restore</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#git tag">Git tag</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link gray_link" href="#outline">Outline</a>
-        </li>        
-      </ul>
-    </div>
-  </nav>
-  <!-- Main content -->
-  <main class="col-md-11 ml-sm-auto px-4 justify-content-md-left">
-    <div class="row justify-content-md-left container d-flex mx-auto">
-      <h1 class="text-left h1_big">Git</h1>
-    </div>
-    <div class="row justify-content-left container d-flex mx-auto">
-      <p class="text-left main_content">To have personal notes from <a href="https://www.w3schools.com/c" target="_blank" class="golden_link" >w3 schools</a> to act as a cheatshee</p>
-    </div>
-    <div class="row justify-content-md-left container d-flex mx-auto">
-      <h2 class="h2_big text-left" id="theory">Theory</h2>
-    </div>
-    <div class="row justify-content-md-left container d-flex mx-auto">
-      <ul>
-        <li class="text-left main_content">git uses name and email to lable the commits</li>
-        <li class="text-left main_content">Use annotated tags for anything public or shared</li>
-        <li class="text-left main_content">Use tags after passing all test or before release and to mark releases or major milestones</li>
-        <li class="text-left main_content">git stash allows to save uncommited changes to return to a clean directory</li>
-        <li class="text-left main_content">Each time you run git stash, your changes are saved on top of a "stack". The most recent stash is on top, and you can apply or drop stashes from the top down, or pick a specific one from the list.</li>
-        <li class="text-left main_content">A merge conflict happens when changes in two branches touch the same part of a file and Git doesn't know which version to keep. both willbe kept and shown with extra text to let you decide what to do</li>
-        <li class="text-left main_content">Exclude files that shouldn't be tracked (like build artifacts, log files, or secrets) by adding them to a .gitignore file.</li>
-        <li class="text-left main_content">The .gitignore file is used to specify which files git should not keep track of</li>
-        <li class="text-left main_content">The .gitattributes file is a special file that tells Git how to handle specific files in your repository.</li>
-        <li class="text-left main_content">Git LFS (Large File Storage) is an extension for Git that helps you manage large files (like videos, images, or datasets) efficiently. Instead of storing big files directly in your repository, LFS stores a small pointer file in your repo and keeps the real content on a separate LFS server.</li>
-        <li class="text-left main_content">Signing a commit is like putting your personal signature on your work.</li>
-        <li class="text-left main_content">Git hooks are scripts that run automatically when certain Git events happen, like making a commit or pushing code.</li>
-      </ul>
-    </div>
-    <div class="row justify-content-md-left container d-flex mx-auto">
-        <h2 class="h2_big text-left" id="theory">Statements and keywords</h2>
-    </div>
-    <div class="row justify-content-md-left container d-flex mx-auto">
-      <ul>
-        <li class="text-left main_content"><code>git help command</code> shows help for the command</li>
-        <li class="text-left main_content"><code>git config --local user.email="email" </code> sets the users email. To change a value run it again with new value</li>
-        <li class="text-left main_content"><code>git config --global user.name="name"</code> changes the users name.</li>
-        <li class="text-left main_content"><code>git config --list </code> lists all settings </li>
-        <li class="text-left main_content"><code>git config user.name</code> shows specified setting</li>
-        <li class="text-left main_content"><code>git config --global --unset code.editor</code> removes a setting</li>
-        <ul>
-          <li class="text-left main_content"><code>--golbal</code> does it for every repo of that user</li>
-          <li class="text-left main_content"><code>--local</code> is the default so it is not needed and sets for the local rep</li>
-          <li class="text-left main_content"><code>--system</code> sets for every user and repo in the system</li>
+  <div class="row">
+    <!-- Sidebar -->
+    <nav class="col-md-1 d-none d-md-block sidebar" style="min-height:100vh;">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link gray_link" href="#git_commit">Git commit</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link gray_link" href="#git_log">Git log</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link gray_link" href="#git_branches">Git branches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link gray_link" href="#git_push">Git push</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link gray_link" href="#git_remove">Git remove</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link gray_link" href="#git_stash">Git stash</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link gray_link" href="#git_reset">Git reset and restore</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link gray_link" href="#git tag">Git tag</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link gray_link" href="#outline">Outline</a>
+          </li>
         </ul>
-        <li class="text-left main_content"><code>git init</code> initializes a git repo in the current folder</li>
-        <li class="text-left main_content"><code>git status</code> shows the status of the repo</li>
-        <li class="text-left main_content"><code>git status -s</code> shows the status of the repo in short</li>
-        <li class="text-left main_content"><code>git status -b</code> shows the status of the repo with the branch</li>
-        <li class="text-left main_content"><code>git add file</code> adds file or files to the staging area</li>
-        <li class="text-left main_content"><code>git add .</code> <code>git add -A</code> <code>git add -all</code> adds all files to the staging area</li>
-        <h2 class="h2_big" id="git_commit">Git commmit</h2>
-        <li class="text-left main_content"><code>git commit -m "message"</code> commits the staged files with a message</li>
-        <li class="text-left main_content"><code>git commit -a -m "message"</code> adds all files and commits them with a message. <b>does not commit untracked(new)files</b></li>
-        <li class="text-left main_content"><code>git commit --amend -m "new message"</code> changes the message of the last commit</li>
-        <li class="text-left main_content"><code>git commit --no-edit</code> uses preevious commit message</li>
-        <li class="text-left main_content"><code>git commit --amend --no-edit</code> adds changes to last commit keeping the message</li>
-        <h2 class="h2_big" id="git_log">History: got log, git show, git diff</h2>
-        <li class="text-left main_content"><code>git log</code> shows the commit history</li>
-        <li class="text-left main_content"><code>git log --oneline</code> shows the commit history in one line per commit</li>
-        <li class="text-left main_content"><code>git log --stat</code> shows the commit history with stats</li>
-        <li class="text-left main_content"><code>git log -p</code> shows the commit history with the changes made</li>
-        <li class="text-left main_content"><code>git log --pretty=format:"%h - %an, %ar : %s"</code> shows the commit history with a custom format</li>
-        <li class="text-left main_content"><code>git log --graph</code> shows a simple ascii graph of the commit history</li>
-        <li class="text-left main_content"><code>git log --all</code> shows the commit history of all branches</li>
-        <li class="text-left main_content"><code>git log --decorate</code> shows the commit history with the branch and tag names</li>
-        <li class="text-left main_content"><code>git log --graph --oneline --all --decorate</code> shows a graph of the commit history</li>
-        <li class="text-left main_content"><code>git log --since="2 weeks ago"</code> shows the commit history since 2 weeks ago</li>
-        <li class="text-left main_content"><code>git log --after="2024-01-01"</code> shows the commit history after the date</li>
-        <li class="text-left main_content"><code>git log --before="2024-01-01"</code> shows the commit history before the date</li>
-        <li class="text-left main_content"><code>git log --author="name"</code>shows logs made by that g</li>
-        <li class="text-left main_content"><code>git diff</code> shows the changes made but not staged</li>
-        <li class="text-left main_content"><code>git diff --staged</code> shows the changes staged</li>
-        <li class="text-left main_content"><code>git diff commit_id1 commit_id2</code> shows the changes between the two commits</li>
-        <li class="text-left main_content"><code>git show commit_id</code> shows the commit id details</li>
-        <li class="text-left main_content"><code>git show branch_name</code> shows the branch details</li>
-        <li class="text-left main_content"><code>git show tagname</code> shows the tag details</li>
-        <li class="text-left main_content"><code>git show HEAD</code> shows the last commit details</li>
-        <li class="text-left main_content"><code>git show HEAD~1</code> shows the commit before the last commit details</li>
-        <h2 class="h2_big" id="git_branch">Git branches</h2>
-        <li class="text-left main_content"><code>git branch</code> lists all branches</li>
-        <li class="text-left main_content"><code>git branch branch_name</code> creates a new branch</li>
-        <li class="text-left main_content"><code>git checkout branch_name</code> switches to the branch</li>
-        <li class="text-left main_content"><code>git checkout -b branch-name</code>creates and checksout branch-name</li>
-        <li class="text-left main_content"><code>git merge branch_name</code> merges the branch into the current branch</li>
-        <li class="text-left main_content"><code>git merge --no-ff branch</code> always creates a merge commit</li>
-        <li class="text-left main_content"><code>git merge --squash</code> combines merges into a single commit</li>
-        <li class="text-left main_content"><code>git merge --abort</code> abort a merge in progress</li>
-        <li class="text-left main_content"><code>git remote add origin url</code> adds a remote repo</li>
-        <h2 class="h2_big" id="git_push">Git push</h2>
-        <li class="text-left main_content"><code>git push -u origin branch_name</code> pushes the branch to the remote repo</li>
-        <li class="text-left main_content"><code>git push</code> pushes the changes to the remote repo</li>
-        <li class="text-left main_content"><code>git pull</code> pulls the changes from the remote repo</li>
-        <li class="text-left main_content"><code>git fetch origin</code> fetches the changes from the remote repo, does not modify working files but let's you see changes made before merging</li>
-        <li class="text-left main_content"><code>git clone url</code> clones a remote repo</li>
-        <h2 class="h2_big" id="git_rm">Git remove</h2>
-        <li class="text-left main_content"><code>git rm file_name</code> removes a file from the repo</li>
-        <li class="text-left main_content"><code>git rm --cached file_name</code> removes a file from the repo but keeps it in the local directory</li>
-        <h2 class="h2_big" id="git_stash">Git stash</h2>
-        <li class="text-left main_content"><code>git stash</code> stashes the changes made to have a clean directory and save the changes</li>
-        <li class="text-left main_content"><code>git stash list</code> lists the stashed changes</li>
-        <li class="text-left main_content"><code>git stash show</code> shows the changes made in the last stash</li>
-        <li class="text-left main_content"><code>git stash show -p</code> shows the changes made in the last stash with the changes</li>
-        <li class="text-left main_content"><code>git stash apply</code> applies the stashed changes but keeps them in the stash list</li>
-        <li class="text-left main_content"><code>git stash push -m</code> stashes with a message</li>
-        <li class="text-left main_content"><code>git stash pop</code> applies the stashed changes</li>
-        <li class="text-left main_content"><code>git stash drop</code> removes the last stash</li>
-        <li class="text-left main_content"><code>git stash drop stash@{index}</code> removes the stash at the index</li>
-        <li class="text-left main_content"><code>git stash clear</code> removes all stashes</li>
-        <li class="text-left main_content"><code>git stash branch branch_name</code> creates a branch from the last stash and applies the changes</li>
-        <li class="text-left main_content"><code>git stash branch branch_name stash@{index}</code> creates a branch from the stash at the index and applies the changes</li>
-        <h2 class="h2_big" id="git_reset">Git reset and restore</h2>
-        <li class="text-left main_content"><code>git reset --hard commit_id</code> resets the repo to the commit id</li>
-        <li class="text-left main_content"><code>git reset --soft commit_id</code> resets the repo to the commit id but keeps the changes staged</li>
-        <li class="text-left main_content"><code>git revert commit_id</code> reverts the commit id by creating a new commit without the changes. preserves commit history</li>
-        <li class="text-left main_content"><code>git revert HEAD --no-edit</code> fetches the changes from the remote repo</li>
-        <li class="text-left main_content"><code>git reset --hard origin/branch_name</code> resets the local branch to the remote branch</li>
-        <li class="text-left main_content"><code>git restore file_name</code> restores the file to the last commit version</li>
-        <li class="text-left main_content"><code>git restore --staged file_name</code> removes the file from the staging area but keeps the changes made</li>
-        <li class="text-left main_content"><code>git reflog</code></li> 
+      </div>
+    </nav>
+    <!-- Main content -->
+    <main class="col-md-11 ml-sm-auto px-4 justify-content-md-left">
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <h1 class="text-left h1_big">Git</h1>
+      </div>
+      <div class="row justify-content-left container d-flex mx-auto">
+        <p class="text-left main_content">To have personal notes from <a href="https://www.w3schools.com/c"
+            target="_blank" class="golden_link">w3 schools</a> to act as a cheatshee</p>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <h2 class="h2_big text-left" id="theory">Theory</h2>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
         <ul>
+          <li class="text-left main_content">git uses name and email to lable the commits</li>
+          <li class="text-left main_content">Use annotated tags for anything public or shared</li>
+          <li class="text-left main_content">Use tags after passing all test or before release and to mark releases or
+            major milestones</li>
+          <li class="text-left main_content">git stash allows to save uncommited changes to return to a clean directory
+          </li>
+          <li class="text-left main_content">Each time you run git stash, your changes are saved on top of a "stack".
+            The most recent stash is on top, and you can apply or drop stashes from the top down, or pick a specific one
+            from the list.</li>
+          <li class="text-left main_content">A merge conflict happens when changes in two branches touch the same part
+            of a file and Git doesn't know which version to keep. both willbe kept and shown with extra text to let you
+            decide what to do</li>
+          <li class="text-left main_content">Exclude files that shouldn't be tracked (like build artifacts, log files,
+            or secrets) by adding them to a .gitignore file.</li>
+          <li class="text-left main_content">The .gitignore file is used to specify which files git should not keep
+            track of</li>
+          <li class="text-left main_content">The .gitattributes file is a special file that tells Git how to handle
+            specific files in your repository.</li>
+          <li class="text-left main_content">Git LFS (Large File Storage) is an extension for Git that helps you manage
+            large files (like videos, images, or datasets) efficiently. Instead of storing big files directly in your
+            repository, LFS stores a small pointer file in your repo and keeps the real content on a separate LFS
+            server.</li>
+          <li class="text-left main_content">Signing a commit is like putting your personal signature on your work.</li>
+          <li class="text-left main_content">Git hooks are scripts that run automatically when certain Git events
+            happen, like making a commit or pushing code.</li>
+        </ul>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <h2 class="h2_big text-left" id="theory">Statements and keywords</h2>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <ul>
+          <li class="text-left main_content"><code>git help command</code> shows help for the command</li>
+          <li class="text-left main_content"><code>git config --local user.email="email" </code> sets the users email.
+            To change a value run it again with new value</li>
+          <li class="text-left main_content"><code>git config --global user.name="name"</code> changes the users name.
+          </li>
+          <li class="text-left main_content"><code>git config --list </code> lists all settings </li>
+          <li class="text-left main_content"><code>git config user.name</code> shows specified setting</li>
+          <li class="text-left main_content"><code>git config --global --unset code.editor</code> removes a setting</li>
+          <ul>
+            <li class="text-left main_content"><code>--golbal</code> does it for every repo of that user</li>
+            <li class="text-left main_content"><code>--local</code> is the default so it is not needed and sets for the
+              local rep</li>
+            <li class="text-left main_content"><code>--system</code> sets for every user and repo in the system</li>
+          </ul>
+          <li class="text-left main_content"><code>git init</code> initializes a git repo in the current folder</li>
+          <li class="text-left main_content"><code>git status</code> shows the status of the repo</li>
+          <li class="text-left main_content"><code>git status -s</code> shows the status of the repo in short</li>
+          <li class="text-left main_content"><code>git status -b</code> shows the status of the repo with the branch
+          </li>
+          <li class="text-left main_content"><code>git add file</code> adds file or files to the staging area</li>
+          <li class="text-left main_content"><code>git add .</code> <code>git add -A</code> <code>git add -all</code>
+            adds all files to the staging area</li>
+          <h2 class="h2_big" id="git_commit">Git commmit</h2>
+          <li class="text-left main_content"><code>git commit -m "message"</code> commits the staged files with a
+            message</li>
+          <li class="text-left main_content"><code>git commit -a -m "message"</code> adds all files and commits them
+            with a message. <b>does not commit untracked(new)files</b></li>
+          <li class="text-left main_content"><code>git commit --amend -m "new message"</code> changes the message of the
+            last commit</li>
+          <li class="text-left main_content"><code>git commit --no-edit</code> uses preevious commit message</li>
+          <li class="text-left main_content"><code>git commit --amend --no-edit</code> adds changes to last commit
+            keeping the message</li>
+          <h2 class="h2_big" id="git_log">History: got log, git show, git diff</h2>
+          <li class="text-left main_content"><code>git log</code> shows the commit history</li>
+          <li class="text-left main_content"><code>git log --oneline</code> shows the commit history in one line per
+            commit</li>
+          <li class="text-left main_content"><code>git log --stat</code> shows the commit history with stats</li>
+          <li class="text-left main_content"><code>git log -p</code> shows the commit history with the changes made</li>
+          <li class="text-left main_content"><code>git log --pretty=format:"%h - %an, %ar : %s"</code> shows the commit
+            history with a custom format</li>
+          <li class="text-left main_content"><code>git log --graph</code> shows a simple ascii graph of the commit
+            history</li>
+          <li class="text-left main_content"><code>git log --all</code> shows the commit history of all branches</li>
+          <li class="text-left main_content"><code>git log --decorate</code> shows the commit history with the branch
+            and tag names</li>
+          <li class="text-left main_content"><code>git log --graph --oneline --all --decorate</code> shows a graph of
+            the commit history</li>
+          <li class="text-left main_content"><code>git log --since="2 weeks ago"</code> shows the commit history since 2
+            weeks ago</li>
+          <li class="text-left main_content"><code>git log --after="2024-01-01"</code> shows the commit history after
+            the date</li>
+          <li class="text-left main_content"><code>git log --before="2024-01-01"</code> shows the commit history before
+            the date</li>
+          <li class="text-left main_content"><code>git log --author="name"</code>shows logs made by that g</li>
+          <li class="text-left main_content"><code>git diff</code> shows the changes made but not staged</li>
+          <li class="text-left main_content"><code>git diff --staged</code> shows the changes staged</li>
+          <li class="text-left main_content"><code>git diff commit_id1 commit_id2</code> shows the changes between the
+            two commits</li>
+          <li class="text-left main_content"><code>git show commit_id</code> shows the commit id details</li>
+          <li class="text-left main_content"><code>git show branch_name</code> shows the branch details</li>
+          <li class="text-left main_content"><code>git show tagname</code> shows the tag details</li>
+          <li class="text-left main_content"><code>git show HEAD</code> shows the last commit details</li>
+          <li class="text-left main_content"><code>git show HEAD~1</code> shows the commit before the last commit
+            details</li>
+          <h2 class="h2_big" id="git_branch">Git branches</h2>
+          <li class="text-left main_content"><code>git branch</code> lists all branches</li>
+          <li class="text-left main_content"><code>git branch branch_name</code> creates a new branch</li>
+          <li class="text-left main_content"><code>git checkout branch_name</code> switches to the branch</li>
+          <li class="text-left main_content"><code>git checkout -b branch-name</code>creates and checksout branch-name
+          </li>
+          <li class="text-left main_content"><code>git merge branch_name</code> merges the branch into the current
+            branch</li>
+          <li class="text-left main_content"><code>git merge --no-ff branch</code> always creates a merge commit</li>
+          <li class="text-left main_content"><code>git merge --squash</code> combines merges into a single commit</li>
+          <li class="text-left main_content"><code>git merge --abort</code> abort a merge in progress</li>
+          <li class="text-left main_content"><code>git remote add origin url</code> adds a remote repo</li>
+          <h2 class="h2_big" id="git_push">Git push</h2>
+          <li class="text-left main_content"><code>git push -u origin branch_name</code> pushes the branch to the remote
+            repo</li>
+          <li class="text-left main_content"><code>git push</code> pushes the changes to the remote repo</li>
+          <li class="text-left main_content"><code>git pull</code> pulls the changes from the remote repo</li>
+          <li class="text-left main_content"><code>git fetch origin</code> fetches the changes from the remote repo,
+            does not modify working files but let's you see changes made before merging</li>
+          <li class="text-left main_content"><code>git clone url</code> clones a remote repo</li>
+          <h2 class="h2_big" id="git_rm">Git remove</h2>
+          <li class="text-left main_content"><code>git rm file_name</code> removes a file from the repo</li>
+          <li class="text-left main_content"><code>git rm --cached file_name</code> removes a file from the repo but
+            keeps it in the local directory</li>
+          <h2 class="h2_big" id="git_stash">Git stash</h2>
+          <li class="text-left main_content"><code>git stash</code> stashes the changes made to have a clean directory
+            and save the changes</li>
+          <li class="text-left main_content"><code>git stash list</code> lists the stashed changes</li>
+          <li class="text-left main_content"><code>git stash show</code> shows the changes made in the last stash</li>
+          <li class="text-left main_content"><code>git stash show -p</code> shows the changes made in the last stash
+            with the changes</li>
+          <li class="text-left main_content"><code>git stash apply</code> applies the stashed changes but keeps them in
+            the stash list</li>
+          <li class="text-left main_content"><code>git stash push -m</code> stashes with a message</li>
+          <li class="text-left main_content"><code>git stash pop</code> applies the stashed changes</li>
+          <li class="text-left main_content"><code>git stash drop</code> removes the last stash</li>
+          <li class="text-left main_content"><code>git stash drop stash@{index}</code> removes the stash at the index
+          </li>
+          <li class="text-left main_content"><code>git stash clear</code> removes all stashes</li>
+          <li class="text-left main_content"><code>git stash branch branch_name</code> creates a branch from the last
+            stash and applies the changes</li>
+          <li class="text-left main_content"><code>git stash branch branch_name stash@{index}</code> creates a branch
+            from the stash at the index and applies the changes</li>
+          <h2 class="h2_big" id="git_reset">Git reset and restore</h2>
+          <li class="text-left main_content"><code>git reset --hard commit_id</code> resets the repo to the commit id
+          </li>
+          <li class="text-left main_content"><code>git reset --soft commit_id</code> resets the repo to the commit id
+            but keeps the changes staged</li>
+          <li class="text-left main_content"><code>git revert commit_id</code> reverts the commit id by creating a new
+            commit without the changes. preserves commit history</li>
+          <li class="text-left main_content"><code>git revert HEAD --no-edit</code> fetches the changes from the remote
+            repo</li>
+          <li class="text-left main_content"><code>git reset --hard origin/branch_name</code> resets the local branch to
+            the remote branch</li>
+          <li class="text-left main_content"><code>git restore file_name</code> restores the file to the last commit
+            version</li>
+          <li class="text-left main_content"><code>git restore --staged file_name</code> removes the file from the
+            staging area but keeps the changes made</li>
+          <li class="text-left main_content"><code>git reflog</code></li>
+          <ul>
             <li class="text-left main_content">Recover lost commits or changes</li>
             <li class="text-left main_content">Undo a reset or a merge</li>
             <li class="text-left main_content"> See the history of your branch and HEAD</li>
@@ -162,28 +213,38 @@
             <li class="text-left main_content">View changes made in the repository over time</li>
             <li class="text-left main_content">reflog is automatically cleaned by git</li>
             <li class="text-left main_content"><code></code></li>
+          </ul>
+          <h2 class="h2_big" id="git_tag">Git tag</h2>
+          <li class="text-left main_content"><code>git tag tag_name</code> creates a tag</li>
+          <li class="text-left main_content"><code>git tag -a tag_name -m "message"</code> creates an annotated tag with
+            a message wich also stores name and date</li>
+          <li class="text-left main_content"><code>git tag</code> lists the tags</li>
+          <li class="text-left main_content"><code>git tag -l "pattern*"</code> lists the tags that match the pattern
+          </li>
+          <li class="text-left main_content"><code>git checkout tag_name</code> switches to the tag in a detached head
+            state so no changes can be made</li>
+          <li class="text-left main_content"><code>git tag -f name_of_tag new_commit_hash</code> moves the tag named to
+            the new commit must be forced pushed after</li>
+          <li class="text-left main_content"><code>push --force origin name_of_tag</code> forcefilly pushes the tag to
+            remove the other</li>
+          <li class="text-left main_content"><code>git tag -d tag_name</code> deletes the tag</li>
+          <li class="text-left main_content"><code>git push origin --tags</code> pushes all tags to the remote repo</li>
+          <li class="text-left main_content"><code>git push origin tag_name</code> pushes the tag to the remote repo
+          </li>
+          <h2 class="h2_big" id="rebase">Rebase</h2>
+          <li class="text-left main_content"><code>git rebase branch_name</code> rebases the current branch onto
+            branch_name</li>
+          <li class="text-left main_content"><code>git rebase --abort</code> aborts the rebase</li>
+          <li class="text-left main_content"><code>git rebase --continue</code> continues the rebase after resolving
+            conflicts</li>
+          <li class="text-left main_content"><code>git rebase --skip</code> skips the current commit during rebase</li>
+          <li class="text-left main_content"><code>git pull --rebase</code> pulls the changes from the remote repo and
+            rebases</li>
         </ul>
-        <h2 class="h2_big" id="git_tag">Git tag</h2>
-        <li class="text-left main_content"><code>git tag tag_name</code> creates a tag</li>
-        <li class="text-left main_content"><code>git tag -a tag_name -m "message"</code> creates an annotated tag with a message wich also stores name and date</li>
-        <li class="text-left main_content"><code>git tag</code> lists the tags</li>
-        <li class="text-left main_content"><code>git tag -l "pattern*"</code> lists the tags that match the pattern</li>
-        <li class="text-left main_content"><code>git checkout tag_name</code> switches to the tag in a detached head state so no changes can be made</li>
-        <li class="text-left main_content"><code>git tag -f name_of_tag new_commit_hash</code> moves the tag named to the new commit must be forced pushed after</li>
-        <li class="text-left main_content"><code>push --force origin name_of_tag</code> forcefilly pushes the tag to remove the other</li>
-        <li class="text-left main_content"><code>git tag -d tag_name</code> deletes the tag</li>
-        <li class="text-left main_content"><code>git push origin --tags</code> pushes all tags to the remote repo</li>
-        <li class="text-left main_content"><code>git push origin tag_name</code> pushes the tag to the remote repo</li>
-        <h2 class="h2_big" id="rebase">Rebase</h2>
-        <li class="text-left main_content"><code>git rebase branch_name</code> rebases the current branch onto branch_name</li>
-        <li class="text-left main_content"><code>git rebase --abort</code> aborts the rebase</li>
-        <li class="text-left main_content"><code>git rebase --continue</code> continues the rebase after resolving conflicts</li>
-        <li class="text-left main_content"><code>git rebase --skip</code> skips the current commit during rebase</li>
-        <li class="text-left main_content"><code>git pull --rebase</code> pulls the changes from the remote repo and rebases</li>
-      </ul>
-    </div>
-  </main>
-</div>
+      </div>
+    </main>
+  </div>
 </div>
 </body>
+
 </html>
