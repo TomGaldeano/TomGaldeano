@@ -871,13 +871,20 @@ FROM
     store USING (address_id)
 GROUP BY country_id;
 -- 77:  Para cada cliente, cuenta los alquileres en los que la devolución (return_date) fue el mismo día del alquiler.
-SELECT  p.customer_id, first_name, last_name, COUNT(rental_id) AS same_day_returns
-FROM customer c join payment p USING (customer_id) join rental using(rental_id)
-WHERE DATE(rental_date) = DATE(return_date) GROUP BY customer_id;
-
-SELECT  c.customer_id, first_name, last_name, COUNT(rental_id) AS same_day_returns
-FROM payment p join rental r USING (rental_id) join customer c using(customer_id)
-WHERE DATE(rental_date) = DATE(return_date) GROUP BY c.customer_id;
+SELECT 
+    c.customer_id,
+    first_name,
+    last_name,
+    COUNT(rental_id) AS same_day_returns
+FROM
+    inventory i
+        LEFT JOIN
+    rental r ON i.inventory_id = r.inventory_id
+        LEFT JOIN
+    customer c ON r.customer_id = c.customer_id
+WHERE
+    DATE(rental_date) = DATE(return_date)
+GROUP BY c.customer_id;
 -- 78:  Para cada tienda, cuenta cuántos clientes distintos realizaron pagos en 2005.
 SELECT 
     store_id,
@@ -1159,15 +1166,15 @@ SELECT
     country_id, country, SUM(amount) AS total_amount
 FROM
     country
-        JOIN
+        right JOIN
     city USING (country_id)
-        JOIN
+       left JOIN
     address USING (city_id)
-        JOIN
+        left JOIN
     customer USING (address_id)
-        JOIN
+       right JOIN
     payment USING (customer_id)
-GROUP BY country_id
+GROUP BY country_id	
 HAVING SUM(amount) >= 1000;
 -- 98:  Para cada cliente, cuenta cuántos días han pasado entre su primer y su último alquiler en 2005 (diferencia de fechas), mostrando solo clientes con >= 5 alquileres en 2005.
 --     (Se evita subconsulta calculando sobre el conjunto agrupado por cliente y usando MIN/MAX de rental_date en 2005.
