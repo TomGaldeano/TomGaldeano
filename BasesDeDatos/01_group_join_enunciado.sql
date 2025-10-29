@@ -2,7 +2,7 @@ USE sakila;
 -- ==============================================
 -- SECCIÓN A) 30 CONSULTAS CON JOIN DE 2 TABLAS
 -- ==============================================
--- 1:  Para cada actor, muestra el número total de películas en las que aparece; es decir, cuenta cuántas filas de film_actor corresponden a cada actor.
+-- 1:  Para cada actor, muestra el número total de películas en las que aparece; es decir, cuenta cuántas filas de film_actor corresponden a cada actor.                                                                                                                              perfecto segun la solucion dada pero ha habido que usar right y left join y trangiversar consultas 
 SELECT 
     actor.actor_id AS actor_id,
     actor.first_name AS first_name,
@@ -261,11 +261,11 @@ SELECT
     city_id, city, COUNT(city_id) AS total_addresses
 FROM
     customer
-        JOIN
+        RIGHT JOIN
     address USING (address_id)
         JOIN
     city USING (city_id)
-GROUP BY address_id
+GROUP BY city_id
 ORDER BY city_id;
 -- 28:  Para cada película, cuenta cuántos actores tiene asociados.
 SELECT 
@@ -397,11 +397,12 @@ HAVING AVG(length) > 120;
 SELECT 
     language_id,
     language.name AS language_name,
-    SUM(rental_rate * rental_duration) AS sum_rates
+    SUM(rental_rate) AS sum_rates
 FROM
     language
         JOIN
     film USING (language_id)
+    join inventory using (film_id)
 GROUP BY language_id;
 -- 41:  Para cada cliente, cuenta cuántos alquileres realizó en fines de semana (SÁB-DO) usando DAYOFWEEK (1=Domingo).
 SELECT 
@@ -544,11 +545,9 @@ SELECT
     customer_id,
     c.first_name,
     c.last_name,
-    COUNT(film_id) AS rentals_2006
+    COUNT(distinct film_id) AS rentals_2006
 FROM
     film_category
-        JOIN
-    film USING (film_id)
         JOIN
     inventory USING (film_id)
         JOIN
