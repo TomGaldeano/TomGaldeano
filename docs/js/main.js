@@ -140,6 +140,7 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("Spanish").onclick = () => translatePage("es");
   document.getElementById("English").onclick = () => translatePage("en");
 });
+// theme switcher
 light_dark.addEventListener('click', function() {
 document.body.classList.toggle('dark');
 });
