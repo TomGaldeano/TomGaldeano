@@ -1,0 +1,18 @@
+package claseU3;
+
+public class H2E6 {
+
+	public static void main(String[] args) {
+		int cont = 1;
+		int sum = 0;
+		while (cont<101) {
+			sum += cont;
+			cont += 1;
+			
+		}
+		System.out.println(sum);
+
+
+	}
+
+}

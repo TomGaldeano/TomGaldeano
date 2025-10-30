@@ -1,0 +1,19 @@
+package claseU3;
+
+public class H2E25 {
+
+	public static void main(String[] args) {
+		int i = 0, a = 0,b = 1,c= 0;
+		System.out.println(a);
+		for (i=1;i<=24;i++) {
+			System.out.println(i+"--"b);
+			c=b+a;
+			a = b;
+			b=c;
+
+			
+		}
+
+	}
+
+}

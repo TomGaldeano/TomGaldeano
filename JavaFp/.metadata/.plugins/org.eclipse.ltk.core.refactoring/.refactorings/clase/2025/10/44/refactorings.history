@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;num&apos; in &apos;claseU3.Figura1.main(...)&apos; to &apos;filas&apos;&#x0A;- Original project: &apos;clase&apos;&#x0A;- Original element: &apos;claseU3.Figura1.main(String[]).num&apos;&#x0A;- Renamed element: &apos;num&apos;&#x0A;- Update references to refactored element" description="Rename local variable &apos;num&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;claseU3{Figura1.java[Figura1~main~\[QString;@num!112!123!120!122!I!0!false" name="filas" references="true" stamp="1761570981870" version="1.0"/>
+</session>

@@ -1,0 +1,15 @@
+package claseU3;
+
+import java.util.Scanner;
+
+public class Tester {
+
+	public static void main(String[] args) {
+		String num;
+		Scanner entrada = new Scanner(System.in);
+		System.out.println("Numero ");
+		num = entrada.toString();
+
+	}
+
+}

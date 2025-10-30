@@ -1,0 +1,27 @@
+package claseU3;
+
+import java.util.Scanner;
+
+public class H3E1 {
+
+	public static void main(String[] args) {
+		int num, centena, decena, unidad;
+		Scanner entrada = new Scanner(System.in);
+		System.out.println("Numero ");
+		num = entrada.nextInt();
+		entrada.close();
+		centena=num/100;
+		decena = (num-centena*100)/10; 
+		unidad = num -centena*100-decena*10;
+		if ((centena^3 + decena^3 +unidad^3)==num) {
+			System.out.println("Numero armstrong o Narcisista");
+			
+		}
+		System.out.println(centena+"  "+decena+"  "+unidad);
+		
+
+		
+
+	}
+
+}

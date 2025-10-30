@@ -35,7 +35,7 @@ def ej3():
     precio = float(input("Introduce el precio del artículo: "))
     iva = precio * 0.21
     total = precio + iva
-    print("El precio con IVA es: {:.2f}".format(total))
+    print(f"El precio con IVA es: {round(total)}")
 
 def ej4():
     """
@@ -48,7 +48,7 @@ def ej4():
     nota2 = float(input("Introduce la segunda nota: "))
     if 0 <= nota1 <= 10 and 0 <= nota2 <= 10:
         media = (nota1 + nota2) / 2
-        print("La media aritmética es: {}".format(round(media)))
+        print(f"La media aritmética es: {round(media)}")
     else:
         print("Error: Las notas deben estar entre 0 y 10.") 
 
@@ -67,8 +67,8 @@ def ej5():
     nota_examen = float(input("Introduce la nota del examen: "))
 
     media_ponderada = (nota_trabajo * 0.05) + (nota_ejercicios * 0.15) + (nota_examen * 0.80)
-    print("Nota real (redondeada a dos decimales): {:.2f}".format(media_ponderada))
-    print("Nota de boletín (sin decimales): {}".format(int(media_ponderada)))
+    print(f"Nota real (redondeada a dos decimales): {round(media_ponderada)}")
+    print(f"Nota de boletín (sin decimales): {int(media_ponderada)}")
 
 def ej6():
     """
@@ -80,14 +80,14 @@ def ej6():
     nota_examen = float(input("Introduce la nota del examen: "))
 
     media_ponderada = (nota_trabajo * 0.05) + (nota_ejercicios * 0.15) + (nota_examen * 0.80)
-    print("Nota real (redondeada a dos decimales): {:.2f}".format(media_ponderada))
+    print(f"Nota real (redondeada a dos decimales): {round(media_ponderada)}")
     
     if media_ponderada >= 5:
         nota_boletin = round(media_ponderada)
     else:
         nota_boletin = int(media_ponderada)
     
-    print("Nota de boletín: {}".format(nota_boletin))
+    print(f"Nota de boletín: {nota_boletin}")
 
 def ej7():
     """
@@ -165,7 +165,7 @@ def ej10():
     if contador_validos > 0:
         media = suma_validos / contador_validos
         print(f"Número de entradas válidas: {contador_validos}")
-        print(f"Media aritmética de las entradas válidas: {media:.2f}")
+        print(f"Media aritmética de las entradas válidas: {round(media)}")
     else:
         print("No se introdujeron entradas válidas.")
 
@@ -198,7 +198,7 @@ def ej11():
     if contador_validos > 0:
         media = suma_validos / contador_validos
         print(f"Número de entradas válidas: {contador_validos}")
-        print(f"Media aritmética de las entradas válidas: {media:.2f}")
+        print(f"Media aritmética de las entradas válidas: {round(media)}")
         print(f"Número mayor: {mayor}")
         print(f"Número menor: {menor}")
     else:
@@ -313,8 +313,8 @@ def ej16():
     radio = float(input("Introduce el radio de la circunferencia: "))
     area = 3.14159 * (radio ** 2)
     longitud = 2 * 3.14159 * radio
-    print(f"Área: {round(area, 5):.5f}")
-    print(f"Longitud: {round(longitud,5):.5f}")
+    print(f"Área: {round(area, 5)}")
+    print(f"Longitud: {round(longitud,5)}")
 
 def ej17():
     """
@@ -339,15 +339,15 @@ def ej17():
     if unidad == 'C':
         f = valor * 1.8 + 32
         k = valor + 273.15
-        print(f"{valor:.2f}C son {f:.2f}F y {k:.2f}K")
+        print(f"{round(valor)}C son {round(f,2)}F y {round(k,2)}K")
     elif unidad == 'F':
         c = (valor - 32) / 1.8
         k = (5/9) * (valor - 32) + 273.15
-        print(f"{valor:.2f}F son {c:.2f}C y {k:.2f}K")
+        print(f"{round(valor,2)}F son {round(c,2)}C y {round(k,2)}K")
     elif unidad == 'K':
         c = valor - 273.15
         f = 1.8 * (valor - 273.15) + 32
-        print(f"{valor:.2f}K son {c:.2f}C y {f:.2f}F")
+        print(f"{round(valor,2)}K son {round(c,2)}C y {round(f,2)}F")
     else:
         print("Unidad no reconocida. Usa C, F o K.")
 
@@ -374,9 +374,9 @@ def ej18():
     sueldo_neto = sueldo_anual - retencion
 
     print(f"Porcentaje de retención: {porcentaje}%")
-    print(f"Importe de la retención: {retencion:.2f}")
-    print(f"Sueldo neto restante: {sueldo_neto:.2f}")
+    print(f"Importe de la retención: {round(retencion,2)}")
+    print(f"Sueldo neto restante: {round(sueldo_neto,2)}")
 
 if __name__ == "__main__":
-    ej2()
+    ej16()
     pass

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="NewWizardAction">
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.jdt.ui.wizards.NewClassCreationWizard"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+		</list>
+		<section name="NewWizard.dialogBounds">
+			<item key="DIALOG_X_ORIGIN" value="701"/>
+			<item key="DIALOG_Y_ORIGIN" value="210"/>
+			<item key="DIALOG_WIDTH" value="552"/>
+			<item key="DIALOG_HEIGHT" value="656"/>
+			<item key="DIALOG_FONT_NAME" value="1|Ubuntu|10.0|0|GTK|1|"/>
+		</section>
+	</section>
+	<section name="WorkbenchPreferenceDialog.dialogBounds">
+	</section>
+</section>

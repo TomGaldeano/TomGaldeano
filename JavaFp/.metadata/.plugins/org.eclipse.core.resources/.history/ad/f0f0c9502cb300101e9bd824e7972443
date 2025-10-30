@@ -1,0 +1,15 @@
+package claseU3;
+
+public class H2E17_for {
+
+	public static void main(String[] args) {
+		int i, j;
+		for (i=0;i<100;i+=10) {
+			for (j=1;j<=10;j++) {
+				System.out.printf("%2d",i+j+" ");
+			}
+			System.out.println(" ");
+		}
+		
+	}
+}
