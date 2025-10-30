@@ -3,6 +3,7 @@ const translations = {
   en: {
     profile: "Profile",
     profile_text: "Currently a student at a technical collage studying web deveolpment with an interest in cybersecurity and AI. Also interested in 3d printing and robotics.",
+    disability: "Disability",
     below_portfolio: "Below is a portfolio of the work i have done that showacases my currrent skills",
     jobs: "Jobs",
     garage_assistant: "Garage assistant",
@@ -35,7 +36,8 @@ const translations = {
   },
   es: {
     profile: "Perfil",
-    profile_text: "Actualmente estudiante en un instituto técnico cursando desarrollo web, con interés en ciberseguridad e IA. También interesado en impresión 3D y robótica.",
+    profile_text: "Actualmente estudiante en un instituto técnico cursando desarrollo web, con interés en ciberseguridad e IA. También interesado en impresión 3D y robótica. ",
+    disability: "Discapacidad",
     below_portfolio: "A continuación se muestra un portafolio de mi trabajo que demuestra mis habilidades actuales.",
     jobs: "Trabajos",
     garage_assistant: "Auxiliar de taller",
@@ -103,7 +105,8 @@ document.addEventListener("DOMContentLoaded", function() {
 function translatePage(lang) {
   document.getElementById("perfil").textContent = translations[lang].profile;
   document.getElementById("perfil-texto").textContent = translations[lang].profile_text;
-  document.querySelector("#perfil-texto + p").textContent = translations[lang].below_portfolio;
+  document.getElementById("discapacidad").textContent = translations[lang].disability;
+  document.getElementById("portfolio-info").textContent = translations[lang].below_portfolio;
   document.querySelectorAll(".section-title")[1].textContent = translations[lang].jobs;
   document.getElementById("garage-assistant").textContent = translations[lang].garage_assistant;
   document.getElementById("garage-date").textContent = translations[lang].garage_date;
