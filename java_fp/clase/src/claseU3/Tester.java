@@ -11,10 +11,9 @@ public class Tester {
 		System.out.println("Numero ");
 		num = entrada.nextInt();
 		s= "123";
-		char result = s.charAt(0);
 		entrada.close();
 		c = Integer.parseInt(s);
-		System.out.println(c);
+		System.out.println(c+num);
 
 	}
 

@@ -11,6 +11,7 @@ public class MultiplicaLeer {
 		int num=entrada.nextInt();
 		int doble=num*2;
 		System.out.println("El doble de "+num+" es "+doble);
+		entrada.close();
 	}
 
 }

@@ -23,7 +23,7 @@
     border: 3px solid var(--white);
     outline: 3px solid var(--black);
 }
-body{
+body {
     background-color: var(--white);
 }
 .container{
