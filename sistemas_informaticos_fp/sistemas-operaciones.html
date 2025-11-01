@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistemas informaticos 1</title>
+    <style>
+        :root {
+            --green: #15400a;
+            --white: #FFFFFF;
+            --black: #000000;
+            --grey: #cacaca;
+            --blue: #051f8a;
+            --red: #a80101;
+            --dark_gray: #929292;
+        }
+
+        .dark {
+            --red: #fc5656;
+            --green: #00ff00;
+            --grey: #363636;
+            --black: #FFFFFF;
+            --white: #000000;
+            --blue: aqua;
+            --dark_gray: #7c7c7c;
+        }
+
+        #color_changer {
+            position: relative;
+            float: right;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--black);
+            border: 3px solid var(--white);
+            outline: 3px solid var(--black);
+        }
+
+        body {
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 32px;
+            border-radius: 8px;
+            background: var(--grey);
+            color: var(--black);
+        }
+
+        a,
+        a:visited,
+        #Spanish,
+        #English {
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h2,
+        h3 {
+            margin-top: 0;
+            color: var(--black);
+            border-bottom: 2px solid var(--black);
+        }
+
+        h1 {
+            color: var(--black);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            padding-bottom: 8px;
+            margin-bottom: 24px;
+        }
+
+        nav ul {
+            padding-left: 0%;
+        }
+
+        p {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        nav li {
+            display: inline;
+            padding: 10px;
+            align-self: start;
+            color: var(--black);
+            border-radius: 20px;
+            background-color: var(--white);
+        }
+
+        nav li:hover {
+            background-color: var(--red);
+            color: var(--white);
+        }
+
+
+        nav {
+            left: 0;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 12px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+
+        table {
+            border: 1px solid var(--black);
+            border-spacing: 0px;
+        }
+
+        caption {
+            font-weight: bold;
+            font-size: x-large;
+        }
+
+        td {
+            min-width: 70px;
+            padding: 5px;
+
+        }
+        tr:last-child td{
+            border-bottom: none;
+        }
+        tr:nth-child(even){
+            background-color: var(--dark_gray);
+        }
+        .tr-operaciones{
+            border:none;
+        }
+        button{
+            background-color: var(--white);
+            border-radius: 20px;
+            border: none;
+            color: var(--black);
+        }
+        button:hover{
+            background-color: var(--green);
+            color: var(--white);
+        }
+    </style>
+</head> 
+
+<body class="light">
+    <div class="container">
+        <button id="color_changer"></button>
+        <div>
+            <nav>
+                <ul>
+                    <li><a href="#conversion"></a>Conversion</li>
+                    <li><a href="#operaciones"></a>Operaciones</li>
+                    <li><a href="#complementos"></a>Complemento</li>
+                </ul>
+            </nav>
+        </div>
+        <h1>Ejercicios para practicar</h1>
+        <div>
+            <h2 id="Conversion">Conversiones: binario, octal, decimal, hexadecimal</h2>
+            <table>
+                <caption>Hexadecimal</caption>
+                <tr id="bin_to_hex">
+                    <td>Binario</td>
+                    <td id="bin_to_hex_value"></td>
+                    <td id="bin_to_hex_answer"></td>
+                    <td><button id="bin_to_hex_button">Comprobar</button></td>
+                </tr>
+                <tr>
+                    <td>Octal</td>
+                    <td></td>
+                    <td></td>
+                    <td><button>Comprobar</button></td>
+                </tr>
+                <tr>
+                    <td>Decimal</td>
+                    <td></td>
+                    <td></td>
+                    <td><button>Comprobar</button></td>
+                </tr>
+            </table>
+            <br>
+            <table>
+                <caption>Decimal</caption>
+                <tr>
+                    <td>Binario</td>
+                    <td></td>
+                    <td></td>
+                    <td><button>Comprobar</button></td>
+                </tr>
+                <tr>
+                    <td>Octal</td>
+                    <td></td>
+                    <td></td>
+                    <td><button>Comprobar</button></td>
+                </tr>
+                <tr>
+                    <td>Hexadecimal</td>
+                    <td></td>
+                    <td></td>
+                    <td><button>Comprobar</button></td>
+                </tr>
+            </table>
+            <br>
+            <table>
+                <caption>Octal</caption>
+                <tr>
+                    <td>Binario</td>
+                    <td></td>
+                    <td></td>
+                    <td><button>Comprobar</button></td>
+                </tr>
+                <tr>
+                    <td>Decimal</td>
+                    <td></td>
+                    <td></td>
+                    <td><button>Comprobar</button></td>
+                </tr>
+                <tr>
+                    <td>Hexadecimal</td>
+                    <td></td>
+                    <td></td>
+                    <td><button>Comprobar</button></td>
+                </tr>
+            </table>
+            <br>
+            <table>
+                <caption>Binario</caption>
+                <tr>
+                    <td>Octal</td>
+                    <td></td>
+                    <td></td>
+                    <td><button>Comprobar</button></td>
+                </tr>
+                <tr>
+                    <td>Decimal</td>
+                    <td></td>
+                    <td></td>
+                    <td><button>Comprobar</button></td>
+                </tr>
+                <tr>
+                    <td>Hexadecimal</td>
+                    <td></td>
+                    <td></td>
+                    <td><button>Comprobar</button></td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <br>
+        <div>
+            <h2 id="operaciones">Sumas y restas en binario</h2>
+            <table>
+                <tr class="tr-operaciones">
+                    <td rowspan="3" style="min-width: 0px;">+</td>
+                    <td>246</td>
+                    <td rowspan="4"></td>
+                    <td style="min-width: 0px;" rowspan="3">-</td>
+                    <td>246</td>
+                    
+                </tr>
+                <tr>
+                    <td style="background-color:var(--grey);border-bottom: var(--black) solid 1px;">123</td>
+                    <td style="background-color:var(--grey);border-bottom: var(--black) solid 1px;">123</td>
+                </tr>
+                <tr>
+                    <td>abc</td>
+                    <td>abc</td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="background-color: var(--grey);"><button>Comprobar</button></td>
+                    <td colspan="2" style="background-color: var(--grey);"><button>Comprobar</button></td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <br>
+        <div>
+            <h2 id="complementos">Complemento a 1 y complemento a 2</h2>
+            <table>
+                <tr>
+                    <td>Complemento a 1</td>
+                    <td></td>
+                    <td></td>
+                    <td><button>Comprobar</button></td>                   
+                </tr>
+                <tr>
+                    <td>Complemento a 2</td>
+                    <td></td>
+                    <td></td>
+                    <td><button>Comprobar</button></td>
+                </tr>
+            </table>
+        </div>
+        <footer>
+            <p>&copy; 2025 Tom Galdeano.</p>
+        </footer>
+    </div>
+    <script>
+        const bin_to_hex_update = document.querySelector("#bin_to_hex_button")
+        let bin_to_hex = 10;
+        document.querySelector("#bin_to_hex_value").textContent =bin_to_hex;
+
+
+        const light_dark = document.querySelector('#color_changer');
+        bin_to_hex_update.addEventListener("click",function (){
+            document.querySelector("#bin_to_hex_answer").textContent = bin_to_hex.toString(2);
+        })
+        light_dark.addEventListener('click', function () {
+            document.body.classList.toggle('dark');
+        });
+
+    </script>
+</body>
+
+</html>

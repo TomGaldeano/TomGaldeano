@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistemas informaticos 1</title>
+    <style>
+        :root {
+            --green: #15400a;
+            --white: #FFFFFF;
+            --black: #000000;
+            --grey: #cacaca;
+            --blue: #051f8a;
+            --red: #a80101;
+        }
+
+        .dark {
+            --red: #fc5656;
+            --green: #00ff00;
+            --grey: #363636;
+            --black: #FFFFFF;
+            --white: #000000;
+            --blue: aqua;
+            
+        }
+
+        #color_changer {
+            position: relative;
+            float: right;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--black);
+            border: 3px solid var(--white);
+            outline: 3px solid var(--black);
+        }
+
+        body {
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 32px;
+            border-radius: 8px;
+            background: var(--grey);
+            color: var(--black);
+        }
+
+        a,
+        a:visited,
+        #Spanish,
+        #English {
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin-top: 0;
+            color: var(--green);
+            border-bottom: 2px solid var(--green);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            padding-bottom: 8px;
+            margin-bottom: 24px;
+        }
+        nav ul{
+            padding-left: 0%;
+        }
+        p {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        nav li{
+            display: inline;
+            padding: 10px;
+            align-self: start;
+            color: var(--black);
+            border-radius: 20px;
+            background-color: var(--white);
+        }
+        nav li:hover{
+            background-color: var(--red);
+            color: var(--white);
+        }
+
+
+        nav{
+            left:0;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 12px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="light">
+    <div class="container">
+        <button id="color_changer"></button>
+        <div>
+            <nav>
+                <ul>
+                    <li><a href="#conversion"></a>Conversion</li>
+                    <li><a href="#operaciones"></a>Operaciones</li>
+                    <li><a href="#complementos"></a>Complemento</li>
+                </ul>
+            </nav>         
+        </div>
+        <h1></h1>
+        
+
+
+        <footer>
+            <p>&copy; 2024 Tom Galdeano. All rights reserved.</p>
+        </footer>
+    </div>
+    <script>
+        const light_dark = document.querySelector('#color_changer');
+        light_dark.addEventListener('click', function() {
+        document.body.classList.toggle('dark');
+        });
+    </script>
+</body>
+
+</html>
