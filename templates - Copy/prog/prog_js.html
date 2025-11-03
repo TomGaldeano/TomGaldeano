@@ -1,0 +1,152 @@
+{% include "header.html" %}
+{% include "prog/prog_header.html" %}
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <nav class="col-md-1 d-none d-md-block sidebar" style="min-height:100vh;" aria-label="CSS topics">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column small" role="menu">
+          <li class="nav-item" role="none">
+            <a class="nav-link gray_link" role="menuitem" href="#elements">Theory n </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Main content -->
+    <main class="col-md-11 ml-sm-auto px-4 justify-content-md-left">
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <h1 class="text-left h1_big">JS</h1>
+      </div>
+      <div class="row justify-content-left container d-flex mx-auto">
+        <p class="text-left main_content">
+          To note down stuff i don't remember when looking <a href="https://www.w3schools.com/js" target="_blank"
+            class="golden_link">at w3 schools</a> and to act as a cheatsheet
+        </p>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <h2 class="h2_big text-left" id="theory">Theory</h2>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <ul>
+          <li class="text-left main_content">js must go afeter elements it is affecting. put at bottom of file.</li>
+          <li class="text-left main_content">// comment</li>
+          <li class="text-left main_content">/* multi line comment */</li>
+          <li class="text-left main_content">The JavaScript syntax defines two types of values: Literals (Fixed values)
+            and Variables (Variable values)</li>
+          <li class="text-left main_content">Datatypes</li>
+          <ul>
+            <li class="text-left main_content">Numbers are written with or without decimals</li>
+            <li class="text-left main_content">Strings are text, written within double or single quotes:</li>
+            <li class="text-left main_content">Bigint A number representing a large integer</li>
+            <li class="text-left main_content">Boolean Represents a logical entity and can have two values: true and
+              false</li>
+            <li class="text-left main_content">undefined A variable that has not been assigned a value is of type
+              undefined</li>
+            <li class="text-left main_content">null Denotes a null value</li>
+            <li class="text-left main_content">Symbol Used to create unique identifiers for objects</li>
+            <li class="text-left main_content">Object Used to store collections of data and more complex entities</li>
+            <li class="text-left main_content">typeof can be used to find the type of a variable</li>
+          </ul>
+          <li class="text-left main_content">Variables</li>
+          <ul>
+            <li class="text-left main_content">var x = 5; var y = 6; var z = x + y;</li>
+            <li class="text-left main_content">let x = 5; let y = 6; let z = x + y;</li>
+            <li class="text-left main_content">const PI = 3.14;</li>
+            <li class="text-left main_content">Variables defined with var are hoisted to the top and can be initialized
+              at any time. Meaning: You can use the variable before it is declared</li>
+            <li class="text-left main_content">Variables defined with const cannot be reassigned.</li>
+            <li class="text-left main_content">Variables defined with const must be assigned a value when they are
+              declared.</li>
+            <li class="text-left main_content">Variable names can contain letters, digits, underscores, and dollar
+              signs.</li>
+            <li class="text-left main_content">Variables must begin with a letter, underscore, or dollar sign.</li>
+            <li class="text-left main_content">Variable names are case sensitive (y and Y are different variables).</li>
+            <li class="text-left main_content">Reserved words (like JavaScript keywords) cannot be used as variable
+              names.</li>
+            <li class="text-left main_content">hyphens are not allowed in names</li>
+            <li class="text-left main_content">let and const have block scope, can not be redeclared, must be declared
+              before use, do not bind to this and are not hoisted </li>
+            <li class="text-left main_content">var does not have have to be declared, is hoisted and binds to this</li>
+          </ul>
+          <li class="text-left main_content"><code>let y = 123e5;</code> scientific notation for numbers</li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+        </ul>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <h2 class="h2_big text-left" id="theory">Output</h2>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <ul>
+          <li class="text-left main_content" id="output_innerhtml"></li>
+          <li class="text-left main_content" id="output_innertext"></li>
+          <li class="text-left main_content">Writing into the HTML output using document.write(). Using it after an HTML
+            document is loaded, will delete all existing HTML:</li>
+          <li class="text-left main_content">Writing into the browser console, using console.log().</li>
+          <li class="text-left main_content">window.print() is a method in the browser used to print the content of the
+            current window as a file</li>
+          <li class="text-left main_content"></li>
+        </ul>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <h2 class="h2_big text-left" id="theory">Keywords</h2>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <ul>
+          <li class="text-left main_content">if, for, else, switch, try, function, return, null, true, false, new, let,
+            var, this, const</li>
+          <li class="text-left main_content">arithmetic operators</li>
+          <ul>
+            <li class="text-left main_content">The + operator is used for both addition and concatenation</li>
+            <li class="text-left main_content">If you add a number and a string, the result will be a string
+              concatenation</li>
+            <li class="text-left main_content">++ increment, += x increments x</li>
+            <li class="text-left main_content">- is used for subtraction</li>
+            <li class="text-left main_content">-- decrement, -+ x decrements x</li>
+            <li class="text-left main_content">** exponentiation, **= x exponientaites value to x</li>
+            <li class="text-left main_content">* multiplication, *= x multiplies value by x</li>
+            <li class="text-left main_content">/ division, /= x divides value by x</li>
+            <li class="text-left main_content">% modulus, %= x does the modulus by x</li>
+            <li class="text-left main_content">&lt &lt= &gt &gt= == != comarison equal to and not equal to</li>
+            <li class="text-left main_content">=== equal to and same type</li>
+            <li class="text-left main_content">!== not equal to or different type</li>
+            <li class="text-left main_content">&amp; AND, | OR, ^ XOR, ~ NOT</li>
+          </ul>
+          <li class="text-left main_content"><code>typeof x</code> returns the value of x</li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+        </ul>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <h2 class="h2_big text-left" id="theory">Theory</h2>
+      </div>
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <ul>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+          <li class="text-left main_content"></li>
+        </ul>
+      </div>
+      <script src="{{ url_for('static', filename='js/prog_js.js') }}"></script>
+      </body>
+
+      </html>

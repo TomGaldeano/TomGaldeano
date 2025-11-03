@@ -1,0 +1,71 @@
+{% include "header.html" %}
+{% include "prog/prog_header.html" %}
+<div class="row justify-content-md-left container d-flex mx-auto">
+    <h1 class="text-left h1_big">SQL</h1>
+</div>
+<div class="row justify-content-left container d-flex mx-auto">
+  <p class="text-left main_content">To note down stuff from school and w3schools and to act as a cheatsheet</p>
+</div>
+<div class="row justify-content-md-left container d-flex mx-auto">
+  <h2 class="h2_big text-left" id="theory">Theory</h2>
+</div>
+<div class="row justify-content-md-left container d-flex mx-auto">
+  <ul>
+    <li class="text-left main_content">Doing source database schema if one with the same name exists replaces the database with the schema if the schema has drop in it to do it</li>
+    <li class="text-left main_content">Acces mysql with password <code>mysql -u admin -p</code> as admin</li>
+    <li class="text-left main_content">The order of items in <code>SELECT column2, column1 FROM database;</code> matters as will display the columns in that orders</li>
+    <li class="text-left main_content">datetime datatype serves to be able to add and remove timeperiods accurately</li>
+    <li class="text-left main_content">ctrl+r opens search bar to look for past commands inmysql terminal and bash</li>
+    <li class="text-left main_content">Ordrer of SQL satements</li>
+      <ul>
+        <li class="text-left main_content">SELECT</li>
+        <li class="text-left main_content">FROM</li>
+        <li class="text-left main_content">WHERE</li>
+        <li class="text-left main_content">GROUP BY</li>
+        <li class="text-left main_content">OREDR BY</li>
+        <li class="text-left main_content"></li>
+      </ul>
+    <li class="text-left main_content">What is in select must be grouped by, aggregated or be functionally dependant of theaggreagted data (primary keys)</li>
+    <li class="text-left main_content"></li>
+    <li class="text-left main_content"></li>
+    <li class="text-left main_content"></li>
+    <li class="text-left main_content"></li>
+  </ul>
+</div>
+<div class="row justify-content-md-left container d-flex mx-auto">
+    <h2 class="h2_big text-left" id="theory">Statements and keywords</h2>
+</div>
+<div class="row justify-content-md-left container d-flex mx-auto">
+  <ul>
+    <li class="text-left main_content"><code>SOURCE database_data_schema.sql</code>used to load a database schema or data or both</li>
+    <li class="text-left main_content"><code>SELECT COUNT(*) FROM table;</code>Counts number of rows from table</li>
+    <li class="text-left main_content"><code>SELECT COUNT(*) FROM table limit 1;</code>limits entries shown from table to number</li>
+    <li class="text-left main_content"><code>EXPLAIN table;</code>shows info of the table</li>
+    <li class="text-left main_content"><code>SHOW tables;</code>in mysql shows tables</li>
+    <li class="text-left main_content"><code>SHOW databases;</code>In my sql shows the available databases to use.</li>
+    <li class="text-left main_content"><code>USE database;</code>in mysql loads a database to use for querying</li>
+    <li class="text-left main_content"><code>SELECT count(*) FROM productos</code>dispalys the amount of rows in databse</li>
+    <li class="text-left main_content"><code>SELECT * FROM clientes WHERE YEAR(fecha_registro)=2024;</code>year given a date extracts the year. month and day also works for the same thing</li>
+    <li class="text-left main_content"><code>SELECT * FROM database WHERE value="string"</code></li>
+    <li class="text-left main_content"><code>SELECT * FROM productos WHERE stock BETWEEN 300 and 400;<code> includes the values 300 and 400</li>
+    <li class="text-left main_content"><code>SELECT * FROM productos WHERE stock &gt 300 AND stock &lt 400</code> selects values between 300 and 400</li>
+    <li class="text-left main_content"><code>SELECT * FROM productos WHERE 300 &lt stock &lt 400;</code> does not work</li>
+    <li class="text-left main_content"><code>SELECT * FROM productos WHERE nombre LIKE ("S_lla_")</code> _ only works for one char, many _ can be used</li>
+    <li class="text-left main_content"><code>SELECT nombre FROM clientes WHERE LENGTH(nombre)>4;</code> selcts the names of lenght bigger than 4</li>
+    <li class="text-left main_content"><code>SELECT COUNT(nombre) FROM clientes WHERE LENGTH(REPLACE(nombre," ",""))>9;</code></li>
+    <li class="text-left main_content"><code>SELECT * FROM pagos WHERE fecha_pago IS NULL;</code> NUll is comapred with IS not =</li>
+    <li class="text-left main_content"><code>SELECT * FROM pagos WHERE fecha_pago IS NOT NULL;</code> example of code above with a negation</li>
+    <li class="text-left main_content"><code>SELECT SUBSTRING_INDEX(nombre,' ',1) from clientes;</code> selecciona hasta el primer espacio</li>
+    <li class="text-left main_content"><code>SELECT REVERSE(SUBSTRING_INDEX(REVERSE(nombre),' ',1)) from clientes;</code>selleciona hasta el ultimo espacio. <code>REVERSE</code> cambia el orden de un string</li>
+    <li class="text-left main_content"><code>SELECT * FROM productos ORDER by precio DESC limit 10;</code></li>
+    <li class="text-left main_content"><code>SELECT DISTINCT pais FROM clientes;</code></li>
+    <li class="text-left main_content"><code>ELECT DISTINCT pais FROM clientes;</code></li>
+    <li class="text-left main_content"><code>get date</code></li>
+    <li class="text-left main_content"></li>
+    <li class="text-left main_content"></li>
+    <li class="text-left main_content"></li>
+    <li class="text-left main_content"></li>
+  </ul>
+</div>
+</body>
+</html>
