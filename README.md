@@ -1,4 +1,11 @@
-Pagina dedicada a apuntes de informatica y a repositorio de paginas web para demostrar mis habilidades
-Page dedicated to programing notes and to show my skills in coding
-Pgina web credada con python www.breadtombakery.com
-Web page made with python www.breadtombakery.com
+# Tom Galdeano's repo
+```
+Repositorio dedicado para demostrar mis habilidades de desarollo
+Repository dedicated to show my coding skills
+```
+## Webs
+
+[CV](https://tomgaldeano.github.io/TomGaldeano/)<br/>
+[BreadTomBakery](www.breadtombakery.com)<br/>
+
+

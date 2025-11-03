@@ -71,10 +71,6 @@
 
         h1 {
             color: var(--black);
-        }
-
-        h1 {
-            font-size: 2.5rem;
             padding-bottom: 8px;
             margin-bottom: 24px;
         }
@@ -107,13 +103,17 @@
             left: 0;
         }
 
+        .center_suma_resta {
+            translate: 70%;
+        }
+
+        .center_suma_resta_res {
+            translate: 30%;
+        }
+
         @media (max-width: 600px) {
             .container {
                 padding: 12px;
-            }
-
-            h1 {
-                font-size: 1.5rem;
             }
         }
 
@@ -160,6 +160,13 @@
         .small_column {
             min-width: 0px;
         }
+
+        input {
+            width: 80%;
+            box-sizing: border-box;
+            color: var(--black);
+            background-color: var(--white);
+        }
     </style>
 </head>
 
@@ -175,7 +182,9 @@
                 </ul>
             </nav>
         </div>
-        <h1>Ejercicios para practicar</h1>
+        <div>
+            <h1>Ejercicios para practicar</h1>
+        </div>
         <div>
             <h2 id="Conversion">Conversiones: binario, octal, decimal, hexadecimal</h2>
             <table>
@@ -298,17 +307,18 @@
                 </tr>
                 <tr>
                     <td><input type="text" id="suma_input"></td>
-                    <td><input type="text" id="suma_resta"></td>
+                    <td><input type="text" id="resta_input"></td>
                 </tr>
                 <tr>
-                    <td colspan="2" style="background-color: var(--grey);"><button
-                            style="translate: 70% ;" id="suma_button">Comprobar</button></td>
-                    <td colspan="2" style="background-color: var(--grey);"><button
-                            style="translate: 70% ;" id="resta_button">Comprobar</button></td>
+                    <td colspan="2" style="background-color: var(--grey);"><button class="center_suma_resta"
+                            id="suma_button">Comprobar</button></td>
+                    <td colspan="2" style="background-color: var(--grey);"><button class="center_suma_resta"
+                            id="resta_button">Comprobar</button></td>
                 </tr>
                 <tr>
-                    <td colspan="2" id="suma_result"></td>
-                    <td colspan="2" id="resta_result"></td>
+                    <td colspan="2" id="suma_result" class="center_suma_resta_res"></td>
+                    <td></td>
+                    <td colspan="2" id="resta_result" class="center_suma_resta_res"></td>
                 </tr>
             </table>
         </div>
@@ -398,35 +408,171 @@
             ];
             //suma y resta
             function suma() {
-                const diplay = getElementById('suma_value1');
+                const result = document.getElementById("suma_result");
+                const input = document.getElementById("suma_input");
+                const display1 = document.getElementById('suma_value1');
+                const display2 = document.getElementById('suma_value2');
                 let value1 = Math.floor(Math.random() * 1000);
                 let value2 = Math.floor(Math.random() * 1000);
-                let value = value1 + value2;                
+                let value = value1 + value2;
                 function render() {
-                    display.textContent = value1.toString(2);
+                    display1.textContent = value1.toString(2).padStart(10, "0");
+                    display2.textContent = value2.toString(2).padStart(10, "0");
                 }
                 render();
-
-
+                document.getElementById("suma_button").addEventListener('click', function () {
+                    const raw = input.value.trim();
+                    if (!raw) {
+                        result.textContent = '';
+                        return;
+                    }
+                    // parseInt handles prefixes and bases; ensure base is correct
+                    const parsed = parseInt(raw, 2);
+                    if (!Number.isFinite(parsed) || isNaN(parsed)) {
+                        result.textContent = 'Incorrecto';
+                        setTimeout(() => ResultEl.textContent = '', 2000);
+                    } else if (parsed === value) {
+                        result.textContent = 'Acierto';
+                        value1 = Math.floor(Math.random() * 1000);
+                        value2 = Math.floor(Math.random() * 1000);
+                        value = value1 + value2;
+                        render();
+                        setTimeout(() => result.textContent = '', 2000);
+                    } else {
+                        result.textContent = 'Incorrecto';
+                        setTimeout(() => result.textContent = '', 2000);
+                    }
+                    input.value = '';
+                });
             }
             suma();
             function resta() {
-
+                const result = document.getElementById("resta_result");
+                const input = document.getElementById("resta_input");
+                const display1 = document.getElementById('resta_value1');
+                const display2 = document.getElementById('resta_value2');
+                let value1 = Math.floor(Math.random() * 1000);
+                if (value1 < 200) {
+                    value1 += 200;
+                }
+                let value2 = Math.floor(Math.random() * 1000);
+                while (value2 > value1) {
+                    value2 = Math.floor(Math.random() * 1000);
+                }
+                let value = value1 - value2;
+                function render() {
+                    display1.textContent = value1.toString(2).padStart(10, "0");
+                    display2.textContent = value2.toString(2).padStart(10, "0");
+                }
+                render();
+                document.getElementById("resta_button").addEventListener('click', function () {
+                    const raw = input.value.trim();
+                    if (!raw) {
+                        result.textContent = '';
+                        return;
+                    }
+                    // parseInt handles prefixes and bases; ensure base is correct
+                    const parsed = parseInt(raw, 2);
+                    if (!Number.isFinite(parsed) || isNaN(parsed)) {
+                        result.textContent = 'Incorrecto';
+                        setTimeout(() => ResultEl.textContent = '', 2000);
+                    } else if (parsed === value) {
+                        result.textContent = 'Acierto';
+                        value1 = Math.floor(Math.random() * 1000);
+                        if (value1 < 200) {
+                            value1 += 200;
+                        }
+                        value2 = Math.floor(Math.random() * 1000);
+                        while (value2 > value1) {
+                            value2 = Math.floor(Math.random() * 1000);
+                        }
+                        value = value1 - value2;
+                        render();
+                        setTimeout(() => result.textContent = '', 2000);
+                    } else {
+                        result.textContent = 'Incorrecto';
+                        setTimeout(() => result.textContent = '', 2000);
+                    }
+                    input.value = '';
+                });
             }
+            resta()
             // Complementos
             function complemento1() {
-                
-            }
-            function complemento2() {
+                const result = document.getElementById("complemento1_result");
+                const input = document.getElementById("complemento1_input");
+                const display = document.getElementById('complemento1_value');
+                let value = Math.floor(Math.random() * 1000);
+                let answer = dec2bin(~value).toString().slice(22);
+                function dec2bin(dec) {
+                    return (dec >>> 0).toString(2);
+                }
+                function render() {
+                    display.textContent = value.toString(2).padStart(10, "0");
+                }
+                render();
+                document.getElementById("complemento1_button").addEventListener('click', function () {
+                    const raw = input.value.trim();
+                    if (!raw) {
+                        result.textContent = '';
+                        return;
+                    }
 
+                    if (raw == answer) {
+                        result.textContent = 'Acierto';
+                        value = Math.floor(Math.random() * 1000);
+                        answer = dec2bin(~value).toString().slice(22);
+                        render();
+                        setTimeout(() => result.textContent = '', 2000);
+                    } else {
+                        result.textContent = 'Incorrecto';
+                        setTimeout(() => result.textContent = '', 2000);
+                    }
+                    input.value = '';
+                });
             }
+            complemento1();
+            function complemento2() {
+                const result = document.getElementById("complemento2_result");
+                const input = document.getElementById("complemento2_input");
+                const display = document.getElementById('complemento2_value');
+                let value = Math.floor(Math.random() * 1000);
+                let answer = dec2bin(~value + 1).toString().slice(22);
+                function dec2bin(dec) {
+                    return (dec >>> 0).toString(2);
+                }
+                function render() {
+                    display.textContent = value.toString(2).padStart(10, "0");
+                }
+                render();
+                document.getElementById("complemento2_button").addEventListener('click', function () {
+                    const raw = input.value.trim();
+                    if (!raw) {
+                        result.textContent = '';
+                        return;
+                    }
+
+                    if (raw == answer) {
+                        result.textContent = 'Acierto';
+                        value = Math.floor(Math.random() * 1000);
+                        answer = dec2bin(~value + 1).toString().slice(22);
+                        render();
+                        setTimeout(() => result.textContent = '', 2000);
+                    } else {
+                        result.textContent = 'Incorrecto';
+                        setTimeout(() => result.textContent = '', 2000);
+                    }
+                    input.value = '';
+                });
+            }
+            complemento2();
             // Initialize exercises (only after DOM is ready)
             document.addEventListener('DOMContentLoaded', function () {
                 exercises.forEach(cfg => makeExercise(cfg));
             });
 
             // theme switcher
-            if (light_dark) light_dark.addEventListener('click', function () {
+            light_dark.addEventListener('click', function () {
                 document.body.classList.toggle('dark');
             });
         })();
