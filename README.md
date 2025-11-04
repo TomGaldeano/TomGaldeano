@@ -7,5 +7,6 @@ Repository dedicated to show my coding skills
 
 [CV](https://tomgaldeano.github.io/TomGaldeano/)<br/>
 [BreadTomBakery](www.breadtombakery.com)<br/>
+[TomGaldeano](TomGaldeano.com)
 
 
