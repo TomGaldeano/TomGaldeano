@@ -25,6 +25,10 @@ app = Flask(__name__)
 def home():
     return render_template('home.html')
 
+@app.route('/clock')
+def clock():
+    return render_template('clock.html')
+
 @app.route('/projects/personal')
 def pj_personal():
     return render_template('projects/pj_personal.html')
@@ -44,6 +48,14 @@ def pj_games():
 @app.route('/projects/ordered')
 def pj_ordered():
     return render_template('projects/pj_ordered.html')
+
+@app.route('/projects/operaciones')
+def pj_operaciones():
+    return render_template('projects/sistemas_informaticos/operaciones.html')
+
+@app.route('/projects/gestion')
+def pj_gestion():
+    return render_template('projects/sistemas_informaticos/gestion.html')  
 
 if __name__ == '__main__':  
     app.run(host='0.0.0.0', port=5001, debug=True)
