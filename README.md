@@ -6,7 +6,7 @@ Repository dedicated to show my coding skills
 ## Webs
 
 [CV](https://tomgaldeano.github.io/TomGaldeano/)<br/>
-[BreadTomBakery](htttps://www.breadtombakery.com)<br/>
+[BreadTomBakery](https://www.breadtombakery.com/Es)<br/>
 [TomGaldeano](https://tomgaldeano.com/)
 
 

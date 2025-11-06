@@ -3,7 +3,7 @@ const translations = {
   en: {
     profile: "Profile",
     profile_text: "Currently a student at a technical collage studying web deveolpment with an interest in cybersecurity and AI. Also interested in 3d printing and robotics.",
-    disability: "Disability",
+    disability: "I have a 33% disability due to having keratoconus in my eyes and Asperger’s syndrome. Despite this, I am highly functional both in the workplace and outside of it.Disability",
     below_portfolio: "Below is a portfolio of the work i have done that showacases my currrent skills",
     jobs: "Jobs",
     garage_assistant: "Garage assistant",
@@ -37,7 +37,7 @@ const translations = {
   es: {
     profile: "Perfil",
     profile_text: "Actualmente estudiante en un instituto técnico cursando desarrollo web, con interés en ciberseguridad e IA. También interesado en impresión 3D y robótica. ",
-    disability: "Discapacidad",
+    disability: "Poseo el 33% de discapacidad debido a tener keratocono en los ojos y a tener sindrome de Asperger. Pese a esto soy altamente funcional en el ambito laboral y fuera de el.",
     below_portfolio: "A continuación se muestra un portafolio de mi trabajo que demuestra mis habilidades actuales.",
     jobs: "Trabajos",
     garage_assistant: "Auxiliar de taller",
