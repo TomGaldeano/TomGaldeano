@@ -1,19 +1,54 @@
-.red_hover:hover{color: red;}
-.blue_hover:hover{color: blue;}
-.green_hover:hover{color: green;}
-.gold_hover:hover{color: gold;}
-.red_hover{color: white;}
-.blue_hover{color: white;}
-.green_hover{color: white;}
-.gold_hover{color: white;}
-.golden_link{color: gold;}
+:root {
+    --green: #15400a;
+    --white: #FFFFFF;
+    --black: #000000;
+    --grey: #cacaca;
+    --blue: #051f8a;
+    --red: #a80101;
+    --dark_gray: #929292;
+    --yellow:gold;
+    --orange:#ff9800;
+}
+
+.dark {
+    --red: #fc5656;
+    --green: #00ff00;
+    --grey: #363636;
+    --black: #FFFFFF;
+    --white: #000000;
+    --blue: aqua;
+    --dark_gray: #7c7c7c;
+    --yellow: #f6fa07;
+    --orange:#fcb852;
+}
+
+#color_changer {
+    position: relative;
+    float: right;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--black);
+    border: 3px solid var(--white);
+    outline: 3px solid var(--black);
+}
+
+.red_hover:hover{color: var(--red);}
+.blue_hover:hover{color: var(--blue);}
+.green_hover:hover{color:var(--green);}
+.gold_hover:hover{color: var(--yellow);}
+.red_hover{color:var(--white)}
+.blue_hover{color:var(--white);}
+.green_hover{color: var(--white);}
+.gold_hover{color: var(--white);}
+.golden_link{color: var(--yellow);}
 .golden_link:hover{
-  color: gold;
+  color: var(--yellow);
   text-decoration: none;
 }
-.gray_link{color: gray;}
+.gray_link{color: var(--dark_gray);}
 .gray_link:hover{
-  color: gray;
+  color: var(--dark_gray);
   text-decoration: none;
 }
 div.mycontainer {
@@ -61,7 +96,7 @@ li.mix {border-style: dotted dashed solid double;}
   width: 300px;
   position: relative;}
 .box-margin {
-  background: #ff9800;
+  background: var(--orange);
   margin: 40px;
   padding: 30px;
   position: relative;}
@@ -73,9 +108,9 @@ li.mix {border-style: dotted dashed solid double;}
   transform: translateX(-50%);
   font-size: 1rem;}
 .box-border {
-  background: #199917;
+  background: var(--green);
   padding: 20px;
-  border: 30px solid #2196F3;
+  border: 30px solid var(--blue);
   position: relative;}
 .box-border::before {
   content: "Border";
@@ -85,7 +120,7 @@ li.mix {border-style: dotted dashed solid double;}
   transform: translateX(-50%);
   font-size: 1rem;}
 .box-padding {
-  background: #f43030;
+  background: var(--red);
   padding: 30px;
   position: relative;}
 .box-padding::before {
@@ -107,7 +142,7 @@ li.mix {border-style: dotted dashed solid double;}
   transform: translateX(-50%);
   font-size: 1rem;}
 code{
-  color: #ad0404;
+  color: var(--red);
   font-weight: bold;
   font-size: large;
   }
@@ -117,7 +152,7 @@ code{
 html, body {
     margin: 0;
     padding: 0;
-    background: #f0f0f0;
+    background: var(--white);
 }
 .clearfix::after {
   content: "";
@@ -128,5 +163,20 @@ html, body {
   float: left;
 }
 .div-clearfix{
-  border:1px solid black; padding:10px; margin:10px;
+  border:1px solid var(--black); padding:10px; margin:10px;
+}
+table {
+    border: 1px solid var(--black);
+    border-spacing: 0px;
+}
+
+caption {
+    font-weight: bold;
+    font-size: x-large;
+}
+
+td {
+    min-width: 70px;
+    padding: 5px;
+
 }

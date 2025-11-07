@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/style.css">
+    <title>Document</title>
+    <style>
+        td {
+            
+            min-width: 50px;
+            min-height: 50px;
+            height: 50px;
+            width: 50px;
+            border: 1px solid var(--black);
+            text-align: center;
+            font-size: 2.5rem;
+        }
+        div{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Tres en raya</h1>
+        <table>
+            <tr>
+                <td id="pos0">
+                    
+                </td>
+                <td id="pos1">
+
+                </td>
+                <td id="pos2">
+
+                </td>
+            </tr>
+            <tr>
+                <td id = "pos3">
+
+                </td>
+                <td id = "pos4">
+
+                </td>
+                <td id = "pos5">
+
+                </td>
+            </tr>
+            <tr>
+                <td id="pos6">
+
+                </td>
+                <td id="pos7">
+
+                </td>
+                <td id = "pos8">
+                    
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script>
+    </script>
+    <script>
+        const tablero =
+        {pos0: document.getElementById("pos0"), pos1: document.getElementById("pos1"),
+        pos2: document.getElementById("pos2"), pos3: document.getElementById("pos3"),
+        pos4: document.getElementById("pos4"), pos5: document.getElementById("pos5"),
+        pos6: document.getElementById("pos6"), pos7: document.getElementById("pos7"),
+        pos8: document.getElementById("pos8")};
+        function Crear_tablero(){
+            for (let [pos, value] of Object.entries(tablero)) {
+            value.textContent = "X";
+            }
+        }
+        Crear_tablero();
+        function mueve_robot(){
+            let a=1;
+        }
+
+        function quedanCasillas(){
+		// comprueba si ya están ocupadas todas las posiciones del tablero.
+		let hay_casillas = false;
+		for (let i = 0; i < tablero.length; i++) {
+			if (tablero[i] == ' ') {
+				hay_casillas = true;
+			}
+		}
+		return hay_casillas;
+	    }
+    </script>
+</body>
+</html>
