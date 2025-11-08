@@ -1,46 +1,45 @@
 {% include "header.html" %}
+
 <body>
-    <div class="container mt-5 text-center">
-        <h1>This site is meant for Tom to have a place to organize and run stuff from wherever he may be</h1>
-    </div>
-    <!DOCTYPE html>
-    <div class="container mt-5 text-center">
-        <h2>Countdown to our hopeful graduation</h1>
-            <div id="countdown" class="mt-4 fw-bold display-4 text-black"></div>
-    </div>
-    <div class="container mt-5 text-center">
-        <h2>Countdown to 30th birthday</h1>
-            <div id="countdown0" class="mt-4 fw-bold display-4 text-black"></div>
-    </div>
-    <script>
-        const targetDate = new Date("{{ hope_graduation.isoformat() }}Z");
-        const targetDate0 = new Date("{{ birth30.isoformat() }}Z"); function updateCountdown() {
-            const now = new Date();
-            const diff = targetDate - now;
-            if (diff <= 0) {
-                document.getElementById('countdown').textContent = "Time's up!";
-                return;
-            }
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutes = Math.floor((diff / (1000 * 60)) % 60);
-            const seconds = Math.floor((diff / 1000) % 60);
-            const diffs = targetDate0 - now;
-            if (diff <= 0) {
-                document.getElementById('countdown').textContent = "Time's up!";
-                return;
-            }
-            const days0 = Math.floor(diffs / (1000 * 60 * 60 * 24));
-            const hours0 = Math.floor((diffs / (1000 * 60 * 60)) % 24);
-            const minutes0 = Math.floor((diffs / (1000 * 60)) % 60);
-            const seconds0 = Math.floor((diffs / 1000) % 60);
-            document.getElementById('countdown0').textContent = `${days0}d ${hours0}h ${minutes0}m ${seconds0}s`;
-            document.getElementById('countdown').textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-        }
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
+  <div class="container mt-5 text-center">
+    <h1>Some countdown's to keep me hopeful</h1>
+  </div>
+  <!DOCTYPE html>
+  <div class="container mt-5 text-center">
+    <h2>Countdown to our hopeful graduation</h1>
+      <div id="countdown" class="mt-4 fw-bold display-4 text-black"></div>
+  </div>
+  <div class="container mt-5 text-center">
+    <h2>Countdown to 30th birthday</h1>
+      <div id="countdown0" class="mt-4 fw-bold display-4 text-black"></div>
+  </div>
+  <script>
+    const targetDate = new Date("{{ hope_graduation }}Z");
+    const targetDate0 = new Date("{{ birth30 }}Z"); function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+      if (diff <= 0) {
+        document.getElementById('countdown').textContent = "Time's up!";
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      const diffs = targetDate0 - now;
+      if (diff <= 0) {
+        document.getElementById('countdown').textContent = "Time's up!";
+        return;
+      }
+      const days0 = Math.floor(diffs / (1000 * 60 * 60 * 24));
+      const hours0 = Math.floor((diffs / (1000 * 60 * 60)) % 24);
+      const minutes0 = Math.floor((diffs / (1000 * 60)) % 60);
+      const seconds0 = Math.floor((diffs / 1000) % 60);
+      document.getElementById('countdown0').textContent = `${days0}d ${hours0}h ${minutes0}m ${seconds0}s`;
+      document.getElementById('countdown').textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
 
-    </script>
-</body>
-
-</html>
+  </script>
+{% include"footer.html" %}

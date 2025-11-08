@@ -27,7 +27,7 @@ def home():
 
 @app.route('/clock')
 def clock():
-    return render_template('clock.html')
+    return render_template('clock.html',hope_graduation="2027-06-19",birth30="2028-01-24")
 
 @app.route('/projects/personal')
 def pj_personal():
