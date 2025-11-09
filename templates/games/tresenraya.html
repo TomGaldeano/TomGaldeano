@@ -74,8 +74,7 @@
 
     </div>
     <script>
-    </script>
-    <script>
+        document.addEventListener("DOMContentLoaded", () => {
         const new_game = getElementById
         const tablero =
             [document.getElementById("pos0"), document.getElementById("pos1"),
@@ -189,11 +188,12 @@
             
 
         }
+
         for(let i=0;partida.length;i++){
             tablero[i].addEventListener(onclick(), game_action(i))
         }
     new_game.add_event_listener(onclick(), StartGame())
-
+    })
     </script>
 </body>
 
