@@ -45,6 +45,10 @@ def pj_per_built_in_api():
 def pj_games():
     return render_template('projects/pj_games.html')
 
+@app.route('/projects/games/tresenraya')
+def tresenraya():
+    return render_template('games/tresenraya.html')
+
 @app.route('/projects/ordered')
 def pj_ordered():
     return render_template('projects/pj_ordered.html')

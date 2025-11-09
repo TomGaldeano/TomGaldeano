@@ -32,7 +32,10 @@
     border: 3px solid var(--white);
     outline: 3px solid var(--black);
 }
-
+body{
+  height: 100vh;
+  color: var(--black);
+}
 .red_hover:hover{color: var(--red);}
 .blue_hover:hover{color: var(--blue);}
 .green_hover:hover{color:var(--green);}
@@ -45,6 +48,17 @@
 .golden_link:hover{
   color: var(--yellow);
   text-decoration: none;
+}
+.green_link{
+  color: var(--black);
+}
+.green_link:hover{
+  background-color:var(--green);
+  color: var(--white);
+}
+.list_item{
+  border-radius: 20px;
+  border: 1px solid var(--black);
 }
 .gray_link{color: var(--dark_gray);}
 .gray_link:hover{
