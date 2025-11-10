@@ -1,0 +1,145 @@
+@keyframes across1{/* need to do math */
+  0%   {left:1vw; top:1vh;}
+  50% {left:95vw; top: 1vh;}
+  100%   {left:1vw; top:1vh;}
+}
+.ball1{
+    width: 2vw;
+    height: 2vw;
+    background-color:var(--blue);
+    border-radius: 50%;
+    animation-name: across1;
+    animation-iteration-count: infinite;
+    z-index:-10;
+    animation-duration: 30s;
+    position: relative;
+}
+
+@keyframes across2{/* need to do math */
+  0%   {left:1vw; top:20vh;}
+  50% {left:95vw; top: 20vh;}
+  100%   {left:1vw; top:20vh;}
+}
+.ball2{
+    width: 2vw;
+    height: 2vw;
+    background-color:var(--blue);
+    border-radius: 50%;
+    animation-name: across2;
+    animation-iteration-count: infinite;
+    z-index:-10;
+    animation-duration: 50s;
+    position: relative;
+}
+@keyframes across3{/* need to do math */
+  0%   {left:1vw; top:40vh;}
+  50% {left:95vw; top: 40vh;}
+  100%   {left:1vw; top:40vh;}
+}
+.ball3{
+    width: 2vw;
+    height: 2vw;
+    background-color:var(--blue);
+    border-radius: 50%;
+    animation-name: across3;
+    animation-iteration-count: infinite;
+    z-index:-10;
+    animation-duration: 40s;
+    position: relative;
+}
+@keyframes across4{/* need to do math */
+  0%   {left:1vw; top:60vh;}
+  50% {left:95vw; top: 60vh;}
+  100%   {left:1vw; top:60vh;}
+}
+.ball4{
+    width: 2vw;
+    height: 2vw;
+    background-color:var(--blue);
+    border-radius: 50%;
+    animation-name: across4;
+    animation-iteration-count: infinite;
+    z-index:-10;
+    animation-duration: 20s;
+    position: relative;
+}
+@keyframes across5{/* need to do math */
+  0%   {left:1vw; top:80vh;}
+  50% {left:95vw; top: 80vh;}
+  100%   {left:1vw; top:80vh;}
+}   
+.ball5{
+    width: 2vw;
+    height: 2vw;
+    background-color:var(--blue);
+    border-radius: 50%;
+    animation-name: across5;
+    animation-iteration-count: infinite;
+    z-index:-10;
+    animation-duration: 60s;
+    position: relative;
+}
+@keyframes across6{/* need to do math */
+  0%   {left:95vw; top:100vh;}
+  50% {left:1vw; top: 100vh;}
+  100%   {left:95vw; top:100vh;}
+}
+.ball6{
+    width: 2vw;
+    height: 2vw;
+    background-color:var(--blue);
+    border-radius: 50%;
+    animation-name: across6;
+    animation-iteration-count: infinite;
+    z-index:-10;
+    animation-duration: 30s;
+    position: relative;
+}
+@keyframes across7{/* need to do math */
+  0%   {left:95vw; top:120vh;}
+  50% {left:1vw; top: 120vh;}
+  100%   {left:95vw; top:120vh;}
+}
+.ball7{
+    width: 2vw;
+    height: 2vw;
+    background-color:var(--blue);
+    border-radius: 50%;
+    animation-name: across7;
+    animation-iteration-count: infinite;
+    z-index:-10;
+    animation-duration: 40s;
+    position: relative;
+}
+@keyframes across8{/* need to do math */
+  0%   {left:95vw; top:140vh;}
+  50% {left:1vw; top: 140vh;}
+  100%   {left:95vw; top:140vh;}
+}
+.ball8{
+    width: 2vw;
+    height: 2vw;
+    background-color:var(--blue);
+    border-radius: 50%;
+    animation-name: across8;
+    animation-iteration-count: infinite;
+    z-index:-10;
+    animation-duration: 20s;
+    position: relative;
+}
+@keyframes across9{/* need to do math */
+  0%   {left:95vw; top:160vh;}
+  50% {left:1vw; top: 160vh;}
+  100%   {left:95vw; top:160vh;}
+}
+.ball9{
+    width: 2vw;
+    height: 2vw;
+    background-color:var(--blue);
+    border-radius: 50%;
+    animation-name: across9;
+    animation-iteration-count: infinite;
+    z-index:-10;
+    animation-duration: 50s;
+    position: relative;
+}

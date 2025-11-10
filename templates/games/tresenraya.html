@@ -74,14 +74,14 @@
 
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-        const new_game = getElementById
+        document.addEventListener('DOMContentLoaded', () => {
         const tablero =
             [document.getElementById("pos0"), document.getElementById("pos1"),
             document.getElementById("pos2"), document.getElementById("pos3"),
             document.getElementById("pos4"), document.getElementById("pos5"),
             document.getElementById("pos6"), document.getElementById("pos7"),
             document.getElementById("pos8")];
+        const new_game = document.getElementById("new_game");
         let partida = [];
         function StartGame() {
             for (let i = 0; i < tablero.length; i++) {
@@ -90,21 +90,20 @@
                 partida[i] = ' ';
             }
         }
-        StartGame();
         function make_move(pos) {
-                tablero[pos].textContent = 'X';
-                tablero[pos].classList.remove("possible_move")
-                partida[i] = 0
-
-    }
-        function computer_move(board) {
+            tablero[pos].textContent = 'X';
+            tablero[pos].classList.remove("possible_move");
+            partida[pos] = "X";
+        }
+        function computer_move() {
             // temporary stupid algorithm
-            for (let i = 0; i < array.length; i++) {
-                if(partida[i]=' '){
-                    tablero[i].textContent="O";
-                    partida[i]='O';
-                }                   
-                
+            for (let i = 0; i < tablero.length; i++) {
+                if (partida[i] = ' ') {
+                    tablero[i].textContent = "O";
+                    partida[i] = 'O';
+                    return;
+                }
+
             }
 
         }
@@ -128,7 +127,7 @@
             } else if (partida[2] == 'X' && partida[4] == 'X' && partida[6] == 'X') { // diagonal 2
                 victory = true;
             }
-            if (victory){
+            if (victory) {
                 document.getElementById("victory").textContent = "You won";
             }
             return victory;
@@ -153,47 +152,46 @@
             } else if (partida[2] == 'O' && partida[4] == 'O' && partida[6] == 'O') { // diagonal 2
                 victory = true;
             }
-            if (victory){
+            if (victory) {
                 document.getElementById("victory").textContent = "Game Over";
             }
             return victory;
         }
-        function possible_move(pos){
-            if (partida[pos]=' ') {
-                return true;
-            }
-        } return false;
-
-
-        function is_draw(board) {
-            let draw = true;
-            for (let i = 0; i < length(tablero) < i; i++) {
-                if (board[i] == ' ') {
-                    draw = false;
+           function possible_move(pos) {
+                if (partida[pos] = ' ') {
+                    return true;
                 }
+                return false;
+            }
 
+            function is_draw(board) {
+                let draw = true;
+                for (let i = 0; i < tablero.length; i++) {
+                    if (board[i] == ' ') {
+                        draw = false;
+                    }
+
+                }
+                if (draw) {
+                    document.getElementById("victory").textContent = "draw";
+                }
+                return draw
             }
-            if (draw) {
-                document.getElementById("victory").textContent = "draw";
+            function game_action(pos) {
+                if (possible_move(pos)) {
+                    make_move(pos);
+                }
+                if (!(human_won(partida) || computer_won(partida) || is_draw(partida))) {
+                    computer_move();
+                }
             }
-            return draw
-        }
-        function game_action(pos){
-            if(possible_move(pos)){
-                make_move(pos)
+            StartGame();
+            for (let i = 0; i<partida.length; i++) {
+                tablero[i].addEventListener("click",()=> game_action(i));
             }
-            if(!(human_won(partida) || computer_won(partida) || is_draw(partida))){
-                computer_move();
-            }
+            new_game.addEventListener("click",()=> StartGame());
             
-
-        }
-
-        for(let i=0;partida.length;i++){
-            tablero[i].addEventListener(onclick(), game_action(i))
-        }
-    new_game.add_event_listener(onclick(), StartGame())
-    })
+        });
     </script>
 </body>
 

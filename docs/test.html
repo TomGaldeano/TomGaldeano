@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    :root{
+      --b1x:50vw;
+      --b1y:50vh;
+      --rad:2vw;
+    }
+    @keyframes circle{/* need to do math */
+  0%   {left:var(--b1x); top:var(--b1y);}
+6.25%  {left:0px; top:calc(10vw*-0.487);}
+12.5%   {left:0px; top:0px;}
+18.75% {left:0px; top:0px;}
+25.0% {left:0px; top:0px;}
+31.25% {left:0px; top:0px;}
+37.5% {left:0px; top:0px;}
+43.75% {left:0px; top:0px;}
+50.0% {left:0px; top:0px;}
+56.25% {left:0px; top:0px;}
+62.5% {left:0px; top:0px;}
+68.75% {left:0px; top:0px;}
+75.0% {left:0px; top:0px;}
+81.25% {left:0px; top:0px;}
+87.5% {left:0px; top:0px;}
+93.75%{left:0px; top:0px;}
+  100% {left:var(--bx); top:var(--b1y);}
+}
+.ball{
+    width: 2vw;
+    height: 2vw;
+    background-color:blue;
+    border-radius: 50%;
+    animation-name: circle;
+    animation-iteration-count: infinite;
+    z-index: 10;
+    animation-duration: 5s;
+    position: absolute;
+    right: 50vw;
+    top:50vh;
+}
+  </style>
+</head>
+<body>
+  <div class="ball"></div>
+</body>
+</html>

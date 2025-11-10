@@ -51,9 +51,7 @@
         }
 
         a,
-        a:visited,
-        #Spanish,
-        #English {
+        a:visited{
             color: var(--blue);
             text-decoration: none;
         }
@@ -167,6 +165,11 @@
             color: var(--black);
             background-color: var(--white);
         }
+        a:focus, a:focus-visible,
+        button:focus, button:focus-visible,
+        nav li:focus, nav li:focus-visible{
+            outline: 1px solid var(--green);
+        }
     </style>
 </head>
 
@@ -176,10 +179,10 @@
         <div>
             <nav>
                 <ul>
-                    <li><a href="#conversion">Conversion</a></li>
-                    <li><a href="#operaciones">Operaciones</a></li>
-                    <li><a href="#complementos">Complemento</a></li>
-                    <li><a href="{{url_for('pj_personal')}}">Projects</a></li>
+                    <li><a href="#conversion" tabindex="1">Conversion</a></li>
+                    <li><a href="#operaciones" tabindex="2">Operaciones</a></li>
+                    <li><a href="#complementos" tabindex="3">Complemento</a></li>
+                    <li><a href="{{url_for('pj_personal')}}" tabindex="4">Projects</a></li>
                 </ul>
             </nav>
         </div>
@@ -189,13 +192,13 @@
         <div>
             <h2 id="Conversion">Conversiones: binario, octal, decimal, hexadecimal</h2>
             <table>
-                <caption>Hexadecimal</caption>
+                <caption tabindex="5">Hexadecimal</caption>
                 <tr id="hex_bin_row">
-                    <td>Binario</td>
-                    <td id="hex_bin_value"></td>
-                    <td id="hex_bin_answer"><input id="hex_bin_input" type="text" aria-label="binary input"></td>
-                    <td><button id="hex_bin_button">Comprobar</button></td>
-                    <td class="small_column" id="hex_bin_result"></td>
+                    <td tabindex="6">Binario</td>
+                    <td id="hex_bin_value" tabindex="7"></td>
+                    <td id="hex_bin_answer"><input id="hex_bin_input" type="text" aria-label="binary input" tabindex="8"></td>
+                    <td><button id="hex_bin_button" tabindex="9">Comprobar</button></td>
+                    <td class="small_column" id="hex_bin_result" ></td>
                 </tr>
                 <tr id="hex_oct_row">
                     <td>Octal</td>
