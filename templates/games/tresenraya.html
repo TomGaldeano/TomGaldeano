@@ -97,7 +97,7 @@
             partida[pos] = "X";
         }
         function computer_move() {
-            // temporary stupid algorithm
+            /* temporary stupid algorithm
             for (let i = 0; i < tablero.length; i++) {
                 if (partida[i] == ' ') {
                     tablero[i].textContent = "O";
@@ -106,7 +106,23 @@
                 }
 
             }
-
+            */
+           let moves = [];
+           for(let i =0;i<partida.length;i++){
+            if (partida[i]==' ') {
+                moves[i]=maximin(partida,1);
+            }else{
+                moves[i]=-100;
+            }
+           }
+           max=Math.max(moves);
+           function ismax(num) {
+                return num==max
+           }
+           move = moves.findIndex(ismax)-1;
+            tablero[move].textContent = "O";
+            partida[move] = 'O';
+            return;
         }
 
         function human_won(board) {
@@ -178,12 +194,47 @@
                 }
                 return draw
             }
+
+            function maximin(board,depth){
+                let sum = 0;
+                if (human_won(board)){
+                    return -1;
+                } else if(computer_won(board))
+                    return 1;
+                else if(is_draw()){
+                    return 0;
+                }else{
+                    for(let i=1;i<tablero.length;i++){
+                        if (partida[i]==' '){
+                            copy = Array.from(partida);
+                            if (depth%2==1){
+                                copy[i]="O";
+                                sum+=maximin(copy,depth+1);
+                            }else{
+                                copy[i]="X";
+                                sum+=maximin(copy,depth+1);
+                            }
+                        }
+                        if(sum!=0){
+                            return sum/depth;
+                        }else{
+                            return 0;
+                        }
+
+                    }
+                    
+                }
+
+            }
+
             function game_action(pos) {
                 if (!(human_won(partida) || computer_won(partida) || is_draw(partida))) {
                     if (possible_move(pos)) {
-                        setTimeout(make_move(pos), 2000);               
+                        make_move(pos);               
                             if (!(human_won(partida) || computer_won(partida) || is_draw(partida))) {
                                 computer_move();
+                                computer_won();
+                                is_draw();
                             }
                         }
                     }
