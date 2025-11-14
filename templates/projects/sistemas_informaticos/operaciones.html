@@ -416,8 +416,8 @@
                 const input = document.getElementById("suma_input");
                 const display1 = document.getElementById('suma_value1');
                 const display2 = document.getElementById('suma_value2');
-                let value1 = Math.floor(Math.random() * 1000);
-                let value2 = Math.floor(Math.random() * 1000);
+                let value1 = Math.floor(Math.random() * 500);
+                let value2 = Math.floor(Math.random() * 500);
                 let value = value1 + value2;
                 function render() {
                     display1.textContent = value1.toString(2).padStart(10, "0");
@@ -437,8 +437,8 @@
                         setTimeout(() => ResultEl.textContent = '', 2000);
                     } else if (parsed === value) {
                         result.textContent = 'Acierto';
-                        value1 = Math.floor(Math.random() * 1000);
-                        value2 = Math.floor(Math.random() * 1000);
+                        value1 = Math.floor(Math.random() * 500);
+                        value2 = Math.floor(Math.random() * 500);
                         value = value1 + value2;
                         render();
                         setTimeout(() => result.textContent = '', 2000);
