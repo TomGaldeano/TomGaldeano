@@ -60,8 +60,7 @@
             text-decoration: underline;
         }
 
-        h2,
-        h3 {
+        h2{
             margin-top: 0;
             color: var(--black);
             border-bottom: 2px solid var(--black);
@@ -170,6 +169,13 @@
         nav li:focus, nav li:focus-visible{
             outline: 1px solid var(--green);
         }
+        .acierto{
+            background-color: var(--green);
+
+        }
+        .error{
+            background-color: var(--red);
+        }
     </style>
 </head>
 
@@ -191,6 +197,7 @@
         </div>
         <div>
             <h2 id="Conversion">Conversiones: binario, octal, decimal, hexadecimal</h2>
+            <h3>Racha: <span id="conversiones">0</span></h3>
             <table>
                 <caption tabindex="5">Hexadecimal</caption>
                 <tr id="hex_bin_row">
@@ -295,6 +302,7 @@
         <br>
         <div>
             <h2 id="operaciones">Sumas y restas en binario</h2>
+            <h3>Racha: <span id="sumasrestas">0</span></h3>
             <table>
                 <tr class="tr-operaciones">
                     <td rowspan="3" class="small_column">+</td>
@@ -330,8 +338,9 @@
         <br>
         <div>
             <h2 id="complementos">Complemento a 1 y complemento a 2</h2>
+            <h3>Racha: <span id="complementos">0</span></h3>
             <table>
-                <tr>
+                <tr id="complemento1">
                     <td>Complemento a 1</td>
                     <td id="complemento1_value"></td>
                     <td><input type="text" id="complemento1_input"></td>

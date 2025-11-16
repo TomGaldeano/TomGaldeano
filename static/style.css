@@ -47,14 +47,14 @@ body{
 .golden_link{color: var(--yellow);}
 .golden_link:hover{
   color: var(--yellow);
-  text-decoration: none;
+  text-decoration: underline;
 }
 .green_link{
-  color: var(--black);
+  color: var(--green);
 }
 .green_link:hover{
-  background-color:var(--green);
-  color: var(--white);
+  color: var(--green);
+  text-decoration: underline;
 }
 .list_item{
   border-radius: 20px;
