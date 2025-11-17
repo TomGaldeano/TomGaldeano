@@ -51,7 +51,7 @@
         }
 
         a,
-        a:visited{
+        a:visited {
             color: var(--blue);
             text-decoration: none;
         }
@@ -60,7 +60,7 @@
             text-decoration: underline;
         }
 
-        h2{
+        h2 {
             margin-top: 0;
             color: var(--black);
             border-bottom: 2px solid var(--black);
@@ -164,17 +164,25 @@
             color: var(--black);
             background-color: var(--white);
         }
-        a:focus, a:focus-visible,
-        button:focus, button:focus-visible,
-        nav li:focus, nav li:focus-visible{
+
+        a:focus,
+        a:focus-visible,
+        button:focus,
+        button:focus-visible,
+        nav li:focus,
+        nav li:focus-visible {
             outline: 1px solid var(--green);
         }
-        .acierto{
+
+        .acierto {
             background-color: var(--green);
+            color: var(--white);
 
         }
-        .error{
+
+        .error {
             background-color: var(--red);
+            color: var(--white);
         }
     </style>
 </head>
@@ -203,9 +211,10 @@
                 <tr id="hex_bin_row">
                     <td tabindex="6">Binario</td>
                     <td id="hex_bin_value" tabindex="7"></td>
-                    <td id="hex_bin_answer"><input id="hex_bin_input" type="text" aria-label="binary input" tabindex="8"></td>
+                    <td id="hex_bin_answer"><input id="hex_bin_input" type="text" aria-label="binary input"
+                            tabindex="8"></td>
                     <td><button id="hex_bin_button" tabindex="9">Comprobar</button></td>
-                    <td class="small_column" id="hex_bin_result" ></td>
+                    <td class="small_column" id="hex_bin_result"></td>
                 </tr>
                 <tr id="hex_oct_row">
                     <td>Octal</td>
@@ -327,11 +336,6 @@
                     <td colspan="2" style="background-color: var(--grey);"><button class="center_suma_resta"
                             id="resta_button">Comprobar</button></td>
                 </tr>
-                <tr>
-                    <td colspan="2" id="suma_result" class="center_suma_resta_res"></td>
-                    <td></td>
-                    <td colspan="2" id="resta_result" class="center_suma_resta_res"></td>
-                </tr>
             </table>
         </div>
         <br>
@@ -345,14 +349,12 @@
                     <td id="complemento1_value"></td>
                     <td><input type="text" id="complemento1_input"></td>
                     <td><button id="complemento1_button">Comprobar</button></td>
-                    <td class="small_column" id="complemento1_result"></td>
                 </tr>
-                <tr>
+                <tr id="complemento2">
                     <td>Complemento a 2</td>
                     <td id="complemento2_value"></td>
                     <td><input type="text" id="complemento2_input"></td>
                     <td><button id="complemento2_button">Comprobar</button></td>
-                    <td id="complemento2_result" class="small_column"></td>
                 </tr>
             </table>
         </div>
@@ -460,7 +462,6 @@
             }
             suma();
             function resta() {
-                const result = document.getElementById("resta_result");
                 const input = document.getElementById("resta_input");
                 const display1 = document.getElementById('resta_value1');
                 const display2 = document.getElementById('resta_value2');
@@ -490,7 +491,8 @@
                         result.textContent = 'Incorrecto';
                         setTimeout(() => ResultEl.textContent = '', 2000);
                     } else if (parsed === value) {
-                        result.textContent = 'Acierto';
+                        display1.classList.add("acierto");
+                        display2.classList.add("acierto")
                         value1 = Math.floor(Math.random() * 1000);
                         if (value1 < 200) {
                             value1 += 200;
@@ -501,10 +503,19 @@
                         }
                         value = value1 - value2;
                         render();
-                        setTimeout(() => result.textContent = '', 2000);
+                        function remove_acierto() {
+                            display1.classList.remove("acierto");
+                            display2.classList.remove("acierto");
+                        }
+                        setTimeout(remove_acierto, 2000);
                     } else {
-                        result.textContent = 'Incorrecto';
-                        setTimeout(() => result.textContent = '', 2000);
+                        display1.classList.add("error");
+                        display2.classList.add("error");
+                        function remove_error() {
+                            display1.classList.remove("error");
+                            display2.classList.remove("error");
+                        }
+                        setTimeout(remove_error, 2000);
                     }
                     input.value = '';
                 });
@@ -512,7 +523,7 @@
             resta()
             // Complementos
             function complemento1() {
-                const result = document.getElementById("complemento1_result");
+                const result = document.getElementById("complemento1")
                 const input = document.getElementById("complemento1_input");
                 const display = document.getElementById('complemento1_value');
                 let value = Math.floor(Math.random() * 1000);
@@ -526,20 +537,15 @@
                 render();
                 document.getElementById("complemento1_button").addEventListener('click', function () {
                     const raw = input.value.trim();
-                    if (!raw) {
-                        result.textContent = '';
-                        return;
-                    }
-
                     if (raw == answer) {
-                        result.textContent = 'Acierto';
+                        result.classList.add("acierto");
                         value = Math.floor(Math.random() * 1000);
                         answer = dec2bin(~value).toString().slice(22);
                         render();
-                        setTimeout(() => result.textContent = '', 2000);
+                        setTimeout(() => result.classList.remove("acierto"), 2000);
                     } else {
-                        result.textContent = 'Incorrecto';
-                        setTimeout(() => result.textContent = '', 2000);
+                        result.classList.add("error")
+                        setTimeout(() => result.classList.remove("error"), 2000);
                     }
                     input.value = '';
                 });
@@ -566,14 +572,14 @@
                     }
 
                     if (raw == answer) {
-                        result.textContent = 'Acierto';
+                        result.classList.add("acierto");
                         value = Math.floor(Math.random() * 1000);
                         answer = dec2bin(~value + 1).toString().slice(22);
                         render();
-                        setTimeout(() => result.textContent = '', 2000);
+                        setTimeout(() => result.classList.remove("acierto"), 2000);
                     } else {
-                        result.textContent = 'Incorrecto';
-                        setTimeout(() => result.textContent = '', 2000);
+                        result.classList.add("error");
+                        setTimeout(() => result.classList.remove("error"), 2000);
                     }
                     input.value = '';
                 });
