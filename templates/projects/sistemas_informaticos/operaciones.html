@@ -175,13 +175,14 @@
         }
 
         .acierto {
-            background-color: var(--green);
+            background-color: var(--green) !important;
             color: var(--white);
 
         }
 
         .error {
-            background-color: var(--red);
+            
+            background-color: var(--red) !important;
             color: var(--white);
         }
     </style>
@@ -234,21 +235,21 @@
             <br>
             <table>
                 <caption>Decimal</caption>
-                <tr>
+                <tr id="dec_bin_row">
                     <td>Binario</td>
                     <td id="dec_bin_value"></td>
                     <td id="dec_bin_answer"><input id="dec_bin_input" type="text"></td>
                     <td><button id="dec_bin_button">Comprobar</button></td>
                     <td class="small_column" id="dec_bin_result"></td>
                 </tr>
-                <tr>
+                <tr id ="dec_oct_row">
                     <td>Octal</td>
                     <td id="dec_oct_value"></td>
                     <td id="dec_oct_answer"><input id="dec_oct_input" type="text"></td>
                     <td><button id="dec_oct_button">Comprobar</button></td>
                     <td class="small_column" id="dec_oct_result"></td>
                 </tr>
-                <tr>
+                <tr id="dec_hex_row">
                     <td>Hexadecimal</td>
                     <td id="dec_hex_value"></td>
                     <td id="dec_hex_answer"><input id="dec_hex_input" type="text"></td>
@@ -259,21 +260,21 @@
             <br>
             <table>
                 <caption>Octal</caption>
-                <tr>
+                <tr id="oct_bin_row">
                     <td>Binario</td>
                     <td id="oct_bin_value"></td>
                     <td id="oct_bin_answer"><input id="oct_bin_input" type="text"></td>
                     <td><button id="oct_bin_button">Comprobar</button></td>
                     <td class="small_column" id="oct_bin_result"></td>
                 </tr>
-                <tr>
+                <tr id="oct_dec_row">
                     <td>Decimal</td>
                     <td id="oct_dec_value"></td>
                     <td id="oct_dec_answer"><input id="oct_dec_input" type="text"></td>
                     <td><button id="oct_dec_button">Comprobar</button></td>
                     <td class="small_column" id="oct_dec_result"></td>
                 </tr>
-                <tr>
+                <tr id="oct_dec_row">
                     <td>Hexadecimal</td>
                     <td id="oct_hex_value"></td>
                     <td id="oct_hex_answer"><input id="oct_hex_input" type="text"></td>
@@ -552,7 +553,7 @@
             }
             complemento1();
             function complemento2() {
-                const result = document.getElementById("complemento2_result");
+                const result = document.getElementById("complemento2");
                 const input = document.getElementById("complemento2_input");
                 const display = document.getElementById('complemento2_value');
                 let value = Math.floor(Math.random() * 1000);
@@ -566,11 +567,6 @@
                 render();
                 document.getElementById("complemento2_button").addEventListener('click', function () {
                     const raw = input.value.trim();
-                    if (!raw) {
-                        result.textContent = '';
-                        return;
-                    }
-
                     if (raw == answer) {
                         result.classList.add("acierto");
                         value = Math.floor(Math.random() * 1000);
