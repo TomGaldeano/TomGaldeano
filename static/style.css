@@ -36,14 +36,26 @@ body{
   height: 100vh;
   color: var(--black);
 }
-.red_hover:hover{color: var(--red);}
-.blue_hover:hover{color: var(--blue);}
-.green_hover:hover{color:var(--green);}
-.gold_hover:hover{color: var(--yellow);}
-.red_hover{color:var(--white)}
-.blue_hover{color:var(--white);}
-.green_hover{color: var(--white);}
-.gold_hover{color: var(--white);}
+.red_hover:hover{
+  color: var(--red);
+  text-decoration: underline;
+}
+.blue_hover:hover{
+  color: var(--blue);
+  text-decoration: underline;
+}
+.green_hover:hover{
+  color:var(--green);
+  text-decoration: underline;
+}
+.gold_hover:hover{
+  color: var(--yellow);
+  text-decoration: underline;
+}
+.red_hover{color:var(--black);}
+.blue_hover{color:var(--black);}
+.green_hover{color: var(--black);}
+.gold_hover{color: var(--black);}
 .golden_link{color: var(--yellow);}
 .golden_link:hover{
   color: var(--yellow);

@@ -181,7 +181,7 @@
         }
 
         .error {
-            
+
             background-color: var(--red) !important;
             color: var(--white);
         }
@@ -206,7 +206,7 @@
         </div>
         <div>
             <h2 id="Conversion">Conversiones: binario, octal, decimal, hexadecimal</h2>
-            <h3>Racha: <span id="conversiones">0</span></h3>
+            <h3>Racha: <span id="conversiones_cont">0</span></h3>
             <table>
                 <caption tabindex="5">Hexadecimal</caption>
                 <tr id="hex_bin_row">
@@ -242,7 +242,7 @@
                     <td><button id="dec_bin_button">Comprobar</button></td>
                     <td class="small_column" id="dec_bin_result"></td>
                 </tr>
-                <tr id ="dec_oct_row">
+                <tr id="dec_oct_row">
                     <td>Octal</td>
                     <td id="dec_oct_value"></td>
                     <td id="dec_oct_answer"><input id="dec_oct_input" type="text"></td>
@@ -285,7 +285,7 @@
             <br>
             <table>
                 <caption>Binario</caption>
-                <tr>
+                <tr id="bin_oct_row">
                     <td>Octal</td>
                     <td id="bin_oct_value"></td>
                     <td id="bin_oct_answer"><input id="bin_oct_input" type="text"></td>
@@ -293,13 +293,13 @@
                     <td class="small_column" id="bin_oct_result"></td>
                 </tr>
                 <tr>
-                    <td>Decimal</td>
+                    <td id="bin_dec_row">Decimal</td>
                     <td id="bin_dec_value"></td>
                     <td id="bin_dec_answer"><input id="bin_dec_input" type="text"></td>
                     <td><button id="bin_dec_button">Comprobar</button></td>
                     <td class="small_column" id="bin_dec_result"></td>
                 </tr>
-                <tr>
+                <tr id="bin_hex_row">
                     <td>Hexadecimal</td>
                     <td id="bin_hex_value"></td>
                     <td id="bin_hex_answer"><input id="bin_hex_input" type="text"></td>
@@ -312,7 +312,7 @@
         <br>
         <div>
             <h2 id="operaciones">Sumas y restas en binario</h2>
-            <h3>Racha: <span id="sumasrestas">0</span></h3>
+            <h3>Racha: <span id="operaciones_cont">0</span></h3>
             <table>
                 <tr class="tr-operaciones">
                     <td rowspan="3" class="small_column">+</td>
@@ -343,7 +343,7 @@
         <br>
         <div>
             <h2 id="complementos">Complemento a 1 y complemento a 2</h2>
-            <h3>Racha: <span id="complementos">0</span></h3>
+            <h3>Racha: <span id="complementos_cont">0</span></h3>
             <table>
                 <tr id="complemento1">
                     <td>Complemento a 1</td>
@@ -366,6 +366,8 @@
     <script>
         // Utility to create a conversion exercise
         (function () {
+            const rachas = [document.getElementById("conversiones_cont"), document.getElementById("operaciones_cont"), document.getElementById("complementos_cont")]
+            const valor_racha = [0, 0, 0];
             const light_dark = document.querySelector('#color_changer');
 
             function makeExercise({ valueEl, inputEl, buttonEl, resultEl, displayBase, expectedBase, randMax = 1000 }) {
@@ -379,23 +381,26 @@
                 buttonEl.addEventListener('click', function () {
                     const raw = inputEl.value.trim();
                     const ResultEl = resultEl;
-                    if (!raw) {
-                        ResultEl.textContent = '';
-                        return;
-                    }
+
                     // parseInt handles prefixes and bases; ensure base is correct
                     const parsed = parseInt(raw, expectedBase);
                     if (!Number.isFinite(parsed) || isNaN(parsed)) {
-                        ResultEl.textContent = 'Incorrecto';
-                        setTimeout(() => ResultEl.textContent = '', 2000);
+                        ResultEl.classList.add("error");
+                        setTimeout(() => ResultEl.classList.remove("error"), 2000);
+                        valor_racha[0] = 0;
+                        rachas[0].textContent = valor_racha[0]
                     } else if (parsed === value) {
-                        ResultEl.textContent = 'Acierto';
+                        valor_racha[0]++;
+                        rachas[0].textContent = valor_racha[0]
+                        ResultEl.classList.add("acierto");
                         value = Math.floor(Math.random() * randMax);
                         render();
-                        setTimeout(() => ResultEl.textContent = '', 2000);
+                        setTimeout(() => ResultEl.classList.remove("acierto"), 2000);
                     } else {
-                        ResultEl.textContent = 'Incorrecto';
-                        setTimeout(() => ResultEl.textContent = '', 2000);
+                        ResultEl.classList.add("error");
+                        setTimeout(() => ResultEl.classList.remove("error"), 2000);
+                        valor_racha[0] = 0;
+                        rachas[0].textContent = valor_racha[0]
                     }
                     inputEl.value = '';
                 });
@@ -403,28 +408,27 @@
 
             const exercises = [
                 // Hex table: display hex, expect ...
-                { valueEl: document.getElementById('hex_bin_value'), inputEl: document.getElementById('hex_bin_input'), buttonEl: document.getElementById('hex_bin_button'), resultEl: document.getElementById('hex_bin_result'), displayBase: 16, expectedBase: 2 },
-                { valueEl: document.getElementById('hex_oct_value'), inputEl: document.getElementById('hex_oct_input'), buttonEl: document.getElementById('hex_oct_button'), resultEl: document.getElementById('hex_oct_result'), displayBase: 16, expectedBase: 8 },
-                { valueEl: document.getElementById('hex_dec_value'), inputEl: document.getElementById('hex_dec_input'), buttonEl: document.getElementById('hex_dec_button'), resultEl: document.getElementById('hex_dec_result'), displayBase: 16, expectedBase: 10 },
+                { valueEl: document.getElementById('hex_bin_value'), inputEl: document.getElementById('hex_bin_input'), buttonEl: document.getElementById('hex_bin_button'), resultEl: document.getElementById('hex_bin_row'), displayBase: 16, expectedBase: 2 },
+                { valueEl: document.getElementById('hex_oct_value'), inputEl: document.getElementById('hex_oct_input'), buttonEl: document.getElementById('hex_oct_button'), resultEl: document.getElementById('hex_oct_row'), displayBase: 16, expectedBase: 8 },
+                { valueEl: document.getElementById('hex_dec_value'), inputEl: document.getElementById('hex_dec_input'), buttonEl: document.getElementById('hex_dec_button'), resultEl: document.getElementById('hex_dec_row'), displayBase: 16, expectedBase: 10 },
 
                 // Decimal table: display decimal
-                { valueEl: document.getElementById('dec_bin_value'), inputEl: document.getElementById('dec_bin_input'), buttonEl: document.getElementById('dec_bin_button'), resultEl: document.getElementById('dec_bin_result'), displayBase: 10, expectedBase: 2 },
-                { valueEl: document.getElementById('dec_oct_value'), inputEl: document.getElementById('dec_oct_input'), buttonEl: document.getElementById('dec_oct_button'), resultEl: document.getElementById('dec_oct_result'), displayBase: 10, expectedBase: 8 },
-                { valueEl: document.getElementById('dec_hex_value'), inputEl: document.getElementById('dec_hex_input'), buttonEl: document.getElementById('dec_hex_button'), resultEl: document.getElementById('dec_hex_result'), displayBase: 10, expectedBase: 16 },
+                { valueEl: document.getElementById('dec_bin_value'), inputEl: document.getElementById('dec_bin_input'), buttonEl: document.getElementById('dec_bin_button'), resultEl: document.getElementById('dec_bin_row'), displayBase: 10, expectedBase: 2 },
+                { valueEl: document.getElementById('dec_oct_value'), inputEl: document.getElementById('dec_oct_input'), buttonEl: document.getElementById('dec_oct_button'), resultEl: document.getElementById('dec_oct_row'), displayBase: 10, expectedBase: 8 },
+                { valueEl: document.getElementById('dec_hex_value'), inputEl: document.getElementById('dec_hex_input'), buttonEl: document.getElementById('dec_hex_button'), resultEl: document.getElementById('dec_hex_row'), displayBase: 10, expectedBase: 16 },
 
                 // Octal table: display octal
-                { valueEl: document.getElementById('oct_bin_value'), inputEl: document.getElementById('oct_bin_input'), buttonEl: document.getElementById('oct_bin_button'), resultEl: document.getElementById('oct_bin_result'), displayBase: 8, expectedBase: 2 },
-                { valueEl: document.getElementById('oct_dec_value'), inputEl: document.getElementById('oct_dec_input'), buttonEl: document.getElementById('oct_dec_button'), resultEl: document.getElementById('oct_dec_result'), displayBase: 8, expectedBase: 10 },
-                { valueEl: document.getElementById('oct_hex_value'), inputEl: document.getElementById('oct_hex_input'), buttonEl: document.getElementById('oct_hex_button'), resultEl: document.getElementById('oct_hex_result'), displayBase: 8, expectedBase: 16 },
+                { valueEl: document.getElementById('oct_bin_value'), inputEl: document.getElementById('oct_bin_input'), buttonEl: document.getElementById('oct_bin_button'), resultEl: document.getElementById('oct_bin_row'), displayBase: 8, expectedBase: 2 },
+                { valueEl: document.getElementById('oct_dec_value'), inputEl: document.getElementById('oct_dec_input'), buttonEl: document.getElementById('oct_dec_button'), resultEl: document.getElementById('oct_dec_row'), displayBase: 8, expectedBase: 10 },
+                { valueEl: document.getElementById('oct_hex_value'), inputEl: document.getElementById('oct_hex_input'), buttonEl: document.getElementById('oct_hex_button'), resultEl: document.getElementById('oct_hex_row'), displayBase: 8, expectedBase: 16 },
 
                 // Binary table: display binary
-                { valueEl: document.getElementById('bin_oct_value'), inputEl: document.getElementById('bin_oct_input'), buttonEl: document.getElementById('bin_oct_button'), resultEl: document.getElementById('bin_oct_result'), displayBase: 2, expectedBase: 8 },
-                { valueEl: document.getElementById('bin_dec_value'), inputEl: document.getElementById('bin_dec_input'), buttonEl: document.getElementById('bin_dec_button'), resultEl: document.getElementById('bin_dec_result'), displayBase: 2, expectedBase: 10 },
-                { valueEl: document.getElementById('bin_hex_value'), inputEl: document.getElementById('bin_hex_input'), buttonEl: document.getElementById('bin_hex_button'), resultEl: document.getElementById('bin_hex_result'), displayBase: 2, expectedBase: 16 }
+                { valueEl: document.getElementById('bin_oct_value'), inputEl: document.getElementById('bin_oct_input'), buttonEl: document.getElementById('bin_oct_button'), resultEl: document.getElementById('bin_oct_row'), displayBase: 2, expectedBase: 8 },
+                { valueEl: document.getElementById('bin_dec_value'), inputEl: document.getElementById('bin_dec_input'), buttonEl: document.getElementById('bin_dec_button'), resultEl: document.getElementById('bin_dec_row'), displayBase: 2, expectedBase: 10 },
+                { valueEl: document.getElementById('bin_hex_value'), inputEl: document.getElementById('bin_hex_input'), buttonEl: document.getElementById('bin_hex_button'), resultEl: document.getElementById('bin_hex_row'), displayBase: 2, expectedBase: 16 }
             ];
             //suma y resta
             function suma() {
-                const result = document.getElementById("suma_result");
                 const input = document.getElementById("suma_input");
                 const display1 = document.getElementById('suma_value1');
                 const display2 = document.getElementById('suma_value2');
@@ -438,25 +442,33 @@
                 render();
                 document.getElementById("suma_button").addEventListener('click', function () {
                     const raw = input.value.trim();
-                    if (!raw) {
-                        result.textContent = '';
-                        return;
-                    }
                     // parseInt handles prefixes and bases; ensure base is correct
                     const parsed = parseInt(raw, 2);
                     if (!Number.isFinite(parsed) || isNaN(parsed)) {
-                        result.textContent = 'Incorrecto';
-                        setTimeout(() => ResultEl.textContent = '', 2000);
+                        display1.classList.add("error");
+                        display2.classList.add("error");
+                        valor_racha[1] = 0;
+                        rachas[1].textContent = valor_racha[1];
+                        setTimeout(() => display1.classList.remove("error"), 2000);
+                        setTimeout(() => display2.classList.remove("error"), 2000);
                     } else if (parsed === value) {
-                        result.textContent = 'Acierto';
+                        display1.classList.add("acierto");
+                        display2.classList.add("acierto");
+                        valor_racha[1]++;
+                        rachas[1].textContent = valor_racha[1];
                         value1 = Math.floor(Math.random() * 500);
                         value2 = Math.floor(Math.random() * 500);
                         value = value1 + value2;
                         render();
-                        setTimeout(() => result.textContent = '', 2000);
+                        setTimeout(() => display1.classList.remove("acierto"), 2000);
+                        setTimeout(() => display2.classList.remove("acierto"), 2000);
                     } else {
-                        result.textContent = 'Incorrecto';
-                        setTimeout(() => result.textContent = '', 2000);
+                        display1.classList.add("error");
+                        display2.classList.add("error");
+                        valor_racha[1] = 0;
+                        rachas[1].textContent = valor_racha[1];
+                        setTimeout(() => display1.classList.remove("error"), 2000);
+                        setTimeout(() => display2.classList.remove("error"), 2000);
                     }
                     input.value = '';
                 });
@@ -482,19 +494,20 @@
                 render();
                 document.getElementById("resta_button").addEventListener('click', function () {
                     const raw = input.value.trim();
-                    if (!raw) {
-                        result.textContent = '';
-                        return;
-                    }
                     // parseInt handles prefixes and bases; ensure base is correct
                     const parsed = parseInt(raw, 2);
                     if (!Number.isFinite(parsed) || isNaN(parsed)) {
-                        result.textContent = 'Incorrecto';
-                        setTimeout(() => ResultEl.textContent = '', 2000);
+                        display1.classList.add("error");
+                        display2.classList.add("error")
+                        setTimeout(() => display1.classList.remove("error"), 2000);
+                        setTimeout(() => display2.classList.remove("error"), 2000);
+                        valor_racha[1] = 0;
+                        rachas[1].textContent = valor_racha[1];
                     } else if (parsed === value) {
                         display1.classList.add("acierto");
-                        display2.classList.add("acierto")
-                        value1 = Math.floor(Math.random() * 1000);
+                        display2.classList.add("acierto");
+                        valor_racha[1]++;
+                        rachas[1].textContent = valor_racha[1]; value1 = Math.floor(Math.random() * 1000);
                         if (value1 < 200) {
                             value1 += 200;
                         }
@@ -516,6 +529,8 @@
                             display1.classList.remove("error");
                             display2.classList.remove("error");
                         }
+                        valor_racha[1] = 0;
+                        rachas[1].textContent = valor_racha[1];
                         setTimeout(remove_error, 2000);
                     }
                     input.value = '';
@@ -538,15 +553,25 @@
                 render();
                 document.getElementById("complemento1_button").addEventListener('click', function () {
                     const raw = input.value.trim();
-                    if (raw == answer) {
+                    if (!Number.isFinite(parsed) || isNaN(parsed)) {
+                        ResultEl.classList.add("error");
+                        setTimeout(() => ResultEl.classList.remove("error"), 2000);
+                        valor_racha[2] = 0;
+                        rachas[2].textContent = valor_racha[2]
+                    }
+                    else if (raw == answer) {
                         result.classList.add("acierto");
                         value = Math.floor(Math.random() * 1000);
                         answer = dec2bin(~value).toString().slice(22);
                         render();
                         setTimeout(() => result.classList.remove("acierto"), 2000);
+                        valor_racha[2] += 1;
+                        rachas[2].textContent = valor_racha[2];
                     } else {
                         result.classList.add("error")
                         setTimeout(() => result.classList.remove("error"), 2000);
+                        valor_racha[2] = 0;
+                        rachas[2].textContent = valor_racha[2];
                     }
                     input.value = '';
                 });
@@ -567,15 +592,25 @@
                 render();
                 document.getElementById("complemento2_button").addEventListener('click', function () {
                     const raw = input.value.trim();
-                    if (raw == answer) {
+                    if (!Number.isFinite(parsed) || isNaN(parsed)) {
+                        ResultEl.classList.add("error");
+                        setTimeout(() => ResultEl.classList.remove("error"), 2000);
+                        valor_racha[2] = 0;
+                        rachas[2].textContent = valor_racha[2]
+                    }
+                    else if (raw == answer) {
                         result.classList.add("acierto");
                         value = Math.floor(Math.random() * 1000);
                         answer = dec2bin(~value + 1).toString().slice(22);
                         render();
                         setTimeout(() => result.classList.remove("acierto"), 2000);
+                        valor_racha[2]++;
+                        rachas[2].textContent = valor_racha[2];
                     } else {
                         result.classList.add("error");
                         setTimeout(() => result.classList.remove("error"), 2000);
+                        valor_racha[2] = 0;
+                        rachas[2].textContent = valor_racha[2];
                     }
                     input.value = '';
                 });
