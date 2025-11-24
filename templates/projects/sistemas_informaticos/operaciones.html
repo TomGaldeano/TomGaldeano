@@ -274,7 +274,7 @@
                     <td><button id="oct_dec_button">Comprobar</button></td>
                     <td class="small_column" id="oct_dec_result"></td>
                 </tr>
-                <tr id="oct_dec_row">
+                <tr id="oct_hex_row">
                     <td>Hexadecimal</td>
                     <td id="oct_hex_value"></td>
                     <td id="oct_hex_answer"><input id="oct_hex_input" type="text"></td>
@@ -292,7 +292,7 @@
                     <td><button id="bin_oct_button">Comprobar</button></td>
                     <td class="small_column" id="bin_oct_result"></td>
                 </tr>
-                <tr>
+                <tr id="bin_dec_row">
                     <td id="bin_dec_row">Decimal</td>
                     <td id="bin_dec_value"></td>
                     <td id="bin_dec_answer"><input id="bin_dec_input" type="text"></td>
@@ -553,9 +553,10 @@
                 render();
                 document.getElementById("complemento1_button").addEventListener('click', function () {
                     const raw = input.value.trim();
+                    const parsed = parseInt(raw, 2);
                     if (!Number.isFinite(parsed) || isNaN(parsed)) {
-                        ResultEl.classList.add("error");
-                        setTimeout(() => ResultEl.classList.remove("error"), 2000);
+                        result.classList.add("error");
+                        setTimeout(() => result.classList.remove("error"), 2000);
                         valor_racha[2] = 0;
                         rachas[2].textContent = valor_racha[2]
                     }
@@ -592,9 +593,10 @@
                 render();
                 document.getElementById("complemento2_button").addEventListener('click', function () {
                     const raw = input.value.trim();
+                    const parsed = parseInt(raw, 2);
                     if (!Number.isFinite(parsed) || isNaN(parsed)) {
-                        ResultEl.classList.add("error");
-                        setTimeout(() => ResultEl.classList.remove("error"), 2000);
+                        result.classList.add("error");
+                        setTimeout(() => result.classList.remove("error"), 2000);
                         valor_racha[2] = 0;
                         rachas[2].textContent = valor_racha[2]
                     }
