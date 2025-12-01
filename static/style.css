@@ -209,3 +209,7 @@ td {
 a:focus, a:focus-visible{
   outline: 1px solid var(--green);
 }
+footer{
+  bottom: 0;
+  margin: 0 auto;
+}
