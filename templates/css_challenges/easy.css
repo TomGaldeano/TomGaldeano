@@ -1,0 +1,19 @@
+#boxes{
+    display: inline-block;
+}
+.box{
+width: 280px;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inconsolata", monospace;
+  font-size: 28px;
+  border: 1px solid #c39f76;
+  box-sizing: border-box;
+  margin:10px;
+}
+
+#box1::before{
+    content:"Hello World";    
+}
