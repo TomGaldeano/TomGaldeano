@@ -31,11 +31,13 @@ width: 280px;
   overflow:visible;
 }
 #box2::before{
-  margin: 50px;
+  margin-top: -40px;
+  margin-right: -80px;
   content: "Hello";
 
 }
 #box2::after{
+  margin-top: 40px;
   content: "World";
 }
 #box3{
@@ -52,5 +54,9 @@ width: 280px;
   margin:10px;
   content: "World";
   color: white;
+}
+#box4:after{
+  content:"Hello World";
+  
 }
 /* HTML: <div class="triangle"></div> */
