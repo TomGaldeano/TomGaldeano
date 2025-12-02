@@ -1,5 +1,8 @@
 #boxes{
-    display: inline-block;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .box{
 width: 280px;
@@ -9,11 +12,45 @@ width: 280px;
   justify-content: center;
   font-family: "Inconsolata", monospace;
   font-size: 28px;
-  border: 1px solid #c39f76;
+  border: 1px solid green;
   box-sizing: border-box;
   margin:10px;
 }
+.ch_box{
+  width: 280px;
+  height: 280px;
 
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
 #box1::before{
     content:"Hello World";    
 }
+#box2{
+  overflow:visible;
+}
+#box2::before{
+  margin: 50px;
+  content: "Hello";
+
+}
+#box2::after{
+  content: "World";
+}
+#box3{
+    --s: 100px; /* control the size */
+  --c: #222;
+  background:conic-gradient(at 50% var(--s),var(--c) 50%,#0000 0);
+
+}
+#box3:before{
+  content: "Hello";
+  margin:10px;
+}
+#box3:after{
+  margin:10px;
+  content: "World";
+  color: white;
+}
+/* HTML: <div class="triangle"></div> */
