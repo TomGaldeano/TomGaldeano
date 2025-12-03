@@ -1,0 +1,26 @@
+#boxes{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.box{
+width: 280px;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inconsolata", monospace;
+  font-size: 28px;
+  border: 1px solid green;
+  box-sizing: border-box;
+  margin:10px;
+}
+.ch_box{
+  width: 280px;
+  height: 280px;
+
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}

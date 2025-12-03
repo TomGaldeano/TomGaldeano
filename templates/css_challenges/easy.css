@@ -1,29 +1,4 @@
-#boxes{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-.box{
-width: 280px;
-  height: 280px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Inconsolata", monospace;
-  font-size: 28px;
-  border: 1px solid green;
-  box-sizing: border-box;
-  margin:10px;
-}
-.ch_box{
-  width: 280px;
-  height: 280px;
 
-  align-items: center;
-  justify-content: center;
-  display: flex;
-}
 #box1::before{
     content:"Hello World";    
 }
@@ -32,7 +7,7 @@ width: 280px;
 }
 #box2::before{
   margin-top: -40px;
-  margin-right: -80px;
+  margin-right: -78px;
   content: "Hello";
 
 }
@@ -41,10 +16,9 @@ width: 280px;
   content: "World";
 }
 #box3{
-    --s: 100px; /* control the size */
+  --s: 100px; /* control the size */
   --c: #222;
   background:conic-gradient(at 50% var(--s),var(--c) 50%,#0000 0);
-
 }
 #box3:before{
   content: "Hello";
@@ -57,6 +31,50 @@ width: 280px;
 }
 #box4:after{
   content:"Hello World";
-  
+  color: white;
+  text-shadow: 0px 0px 3px black, 0px 0px 2px black;
 }
+#box5::after{
+  background: linear-gradient(to right,black,white);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  content: "Hello World";
+}
+#box6::before{
+  content:"Hello";
+}
+#box6::after{
+  content:"World";
+  transform: rotateZ(180deg) rotateY(180deg) translateY(5px);
+}
+#box7{
+  background-color: green;
+  width:150px;
+  height:150px;
+}
+#box8{
+  background-color: green;
+  width:200px;
+  height:50px;
+  border-radius: 50px;
+}
+
+#box9::after{
+  content:"";
+        width: 100px;
+      height: 100px;
+      border: 10px solid green;
+      border-radius: 50%;
+      position: relative;
+      transform: translateX(-40px);
+}
+#box9::before{
+  content:"";
+        width: 50px;
+      height: 50px;
+      border: 10px solid green;
+      border-radius: 50%;
+      position: relative;
+}
+
 /* HTML: <div class="triangle"></div> */
