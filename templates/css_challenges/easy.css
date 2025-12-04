@@ -150,28 +150,21 @@
   border-radius: 50%;
   transform: translateX(20px) translateY(-0px);
 }
-#box14:before{
-  content:"";
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: 20px dotted wheat;
 
-}
-#box14:before{
-  content:"";
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: 20px dotted wheat;
 
-}
 #box14{
   width: 150px;
   height: 150px;
   background-color: green;
-  border-radius: 50%;
-  border: 19px dotted white;
+  clip-path: polygon(48% 100%,52% 100%,52% 60%, 100% 100%,100% 48%, 100% 52%,48% 60%);
+
+}
+#box15{
+  width: 150px;
+  height: 150px;
+  background-color: green;
+  clip-path: polygon(0% 0%,100% 100%, 100% 50%);
+
 }
 
 /* HTML: <div class="triangle"></div> */
