@@ -7,6 +7,7 @@
     }
     span{
         margin: 0 auto;
+        
     }
     input{
         max-width: 50px;
@@ -51,43 +52,43 @@
                     <tbody>
                         <tr>
                             <td><span>A</span></td>
-                            <td></td>
-                            <td></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
+                            <td><span class="gestion_llegada" data-index="0"></span></td>
+                            <td><span class="gestion_ejecucion" data-index="0"></span></td>
+                            <td><input class="gestion_espera" type="text" data-index="0"></td>
+                            <td><input class="gestion_retorno" type="text" data-index="0"></td>
+                            <td><input class="gestion_fin" type="text" data-index="0"></td>
                         </tr>
                         <tr>
                             <td><span>B</span></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><span class="gestion_llegada" data-index="1"></span></td>
+                            <td><span class="gestion_ejecucion" data-index="1"></span></td>
+                            <td><input class="gestion_espera" type="text" data-index="1"></td>
+                            <td><input class="gestion_retorno" type="text" data-index="1"></td>
+                            <td><input class="gestion_fin" type="text" data-index="1"></td>
                         </tr>
                         <tr>
                             <td><span>C</span></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><span class="gestion_llegada" data-index="2"></span></td>
+                            <td><span class="gestion_ejecucion" data-index="2"></span></td>
+                            <td><input class="gestion_espera" type="text" data-index="2"></td>
+                            <td><input class="gestion_retorno" type="text" data-index="2"></td>
+                            <td><input class="gestion_fin" type="text" data-index="2"></td>
                         </tr>
                         <tr>
-                            <td><Span>D</Span></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><span>D</span></td>
+                            <td><span class="gestion_llegada" data-index="3"></span></td>
+                            <td><span class="gestion_ejecucion" data-index="3"></span></td>
+                            <td><input class="gestion_espera" type="text" data-index="3"></td>
+                            <td><input class="gestion_retorno" type="text" data-index="3"></td>
+                            <td><input class="gestion_fin" type="text" data-index="3"></td>
                         </tr>
                         <tr>
-                            <td>E</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><span>E</span></td>
+                            <td><span class="gestion_llegada" data-index="4"></span></td>
+                            <td><span class="gestion_ejecucion" data-index="4"></span></td>
+                            <td><input class="gestion_espera" type="text" data-index="4"></td>
+                            <td><input class="gestion_retorno" type="text" data-index="4"></td>
+                            <td><input class="gestion_fin" type="text" data-index="4"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -115,6 +116,27 @@
         </div>
     </div>
 </div>
+<script>
+    
+    function make_procesos(){
+        const randMax = 6;
+        const llegada = [Math.floor(Math.random() * randMax),
+                         Math.floor(Math.random() * randMax),
+                         Math.floor(Math.random() * randMax),
+                         Math.floor(Math.random() * randMax),
+                         Math.floor(Math.random() * randMax)];
+        const ejecucion = [Math.floor(Math.random() * randMax+3),
+                            Math.floor(Math.random() * randMax+3),
+                            Math.floor(Math.random() * randMax+3),
+                            Math.floor(Math.random() * randMax+3),
+                            Math.floor(Math.random() * randMax+3)];
+        for(let i=0; i<5; i++){
+            document.querySelector('.gestion_llegada[data-index="'+i+'"]').innerText = llegada[i];
+            document.querySelector('.gestion_ejecucion[data-index="'+i+'"]').innerText = ejecucion[i];
+        }
 
+    }
+    make_procesos();
+</script>
 
 {% include "footer.html" %}
