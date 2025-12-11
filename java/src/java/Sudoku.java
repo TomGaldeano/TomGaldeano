@@ -48,35 +48,30 @@ public class Sudoku {
 			}
 		}
 		limpiaVerificador(temp);
-		
-		for (int i = 0;i<3;i++) {
-			for (int j = 3;j<6;j++) {
-				temp[puzzle[i][j]] ++;
-			}
-		}
-		for (int j = 0;j<TAM;j++) { // verifica si se repite elemento en un cuadrado
-			if(temp[j]>1) {
-				return false;
-			}
-		}
-		limpiaVerificador(temp);
-		
-		for (int i = 0;i<3;i++) {	
-			for (int j = 6;j<9;j++) {
-				temp[puzzle[i][j]] ++;			
-			}
-		}
-		for (int j = 0;j<TAM;j++) { // verifica si se repite elemento en un cuadrado
-			if(temp[j]>1) {
-				return false;
-			}
-		}
-		limpiaVerificador(temp);
-		for(int i =0;i<TAM;i++) {
-			for(int j=0;j<3;j++) {
+		for (int i = 0;i<TAM;i++) {
+			for(int k =0;k<TAM;k++){
 				
+			
+				if ((1+i)%3==0) {
+					for (int j = 0;j<TAM;j++) {
+						if(temp[j]>1) {
+							return false;
+						}
+						if (temp2[j]>1) {
+							return false;
+						}
+						if (temp3[j]>1) {
+							return false;
+						}
+					}
+					limpiaVerificador(temp);
+					limpiaVerificador(temp2);
+					limpiaVerificador(temp3);
+				}	
 			}
+			
 		}
+
 		return true;
 	}
 	public static boolean sudoku_acabado (int[][] puzzle) {
