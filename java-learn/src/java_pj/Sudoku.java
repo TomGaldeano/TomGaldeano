@@ -1,4 +1,4 @@
-package java;
+package java_pj;
 
 import java.util.Scanner;
 
@@ -37,21 +37,13 @@ public class Sudoku {
 			limpiaVerificador(temp);		
 		}
 		
-		for (int i = 0;i<3;i++) {
-			for (int j = 0;j<3;j++) {
-				temp[puzzle[i][j]] ++;
-			}
-		}
-		for (int j = 0;j<TAM;j++) { // verifica si se repite elemento en un cuadrado
-			if(temp[j]>1) {
-				return false;
-			}
-		}
-		limpiaVerificador(temp);
 		for (int i = 0;i<TAM;i++) {
-			for(int k =0;k<TAM;k++){
-				
-			
+			for(int k =0;k<3;k++){
+				temp[puzzle[i][k]]++;
+				temp2[puzzle[i][k+3]]++;
+				System.out.print(k+6);
+				System.out.print(puzzle[i][6]);
+				temp3[puzzle[i][k+6]]++;
 				if ((1+i)%3==0) {
 					for (int j = 0;j<TAM;j++) {
 						if(temp[j]>1) {
