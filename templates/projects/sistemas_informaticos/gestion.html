@@ -1,142 +1,197 @@
 {% include "links.html" %}
 <style>
-    td, th{
-        border:3px solid black;
-        font-weight: 700;
-        padding:5px;
-    }
-    span{
-        margin: 0 auto;
-        
-    }
-    input{
-        max-width: 50px;
-    }
+  td,
+  th {
+    border: 3px solid black;
+    font-weight: 700;
+    padding: 5px;
+  }
+
+  span {
+    margin: 0 auto;
+
+  }
+
+  input {
+    max-width: 50px;
+  }
 </style>
 {% include "header.html" %}
 
 <nav class="navbar navbar-expand-sm">
-    <div class="container-fluid">
-        <ul class="nav justify-content-start">
-            <li class="nav-item text-white "><a class="nav-link blue_hover" href="#procesosh2">procesos</a></li>
-            <li class="nav-item text-white "><a class="nav-link blue_hover" href="#memoria_esth2">memoria estatica</a>
-            </li>
-            <li class="nav-item text-white "><a class="nav-link blue_hover" href="#memeoria_dinh2">memoria dinamica</a>
-            </li>
-            <li class="nav-item text-white "><a class="nav-link blue_hover" href="#marcosh2">Marcos de pagina</a></li>
-        </ul>
-    </div>
+  <div class="container-fluid">
+    <ul class="nav justify-content-start">
+      <li class="nav-item text-white "><a class="nav-link blue_hover" href="#procesosh2">procesos</a></li>
+      <li class="nav-item text-white "><a class="nav-link blue_hover" href="#memoria_esth2">memoria estatica</a>
+      </li>
+      <li class="nav-item text-white "><a class="nav-link blue_hover" href="#memeoria_dinh2">memoria dinamica</a>
+      </li>
+      <li class="nav-item text-white "><a class="nav-link blue_hover" href="#marcosh2">Marcos de pagina</a></li>
+    </ul>
+  </div>
 
 </nav>
 
 <div class="container-fluid " style="margin-top:100px">
-    <div class="row justify-content-md-left container d-flex mx-auto">
+  <div class="row justify-content-md-left container d-flex mx-auto">
 
-        <div class="row justify-content-md-center container d-flex mx-auto">
-            <h1>Ejercicios de Gestion</h1>
-        </div>
-        <div id="procesos" class="container">
-            <div class="row justify-content-md-center container d-flex mx-auto">
-                <h2 id="procesosh2">Gestion de procesesos</h2>
-            </div>
-            <div class="row justify-content-md-center container d-flex mx-auto">
-                <table>
-                    <thead>
-                        <th>Proceso</th>
-                        <th>T Llegada</th>
-                        <th>T Ejecucion</th>
-                        <th>T Espera</th>
-                        <th>T Retorno</th>
-                        <th>Tfin</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span>A</span></td>
-                            <td><span class="gestion_llegada" data-index="0"></span></td>
-                            <td><span class="gestion_ejecucion" data-index="0"></span></td>
-                            <td><input class="gestion_espera" type="text" data-index="0"></td>
-                            <td><input class="gestion_retorno" type="text" data-index="0"></td>
-                            <td><input class="gestion_fin" type="text" data-index="0"></td>
-                        </tr>
-                        <tr>
-                            <td><span>B</span></td>
-                            <td><span class="gestion_llegada" data-index="1"></span></td>
-                            <td><span class="gestion_ejecucion" data-index="1"></span></td>
-                            <td><input class="gestion_espera" type="text" data-index="1"></td>
-                            <td><input class="gestion_retorno" type="text" data-index="1"></td>
-                            <td><input class="gestion_fin" type="text" data-index="1"></td>
-                        </tr>
-                        <tr>
-                            <td><span>C</span></td>
-                            <td><span class="gestion_llegada" data-index="2"></span></td>
-                            <td><span class="gestion_ejecucion" data-index="2"></span></td>
-                            <td><input class="gestion_espera" type="text" data-index="2"></td>
-                            <td><input class="gestion_retorno" type="text" data-index="2"></td>
-                            <td><input class="gestion_fin" type="text" data-index="2"></td>
-                        </tr>
-                        <tr>
-                            <td><span>D</span></td>
-                            <td><span class="gestion_llegada" data-index="3"></span></td>
-                            <td><span class="gestion_ejecucion" data-index="3"></span></td>
-                            <td><input class="gestion_espera" type="text" data-index="3"></td>
-                            <td><input class="gestion_retorno" type="text" data-index="3"></td>
-                            <td><input class="gestion_fin" type="text" data-index="3"></td>
-                        </tr>
-                        <tr>
-                            <td><span>E</span></td>
-                            <td><span class="gestion_llegada" data-index="4"></span></td>
-                            <td><span class="gestion_ejecucion" data-index="4"></span></td>
-                            <td><input class="gestion_espera" type="text" data-index="4"></td>
-                            <td><input class="gestion_retorno" type="text" data-index="4"></td>
-                            <td><input class="gestion_fin" type="text" data-index="4"></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-
-            </div>
-        </div>
-        <div class="container">
-            <div class="row justify-content-md-center container d-flex mx-auto">
-                <h2>Gestion de memoria contigua estatica</h2>
-            </div>
-            <div>
-
-            </div>
-        </div>
-        <div id="memoria_din" class="container">
-            <div class="row justify-content-md-center container d-flex mx-auto">
-                <h2 id="memoria_dinh2">Gestion de memoria dinamica</h2>
-            </div>
-        </div>
-        <div id="marcos" class="container">
-            <div class="row justify-content-md-center container d-flex mx-auto">
-                <h2 id="marcos_h2">Marcos de pagina</h2>
-            </div>
-        </div>
+    <div class="row justify-content-md-center container d-flex mx-auto">
+      <h1>Ejercicios de Gestion</h1>
     </div>
+    <div id="procesos" class="container">
+      <div class="row justify-content-md-center container d-flex mx-auto">
+        <h2 id="procesosh2">Gestion de procesesos</h2>
+      </div>
+      <div class="row justify-content-md-center container d-flex mx-auto">
+        <table>
+          <thead>
+            <th>Proceso</th>
+            <th>T Llegada</th>
+            <th>T Ejecucion</th>
+            <th>T Espera</th>
+            <th>T Retorno</th>
+            <th>Tfin</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span>A</span></td>
+              <td><span class="gestion_llegada" data-index="0"></span></td>
+              <td><span class="gestion_ejecucion" data-index="0"></span></td>
+              <td><input class="gestion_espera" type="text" data-index="0"></td>
+              <td><input class="gestion_retorno" type="text" data-index="0"></td>
+              <td><input class="gestion_fin" type="text" data-index="0"></td>
+            </tr>
+            <tr>
+              <td><span>B</span></td>
+              <td><span class="gestion_llegada" data-index="1"></span></td>
+              <td><span class="gestion_ejecucion" data-index="1"></span></td>
+              <td><input class="gestion_espera" type="text" data-index="1"></td>
+              <td><input class="gestion_retorno" type="text" data-index="1"></td>
+              <td><input class="gestion_fin" type="text" data-index="1"></td>
+            </tr>
+            <tr>
+              <td><span>C</span></td>
+              <td><span class="gestion_llegada" data-index="2"></span></td>
+              <td><span class="gestion_ejecucion" data-index="2"></span></td>
+              <td><input class="gestion_espera" type="text" data-index="2"></td>
+              <td><input class="gestion_retorno" type="text" data-index="2"></td>
+              <td><input class="gestion_fin" type="text" data-index="2"></td>
+            </tr>
+            <tr>
+              <td><span>D</span></td>
+              <td><span class="gestion_llegada" data-index="3"></span></td>
+              <td><span class="gestion_ejecucion" data-index="3"></span></td>
+              <td><input class="gestion_espera" type="text" data-index="3"></td>
+              <td><input class="gestion_retorno" type="text" data-index="3"></td>
+              <td><input class="gestion_fin" type="text" data-index="3"></td>
+            </tr>
+            <tr>
+              <td><span>E</span></td>
+              <td><span class="gestion_llegada" data-index="4"></span></td>
+              <td><span class="gestion_ejecucion" data-index="4"></span></td>
+              <td><input class="gestion_espera" type="text" data-index="4"></td>
+              <td><input class="gestion_retorno" type="text" data-index="4"></td>
+              <td><input class="gestion_fin" type="text" data-index="4"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row justify-content-md-center container d-flex mx-auto">
+        <h2>Gestion de memoria contigua estatica</h2>
+      </div>
+      <div>
+
+      </div>
+    </div>
+    <div id="memoria_din" class="container">
+      <div class="row justify-content-md-center container d-flex mx-auto">
+        <h2 id="memoria_dinh2">Gestion de memoria dinamica</h2>
+      </div>
+    </div>
+    <div id="marcos" class="container">
+      <div class="row justify-content-md-center container d-flex mx-auto">
+        <h2 id="marcos_h2">Marcos de pagina</h2>
+      </div>
+      <div class="row justify-content-md-center container d-flex mx-auto">
+        <table>
+          <thead>
+            <th>Marcos</th>
+              {% for i in range(15) %}
+                <th class="marcoshead" data-index="{{ i }}">
+
+                </th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                Marco 1
+              </td>
+              {% for i in range(15) %}
+              <td class="marco1" data-index="{{ i }}">
+                <input type="text">
+              </td>
+              {% endfor %}
+            </tr>
+            <tr>
+              <td>
+                Marco 2
+              </td>
+              {% for i in range(15) %}
+                <td class="marco2" data-index="{{ i }}">
+                  <input type="text">
+                </td>
+              {% endfor %}
+            </tr>
+            <tr>
+              <td>
+                Marco 3
+              </td>
+              {% for i in range(15) %}
+                <td class="marco2" data-index="{{ i }}">
+                  <input type="text">
+                </td>
+              {% endfor %}
+            </tr>
+            </tr>
+            <tr>
+              <td>
+                Marco 4
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 <script>
-    
-    function make_procesos(){
-        const randMax = 6;
-        const llegada = [Math.floor(Math.random() * randMax),
-                         Math.floor(Math.random() * randMax),
-                         Math.floor(Math.random() * randMax),
-                         Math.floor(Math.random() * randMax),
-                         Math.floor(Math.random() * randMax)];
-        const ejecucion = [Math.floor(Math.random() * randMax+3),
-                            Math.floor(Math.random() * randMax+3),
-                            Math.floor(Math.random() * randMax+3),
-                            Math.floor(Math.random() * randMax+3),
-                            Math.floor(Math.random() * randMax+3)];
-        for(let i=0; i<5; i++){
-            document.querySelector('.gestion_llegada[data-index="'+i+'"]').innerText = llegada[i];
-            document.querySelector('.gestion_ejecucion[data-index="'+i+'"]').innerText = ejecucion[i];
-        }
 
+  function make_procesos() {
+    const randMax = 6;
+    const llegada = [Math.floor(Math.random() * randMax),
+    Math.floor(Math.random() * randMax),
+    Math.floor(Math.random() * randMax),
+    Math.floor(Math.random() * randMax),
+    Math.floor(Math.random() * randMax)];
+    const ejecucion = [Math.floor(Math.random() * randMax + 3),
+    Math.floor(Math.random() * randMax + 3),
+    Math.floor(Math.random() * randMax + 3),
+    Math.floor(Math.random() * randMax + 3),
+    Math.floor(Math.random() * randMax + 3)];
+    for (let i = 0; i < 5; i++) {
+      document.querySelector('.gestion_llegada[data-index="' + i + '"]').innerText = llegada[i];
+      document.querySelector('.gestion_ejecucion[data-index="' + i + '"]').innerText = ejecucion[i];
     }
-    make_procesos();
+
+  }
+  function make_marcos() {
+  const randMax = 9;
+  }
+  make_procesos();
 </script>
 
 {% include "footer.html" %}
