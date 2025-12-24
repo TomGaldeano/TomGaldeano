@@ -1,9 +1,48 @@
 {% include "links.html" %}
+<style>  td {
+    border: 2px solid var(--black);
+    font-weight: 700;
+    padding: 5px;
+    min-width: 30px;
+  }
+  input {
+    max-width: 30px;
+    border: var(--black);
+    background-color: var(--white);
+    color: var(--black);
+    
+  }
+  td:nth-child(3n+3){
+    border-right: 4px solid var(--black);
+  }
+  td:last-child{
+    border: 2px solid var(--black);
+  }
+
+    tr:nth-child(3n+3){
+    border-bottom: 4px solid var(--black);
+  }
+  tr:last-child{
+    border: 2px solid var(--black);
+  }
+  </style>
 {% include "header.html" %}
 <div>
-<div><h1>Sudoku</h1></div>
-<div id="Game">
+<div class="row justify-content-md-center container d-flex mx-auto"><h1>Sudoku</h1></div>
+<div class="row justify-content-md-center container d-flex mx-auto" id="Game">
   <div id="board">
+    <table>
+      <tbody id="sudoku-body">
+        {% for i in range(9) %}
+        <tr class="sudoku-row" data-index="{{ j }}">
+          {% for j in range(9) %}
+            <td><input type="text"></td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    
 
   </div>
   <div id="buttons">
@@ -12,4 +51,5 @@
 
 </div>
 </div>
+<script src="{{ url_for('static', filename='js/Sudoku.js') }}"></script>
 {% include "footer.html" %}

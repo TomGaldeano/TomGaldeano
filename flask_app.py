@@ -63,7 +63,7 @@ def pj_operaciones():
 
 @app.route('/projects/gestion')
 def pj_gestion():
-    return render_template('projects/sistemas_informaticos/gestion.html')  
+    return render_template('projects/sistemas_informaticos/gestion.html',options="ABCDE")  
 
 if __name__ == '__main__':  
     app.run(host='0.0.0.0', port=5001, debug=True)
