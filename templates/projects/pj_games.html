@@ -1,21 +1,32 @@
 {% include "links.html" %}
 {% include "header.html" %}
 {% include "projects/pj_header.html" %}
-<div class="container-fluid " style = "margin-top:100px">
-<div class="row justify-content-md-left container d-flex mx-auto">
-    <h1 class="text-center" style="font-size: 3.4rem;">HTML</h1>
-</div>
-<div class="row justify-content-left container d-flex mx-auto">
-<div>
-    <p class="text-left" style="font-size: 1.2rem;"> This page is to showcase and train my coding skill by making games</p>
-</div>
-<div class="row justify-content-md-left container d-flex mx-auto">
-      <h1 class="text-left" style="font-size: 3.4rem;">Js games</h1> 
-</div>
-<div class="row justify-content-md-left container d-flex mx-auto">
-    <ul>
-        <li class="text-left" style="font-size: 1.2rem;"><a href="{{url_for('tresenraya')}}" class="green_link">tres en raya</a></li>
-        <li class="text-left" style="font-size: 1.2rem;"><a href="{{url_for('sudoku')}}" class="green_link">sudoku</a></li>
-    </ul>
+<div class="container-fluid">
+    <div class="row">
+        <main class="container flex-fill py-4">
+            <div class="container-fluid " style="margin-top:100px">
+                <div class="row justify-content-md-left container d-flex mx-auto">
+                    <h1 class="text-center" style="font-size: 3.4rem;">HTML</h1>
+                </div>
+                <div class="row justify-content-left container d-flex mx-auto">
+                    <div>
+                        <p class="text-left" style="font-size: 1.2rem;"> This page is to showcase and train my coding
+                            skill by making games</p>
+                    </div>
+                    <div class="row justify-content-md-left container d-flex mx-auto">
+                        <h1 class="text-left" style="font-size: 3.4rem;">Js games</h1>
+                    </div>
+                    <div class="row justify-content-md-left container d-flex mx-auto">
+                        <ul>
+                            <li class="text-left" style="font-size: 1.2rem;"><a href="{{url_for('tresenraya')}}"
+                                    class="green_link">tres en raya</a></li>
+                            <li class="text-left" style="font-size: 1.2rem;"><a href="{{url_for('sudoku')}}"
+                                    class="green_link">sudoku</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
 </div>
 {% include"footer.html" %}

@@ -203,7 +203,7 @@ li.ridge {
   border-radius: 20px;
 }
 .green_button {
-    background-color: var(--white);
+    background-color: var(--grey);
     border-radius: 20px;
     border: 1px solid var(--black);
     color: var(--black);

@@ -1,5 +1,5 @@
 
-  function make_procesos() {
+  function make_tabla(proceso) {
     const randMax = 6;
     const llegada = [Math.floor(Math.random() * randMax),
     Math.floor(Math.random() * randMax),
@@ -12,8 +12,8 @@
     Math.floor(Math.random() * randMax + 3),
     Math.floor(Math.random() * randMax + 3)];
     for (let i = 0; i < 5; i++) {
-      document.querySelector('.gestion_llegada[data-index="' + i + '"]').innerText = llegada[i];
-      document.querySelector('.gestion_ejecucion[data-index="' + i + '"]').innerText = ejecucion[i];
+      document.querySelector('.'+proceso+'_llegada[data-index="' + i + '"]').innerText = llegada[i];
+      document.querySelector('.'+proceso+'_ejecucion[data-index="' + i + '"]').innerText = ejecucion[i];
     }
 
   }
@@ -25,5 +25,7 @@
   }
   make_marcos();
   document.addEventListener('DOMContentLoaded', function () {
-  make_procesos();
+  make_tabla("proceso");
+  make_tabla("dinamica");
+  make_tabla("estatica");
   });

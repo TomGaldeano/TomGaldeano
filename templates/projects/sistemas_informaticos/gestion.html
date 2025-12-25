@@ -15,156 +15,273 @@
   input {
     max-width: 50px;
   }
-  div{
+
+  div {
     margin: 10px 0px;
+  }
+
+  .proceso-nav {
+    width: 200px;
+    position: absolute;
+  }
+
+  .lista_opcion {
+
+    list-style-type: none;
+  }
+
+  .lista_opcion li {
+    display: inline-block;
+  }
+
+  .elemento_control {
+    width: 30%;
+  }
+
+  .control {
+    display: flex;
   }
 </style>
 {% include "header.html" %}
 {% include "projects/pj_header.html" %}
-
-
-<nav class="navbar navbar-expand-sm">
-  <div class="container-fluid">
-    <ul class="nav justify-content-start">
-      <li class="nav-item text-white "><a class="nav-link blue_hover grey_bubble" href="#procesosh2">procesos</a></li>
-      <li class="nav-item text-white "><a class="nav-link blue_hover grey_bubble" href="#memoria_esth2">memoria estatica</a>
+<!-- Add this just after your opening <body> tag or inside your main container -->
+<div class="container-fluid">
+  <!-- Sidebar -->
+  <nav class="proceso-nav">
+    <ul class="nav justify-content-start" style="display: inline;">
+      <li class="nav-item text-white "><a class="nav-link blue_hover grey_bubble" href="#procesos">procesos</a>
       </li>
-      <li class="nav-item text-white "><a class="nav-link blue_hover grey_bubble" href="#memeoria_dinh2">memoria dinamica</a>
+      <li class="nav-item text-white "><a class="nav-link blue_hover grey_bubble" href="#dinamica">memoria
+          estatica</a>
       </li>
-      <li class="nav-item text-white "><a class="nav-link blue_hover grey_bubble" href="#marcosh2">Marcos de pagina</a></li>
+      <li class="nav-item text-white "><a class="nav-link blue_hover grey_bubble" href="#estatica">memoria
+          dinamica</a>
+      </li>
+      <li class="nav-item text-white "><a class="nav-link blue_hover grey_bubble" href="#marcos">Marcos de
+          pagina</a></li>
+      <li class="nav-item text-white "><a class="nav-link blue_hover grey_bubble" href="#marcos">Gestión de discos</a>
+      </li>
     </ul>
-  </div>
+  </nav>
+  <main class="container flex-fill py-4">
+    <div class="container-fluid " style="margin-top:100px">
+      <div class="row justify-content-md-left container d-flex mx-auto">
+        <div class="row justify-content-md-center container d-flex mx-auto">
+          <h1>Ejercicios de proceso</h1>
+        </div>
+        <div id="procesos" class="container">
+          <div class="row justify-content-md-center container d-flex mx-auto">
+            <h2>proceso de procesesos</h2>
+          </div>
+          <div class="row justify-content-md-center container d-flex mx-auto">
+            <table>
+              <thead>
+                <th>Proceso</th>
+                <th>T Llegada</th>
+                <th>T Ejecucion</th>
+                <th>T Espera</th>
+                <th>T Retorno</th>
+                <th>Tfin</th>
+              </thead>
+              <tbody>
+                {% for i in range(5) %}
+                <tr>
+                  <td><span>{{ options[i] }}</span></td>
+                  <td><span class="proceso_llegada" data-index="{{ i }}"></span></td>
+                  <td><span class="proceso_ejecucion" data-index="{{ i }}"></span></td>
+                  <td><input class="proceso_espera" type="text" data-index="{{ i }}"></td>
+                  <td><input class="proceso_retorno" type="text" data-index="{{ i }}"></td>
+                  <td><input class="proceso_fin" type="text" data-index="{{ i }}"></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="row justify-content-md-center container d-flex mx-auto control">
+            <div class="elemento_control"><button>Resolver</button></div>
+            <div class="elemento_control"><button class="green_button">Comprobar</button></div>
+            <div class="elemento_control">
+              <ul class="lista_opcion">
+                <li>
+                  <h5>Algoritmo: </h5>
+                </li>
+                <li>
+                  <select name="opcion_proceso" id="opcion_proceso">
+                    <option value="FIFO">FIFO</option>
+                    <option value="SRJ">SRJ</option>
 
-</nav>
 
-<div class="container-fluid " style="margin-top:100px">
-  <div class="row justify-content-md-left container d-flex mx-auto">
+                  </select>
+                </li>
+              </ul>
+            </div>
 
-    <div class="row justify-content-md-center container d-flex mx-auto">
-      <h1>Ejercicios de Gestion</h1>
-    </div>
-    <div id="procesos" class="container">
-      <div class="row justify-content-md-center container d-flex mx-auto">
-        <h2 id="procesosh2">Gestion de procesesos</h2>
-      </div>
-      <div class="row justify-content-md-center container d-flex mx-auto">
-        <table>
-          <thead>
-            <th>Proceso</th>
-            <th>T Llegada</th>
-            <th>T Ejecucion</th>
-            <th>T Espera</th>
-            <th>T Retorno</th>
-            <th>Tfin</th>
-          </thead>
-          <tbody>
-            {% for i in range(5) %}
-            <tr>
-              <td><span>{{ options[i] }}</span></td>
-              <td><span class="gestion_llegada" data-index="{{ i }}"></span></td>
-              <td><span class="gestion_ejecucion" data-index="{{ i }}"></span></td>
-              <td><input class="gestion_espera" type="text" data-index="{{ i }}"></td>
-              <td><input class="gestion_retorno" type="text" data-index="{{ i }}"></td>
-              <td><input class="gestion_fin" type="text" data-index="{{ i }}"></td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    <div class="row justify-content-md-center container d-flex mx-auto">
-      <button>Comprobar</button>
-      <div>
-      <select name="opcion_proceso" id="opcion_proceso">
-        <option value="FIFO">FIFO</option>
-        <option value="SRJ">SRJ</option>
-      </select>
-      </div>
-      <h5>Algoritmo: </h5>
 
-    </div> 
-    </div>
-    <div class="container">
-      <div class="row justify-content-md-center container d-flex mx-auto">
-        <h2>Gestion de memoria contigua estatica</h2>
-      </div>
-      <div>
-
-      </div>
-    </div>
-    <div id="memoria_din" class="container">
-      <div class="row justify-content-md-center container d-flex mx-auto">
-        <h2 id="memoria_dinh2">Gestion de memoria dinamica</h2>
-      </div>
-    </div>
-    <div id="marcos" class="container">
-      <div class="row justify-content-md-center container d-flex mx-auto">
-        <h2 id="marcos_h2">Marcos de pagina</h2>
-      </div>
-      <div class="row justify-content-md-center container d-flex mx-auto">
-        <table>
-          <thead>
-            <th>Marcos</th>
-              {% for i in range(15) %}
+          </div>
+        </div>
+        <div class="container">
+          <div class="row justify-content-md-center container d-flex mx-auto">
+            <h2>Gestión de memoria estatica</h2>
+          </div>
+          <div class="row justify-content-md-center container d-flex mx-auto">
+            <table>
+              <thead>
+                <th>Proceso</th>
+                <th>T Llegada</th>
+                <th>T Ejecucion</th>
+                <th>T Espera</th>
+                <th>T Retorno</th>
+                <th>Tfin</th>
+              </thead>
+              <tbody>
+                {% for i in range(5) %}
+                <tr>
+                  <td><span>{{ options[i] }}</span></td>
+                  <td><span class="estatica_llegada" data-index="{{ i }}"></span></td>
+                  <td><span class="estatica_ejecucion" data-index="{{ i }}"></span></td>
+                  <td><input class="estatica_espera" type="text" data-index="{{ i }}"></td>
+                  <td><input class="estatica_retorno" type="text" data-index="{{ i }}"></td>
+                  <td><input class="estatica_fin" type="text" data-index="{{ i }}"></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="row justify-content-md-center container d-flex mx-auto control">
+            <div class="elemento_control"><button id="resolver_estatica" class="green_button">Resolver</button></div>
+            <div class="elemento_control"><button id="comprobar_estatica" class="green_button">Comprobar</button></div>
+            <div class="elemento_control">
+              <ul class="lista_opcion">
+                <li>
+                  <h5>Algoritmo: </h5>
+                </li>
+                <li>
+                  <select name="opcion_proceo" id="opcion_proceso">
+                    <option value="FIFO">FIFO</option>
+                    <option value="SRJ">SRJ</option>
+                  </select>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div id="dinamica" class="container">
+          <div class="row justify-content-md-center container d-flex mx-auto">
+            <h2>Gestión de memoria dinamica</h2>
+          </div>
+          <div class="row justify-content-md-center container d-flex mx-auto">
+            <table>
+              <thead>
+                <th>Proceso</th>
+                <th>T Llegada</th>
+                <th>T Ejecucion</th>
+                <th>T Espera</th>
+                <th>T Retorno</th>
+                <th>Tfin</th>
+              </thead>
+              <tbody>
+                {% for i in range(5) %}
+                <tr>
+                  <td><span>{{ options[i] }}</span></td>
+                  <td><span class="dinamica_llegada" data-index="{{ i }}"></span></td>
+                  <td><span class="dinamica_ejecucion" data-index="{{ i }}"></span></td>
+                  <td><input class="dinamica_espera" type="text" data-index="{{ i }}"></td>
+                  <td><input class="dinamica_retorno" type="text" data-index="{{ i }}"></td>
+                  <td><input class="dinamica_fin" type="text" data-index="{{ i }}"></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="row justify-content-md-center container d-flex mx-auto control">
+            <div class="elemento_control"><button class="green_button" id="resolver_dinamica">Resolver</button></div>
+            <div class="elemento_control"><button class="green_button" id="comprobar_dinamica">Comprobar</button></div>
+            <div class="elemento_control">
+              <ul class="lista_opcion">
+                <li>
+                  <h5>Algoritmo: </h5>
+                </li>
+                <li>
+                  <select name="opcion_proceso" id="opcion_dinamica">
+                    <option value="FIFO">FIFO</option>
+                    <option value="SRJ">SRJ</option>
+                  </select>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div id="marcos" class="container">
+          <div class="row justify-content-md-center container d-flex mx-auto">
+            <h2>Marcos de pagina</h2>
+          </div>
+          <div class="row justify-content-md-center container d-flex mx-auto">
+            <table>
+              <thead>
+                <th>Marcos</th>
+                {% for i in range(15) %}
                 <th class="marcoshead" data-index="{{ i }}">
 
                 </th>
-              {% endfor %}
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                Marco 1
-              </td>
-              {% for i in range(15) %}
-              <td class="marco1" data-index="{{ i }}">
-                <input type="text">
-              </td>
-              {% endfor %}
-            </tr>
-            <tr>
-              <td>
-                Marco 2
-              </td>
-              {% for i in range(15) %}
-                <td class="marco2" data-index="{{ i }}">
-                  <input type="text">
-                </td>
-              {% endfor %}
-            </tr>
-            <tr>
-              <td>
-                Marco 3
-              </td>
-              {% for i in range(15) %}
-                <td class="marco3" data-index="{{ i }}">
-                  <input type="text">
-                </td>
-              {% endfor %}
-            </tr>
-            </tr>
-            <tr>
-              <td>
-                Marco 4
-              </td>
-              {% for i in range(15) %}
-                <td class="marco4" data-index="{{ i }}">
-                  <input type="text">
-                </td>
-              {% endfor %}
-            </tr>
-          </tbody>
-        </table>
+                {% endfor %}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    Marco 1
+                  </td>
+                  {% for i in range(15) %}
+                  <td class="marco1" data-index="{{ i }}">
+                    <input type="text">
+                  </td>
+                  {% endfor %}
+                </tr>
+                <tr>
+                  <td>
+                    Marco 2
+                  </td>
+                  {% for i in range(15) %}
+                  <td class="marco2" data-index="{{ i }}">
+                    <input type="text">
+                  </td>
+                  {% endfor %}
+                </tr>
+                <tr>
+                  <td>
+                    Marco 3
+                  </td>
+                  {% for i in range(15) %}
+                  <td class="marco3" data-index="{{ i }}">
+                    <input type="text">
+                  </td>
+                  {% endfor %}
+                </tr>
+                </tr>
+                <tr>
+                  <td>
+                    Marco 4
+                  </td>
+                  {% for i in range(15) %}
+                  <td class="marco4" data-index="{{ i }}">
+                    <input type="text">
+                  </td>
+                  {% endfor %}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div id="discos" class="container">
+          <div class="row justify-content-md-center container d-flex mx-auto">
+            <h2>Gestión de Discos</h2>
+          </div>
+        </div>
       </div>
     </div>
-  <div id="discos" class="container">
-    <div class="row justify-content-md-center container d-flex mx-auto">
-      <h2>Gestion de Discos</h2>
-    </div>
-  </div>
-  </div>
+  </main>
 </div>
-
+</div>
 <script src="{{ url_for('static', filename='js/gestion_sistemas.js') }}"></script>
 
 {% include "footer.html" %}
