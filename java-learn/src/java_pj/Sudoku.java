@@ -130,11 +130,11 @@ public class Sudoku {
 					for (int k = 1; k <= TAM; k++) {
 						puzzle[i][j] = k;
 						if (sudoku_valido(puzzle)) {
-							int[][] res = solucionar_sudoku(puzzle);
-							if (res != null) return res;
+							int[][] result = solucionar_sudoku(puzzle);
+							if (result != null) return result;
 						}
-						puzzle[i][j] = 0; // undo
 					}
+					puzzle[i][j] = 0; // undo
 					return null;
 				}
 			}
