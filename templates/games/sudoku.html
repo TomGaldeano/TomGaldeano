@@ -25,6 +25,9 @@
   tr:last-child{
     border: 2px solid var(--black);
   }
+  div{
+    padding: 10px;
+  }
   </style>
 {% include "header.html" %}
 <div>
@@ -34,22 +37,23 @@
     <table>
       <tbody id="sudoku-body">
         {% for i in range(9) %}
-        <tr class="sudoku-row" data-index="{{ j }}">
+        <tr class="sudoku-row" data-index="{{ i }}">
           {% for j in range(9) %}
-            <td><input type="text"></td>
+            <td><input class="Sudoku-item" data-index="{{ i }}{{ j }}" type="text"></td>
           {% endfor %}
         </tr>
         {% endfor %}
       </tbody>
     </table>
     
-
+</div>
   </div>
   <div id="buttons">
-
+    <div class="row justify-content-md-center container d-flex mx-auto"><button id="resolver" class="green_button">Resolver</button></div>
+    <div class="row justify-content-md-center container d-flex mx-auto"><button id="nuevo" class="green_button">Nuevo Sudoku</button></div>
   </div>
 
-</div>
+
 </div>
 <script src="{{ url_for('static', filename='js/Sudoku.js') }}"></script>
 {% include "footer.html" %}

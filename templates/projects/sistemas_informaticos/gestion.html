@@ -98,8 +98,8 @@
             </table>
           </div>
           <div class="row justify-content-md-center container d-flex mx-auto control">
-            <div class="elemento_control"><button>Resolver</button></div>
-            <div class="elemento_control"><button class="green_button">Comprobar</button></div>
+            <div class="elemento_control"><button id="resolver_proceso" class="green_button">Resolver</button></div>
+            <div class="elemento_control"><button id="comprobar_proceso" class="green_button">Comprobar</button></div>
             <div class="elemento_control">
               <ul class="lista_opcion">
                 <li>
@@ -109,6 +109,8 @@
                   <select name="opcion_proceso" id="opcion_proceso">
                     <option value="FIFO">FIFO</option>
                     <option value="SRJ">SRJ</option>
+                    <option value="SRT">SRT</option>
+                    <option value="Robin">Round Robin</option>
 
 
                   </select>
@@ -157,8 +159,10 @@
                 </li>
                 <li>
                   <select name="opcion_proceo" id="opcion_proceso">
-                    <option value="FIFO">FIFO</option>
-                    <option value="SRJ">SRJ</option>
+                    <option value="best">Best Fit</option>
+                    <option value="worst">Worst Fit</option>
+                    <option value="next">Next Fit</option>
+                    <option value="first">First Fit</option>
                   </select>
                 </li>
               </ul>
@@ -203,8 +207,10 @@
                 </li>
                 <li>
                   <select name="opcion_proceso" id="opcion_dinamica">
-                    <option value="FIFO">FIFO</option>
-                    <option value="SRJ">SRJ</option>
+                    <option value="best">Best Fit</option>
+                    <option value="worst">Worst Fit</option>
+                    <option value="next">Next Fit</option>
+                    <option value="first">First Fit</option>
                   </select>
                 </li>
               </ul>
@@ -271,10 +277,24 @@
               </tbody>
             </table>
           </div>
-        </div>
-        <div id="discos" class="container">
-          <div class="row justify-content-md-center container d-flex mx-auto">
-            <h2>Gestión de Discos</h2>
+            <div class="row justify-content-md-center container d-flex mx-auto control">
+            <div class="elemento_control"><button class="green_button" id="resolver_marcos">Resolver</button></div>
+            <div class="elemento_control"><button class="green_button" id="comprobar_marcos">Comprobar</button></div>
+            <div class="elemento_control">
+              <ul class="lista_opcion">
+                <li>
+                  <h5>Algoritmo: </h5>
+                </li>
+                <li>
+                  <select name="opcion_marcos" id="opcion_marcos">
+                    <option value="FIFO">FIFO</option>
+                    <option value="LFU">LFU</option>
+                    <option value="optimal">Optimal</option>
+                    <option value="LRU">LRU</option>
+                  </select>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

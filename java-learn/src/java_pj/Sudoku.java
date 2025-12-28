@@ -1,6 +1,7 @@
 package java_pj;
 
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Sudoku {
@@ -55,6 +56,7 @@ public class Sudoku {
 				if (puzzle[i][k + 6] != 0) {
 					temp3[puzzle[i][k + 6] - 1]++;
 				}
+			}
 				if ((1 + i) % 3 == 0) {
 					for (int j = 0; j < TAM; j++) {
 						if (temp[j] > 1) {
@@ -73,7 +75,7 @@ public class Sudoku {
 				}
 			}
 
-		}
+		
 		return true;
 	}
 
@@ -93,9 +95,7 @@ public class Sudoku {
 		// crea un nuevo sudoku
 		for (int i = 0; i < TAM; i++) {
 			for (int j = 0; j < sudoku[i].length; j++) {
-				if (sudoku[i][j] == 0) {
-
-				}
+				sudoku[i][j]=0;
 			}
 		}
 	}
@@ -131,7 +131,8 @@ public class Sudoku {
 						puzzle[i][j] = k;
 						if (sudoku_valido(puzzle)) {
 							int[][] result = solucionar_sudoku(puzzle);
-							if (result != null) return result;
+							if (result != null)
+								return result;
 						}
 					}
 					puzzle[i][j] = 0; // undo
@@ -141,6 +142,31 @@ public class Sudoku {
 		}
 		return null;
 	}
+	private static void crea_sudoku() {
+    nuevo_sudoku();
+	int initial_vars = 21;
+	boolean keep_on;
+	Random random = new Random();
+    for (int i = 0; i < initial_vars; i++) {
+        keep_on = true;
+        while (keep_on) {
+            int a = random.nextInt(9);
+            int b = random.nextInt(9);
+            if (sudoku[a][b] == 0) {
+                for (int j = 1; j < TAM + 1; j++) {
+                    sudoku[a][b] = j;
+                    if (sudoku_valido(sudoku)) {
+                        keep_on = false;
+                        break;
+
+                    }
+                    sudoku[a][b] = 0;
+                }
+            }
+        }
+    }
+    mostrar_sudoku();
+}
 
 	public static void main(String[] args) {
 		int[][] solvedSudoku = {
@@ -165,11 +191,14 @@ public class Sudoku {
 				{ 2, 8, 7, 4, 1, 9, 6, 3, 5 },
 				{ 3, 4, 5, 2, 8, 6, 1, 7, 9 }
 		};
+		mostrar_sudoku();
 		nuevo_sudoku();
 		mostrar_sudoku();
-		unsolvedSudoku = solucionar_sudoku(unsolvedSudoku);
+		crea_sudoku();
+		unsolvedSudoku = solucionar_sudoku(sudoku);
 		sudoku = unsolvedSudoku;
 		mostrar_sudoku();
+		crea_sudoku();
 		if (sudoku_valido(solvedSudoku)) {
 			System.out.println("valido");
 		} else {
@@ -186,5 +215,6 @@ public class Sudoku {
 			System.out.println("algo falla amigo");
 		}
 	}
+	}
 
-}
+
