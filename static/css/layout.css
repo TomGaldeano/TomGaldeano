@@ -1,7 +1,8 @@
 /* Layout / Utilities */
 
-html {
+body {
   background: var(--white);
+  color: var(--black);
   margin: 0;
   padding: 0;
 }

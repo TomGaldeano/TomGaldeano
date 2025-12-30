@@ -1,7 +1,8 @@
 const TAM = 9;
-const initial_vars = 21;
+const initial_vars = 31;
 const new_sudoku = document.getElementById("nuevo");
 const resolver = document.getElementById("resolver");
+const comprobar = document.getElementById("comprobar");
 let sudoku = Array(TAM).fill().map(() => Array(TAM).fill(0));
 
 function limpiaVerificador(verificador) {
@@ -15,7 +16,6 @@ function sudoku_valido(puzzle) {
     let temp = Array(9).fill(0);
     let temp2 = Array(9).fill(0);
     let temp3 = Array(9).fill(0);
-
     for (let i = 0; i < TAM; i++) {
         for (let j = 0; j < TAM; j++) { // genera array con numero de repeticiones de un numero en una fila
             if (puzzle[i][j] != 0) {
@@ -147,20 +147,36 @@ function crea_sudoku() {
             }
         }
     }
+    console.log(1);
     mostrar_sudoku();
 }
-function comprobar_sudoku() {
-    let sudoku2 = solucionar_sudoku(sudoku);
-    if (sudoku2 !== null){
-        sudoku = sudoku2;
-        console.log("hurrah")
-        
-    }else{
-        console.log("ups");
+function genera_sudoku() {
+    let solucionable = false;
+    while (!solucionable) {
+        crea_sudoku();
+        let sudoku2 = solucionar_sudoku(sudoku);
+        if (sudoku2 !== null) {
+            solucionable = true;
+            sudoku = sudoku2;
+        }
     }
-    mostrar_sudoku()
-
 }
-crea_sudoku();
-new_sudoku.addEventListener("click", () => crea_sudoku());
-resolver.addEventListener("click", () => comprobar_sudoku());
+
+function comprobar_sudoku() {
+    for(let i = 0;i<TAM;i++){
+        for(let j = 0;j<TAM;j++){
+            if(document.querySelector('.Sudoku-item[data-index="' + i + j + '"]').value == sudoku[i][j]){
+                document.querySelector('.Sudoku-td[data-index="' + i + j + '"]').classList.add("acierto");
+                setTimeout(() => document.querySelector('.Sudoku-td[data-index="' + i + j + '"]').classList.remove("acierto"), 2000);
+            }else{
+                document.querySelector('.Sudoku-td[data-index="' + i + j + '"]').classList.add("error");
+                setTimeout(() => document.querySelector('.Sudoku-td[data-index="' + i + j + '"]').classList.remove("error"), 2000);
+            }
+            
+        }
+    }
+}
+genera_sudoku();
+new_sudoku.addEventListener("click", () => genera_sudoku());
+comprobar.addEventListener("click", () => comprobar_sudoku());
+resolver.addEventListener("click", () => mostrar_sudoku());

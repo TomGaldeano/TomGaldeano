@@ -39,21 +39,19 @@
         {% for i in range(9) %}
         <tr class="sudoku-row" data-index="{{ i }}">
           {% for j in range(9) %}
-            <td><input class="Sudoku-item" data-index="{{ i }}{{ j }}" type="text"></td>
+            <td class="Sudoku-td" data-index="{{ i }}{{ j }}" type="text"><input class="Sudoku-item" data-index="{{ i }}{{ j }}" type="text"></td>
           {% endfor %}
         </tr>
         {% endfor %}
       </tbody>
-    </table>
-    
+    </table>   
 </div>
   </div>
   <div id="buttons">
+    <div class="row justify-content-md-center container d-flex mx-auto"><button id="comprobar" class="green_button">Comprobar</button></div>
     <div class="row justify-content-md-center container d-flex mx-auto"><button id="resolver" class="green_button">Resolver</button></div>
     <div class="row justify-content-md-center container d-flex mx-auto"><button id="nuevo" class="green_button">Nuevo Sudoku</button></div>
   </div>
-
-
 </div>
-<script src="{{ url_for('static', filename='js/Sudoku.js') }}"></script>
+<script src="{{ url_for('static', filename='js/sudoku.js') }}"></script>
 {% include "footer.html" %}

@@ -23,3 +23,14 @@
   --white: #000000;
   --yellow: #f6fa07;
 }
+.acierto {
+    background-color: var(--green) !important;
+    color: var(--white);
+
+}
+
+.error {
+
+    background-color: var(--red) !important;
+    color: var(--white);
+}
