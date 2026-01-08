@@ -29,3 +29,104 @@
   make_tabla("dinamica");
   make_tabla("estatica");
   });
+
+function fifo(opcion){
+  if (opcion=="proceso") {
+    
+    llegada = {};
+  } else {
+
+  }
+  
+}
+function srj(){
+
+}
+function srt(){
+
+}
+function robin(){
+
+}
+function lfu(){
+
+}
+function optimal(){
+
+}
+function best_fit(opcion){
+  if (opcion = "estatica") {
+    
+  } else {
+
+  }
+}
+function worst_fit(){
+  if (opcion = "estatica") {
+    
+  } else {
+    
+  }
+}
+function next_fit(){
+  if (opcion = "estatica") {
+    
+  } else {
+    
+  }
+}
+function first_fit(){
+  if (opcion = "estatica") {
+    
+  } else {
+    
+  }
+}
+function comprobar(proceso){
+  if (proceso=="gestion"){
+    let opcion = document.getElementById("opcion_proceso")
+    if (opcion.value="fifo") {
+      fifo("proceso");
+    } else if (opcion.value == "srj"){
+      srj();
+    } else if (opcion.value == "srt"){
+      srt();
+    } else if (opcion.value == "robin") {
+      robin();
+    }
+  } else if (proceso=="dinamica") {
+    let opcion = document.getElementById("opcion_dinamica");
+    if (opcion.value="best") {
+      best_fit("dinamica");
+    } else if (opcion.value == "worst"){
+      worst_fit("dinamica");
+    } else if (opcion.value == "next"){
+      next_fit("dinamica");
+    } else if (opcion.value == "first") {
+      first_fit("dinamica");
+    }
+  } else if(proceso == "estatica"){
+    let opcion = document.getElementById("opcion_estatica");
+    if (opcion.value="best") {
+      best_fit("estatica");
+    } else if (opcion.value == "worst"){
+      worst_fit("estatica");
+    } else if (opcion.value == "next"){
+      next_fit("estatica");
+    } else if (opcion.value == "first") {
+      first_fit("estatica");
+    }
+    
+  } else if(proceso == "marcos"){
+    let opcion = document.getElementById("opcion_marcos");
+    if (opcion.value == "fifo") {
+      fifo("marcos");
+    } else if (opcion.value == "lfu"){
+      lfu()
+    }else if (opcion.value == "optimal") {
+      optimal()
+    }else if (opcion.value == "lru") {
+      lru()
+    }
+  } 
+}
