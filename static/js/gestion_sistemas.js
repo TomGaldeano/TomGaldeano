@@ -31,9 +31,12 @@
   });
 
 function fifo(opcion){
-  if (opcion=="proceso") {
-    
-    llegada = {};
+  if (opcion=="proceso") {   
+    let llegadas = {};
+    let duraciones = {};
+    for(let i=0;i<5;i++){
+      llegadas[i] = document.querySelector("")
+    }
   } else {
 
   }
