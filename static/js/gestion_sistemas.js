@@ -34,7 +34,9 @@ function fifo(opcion){
   if (opcion=="proceso") {   
     let llegadas = {};
     let duraciones = {};
+    let cont = 0
     for(let i=0;i<5;i++){
+    if 
       llegadas[i] = document.querySelector("")
     }
   } else {
