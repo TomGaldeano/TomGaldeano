@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas Card Guessing Game</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background-color: #222;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    canvas {
+      border: 2px solid #555;
+      background-color: #35654d;
+      /* Felt green */
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: none;
+      /* Hidden until game over */
+    }
+
+    button:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Guess the Ace!</h1>
+  <p>Click on a card to find the Ace of Spades.</p>
+  <canvas id="gameCanvas" width="600" height="300"></canvas>
+  <button id="resetBtn" onclick="initGame()">Play Again</button>
+
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const resetBtn = document.getElementById('resetBtn');
+
+    const cardWidth = 100;
+    const cardHeight = 150;
+    const spacing = 50;
+    const startX = (canvas.width - (3 * cardWidth + 2 * spacing)) / 2;
+    const startY = (canvas.height - cardHeight) / 2;
+
+    let cards = [];
+    let gameActive = true;
+    let winningCardIndex = -1;
+
+    class Card {
+      constructor(x, y, index) {
+        this.x = x;
+        this.y = y;
+        this.width = cardWidth;
+        this.height = cardHeight;
+        this.index = index;
+        this.isRevealed = false;
+        this.color = '#3498db'; // Card back color
+      }
+
+      draw() {
+        if (this.isRevealed) {
+          if (this.index === winningCardIndex) {
+            this.drawFace('♠', 'black', 'A');
+          } else {
+            this.drawFace('X', 'red', 'Joker');
+          }
+        } else {
+          this.drawBack();
+        }
+      }
+
+      drawBack() {
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.strokeStyle = '#ecf0f1';
+        ctx.lineWidth = 4;
+        ctx.strokeRect(this.x, this.y, this.width, this.height);
+
+        // Pattern on back
+        ctx.fillStyle = 'rgba(255,255,255,0.2)';
+        ctx.beginPath();
+        ctx.arc(this.x + this.width / 2, this.y + this.height / 2, 20, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      drawFace(symbol, color, rank) {
+        ctx.fillStyle = 'white';
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(this.x, this.y, this.width, this.height);
+
+        ctx.fillStyle = color;
+        ctx.font = '40px Arial';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(symbol, this.x + this.width / 2, this.y + this.height / 2);
+
+        ctx.font = '16px Arial';
+        ctx.fillText(rank, this.x + 15, this.y + 20);
+        ctx.fillText(rank, this.x + this.width - 15, this.y + this.height - 20);
+      }
+
+      isClicked(mouseX, mouseY) {
+        return mouseX >= this.x && mouseX <= this.x + this.width &&
+          mouseY >= this.y && mouseY <= this.y + this.height;
+      }
+    }
+
+    function initGame() {
+      cards = [];
+      gameActive = true;
+      winningCardIndex = Math.floor(Math.random() * 3);
+      resetBtn.style.display = 'none';
+
+      for (let i = 0; i < 3; i++) {
+        let x = startX + i * (cardWidth + spacing);
+        cards.push(new Card(x, startY, i));
+      }
+      drawScene();
+    }
+
+    function drawScene() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+      cards.forEach(card => card.draw());
+    }
+
+    canvas.addEventListener('click', (e) => {
+      if (!gameActive) return;
+
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+
+      cards.forEach(card => {
+        if (card.isClicked(mouseX, mouseY)) {
+          card.isRevealed = true;
+          gameActive = false; // Game over after one click (simple guess)
+
+          // Reveal all cards? Or just the one clicked?
+          // Let's reveal all to show where the winner was if they missed.
+          cards.forEach(c => c.isRevealed = true);
+
+          drawScene();
+          showResult(card.index === winningCardIndex);
+        }
+      });
+    });
+
+    function showResult(win) {
+      ctx.fillStyle = 'rgba(0,0,0,0.7)';
+      ctx.fillRect(0, canvas.height / 2 - 40, canvas.width, 80);
+
+      ctx.fillStyle = win ? '#2ecc71' : '#e74c3c';
+      ctx.font = 'bold 40px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(win ? "YOU WON!" : "TRY AGAIN!", canvas.width / 2, canvas.height / 2);
+
+      resetBtn.style.display = 'block';
+    }
+
+    // Start
+    initGame();
+
+  </script>
+</body>
+
+</html>
