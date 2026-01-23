@@ -52,10 +52,22 @@ class Card {
  * Creates a standard 52-card deck and shuffles it.
  * Returns: Array of Card objects
  */
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]]; // Swap
+  }
+  return array;
+}
 function createDeck() {
-    // TODO: Loop through SUITS and VALUES, create Card objects, add to a deck array.
     // TODO: Shuffle the deck array.
-    return [];
+    let deck = [];
+    for(let i=0;i<VALUES.length;i++){
+        for(let j=0;j<SUITS.length;j++){
+            deck.push(new Card(SUITS[j],VALUES[i]));
+        }
+    }
+    return shuffle(deck);
 }
 
 /**
