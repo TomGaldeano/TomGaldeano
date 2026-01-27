@@ -99,31 +99,32 @@ function drawCard(card, x, y, isHidden = false) {
     ctx.lineWidth = 1;
     ctx.strokeRect(x, y, width, height);
     if (isHidden){
-        for( let i =0;i<6;i++){
+        for( let i =0;i<21;i++){
             if(i%2==0){
                         ctx.fillStyle = 'white';
             }else{
                         ctx.fillStyle = 'black';
             }
 
-        ctx.fillRect(x+10*i, y+10*i, width-20*i, height-20*i);
+        ctx.fillRect(x+2.5*i, y+2.5*i, width-5*i, height-5*i);
 
         }
 
     }else{
         ctx.fillStyle = card.getColor();
-        ctx.font = '25px Arial';
+        ctx.font = 'bolder 25px Arial';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(card.value, x +20, y +22);
         ctx.fillText(card.value, x + width -20, y +height -22);
+        ctx.font = '75px Arial';
         ctx.fillText(card.suit, x + width/2, y +height/2);
 
 
     }
 }
 deck = createDeck()
-drawCard(deck[0],200,200,false)
+drawCard(deck[0],200,200,true)
 
 function drawTable() {
     // Clear the canvas

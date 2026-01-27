@@ -2,13 +2,7 @@
 
 This guide will walk you through building your Blackjack game using the skeleton provided in `blackjack.js`.
 
-## Step 1: The Card Deck (`createDeck`)
-**Goal**: Create a shuffled deck of 52 cards.
-1.  Inside `createDeck`, use two nested loops: one for `SUITS` and one for `VALUES`.
-2.  In the inner loop, create a `new Card(suit, value)` and push it to a temporary deck array.
-3.  **Shuffle**: Use the Fisher-Yates shuffle algorithm (or simple random sort) to randomize the array.
-    *(Hint: `array.sort(() => Math.random() - 0.5)` is a quick & dirty way, though Fisher-Yates is better).*
-4.  Return the shuffled deck.
+25
 
 ## Step 2: Drawing Cards (`drawCard`)
 **Goal**: Visualize a single card on the Canvas.
