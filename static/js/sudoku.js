@@ -159,7 +159,7 @@ function genera_sudoku() {
             solucionable = true;
             sudoku = sudoku2;
         }
-    }
+    }    
 }
 
 function comprobar_sudoku() {
