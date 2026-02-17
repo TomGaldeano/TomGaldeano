@@ -53,6 +53,10 @@ def sudoku():
 def tresenraya():
     return render_template('games/tresenraya.html')
 
+@app.route('/projects/games/buscaminas')
+def buscaminas():
+    return render_template('games/buscaminas.html')
+
 @app.route('/projects/ordered')
 def pj_ordered():
     return render_template('projects/pj_ordered.html')
