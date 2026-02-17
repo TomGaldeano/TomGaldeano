@@ -14,7 +14,7 @@ const CARD_WIDTH = 100;
 const CARD_HEIGHT = 145;
 const SUITS = ['♠', '♥', '♦', '♣'];
 const VALUES = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
-
+const FACE = ['J', 'Q', 'K']
 // --- DOM ELEMENTS ---
 const canvas = document.getElementById('blackjackCanvas');
 const ctx = canvas.getContext('2d');
@@ -28,7 +28,6 @@ let playerHand = [];
 let dealerHand = [];
 let gameOver = true;
 let message = ""; // To display "You Win!", "Bust!", etc.
-
 // --- CLASSES ---
 
 class Card {
@@ -80,7 +79,23 @@ function createDeck() {
  */
 function calculateScore(hand) {
     // TODO: Implement score logic
-    return 0;
+    let sum = 0;
+    let numAces = 0;
+    hand.forEach(element => {
+        if (FACE.includes(element.value)){
+            sum +=10;
+        }else if (element.value == 'A') {
+            sum +=1;
+            numAces++;
+        }else{
+            sum+=parseInt(element.value);
+        }
+    });
+    while (sum>21 && numAces >0){
+        sum-=10;
+        numAces--;
+    }
+    return sum;
 }
 
 /**
@@ -91,15 +106,15 @@ function drawCard(card, x, y, isHidden = false) {
     // TODO: Draw a single card at (x, y). 
     // If isHidden is true, draw the back of the card.
     // Use ctx.rect, ctx.fillStyle, ctx.fillText, etc.
-    width = 100;
-    height=150;
+    width = 70;
+    height=100;
     ctx.fillStyle = 'white';
     ctx.fillRect(x, y, width, height);
     ctx.strokeStyle = '#000';
     ctx.lineWidth = 1;
     ctx.strokeRect(x, y, width, height);
     if (isHidden){
-        for( let i =0;i<21;i++){
+        for( let i =0;i<15;i++){
             if(i%2==0){
                         ctx.fillStyle = 'white';
             }else{
@@ -112,19 +127,18 @@ function drawCard(card, x, y, isHidden = false) {
 
     }else{
         ctx.fillStyle = card.getColor();
-        ctx.font = 'bolder 25px Arial';
+        ctx.font = 'bolder 20px Arial';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText(card.value, x +20, y +22);
-        ctx.fillText(card.value, x + width -20, y +height -22);
-        ctx.font = '75px Arial';
+        ctx.fillText(card.value, x +16, y +18);
+        ctx.fillText(card.value, x + width -16, y +height -18);
+        ctx.font = '50px Arial';
         ctx.fillText(card.suit, x + width/2, y +height/2);
 
 
     }
 }
-deck = createDeck()
-drawCard(deck[0],200,200,true)
+
 
 function drawTable() {
     // Clear the canvas

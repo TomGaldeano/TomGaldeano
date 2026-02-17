@@ -2,28 +2,6 @@
 
 This guide will walk you through building your Blackjack game using the skeleton provided in `blackjack.js`.
 
-25
-
-## Step 2: Drawing Cards (`drawCard`)
-**Goal**: Visualize a single card on the Canvas.
-1.  **Background**: Draw a white rounded rectangle at `x, y` for the card body. Use `ctx.fillStyle = 'white'` and `ctx.fillRect(...)`.
-2.  **Border**: Draw a black border using `ctx.strokeRect(...)`.
-3.  **Hidden Cards**: If `isHidden` is true, fill the rectangle with a pattern or solid color (e.g., repeating circles or dark red) and **return early** so you don't draw the numbers.
-4.  **Content**:
-    -   Set `ctx.fillStyle` to the card's color (red/black).
-    -   Draw the `card.value` content in the top-left and bottom-right corners.
-    -   Draw the `card.suit` in the center (make it big!).
-
-## Step 3: Game Logic - Score (`calculateScore`)
-**Goal**: Calculate the points for a hand.
-1.  Start a `sum` variable at 0.
-2.  Count the number of Aces (`aceCount`).
-3.  Loop through the hand:
-    -   **Face cards** (J, Q, K) add 10.
-    -   **Aces** add 11 (initially).
-    -   **Number cards** add their numeric value (`parseInt(card.value)`).
-4.  **Ace Adjustment**: While `sum > 21` and `aceCount > 0`, subtract 10 from the sum and decrement `aceCount`. This handles the "Ace is 1 or 11" rule.
-5.  Return the final `sum`.
 
 ## Step 4: Core Game Loop (`startNewGame`, `hit`, `stand`)
 
