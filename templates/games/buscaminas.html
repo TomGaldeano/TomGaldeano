@@ -1,9 +1,28 @@
 {% include "links.html" %}
+<style>
+  ul{
+    list-style: none; }
+  li{
+    display: inline;
+  }
+  td{
+    width: 10px;
+    height: 10px;
+  }
+</style>
 {% include "header.html" %}
 <div>
-<div class="row justify-content-md-center container d-flex mx-auto"><h1>Sudoku</h1></div>
+<div class='row justify-content-md-center container d-flex mx-auto'><h1>Buscaminas</h1></div>
 <div class="row justify-content-md-center container d-flex mx-auto" id="Game">
+<ul>
+  <li id="basico" class="blue_link">Basico 8*8</li>
+  <li id="medio" class="blue_link">Intermedio 12*12</li>
+  <li id="dificl" class="blue_link">Dificil 16*16</li>
+  <li id="muy_dificil" class="blue_link">Muy dificil 20*20</li>
+</ul>
+<table>
 
+</table>
 </div>
 </div>
 <script src="{{ url_for('static', filename='js/buscaminas.js') }}"></script>

@@ -132,7 +132,12 @@
   color: var(--green);
   text-decoration: underline;
 }
-
+.blue_link {
+  color: var(--blue);
+}
+.blue_link:hover{
+  text-decoration: underline;
+}
 .h1_big {
   font-size: 3.4rem;
 }
