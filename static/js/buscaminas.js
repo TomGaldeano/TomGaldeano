@@ -93,14 +93,20 @@ class Minesweeper {
 		this.board.style.display="grid"
 		let dim = ""
 		this.board.style.width="40px"
+		this.board.innerHTML=""
         for (let row = 0; row < this.dimensiones; row++) {
         for (let col = 0; col < this.dimensiones; col++) {
             const cell = document.createElement('div');
             cell.dataset.row = row;
             cell.dataset.col = col;
-			cell.style.width="15px"
-			cell.style.height="15px"
-			cell.style.border="1px solid black"
+			cell.classList.add("cell")
+			if (this.tablero.estaMarcada) {
+				
+			}
+			if(this.tablero[row][col].estaOculta){
+				cell.classList.add("normal")
+			}
+
             //cell.addEventListener('click', handleClick);
             this.board.appendChild(cell);
         }
@@ -130,3 +136,19 @@ const easy = document.querySelector("#facil");
 const medium = document.querySelector("#medio");
 const hard = document.querySelector("#dificil");
 const very_hard = document.querySelector("#muy_dificil");
+easy.addEventListener("click",()=>{
+	partida = new Minesweeper(8,10)
+	partida.imprimirTablero()
+})
+medium.addEventListener("click",()=>{
+	partida = new Minesweeper(12,20)
+	partida.imprimirTablero()
+})
+hard.addEventListener("click",()=>{
+	partida = new Minesweeper(16,30)
+	partida.imprimirTablero()
+})
+very_hard.addEventListener("click",()=>{
+	partida = new Minesweeper(20,40)
+	partida.imprimirTablero()
+})
