@@ -17,6 +17,7 @@ class Minesweeper {
 		this.exploto = false;
 		this.marcoMal = false;
 		this.iniciarTablero();
+		this.board = document.querySelector("#tablero")
 	}
 
 	iniciarTablero() {
@@ -89,16 +90,24 @@ class Minesweeper {
 	}
 
 	imprimirTablero() {
-        for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < cols; col++) {
+		this.board.style.display="grid"
+		let dim = ""
+		this.board.style.width="40px"
+        for (let row = 0; row < this.dimensiones; row++) {
+        for (let col = 0; col < this.dimensiones; col++) {
             const cell = document.createElement('div');
             cell.dataset.row = row;
             cell.dataset.col = col;
-            cell.addEventListener('click', handleClick);
-            board.appendChild(cell);
+			cell.style.width="15px"
+			cell.style.height="15px"
+			cell.style.border="1px solid black"
+            //cell.addEventListener('click', handleClick);
+            this.board.appendChild(cell);
         }
+			dim+= "auto "
         }
-
+		this.board.style.gridTemplateColumns = dim;
+		
 		let out = '';
 		for (let i = 0; i < this.dimensiones; i++) {
 			for (let j = 0; j < this.dimensiones; j++) {
