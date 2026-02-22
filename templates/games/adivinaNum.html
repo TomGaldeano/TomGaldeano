@@ -1,0 +1,100 @@
+{% include "links.html" %}
+<style>
+    html{
+        font-family: sans-serif;
+    }
+    #content{
+        border: 2px solid var(--black);
+        width: 600px;
+        margin: 0 auto;
+    }
+    h1{
+        width: 550px;
+        margin: 5px auto;
+        text-align: center;
+        font-size:1.8em;
+        color: var(--black);
+        font-weight: bold;
+    }
+    table{
+        border: 1px solid var(--black);
+        border-collapse: collapse; /* Collapses borders, removes gaps */
+        width: 550px;
+        margin: 10px auto;
+    }
+    td, th{
+        border:3px solid var(--black);
+        margin:0px;
+        text-align: center;
+        width: 50px;
+        
+    }
+    .X{
+        color: var(--white);
+    }
+    tr{
+        border: 1px solid var(--black);
+        padding: 0px;
+    }
+    #intentos{
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+    .morado{
+        background-color: var(--green);
+    }
+    #estado{
+        min-width: 100px;
+    }
+</style>
+{% include "header.html" %}
+<div>
+<div class="row justify-content-md-center container d-flex mx-auto"><h1>Adivina el numero de 1 a 100</h1></div>
+<div class="row justify-content-md-center container d-flex mx-auto" id="Game">
+        <table>
+            <thead>
+                <th><label for="numero">Numero: <input id="numero" type="text"></label></th>
+                <th><button id="jugar">Jugar</button></th>
+                <th id="estado"></th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="3" id="intentos">Intentos Realizados:</td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <tr>
+                <td class="indice" data-index="1">1</td>
+                <td class="indice" data-index="2">2</td>
+                <td class="indice" data-index="3">3</td>
+                <td class="indice" data-index="4">4</td>
+                <td class="indice" data-index="5">5</td>
+                <td class="indice" data-index="6">6</td>
+                <td class="indice" data-index="7">7</td>
+                <td class="indice" data-index="8">8</td>
+                <td class="indice" data-index="9">9</td>
+                <td class="indice" data-index="10">10</td>
+            </tr>
+            <tr>
+                <td class="X" data-index="1">X</td>
+                <td class="X" data-index="2">X</td>
+                <td class="X" data-index="3">X</td>
+                <td class="X" data-index="4">X</td>
+                <td class="X" data-index="5">X</td>
+                <td class="X" data-index="6">X</td>
+                <td class="X" data-index="7">X</td>
+                <td class="X" data-index="8">X</td>
+                <td class="X" data-index="9">X</td>
+                <td class="X" data-index="10">X</td>
+            </tr>
+        </table>
+        
+    </div>
+    <div class="row justify-content-md-center container d-flex mx-auto" id="Game">
+        <button id="new">Nueva partida</button>
+    </div>
+</div>
+
+    <script src="{{ url_for('static', filename='js/adivina.js') }}"></script>
+{% include "footer.html" %}

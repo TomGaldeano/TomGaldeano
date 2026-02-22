@@ -61,6 +61,10 @@ def blackjack():
 def buscaminas():
     return render_template('games/buscaminas.html')
 
+@app.route('/projects/games/adivinaNum')
+def adivinaNum():
+    return render_template('games/adivinaNum.html')
+
 @app.route('/projects/ordered')
 def pj_ordered():
     return render_template('projects/pj_ordered.html')
