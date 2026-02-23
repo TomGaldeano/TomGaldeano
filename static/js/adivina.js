@@ -1,5 +1,5 @@
 let boton = document.querySelector("#jugar")
-let num = Math.round(Math.random()*100);
+let num = Math.round(Math.random()*99)+1;
 let numIntentos = 0;
 const valor = document.querySelector("input")
 const msg = document.querySelector("#estado")
@@ -36,7 +36,7 @@ boton.addEventListener("click",() => {
 
 })
 nueva.addEventListener("click",()=>{
-    num = Math.round(Math.random()*100);
+    num = Math.round(Math.random()*99)+1;
     for(let i = 1;i<11;i++){
         let indice = document.querySelector('.X[data-index="'+i+'"]')
         indice.classList.remove("morado")
