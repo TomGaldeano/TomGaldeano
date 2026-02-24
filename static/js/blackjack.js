@@ -167,6 +167,7 @@ function startNewGame() {
 
     // Deal initial cards
     // TODO: Push 2 cards to playerHand and 2 to dealerHand (pop from deck)
+    playerHand.
 
     // Update UI buttons
     dealBtn.disabled = true;

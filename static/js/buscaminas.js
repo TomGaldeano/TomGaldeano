@@ -100,13 +100,12 @@ class Minesweeper {
             cell.dataset.row = row;
             cell.dataset.col = col;
 			cell.classList.add("cell")
-			if (this.tablero.estaMarcada) {
-				
-			}
 			if(this.tablero[row][col].estaOculta){
 				cell.classList.add("normal")
 			}
-
+			cell.addEventListener("click",()=>{
+				this.innerHTML="w"
+			})
             //cell.addEventListener('click', handleClick);
             this.board.appendChild(cell);
         }
