@@ -5,11 +5,13 @@
     }
     #content{
         border: 2px solid var(--black);
-        width: 600px;
+        max-width: 600px;
+        width: 100%;
         margin: 0 auto;
     }
     h1{
-        width: 550px;
+        max-width: 550px;
+        width: 100%;
         margin: 5px auto;
         text-align: center;
         font-size:1.8em;
@@ -19,14 +21,15 @@
     table{
         border: 1px solid var(--black);
         border-collapse: collapse; /* Collapses borders, removes gaps */
-        width: 550px;
+        max-width: 550px;
+        width: 100%;
         margin: 10px auto;
     }
     td, th{
         border:3px solid var(--black);
         margin:0px;
         text-align: center;
-        width: 50px;
+        min-width: 50px;
         
     }
     .X{
@@ -45,6 +48,21 @@
     }
     #estado{
         min-width: 100px;
+    }
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 1.5em;
+        }
+        table {
+            font-size: 0.9em;
+        }
+        td, th {
+            min-width: 10px;
+            padding: 5px;
+        }
+        #numero {
+            width: 80px;
+        }
     }
 </style>
 {% include "header.html" %}
