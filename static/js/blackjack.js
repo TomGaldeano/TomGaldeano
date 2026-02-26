@@ -145,7 +145,12 @@ function drawTable() {
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
     // TODO: Draw Dealer's hand
-
+    for (let index = 0; index < array.length; index++) {
+        const element = array[index];
+        
+    }
+    drawCard(playerHand[0],0,500,false)
+    drawCard(playerHand[1],100,500,false)
     // TODO: Draw Player's hand
 
     // TODO: Draw Scores
@@ -167,8 +172,8 @@ function startNewGame() {
 
     // Deal initial cards
     // TODO: Push 2 cards to playerHand and 2 to dealerHand (pop from deck)
-    playerHand.
-
+    playerHand.push(deck.pop(),deck.pop())
+    dealerHand.push(deck.pop(),deck.pop())
     // Update UI buttons
     dealBtn.disabled = true;
     hitBtn.disabled = false;
