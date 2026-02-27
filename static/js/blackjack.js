@@ -145,14 +145,13 @@ function drawTable() {
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
     // TODO: Draw Dealer's hand
-    for (let index = 0; index < array.length; index++) {
-        const element = array[index];
-        
+    for (let index = 0; index < dealerHand.length; index++) {
+        drawCard(dealerHand[index],50+index*80,10);        
     }
-    drawCard(playerHand[0],0,500,false)
-    drawCard(playerHand[1],100,500,false)
     // TODO: Draw Player's hand
-
+    for (let index = 0; index < playerHand.length; index++) {
+        drawCard(playerHand[index],50+index*80,490);        
+    }
     // TODO: Draw Scores
 
     // TODO: Draw Message (if gameOver)
@@ -184,11 +183,13 @@ function startNewGame() {
 
 function hit() {
     if (gameOver) return;
-
+    if (deck.length<5){
+        return
+    }
     // TODO: Add card to player hand
-
+    playerHand.push(deck.pop())
     // TODO: Check for Bust (score > 21) -> End game if bust
-
+    if (calculateScore(playerHand) >21) gameOver = true;
     drawTable();
 }
 
@@ -196,7 +197,7 @@ function stand() {
     if (gameOver) return;
 
     // TODO: Dealer plays (Dealer must hit on soft 17 or less, stand on 17+, logic varies but keep it simple: hit until >= 17)
-
+    while (calculateScore(dealerHand) <= 17) dealerHand.push(deck.pop());
     // TODO: Determine Winner
 
     gameOver = true;
