@@ -21,6 +21,7 @@ const ctx = canvas.getContext('2d');
 const dealBtn = document.getElementById('deal-btn');
 const hitBtn = document.getElementById('hit-btn');
 const standBtn = document.getElementById('stand-btn');
+const newBtn = document.querySelector("#new-btn")
 
 // --- GAME STATE ---
 let deck = [];
@@ -155,6 +156,13 @@ function drawTable() {
     // TODO: Draw Scores
 
     // TODO: Draw Message (if gameOver)
+    if(gameOver){
+        ctx.fillStyle = 'white';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(message, 240, 290);
+    }
+
 }
 
 /**
@@ -174,6 +182,7 @@ function startNewGame() {
     playerHand.push(deck.pop(),deck.pop())
     dealerHand.push(deck.pop(),deck.pop())
     // Update UI buttons
+    newBtn.disabled = true;
     dealBtn.disabled = true;
     hitBtn.disabled = false;
     standBtn.disabled = false;
@@ -189,8 +198,18 @@ function hit() {
     // TODO: Add card to player hand
     playerHand.push(deck.pop())
     // TODO: Check for Bust (score > 21) -> End game if bust
-    if (calculateScore(playerHand) >21) gameOver = true;
+    if (calculateScore(playerHand) >21){
+        gameOver = true;
+        message = "You bust"
+    }
+    else if (calculateScore(playerHand)==21){
+        message = "Blackjack"
+    }
     drawTable();
+    newBtn.disabled = false;
+    dealBtn.disabled = false;
+    hitBtn.disabled = true;
+    standBtn.disabled = true;
 }
 
 function stand() {
@@ -201,15 +220,16 @@ function stand() {
     // TODO: Determine Winner
 
     gameOver = true;
+    newBtn.disabled = false;
     dealBtn.disabled = false;
     hitBtn.disabled = true;
     standBtn.disabled = true;
-
     drawTable();
+
 }
 
 // --- EVENT LISTENERS ---
-dealBtn.addEventListener('click', startNewGame);
+newBtn.addEventListener('click', startNewGame);
 hitBtn.addEventListener('click', hit);
 standBtn.addEventListener('click', stand);
 
