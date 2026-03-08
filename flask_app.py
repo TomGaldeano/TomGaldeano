@@ -65,6 +65,22 @@ def buscaminas():
 def adivinaNum():
     return render_template('games/adivinaNum.html')
 
+@app.route('/projects/games/hexKingdom')
+def hexKingdom():
+    return render_template('games/hexKingdom.html')
+
+@app.route('/projects/games/obstacleRun')
+def obstacleRun():
+    return render_template('games/obstacleRun.html')
+
+@app.route('/projects/games/spaceInvaders')
+def spaceInvaders():
+    return render_template('games/spaceInvaders.html')
+
+@app.route('/projects/games/tute')
+def tute():
+    return render_template('games/tute.html')
+
 @app.route('/projects/ordered')
 def pj_ordered():
     return render_template('projects/pj_ordered.html')
