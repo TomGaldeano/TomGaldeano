@@ -10,8 +10,8 @@
 // --- CONFIGURATION ---
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 600;
-const CARD_WIDTH = 100;
-const CARD_HEIGHT = 145;
+const CARD_WIDTH = 70;
+const CARD_HEIGHT = 100;
 const SUITS = ['♠', '♥', '♦', '♣'];
 const VALUES = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 const FACE = ['J', 'Q', 'K']
@@ -107,13 +107,11 @@ function drawCard(card, x, y, isHidden = false) {
     // TODO: Draw a single card at (x, y). 
     // If isHidden is true, draw the back of the card.
     // Use ctx.rect, ctx.fillStyle, ctx.fillText, etc.
-    width = 70;
-    height=100;
     ctx.fillStyle = 'white';
-    ctx.fillRect(x, y, width, height);
+    ctx.fillRect(x, y, CARD_WIDTH, CARD_HEIGHT);
     ctx.strokeStyle = '#000';
     ctx.lineWidth = 1;
-    ctx.strokeRect(x, y, width, height);
+    ctx.strokeRect(x, y, CARD_WIDTH, CARD_HEIGHT);
     if (isHidden){
         for( let i =0;i<15;i++){
             if(i%2==0){
@@ -122,7 +120,7 @@ function drawCard(card, x, y, isHidden = false) {
                         ctx.fillStyle = 'black';
             }
 
-        ctx.fillRect(x+2.5*i, y+2.5*i, width-5*i, height-5*i);
+        ctx.fillRect(x+2.5*i, y+2.5*i, CARD_WIDTH-5*i, CARD_HEIGHT-5*i);
 
         }
 
@@ -132,9 +130,9 @@ function drawCard(card, x, y, isHidden = false) {
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(card.value, x +16, y +18);
-        ctx.fillText(card.value, x + width -16, y +height -18);
+        ctx.fillText(card.value, x + CARD_WIDTH-16, y +CARD_HEIGHT-18);
         ctx.font = '50px Arial';
-        ctx.fillText(card.suit, x + width/2, y +height/2);
+        ctx.fillText(card.suit, x + CARD_WIDTH/2, y +CARD_HEIGHT/2);
 
 
     }
@@ -154,6 +152,7 @@ function drawTable() {
         drawCard(playerHand[index],50+index*80,490);        
     }
     // TODO: Draw Scores
+
 
     // TODO: Draw Message (if gameOver)
     if(gameOver){
@@ -206,10 +205,13 @@ function hit() {
         message = "Blackjack"
     }
     drawTable();
-    newBtn.disabled = false;
-    dealBtn.disabled = false;
-    hitBtn.disabled = true;
-    standBtn.disabled = true;
+    if (gameOver) {
+        newBtn.disabled = false;
+        dealBtn.disabled = false;
+        hitBtn.disabled = true;
+        standBtn.disabled = true; 
+    }
+
 }
 
 function stand() {
@@ -218,7 +220,12 @@ function stand() {
     // TODO: Dealer plays (Dealer must hit on soft 17 or less, stand on 17+, logic varies but keep it simple: hit until >= 17)
     while (calculateScore(dealerHand) <= 17) dealerHand.push(deck.pop());
     // TODO: Determine Winner
-
+    if (calculateScore(dealerHand) >21 || calculateScore(dealerHand) < calculateScore(playerHand)){
+        message = "You win"
+    }
+    else {
+        message = "You Lose"
+    }
     gameOver = true;
     newBtn.disabled = false;
     dealBtn.disabled = false;
@@ -228,10 +235,24 @@ function stand() {
 
 }
 
+function deal(){
+    playerHand=[]
+    dealerHand=[]
+    playerHand.push(deck.pop(),deck.pop())
+    dealerHand.push(deck.pop(),deck.pop())
+    // Update UI buttons
+    newBtn.disabled = true;
+    dealBtn.disabled = true;
+    hitBtn.disabled = false;
+    standBtn.disabled = false;
+    gameOver = false
+    drawTable();
+}
 // --- EVENT LISTENERS ---
 newBtn.addEventListener('click', startNewGame);
 hitBtn.addEventListener('click', hit);
 standBtn.addEventListener('click', stand);
+dealBtn.addEventListener("click",deal)
 
 // Initial Draw
 ctx.fillStyle = "white";
