@@ -99,7 +99,8 @@ function mostrar_sudoku() {
     // muestra el sudoku
     for (let i = 0; i < TAM; i++) {
         for (let j = 0; j < TAM; j++) {
-            document.querySelector('.Sudoku-item[data-index="' + i + j + '"]').value = sudoku[i][j];
+            if (sudoku[i][j]!=0)
+                document.querySelector('.Sudoku-item[data-index="' + i + j + '"]').value = sudoku[i][j];
         }
     }
 }

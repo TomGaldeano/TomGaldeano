@@ -3,10 +3,13 @@
     border: 2px solid var(--black);
     font-weight: 700;
     padding: 5px;
-    min-width: 30px;
+    min-width: 10px;
+    max-width:35px;
+    max-height: 35px;
   }
   input {
-    max-width: 30px;
+    max-width: 20px;
+    max-height: 20px;
     border: var(--black);
     background-color: var(--white);
     color: var(--black);
@@ -28,11 +31,12 @@
   div{
     padding: 10px;
   }
+
   </style>
 {% include "header.html" %}
 <div>
-<div class="row justify-content-md-center container d-flex mx-auto"><h1>Sudoku</h1></div>
-<div class="row justify-content-md-center container d-flex mx-auto" id="Game">
+<div class="row justify-content-center container d-flex mx-auto"><h1 class="text-center justify-content-md-center">Sudoku</h1></div>
+<div class="row justify-content-center container d-flex mx-auto" id="Game">
   <div id="board">
     <table>
       <tbody id="sudoku-body">
@@ -48,9 +52,9 @@
 </div>
   </div>
   <div id="buttons">
-    <div class="row justify-content-md-center container d-flex mx-auto"><button id="comprobar" class="green_button">Comprobar</button></div>
-    <div class="row justify-content-md-center container d-flex mx-auto"><button id="resolver" class="green_button">Resolver</button></div>
-    <div class="row justify-content-md-center container d-flex mx-auto"><button id="nuevo" class="green_button">Nuevo Sudoku</button></div>
+    <div class="row justify-content-center container d-flex mx-auto"><button id="comprobar" class="green_button">Comprobar</button></div>
+    <div class="row justify-content-center container d-flex mx-auto"><button id="resolver" class="green_button">Resolver</button></div>
+    <div class="row justify-content-center container d-flex mx-auto"><button id="nuevo" class="green_button">Nuevo Sudoku</button></div>
   </div>
 </div>
 <script src="{{ url_for('static', filename='js/sudoku.js') }}"></script>

@@ -218,3 +218,6 @@ li.ridge {
     background-color: var(--green);
     color: var(--white);
 }
+.plain-li{
+  list-style: none;
+}
