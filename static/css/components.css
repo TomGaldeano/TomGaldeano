@@ -140,6 +140,7 @@
 }
 .h1_big {
   font-size: 3.4rem;
+  margin:20px;
 }
 
 .h2_big {
@@ -220,4 +221,8 @@ li.ridge {
 }
 .plain-li{
   list-style: none;
+  font-size: 1.2rem;
+}
+.plain.p{
+  font-size: 1.2rem;
 }
