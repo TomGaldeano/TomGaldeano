@@ -1,19 +1,25 @@
 {% include "links.html" %}
+<style>
+  .time {
+    font-size: 2.5rem;
+  }
+</style>
 {% include "header.html" %}
 
 <body>
-  <div class="container mt-5 text-center">
-    <h1>Some countdown's to keep me hopeful</h1>
+  <div class="justify-content-center container d-flex mx-auto">
+    <h1 class="text-center h1_big">Some countdown's to keep me hopeful</h1>
   </div>
   <!DOCTYPE html>
-  <div class="container mt-5 text-center">
-    <h2>Countdown to our hopeful graduation</h1>
-      <div id="countdown" class="mt-4 fw-bold display-4 text-black"></div>
+  <div class="justify-content-center container d-flex mx-auto">
+    <h2 class="h2_big text-center">Countdown to our hopeful graduation</h2>
   </div>
-  <div class="container mt-5 text-center">
-    <h2>Countdown to 30th birthday</h1>
-      <div id="countdown0" class="mt-4 fw-bold display-4 text-black"></div>
+  <div id="countdown" class="time container d-flex mx-auto justify-content-center"></div>
+  <div class="mt-5 justify-content-center container d-flex mx-auto">
+    <h2 class="h2_big text-center">Countdown to 30th birthday</h2>
   </div>
+  <div id="countdown0" class="time container d-flex mx-auto justify-content-center"></div>
+
   <script>
     const targetDate = new Date("{{ hope_graduation }}Z");
     const targetDate0 = new Date("{{ birth30 }}Z"); function updateCountdown() {
@@ -28,7 +34,7 @@
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
       const diffs = targetDate0 - now;
-      if (diff <= 0) {
+      if (diffs <= 0) {
         document.getElementById('countdown').textContent = "Time's up!";
         return;
       }
@@ -43,4 +49,4 @@
     setInterval(updateCountdown, 1000);
 
   </script>
-{% include"footer.html" %}
+  {% include"footer.html" %}
