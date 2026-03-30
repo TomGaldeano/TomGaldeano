@@ -99,9 +99,12 @@ function mostrar_sudoku() {
     // muestra el sudoku
     for (let i = 0; i < TAM; i++) {
         for (let j = 0; j < TAM; j++) {
-            if (sudoku[i][j]!=0)
+            if (sudoku[i][j]!=0){
                 document.querySelector('.Sudoku-item[data-index="' + i + j + '"]').value = sudoku[i][j];
-        }
+            }else{
+                document.querySelector('.Sudoku-item[data-index="' + i + j + '"]').value = "";
+            }
+            }
     }
 }
 
@@ -148,7 +151,6 @@ function crea_sudoku() {
             }
         }
     }
-    console.log(1);
     mostrar_sudoku();
 }
 function genera_sudoku() {

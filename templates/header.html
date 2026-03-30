@@ -1,30 +1,32 @@
-  <title>Tom's reportoire</title>
+<title>Tom's reportoire</title>
 </head>
+
 <body class="d-flex flex-column min-vh-100 justify-content-between light">
-<nav class="navbar navbar-expand-sm bg-secondary">    
-  <div class="container-fluid bg-secondary">
-    <ul class="nav justify-content-start">
-      <li class="nav-item text-white bg-secondary">
-        <a class="nav-link green_hover" href="{{ url_for('home') }}">Home</a>
-      </li>
-      <li class="nav-item text-white bg-secondary dropdown">
-        <a class="nav-link green_hover dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" id="dropdownMenuLink" aria-expanded="false">Projects</a>
-      <ul class=" dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <li class="nav-item text-white">
-            <a class="nav-link green_hover" href="{{ url_for('pj_personal')}}">Personal Websites</a>
+  <nav class="navbar navbar-expand-sm bg-secondary">
+    <div class="container-fluid bg-secondary">
+      <ul class="nav justify-content-start">
+        <li class="nav-item text-white bg-secondary">
+          <a class="nav-link green_hover" href="{{ url_for('home') }}">Home</a>
         </li>
-        <li class="nav-item green_hover">
-          <a class="nav-link green_hover" href="{{ url_for('pj_games')}}">Games</a>
+        <li class="nav-item text-white bg-secondary dropdown">
+          <a class="nav-link green_hover dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+            id="dropdownMenuLink" aria-expanded="false">Projects</a>
+          <ul class="bg-secondary dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li class="link item text-white">
+              <a class="link-item green_hover" href="{{ url_for('pj_personal')}}">Personal Websites</a>
+            </li>
+            <li class="nav-item green_hover">
+              <a class="nav-link green_hover" href="{{ url_for('pj_games')}}">Games</a>
+            </li>
+            <li class="nav-item red_hover">
+              <a class="nav-link green_hover" href="{{ url_for('pj_ordered')}}">Ordered Websites</a>
+            </li>
+            <li class="nav-item text-white bg-secondary">
+              <a class="nav-link green_hover" href="{{ url_for('clock') }}">Clock</a>
+            </li>
+          </ul>
         </li>
-        <li class="nav-item red_hover">
-          <a class="nav-link green_hover" href="{{ url_for('pj_ordered')}}">Ordered Websites</a>
-        </li>
-    </ul>
-      </li>
-      <li class="nav-item text-white bg-secondary">
-        <a class="nav-link green_hover" href="{{ url_for('clock') }}">Clock</a>
-      </li>
-    </ul>
-    <button id="color_changer"></button>
-  </div>
-</nav>
+      </ul>
+      <button id="color_changer"></button>
+    </div>
+  </nav>
