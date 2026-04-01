@@ -1,7 +1,8 @@
 /* ==========================
   Variables (Global)
   ========================== */
-:root {
+
+  :root {
   --black: #000000;
   --blue: #051f8a;
   --dark_gray: #929292;
@@ -13,4 +14,5 @@
   @import url('css/variables.css');
   @import url('css/layout.css');
   @import url('css/components.css');
+  
 }

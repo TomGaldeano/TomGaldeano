@@ -226,4 +226,55 @@ li.ridge {
 }
 .plain.p{
   font-size: 1.2rem;
+  margin:0px 5px;
+  padding: 0px 5px;
+}
+h1,h2,h3{
+  font-weight: bold;
+}
+@media (min-width: 300px){
+  .h1_big {
+  font-size: 2.5rem;
+  margin:20px;
+}
+
+.h2_big {
+  font-size: 1.8rem;
+}
+
+.h3_big {
+  font-size: 1.3rem;
+}
+.plain-li{
+  list-style: none;
+  font-size: 1.1rem;
+}
+.plain.p{
+  font-size: 1.1rem;
+  margin:0px 5px;
+  padding: 0px 5px;
+}
+}
+@media (min-width: 1000px){
+  .h1_big {
+  font-size: 3.4rem;
+  margin:20px;
+}
+
+.h2_big {
+  font-size: 2.8rem;
+}
+
+.h3_big {
+  font-size: 1.8rem;
+}
+.plain-li{
+  list-style: none;
+  font-size: 1.2rem;
+}
+.plain.p{
+  font-size: 1.2rem;
+  margin:0px 5px;
+  padding: 0px 5px;
+}
 }
