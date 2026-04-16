@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Sands - Tu Vacación de Ensueño</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="d-flex flex-column min-vh-100 justify-content-between light">
+   <nav class="navbar bg-dark navbar-expand-md navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Azure Sands</a>  
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#home">Inicio</a>
+        </li>
+        <li class="nav-item">
+        <button class="btn btn-dark nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Reservas</button>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#rooms">Habitaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#amenities">Servicios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#contact">Contacto</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header ">
+    <h5 id="offcanvasCenterLabel justify-content-center">RESERVAS</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body justify-content-center">   
+    <ul id="reservas" class="list-group">
+      <li class="list-group-item">No hay reservas aun</li>
+    </ul>
+    <div class="row justify-content-center container d-flex mx-auto mt-4">
+    <button class="btn btn-primary j ">Pagar</button>
+    </div>
+  </div>
+</div>
+<div class="container-fluid p-0" id="home">
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="img1.png" alt="Bienvenido a Azure Sands" style="height: 60vh; object-fit: cover;">
+      <div class="carousel-caption d-block">
+        <h5>Bienvenido a Azure Sands</h5>
+        <p>Experimenta lujo y relajación en nuestro paraíso tropical.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="img2.png" alt="Vistas Espectaculares a la Playa" style="height: 60vh; object-fit: cover;">
+      <div class="carousel-caption d-block">
+        <h5>Vistas Espectaculares a la Playa</h5>
+        <p>Disfruta de vistas impresionantes al océano desde tu balcón privado.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="img3.png" alt="Servicios de Clase Mundial" style="height: 60vh; object-fit: cover;">
+      <div class="carousel-caption d-block">
+        <h5>Servicios de Clase Mundial</h5>
+        <p>Spa, piscinas y gastronomía fina te esperan.</p>
+      </div>
+    </div>  
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Anterior</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Siguiente</span>
+  </button>
+</div>
+<section id="about" class="py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2>Acerca de Azure Sands</h2>
+        <p>Ubicado en una isla tropical prístina, Azure Sands ofrece el escape definitivo de lo cotidiano. Nuestro resort cuenta con alojamientos lujosos, servicios de clase mundial y un servicio incomparable para hacer que tu estancia sea inolvidable.</p>
+        <p>Ya sea que busques relajación en nuestras playas privadas, aventura en nuestras aguas cristalinas o indulgencia en nuestro spa, Azure Sands es tu puerta de entrada al paraíso.</p>
+      </div>
+      <div class="col-lg-6">
+        <img src="https://via.placeholder.com/600x400/6f42c1/ffffff?text=Vista+General+del+Resort" alt="Vista General del Resort" class="img-fluid rounded">
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Habitaciones-->
+<section id="rooms" class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Nuestras Habitaciones</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card" id="deluxe">
+          <img src="deluxe.png" class="card-img-top" alt="Suite Deluxe">
+          <div class="card-body">
+            <h5 class="card-title">Suite Deluxe</h5>
+            <p class="card-text">Suite espaciosa con vistas al océano, cama king y balcón privado.</p>
+            <input type="date" name="" class="m-2">
+            <button class="btn btn-primary m-2">Reservar Ahora</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4" id="villa">
+        <div class="card">
+          <img src="villa.png" class="card-img-top" alt="Villa Frente al Mar">
+          <div class="card-body">
+            <h5 class="card-title">Villa Frente al Mar</h5>
+            <p class="card-text">Villa privada con acceso directo a la playa y vistas espectaculares al atardecer.</p>
+            <input type="date" class="m-2">
+            <button class="btn btn-primary m-2">Reservar Ahora</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4" id="suite">
+        <div class="card">
+          <img src="presi.png" class="card-img-top" alt="Suite Presidencial">
+          <div class="card-body">
+            <h5 class="card-title">Suite Presidencial</h5>
+            <p class="card-text">Lujo supremo con múltiples habitaciones, servicio de mayordomo y vistas panorámicas.</p>
+            <input type="date" class="m-2">
+            <button class="btn btn-primary mt-2">Reservar Ahora</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Patata Patata -->
+<section id="amenities" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-4">Servicios e Instalaciones</h2>
+    <div class="row">
+      <div class="col-md-3 text-center mb-4">
+        <i class="fas fa-swimmer fa-3x text-primary mb-3"></i>
+        <h5>Piscina Infinita</h5>
+        <p>Relájate en nuestra impresionante piscina infinita con vistas al océano.</p>
+      </div>
+      <div class="col-md-3 text-center mb-4">
+        <i class="fas fa-spa fa-3x text-primary mb-3"></i>
+        <h5>Spa y Bienestar</h5>
+        <p>Rejuvenece con nuestro spa completo y centro de bienestar.</p>
+      </div>
+      <div class="col-md-3 text-center mb-4">
+        <i class="fas fa-utensils fa-3x text-primary mb-3"></i>
+        <h5>Gastronomía Fina</h5>
+        <p>Disfruta de comidas gourmet en nuestros restaurantes galardonados.</p>
+      </div>
+      <div class="col-md-3 text-center mb-4">
+        <i class="fas fa-skiing fa-3x text-primary mb-3"></i>
+        <h5>Deportes Acuáticos</h5>
+        <p>Experimenta actividades acuáticas emocionantes y excursiones.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contacto-->
+<section id="contact" class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Contáctanos</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <h5>Ponte en Contacto</h5>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Isla Paraíso, Aguas Tropicales</p>
+        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+        <p><i class="fas fa-envelope"></i> info@azuresands.com</p>
+      </div>
+      <div class="col-md-6">
+        <form>
+          <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico</label>
+            <input type="email" class="form-control" id="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Mensaje</label>
+            <textarea class="form-control" id="message" rows="3" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-dark text-light py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <p>&copy; 2023 Azure Sands. Todos los derechos reservados.</p>
+      </div>
+      <div class="col-md-6 text-end">
+        <a href="#" class="text-light me-3">Política de Privacidad</a>
+        <a href="#" class="text-light">Términos de Servicio</a>
+      </div>
+    </div>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script>
+    const reservas = document.querySelector("#reservas");
+    const habitaciones = new Map([["deluxe_btn",document.querySelector("#deluxe button")],
+    ["deluxe_calendar",document.querySelector("#deluxe input")],
+    ["villa_btn",document.querySelector("#villa button")],
+    ["villa_calendar",document.querySelector("#villa input")],
+    ["suite_btn",document.querySelector("#suite button")],
+    ["suite_calendar",document.querySelector("#suite input")]
+  ]);
+    const carrito = [];
+    habitaciones.get("deluxe_btn").addEventListener("click",()=> {
+      if(habitaciones.get("deluxe_calendar").value){
+        if (carrito.length==0){ 
+          reservas.innerHTML="";
+        }
+        let li = document.createElement("li");
+        li.classList.add("list-group-item");
+        carrito.push("Habitacion Deluxe: "+habitaciones.get("deluxe_calendar").value);
+        li.textContent = "Habitacion Deluxe: "+habitaciones.get("deluxe_calendar").value;
+        reservas.appendChild(li);}
+            })
+    habitaciones.get("villa_btn").addEventListener("click",()=> {
+      if(habitaciones.get("villa_calendar").value){
+        if (carrito.length==0){ 
+          reservas.innerHTML="";
+        }
+        let li = document.createElement("li");
+        li.classList.add("list-group-item");
+        carrito.push("Habitacion Villa: "+habitaciones.get("villa_calendar").value);
+        li.textContent = "Habitacion Villa: "+habitaciones.get("villa_calendar").value;
+        reservas.appendChild(li);}
+            })
+    habitaciones.get("suite_btn").addEventListener("click",()=> {
+      if(habitaciones.get("suite_calendar").value){
+        if (carrito.length==0){ 
+          reservas.innerHTML="";
+        }
+        let li = document.createElement("li");
+        li.classList.add("list-group-item");
+        carrito.push("Habitacion Presidencial: "+habitaciones.get("suite_calendar").value);
+        li.textContent = "Habitacion Presidencial: "+habitaciones.get("suite_calendar").value;
+        reservas.appendChild(li);}
+            })
+      
+  </script>
+</body>
+</html>
