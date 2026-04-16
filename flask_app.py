@@ -45,39 +45,39 @@ def pj_per_built_in_api():
 def pj_games():
     return render_template('projects/pj_games.html')
 
-@app.route('/projects/games/sudoku')
+@app.route('/games/sudoku')
 def sudoku():
     return render_template('games/sudoku.html')
 
-@app.route('/projects/games/tresenraya')
+@app.route('/games/tresenraya')
 def tresenraya():
     return render_template('games/tresenraya.html')
 
-@app.route('/projects/games/blackjack')
+@app.route('/games/blackjack')
 def blackjack():
-    return render_template('games/blackjack.html')
+    return render_template('/games/blackjack.html')
 
-@app.route('/projects/games/buscaminas')
+@app.route('/games/buscaminas')
 def buscaminas():
     return render_template('games/buscaminas.html')
 
-@app.route('/projects/games/adivinaNum')
+@app.route('/games/adivinaNum')
 def adivinaNum():
     return render_template('games/adivinaNum.html')
 
-@app.route('/projects/games/hexKingdom')
+@app.route('/games/hexKingdom')
 def hexKingdom():
     return render_template('games/hexKingdom.html')
 
-@app.route('/projects/games/obstacleRun')
+@app.route('/games/obstacleRun')
 def obstacleRun():
     return render_template('games/obstacleRun.html')
 
-@app.route('/projects/games/spaceInvaders')
+@app.route('/games/spaceInvaders')
 def spaceInvaders():
     return render_template('games/spaceInvaders.html')
 
-@app.route('/projects/games/tute')
+@app.route('/games/tute')
 def tute():
     return render_template('games/tute.html')
 
@@ -92,6 +92,10 @@ def pj_operaciones():
 @app.route('/projects/gestion')
 def pj_gestion():
     return render_template('projects/sistemas_informaticos/gestion.html',options="ABCDE")  
+
+@app.route("/personal/")
+def AzureSands():
+    return render_template("/personal/AzureSands.html")
 
 if __name__ == '__main__':  
     app.run(host='0.0.0.0', port=5001, debug=True)
