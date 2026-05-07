@@ -147,5 +147,4 @@ ul {
  #Spanish:hover, #English:hover {
   color: var(--white);
   text-decoration: none;
-  transform: translate(50px, 100px);  
 }
