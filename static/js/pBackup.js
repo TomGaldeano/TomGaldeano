@@ -27,6 +27,10 @@ const CANVAS_WIDTH = 1400;
       divs[1].classList.toggle("aqua")
       divs[1].classList.toggle("red")
     })
+    divs[1].addEventListener("mouseleave", () => {
+      divs[1].classList.toggle("aqua")
+      divs[1].classList.toggle("red")
+    })
     divs[2].addEventListener("click", () => {
       divs[2].classList.toggle("aqua")
       divs[2].classList.toggle("red")
