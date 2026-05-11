@@ -1,0 +1,166 @@
+{% include "links.html" %}
+  <style>
+    .basic {
+      height: 50px;
+      border: 1px black solid;
+      margin: 10px;
+    }
+
+    .aqua {
+      background-color: aqua;
+    }
+
+    .red {
+      background-color: red;
+    }
+
+    #b5 {
+      width: 50%;
+      height: 50px;
+      margin: 0px;
+    }
+
+    #b4 {
+      height: 70px;
+      padding: 0px;
+      border: none;
+    }
+
+    .flex {
+      display: flex;
+      align-items: left;
+    }
+
+    .right {
+      justify-content: right;
+    }
+
+    th,
+    td,
+    table {
+      border: 2px solid black;
+    }
+
+    canvas {
+      background-color: #27ae60;
+      /* Classic felt green */
+      border-radius: 8px;
+      display: block;
+    }
+
+    li {
+      list-style: none;
+    }
+    .marg{
+      margin: 20px;
+    }
+    h2{
+      margin-top: 20px;
+    }
+  </style>
+{% include "header.html" %}
+
+  <div class="row justify-content-center container d-flex mx-auto"><h1 class="text-center justify-content-md-center">Ejs practica JS Practica Backup</h1></div>
+  <div class="row justify-content-center container d-flex mx-auto">
+    <p>Ejercios pedidos al hacer practicas de primero de DAW en la empresa BackupFiles</p>
+  </div>
+  <h2 class="text-center h2_big">Ej 1</h2>
+  <div id="b1" class="basic aqua"></div>
+  <h2 class="text-center h2_big">Ej 2</h2>
+  <div id="b2" class="basic aqua"></div>
+  <h2 class="text-center h2_big">Ej 3</h2>
+  <div id="b3" class="basic aqua"></div>
+  <h2 class="text-center h2_big">Ej 4</h2>
+  <div id="b4" class="flex basic right">
+    <div id="b5" class="aqua basic "></div>
+  </div>
+  <h2 class="text-center h2_big">Ej 5</h2>
+  <form>
+    <div class="row justify-content-center container d-flex mx-auto">
+      <input type="email" name="email" id="email" placeholder="Email" pattern="\w+@\w+\.\w+" required>
+    </div>
+    <br>
+    <div class="row justify-content-center container d-flex mx-auto">
+      <input type="number" name="edad" id="edad" placeholder="Edad" required>
+    </div>
+    <br>
+    <div class="row justify-content-center container d-flex mx-auto">
+      <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+    </div>
+    <br>
+    <div class="row justify-content-center container d-flex mx-auto">
+      <input type="checkbox" name="aficion1" id="aficion1" disabled> Afición 1
+      <input type="checkbox" name="aficion2" id="aficion2" disabled> Afición 2
+      <input type="checkbox" name="aficion3" id="aficion3" disabled> Afición 3
+    </div>
+    <br>
+    <div class="row justify-content-center container d-flex mx-auto">
+      <input type="radio" name="aficiones" id="ponerAficiones"> Poner Aficiones
+      <input type="radio" name="aficiones" id="quitarAficiones"> Quitar Aficiones
+    </div>
+    <br>
+    <div class="row justify-content-center container d-flex mx-auto">
+      <button class="green_button" type="button" id="limpiar">Limpiar</button>
+    </div>
+    <br>
+    <div class="row justify-content-center container d-flex mx-auto">
+      <button class="green_button" type="submit" id="submit">Submit</button>
+    </div>
+    <div class="row justify-content-center container d-flex mx-auto">
+    <h2 class="text-center h2_big">Ej 6</h2>
+    </div>
+  </form>
+  <br>
+  <div class="row justify-content-center container d-flex mx-auto">
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Edad</th>
+        <th>Check</th>
+      </tr>
+    </thead>
+    <tbody id="body">
+    </tbody>
+  </table>
+  </div>
+  <br>
+  <div class="row justify-content-center container d-flex mx-auto marg">
+    <button class="green_button" id="add">añadir</button>
+  </div>
+  <br>
+  <br>
+  <div class="row justify-content-center container d-flex mx-auto">
+    <button class="green_button"id="dellast">delete last</button>
+  </div>
+  <br>
+  <div class="row justify-content-center container d-flex mx-auto marg">
+    <button class="green_button"id="delall">delete selected</button>
+  </div>
+  <br>
+  <h2 class="text-center h2_big">Ej 7</h2>
+  <div class="row justify-content-center container d-flex mx-auto">
+    <ul>
+      <li>
+        Ciudades Españolas<input class="pais" id="es" type="checkbox" name="">
+      </li>
+      <li>
+        Ciudades Inglesas<input class="pais" id="en" type="checkbox" name="">
+      </li>
+      <li>
+        Ciudades Portuguesas<input class="pais" id="fr" type="checkbox" name="">
+      </li>
+    </ul>
+  </div>
+  <div class="row justify-content-center container d-flex mx-auto">
+    <button class="green_button" id="btn7">ver ciudades</button>
+  </div>
+  <div class="row justify-content-center container d-flex mx-auto">
+    <ul id="ciudades"></ul>
+  </div>
+  <h2 class="text-center h2_big">Ej 8</h2>
+  <div id="bolas2" class="row justify-content-center container d-flex mx-auto"><canvas id="bolas" width="1400" height="1200"></canvas></div>
+  <script src="{{ url_for('static', filename='js/pBackup.js') }}">  
+  </script>
+{% include"footer.html" %}

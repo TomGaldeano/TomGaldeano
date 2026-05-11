@@ -85,6 +85,10 @@ def tute():
 def pj_ordered():
     return render_template('projects/pj_ordered.html')
 
+@app.route('/projects/ordered/PracticaBackup')
+def practicaBackup():
+    return render_template('ordered/Backup.html')
+
 @app.route('/projects/operaciones')
 def pj_operaciones():
     return render_template('projects/sistemas_informaticos/operaciones.html')

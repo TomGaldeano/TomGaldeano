@@ -1,6 +1,44 @@
 {% include "links.html" %}
 <style>
-
+    canvas {
+      background-color: slategrey;
+      border-radius: 8px;
+      display: block;
+    }
 </style>
 {% include "header.html" %}
+<div class="row justify-content-center container d-flex mx-auto">
+  <h1>Obstacle Run</h1>
+</div>
+<div class="row justify-content-center container d-flex mx-auto">
+<canvas id="runCanvas" width="1200" height="600">
+
+</canvas>
+</div>
+<div class="row justify-content-center container d-flex mx-auto">
+  <button>Easy</button>
+  <button>Medium</button>
+  <button>Hard</button>
+</div>
+<script>
+const CANVAS_WIDTH = 1200;
+const CANVAS_HEIGHT = 600;
+const canvas = document.querySelector('#runCanvas');
+const ctx = canvas.getContext('2d');
+class Runner{
+  constructor(){
+    this.height = 30
+    this.width = 10
+    this.pos = [(CANVAS_WIDTH/2)-5,CANVAS_HEIGHT]
+  }
+  draw(){
+    ctx.fillStyle = 'white';
+    ctx.fillRect(this.pos[0], this.pos[1], this.width, this.height);
+    console.log(1)
+  }
+}
+  const run = new Runner()
+  run.draw()
+</script>
+<!--script src="{{ url_for('static', filename='js/obstacleRun.js') }}"></script -->
 {% include "footer.html" %}
