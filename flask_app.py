@@ -43,7 +43,7 @@ def pj_per_built_in_api():
 
 @app.route('/projects/games')
 def pj_games():
-    return render_template('projects/pj_games.html')
+    return render_template('games.html')
 
 @app.route('/games/sudoku')
 def sudoku():
@@ -80,6 +80,10 @@ def spaceInvaders():
 @app.route('/games/tute')
 def tute():
     return render_template('games/tute.html')
+
+@app.route("/games/solitaire")
+def solitaire():
+    return render_template("/games/solitaire.html")
 
 @app.route('/projects/ordered')
 def pj_ordered():
