@@ -34,17 +34,21 @@
 <div class="row justify-content-center container d-flex mx-auto">
   <h1>Obstacle Run</h1>
 </div>
-<div class="row justify-content-center container d-flex mx-auto">
+<div class="row justify-content-center container d-flex mx-auto game-area">
   <div id="gameContainer">
     <div id="score">Score: 0</div>
-    <canvas id="runCanvas" width="1200" height="600"></canvas>
+    <canvas id="runCanvas" width="1200" height="600" class="d-none d-lg-block"></canvas>
+    <p class="plain-p text-center d-block d-lg-none no-game">
+  Por desgracia este juego
+  no esta disponible en pantallas pequeñas
+</p>
   </div>
 </div>
-<div class="row justify-content-center container d-flex mx-auto difficulty-buttons" id="difficultyButtons">
-  <button onclick="setDifficulty('easy')">Easy</button>
-  <button onclick="setDifficulty('medium')">Medium</button>
-  <button onclick="setDifficulty('hard')">Hard</button>
-  <button onclick="setDifficulty('hell')">Hell</button>
+<div class="row justify-content-center container d-flex mx-auto difficulty-buttons d-none d-lg-block" id="difficultyButtons">
+  <button onclick="setDifficulty('easy')" class="d-none d-lg-block">Easy</button>
+  <button onclick="setDifficulty('medium')" class="d-none d-lg-block">Medium</button>
+  <button onclick="setDifficulty('hard')" class="d-none d-lg-block">Hard</button>
+  <button onclick="setDifficulty('hell')" class="d-none d-lg-block">Hell</button>
 </div>
 
 <script src="{{ url_for('static', filename='js/obstacleRun.js') }}"></script>

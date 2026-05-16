@@ -30,8 +30,12 @@
 <div class="row justify-content-center container d-flex mx-auto">
   <div id="gameContainer">
     <div id="score">Score: 0</div>
-    <div id="lives">Lives: ♥ ♥ ♥</div>
-    <canvas id="spaceCanvas" width="1200" height="600"></canvas>
+    <div id="lives">Lives: 3</div>
+    <canvas id="spaceCanvas" width="1200" height="600" class="d-none d-lg-block"></canvas>
+    <p class="plain-p text-center d-block d-lg-none no-game">
+  Por desgracia este juego
+  no esta disponible en pantallas pequeñas
+</p>
   </div>
 </div>
 {% include "footer.html" %}
@@ -43,9 +47,9 @@
   // Game variables
   const game = {
     score: 0,
-    lives: 3,
+    lives: 2,
     gameOver: false,
-    wave: 1
+    wave: 0
   };
 
   // Player ship
@@ -88,7 +92,7 @@
       this.width = 25;
       this.height = 25;
       this.color = '#FF0000';
-      this.shootCounter = Math.random() * 100;
+      this.shootCounter = (Math.random() * 250)+10*game.wave;
     }
 
     draw() {
@@ -109,9 +113,9 @@
     update() {
       this.x += enemySpeed * enemyDirection;
       this.shootCounter++;
-      if (this.shootCounter > 120 + Math.random() * 80) {
+      if (this.shootCounter > 400 + Math.random() * 10) {
         this.shoot();
-        this.shootCounter = 0;
+        this.shootCounter = 10*game.wave;
       }
     }
 
@@ -210,7 +214,9 @@
   function spawnEnemies() {
     if (enemies.length === 0) {
       game.wave++;
-      enemySpeed += 0.5;
+      game.score += 50; // Bonus points for clearing wave
+      game.lives++; // Extra life for clearing wave
+      enemySpeed += 0.2;
       for (let row = 0; row < 3; row++) {
         for (let col = 0; col < 8; col++) {
           enemies.push(new Enemy(col * 120 + 60, row * 80 + 40));
@@ -290,8 +296,7 @@
 
   // Update lives display
   function updateLivesDisplay() {
-    const hearts = game.lives > 0 ? '♥'.repeat(game.lives) : 'GAME OVER';
-    document.getElementById('lives').textContent = `Lives: ${hearts}`;
+    document.getElementById('lives').textContent = `Lives: ${game.lives}`;
   }
 
   // Game loop
@@ -345,6 +350,7 @@
       ctx.font = '16px Arial';
       ctx.textAlign = 'right';
       ctx.fillText(`Wave: ${game.wave}`, canvas.width - 20, 30);
+      ctx.fillText("Lives: " + game.lives, canvas.width - 20, 50);
     } else {
       // Game over screen
       ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';

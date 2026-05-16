@@ -272,9 +272,12 @@ h1,h2,h3{
   list-style: none;
   font-size: 1.2rem;
 }
-.plain.p{
+.plain-p{
   font-size: 1.2rem;
   margin:0px 5px;
   padding: 0px 5px;
+}
+.no-game{
+  text-align: center;
 }
 }
