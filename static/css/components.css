@@ -280,4 +280,14 @@ h1,h2,h3{
 .no-game{
   text-align: center;
 }
+.game-button{
+  background-color: var(--grey);
+  color: var(--black);
+  border: 1px solid var(--black);
+  height: 2em;
+  border-radius: 5px;
+}
+.game-button:hover{
+  background-color: var(--dark_gray);
+}
 }

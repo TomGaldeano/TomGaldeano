@@ -67,7 +67,7 @@ def adivinaNum():
 
 @app.route('/games/hexKingdom')
 def hexKingdom():
-    return render_template('games/hexKingdom.html')
+    return render_template('games/hexKingdoms.html')
 
 @app.route('/games/obstacleRun')
 def obstacleRun():

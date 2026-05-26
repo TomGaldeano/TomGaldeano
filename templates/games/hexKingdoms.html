@@ -1,21 +1,48 @@
-i{% include "links.html" %}
+{% include "links.html" %}
 <style>
   canvas {
     background-color: slategrey;
     border-radius: 8px;
     display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  .game-panel {
+    position: relative;
+    z-index: 2;
+    background: rgba(0,0,0,0.6);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+    color: white;
+  }
+  .game-panel .choices button {
+    min-width: 100px;
   }
 </style>
 {% include "header.html" %}
-<div class="row justify-content-center container d-flex mx-auto">
-<canvas id="hexCanvas" width="1200" height="600" class="d-none d-lg-block"></canvas>
-<p class="plain-p text-center d-block d-lg-none no-game">
-  Por desgracia este juego
-  no esta disponible en pantallas pequeñas
-</p>
-<p class="plain-p text-center d-block d-lg-none no-game">
-  Por desgracia este juego
-  no esta disponible en pantallas pequeñas
-</p>
+<div class="row justify-content-center container d-flex mx-auto mb-3">
+  <h1>Hex Kingdoms</h1>
 </div>
+<div class="row justify-content-center container d-flex mx-auto mb-3">
+  <div class="game-panel text-center w-100">
+    <h2>Choose Your Kingdom</h2>
+    <div class="choices d-flex justify-content-center flex-wrap">
+      <button class="pickFaction btn btn-primary mx-2 my-1" data-faction="0">North</button>
+      <button class="pickFaction btn btn-danger mx-2 my-1" data-faction="1">East</button>
+      <button class="pickFaction btn btn-success mx-2 my-1" data-faction="2">South</button>
+      <button class="pickFaction btn btn-warning mx-2 my-1" data-faction="3">West</button>
+    </div>
+  </div>
+</div>
+<div class="row justify-content-center container d-flex mx-auto mb-2">
+  <div class="game-panel w-100 d-flex flex-column flex-md-row align-items-center justify-content-center gap-3">
+    <button id="endTurnBtn" class="d-none d-lg-block game-button">End Turn</button>
+    <div id="statusText" class="text-start text-md-center">Select a kingdom and click a unit.</div>
+  </div>
+</div>
+<div class="row justify-content-center container d-flex mx-auto">
+  <canvas id="hexCanvas" width="1200" height="600"></canvas>
+</div>
+<script src="../../static/js/hexKingdoms.js"></script>
 {% include "footer.html" %}

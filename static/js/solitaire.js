@@ -7,6 +7,7 @@ const RANKS = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 const CARD_WIDTH = 80;
 const CARD_HEIGHT = 120;
 const PADDING = 20;
+const HITBOX_PADDING = 20;
 
 // Game state
 const game = {
@@ -63,6 +64,16 @@ function shuffle(deck) {
 
 // Initialize game
 function initGame() {
+  game.stock = [];
+  game.waste = [];
+  game.foundations = [[], [], [], []];
+  game.tableau = [[], [], [], [], [], [], []];
+  game.draggedCards = [];
+  game.dragSource = null;
+  game.dragSourceIndex = null;
+  game.dragSourceCardIndex = null;
+  game.isDragging = false;
+
   const deck = shuffle(createDeck());
   let cardIndex = 0;
 
@@ -92,11 +103,29 @@ function getPilePosition(pileType, index) {
   if (pileType === 'stock') return { x: startX, y: startY };
   if (pileType === 'waste') return { x: startX + CARD_WIDTH + 15, y: startY };
   if (pileType === 'foundation') {
-    return { x: startX + (CARD_WIDTH + 15) * (4 - index), y: startY };
+    return { x: startX + (CARD_WIDTH + 25) * (5 - index)+50, y: startY };
   }
   if (pileType === 'tableau') {
-    return { x: startX + (CARD_WIDTH + 15) * index, y: startY + CARD_HEIGHT + PADDING };
+    return { x: startX + (CARD_WIDTH + 45) * index+60, y: startY + CARD_HEIGHT + PADDING };
   }
+}
+
+function getPileHitbox(pileType, index) {
+  const pos = getPilePosition(pileType, index);
+  let width = CARD_WIDTH + HITBOX_PADDING;
+  let height = CARD_HEIGHT + HITBOX_PADDING;
+  let x = pos.x - HITBOX_PADDING / 2;
+  let y = pos.y - HITBOX_PADDING / 2;
+
+  if (pileType === 'tableau') {
+    height = CARD_HEIGHT + game.tableau[index].length*30;
+  }
+
+  return { x, y, width, height };
+}
+
+function isInsideHitbox(x, y, hitbox) {
+  return x >= hitbox.x && x <= hitbox.x + hitbox.width && y >= hitbox.y && y <= hitbox.y + hitbox.height;
 }
 
 // Draw card
@@ -109,17 +138,17 @@ function drawCard(x, y, card, faceUp = true) {
 
   if (faceUp && card) {
     ctx.fillStyle = card.isRed() ? '#e74c3c' : '#000';
-    ctx.font = 'bold 14px Arial';
+    ctx.font = 'bold 24px Arial';
     ctx.textAlign = 'left';
     ctx.textBaseline = 'top';
     ctx.fillText(card.rank, x + 5, y + 5);
-    ctx.fillText(card.suit, x + 5, y + 20);
+    ctx.fillText(card.suit, x + 55, y + 5);
 
     ctx.textAlign = 'right';
     ctx.textBaseline = 'bottom';
-    ctx.fillText(card.suit, x + CARD_WIDTH - 5, y + CARD_HEIGHT - 5);
+    ctx.fillText(card.rank, x + CARD_WIDTH - 5, y + CARD_HEIGHT - 5);
+    ctx.fillText(card.suit, x + CARD_WIDTH - 55, y + CARD_HEIGHT - 5);
 
-    ctx.font = '24px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(card.suit, x + CARD_WIDTH / 2, y + CARD_HEIGHT / 2);
@@ -168,8 +197,17 @@ function render() {
       drawCard(pos.x, pos.y, game.foundations[i][game.foundations[i].length - 1], true);
     } else {
       drawEmptySlot(pos.x, pos.y);
+      ctx.fillStyle = '#000';
+      ctx.font = '12px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('ACE', pos.x + CARD_WIDTH / 2, pos.y + CARD_HEIGHT / 2);
     }
   }
+
+  ctx.fillStyle = '#000';
+  ctx.font = '14px Arial';
+  ctx.textAlign = 'center';
 
   // Draw tableau
   for (let i = 0; i < 7; i++) {
@@ -338,8 +376,8 @@ function handleMouseUp(e) {
 
   // Try to drop on foundation
   for (let i = 0; i < 4; i++) {
-    const pos = getPilePosition('foundation', i);
-    if (x >= pos.x && x < pos.x + CARD_WIDTH && y >= pos.y && y < pos.y + CARD_HEIGHT) {
+    const hitbox = getPileHitbox('foundation', i);
+    if (isInsideHitbox(x, y, hitbox)) {
       // Only single cards can go to foundation
       if (game.draggedCards.length === 1) {
         const card = game.draggedCards[0];
@@ -377,8 +415,8 @@ function handleMouseUp(e) {
   // Try to drop on tableau
   if (!moveValid) {
     for (let i = 0; i < 7; i++) {
-      const pos = getPilePosition('tableau', i);
-      if (x >= pos.x && x < pos.x + CARD_WIDTH && y >= pos.y && y < pos.y + CARD_HEIGHT + 100) {
+      const hitbox = getPileHitbox('tableau', i);
+      if (isInsideHitbox(x, y, hitbox)) {
         const targetPile = game.tableau[i];
         const baseCard = game.draggedCards[0];
 
@@ -431,6 +469,14 @@ canvas.addEventListener('mousedown', handleMouseDown);
 canvas.addEventListener('mousemove', handleMouseMove);
 canvas.addEventListener('mouseup', handleMouseUp);
 canvas.addEventListener('mouseleave', handleMouseUp);
+
+const newGameBtn = document.getElementById('newGameBtn');
+if (newGameBtn) {
+  newGameBtn.addEventListener('click', () => {
+    initGame();
+    render();
+  });
+}
 
 // Start game
 initGame();
