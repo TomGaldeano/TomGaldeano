@@ -14,9 +14,9 @@ const SUITS = [
   { id: 'B', symbol: '♣', color: 'black', name: 'Bastos' }
 ];
 const RANKS = [
-  { value: 1, label: 'A', points: 11 },
+  { value: 14, label: 'A', points: 11 },
   { value: 2, label: '2', points: 0 },
-  { value: 3, label: '3', points: 10 },
+  { value: 13, label: '3', points: 10 },
   { value: 4, label: '4', points: 0 },
   { value: 5, label: '5', points: 0 },
   { value: 6, label: '6', points: 0 },
@@ -125,7 +125,7 @@ function initGame() {
   const deck = shuffle(createDeck());
   game.playerHand = deck.splice(0, 7);
   game.cpuHand = deck.splice(0, 7);
-  game.trump = deck.pop();
+  game.trump = deck[-1];
   game.stock = deck;
   game.trick = [null, null];
   game.trickLeaders = [null, null];
@@ -215,7 +215,6 @@ function render() {
 
 function getCardIndexAt(x, y) {
   for (let i = 0; i < game.playerHand.length; i++) {
-    console.log(`Checking card ${i} at (${game.playerHand[i].x}, ${game.playerHand[i].y}) against click at (${x}, ${y})`);
     if(game.playerHand[i].isClicked(x, y)) {
       return i;
     }
@@ -223,15 +222,21 @@ function getCardIndexAt(x, y) {
   return -1;
 }
 
-function canFollowSuit(hand, suit) {
-  return hand.some(card => card.suit === suit);
-}
-
 function playerCanPlay(card) {
   if (game.phase !== 'playing') return false;
   const leadCard = game.trick[0];
+  console.log(leadCard,card)
   if (!leadCard) return true;
-  if (canFollowSuit(game.playerHand, leadCard.suit)) return card.suit === leadCard.suit;
+  if (card.suit === leadCard.suit || card.suit===game.trump.suit) return true;
+  for (let i = 0;i<game.playerHand.length;i++){
+    let option = game.playerHand[i];
+    console.log(option)
+  if (option.suit === leadCard.suit || option.suit===game.trump.suit){
+    console.log(1);
+    return false;
+  }
+  }
+  console.log(2)
   return true;
 }
 
@@ -348,7 +353,7 @@ function cpuLead() {
   }
   const card = chooseCpuLead();
   const index = game.cpuHand.indexOf(card);
-  const played = removeCardFromHand(game.cpuHand, index);
+  let played = removeCardFromHand(game.cpuHand, index);
   game.trick[0] = played;
   game.trickLeaders[0] = 'cpu';
   game.turn = 'player';
@@ -356,15 +361,13 @@ function cpuLead() {
 }
 
 function playerPlay(index) {
-    console.log('Player attempts to play card index:', index);
   if (game.phase !== 'playing') return;
   const card = game.playerHand[index];
-  console.log('Card at index:', card);
   if (!playerCanPlay(card)) {
+    console.log(2)
     render();
     return;
   }
-
   if (game.turn === 'player' && !game.trick[0]) {
     game.trick[0] = removeCardFromHand(game.playerHand, index);
     game.trickLeaders[0] = 'player';
@@ -373,17 +376,17 @@ function playerPlay(index) {
     game.trick[1] = removeCardFromHand(game.cpuHand, cpuIndex);
     game.trickLeaders[1] = 'cpu';
     render();
-    setTimeout(() => evaluateTrick(), 4000);
+    setTimeout(() => evaluateTrick(), 2000);
     return;
-  }
-
-  if (game.turn === 'cpu' && game.trick[0]) {
+  }else{
     game.trick[1] = removeCardFromHand(game.playerHand, index);
     game.trickLeaders[1] = 'player';
     render();
     setTimeout(() => evaluateTrick(), 400);
     return;
   }
+
+
 }
 
 canvas.addEventListener('click', (e) => {
