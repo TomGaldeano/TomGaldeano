@@ -102,7 +102,6 @@
     <div></div>
     </div>
     <script>
-        const memo = new Map();
         document.addEventListener('DOMContentLoaded', () => {
         const tablero =
             [document.getElementById("pos0"), document.getElementById("pos1"),
@@ -112,39 +111,53 @@
             document.getElementById("pos8")];
         const new_game = document.getElementById("new_game");
         const partida = [];
+        const memo = load_memory();
+        console.log(memo)
         function StartGame() {
             for (let i = 0; i < tablero.length; i++) {
                 tablero[i].textContent = " ";
-                tablero[i].classList.add("possible_move")
+                tablero[i].classList.add("posible_move")
                 partida[i] = ' ';
                 document.getElementById("victory").textContent = " ";
             }
         }
         function load_memory() {
             try {
-                memo = JSON.parse(localStorage.getItem("memo")) || {};
+                const stored = JSON.parse(localStorage.getItem("memo")) || {};
+                // Convert plain object to Map for O(1) lookup
+                return new Map(Object.entries(stored));
             } catch (e) {
                 console.error("Error loading memory:", e);
-                memo = {};
+                return new Map();
             }
         }
-        function save_memory() {
-            for (let i = 0; i < tablero.length; i++) {
-                partida[i] = tablero[i].textContent;
-            }
-            localStorage.setItem("memo", JSON.stringify(memo));
+        function save_memory(partida,move) {
+            memo.set(hash(partida), move);
+            // Convert Map to plain object for JSON storage
+            const plainObj = Object.fromEntries(memo);
+            localStorage.setItem("memo", JSON.stringify(plainObj),{
+                expires: 7 * 24 * 60 * 60 * 1000 // 7 days in milliseconds
+            });
         }
-    function hash(board) {
-  return board.map(c => c || "_").join("");
-}
+        function hash(board) {
+        return board.map(c => c || "*").join("");
+        }
           
         function make_move(pos) {
             tablero[pos].textContent = 'X';
-            tablero[pos].classList.remove("possible_move");
+            tablero[pos].classList.remove("posible_move");
             partida[pos] = "X";
         }
-        function computer_move() {
+        function computer_move(memo) {
            // Evaluate each possible move by running minimax and pick the best
+           if (memo.has(hash(partida))){
+                tablero[memo.get(hash(partida))].textContent = "O"
+                partida[memo.get(hash(partida))] = 'O';
+                tablero[memo.get(hash(partida))].classList.remove("posible_move");
+                return;
+           }else{
+
+           
            let moves = new Array(9).fill(-Infinity);
            let maxindex = -1;
 
@@ -175,8 +188,12 @@
 
            if (maxindex !== -1) {
                tablero[maxindex].textContent = "O";
+               tablero[maxindex].classList.remove("posible_move");
+               save_memory(partida,maxindex)
                partida[maxindex] = 'O';
+               
            }
+        }
            return;
         }
 
@@ -282,12 +299,12 @@
                 }
             }
 
-            function game_action(pos) {
+            function game_action(pos,memo) {
                 if (!(human_won(partida) || computer_won(partida) || is_draw(partida))) {
                     if (possible_move(pos)) {
                         make_move(pos);               
                             if (!(human_won(partida) || computer_won(partida) || is_draw(partida))) {
-                                computer_move();
+                                computer_move(memo);
                                 computer_won(partida);
                                 is_draw(partida);
                             }
@@ -296,9 +313,11 @@
                 }
             StartGame();
             for (let i = 0; i<partida.length; i++) {
-                tablero[i].addEventListener("click",()=> game_action(i));
+                tablero[i].addEventListener("click",()=> game_action(i,memo));
+                console.log(typeof(memo))
             }
             new_game.addEventListener("click",()=> StartGame());
+            load_memory()
         
         });
     </script>
