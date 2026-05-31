@@ -102,6 +102,7 @@
     <div></div>
     </div>
     <script>
+        const memo = new Map();
         document.addEventListener('DOMContentLoaded', () => {
         const tablero =
             [document.getElementById("pos0"), document.getElementById("pos1"),
@@ -119,6 +120,23 @@
                 document.getElementById("victory").textContent = " ";
             }
         }
+        function load_memory() {
+            try {
+                memo = JSON.parse(localStorage.getItem("memo")) || {};
+            } catch (e) {
+                console.error("Error loading memory:", e);
+                memo = {};
+            }
+        }
+        function save_memory() {
+            for (let i = 0; i < tablero.length; i++) {
+                partida[i] = tablero[i].textContent;
+            }
+            localStorage.setItem("memo", JSON.stringify(memo));
+        }
+    function hash(board) {
+  return board.map(c => c || "_").join("");
+}
           
         function make_move(pos) {
             tablero[pos].textContent = 'X';

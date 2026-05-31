@@ -6,7 +6,6 @@ const CARD_WIDTH = 80;
 const CARD_HEIGHT = 120;
 const PADDING = 20;
 const HAND_Y = 460;
-const OPP_Y = 20;
 const SUITS = [
   { id: 'O', symbol: '♦', color: 'black', name: 'Oros' },
   { id: 'C', symbol: '♥', color: 'black', name: 'Copas' },
@@ -15,15 +14,15 @@ const SUITS = [
 ];
 const RANKS = [
   { value: 14, label: 'A', points: 11 },
-  { value: 2, label: '2', points: 0 },
+  { value: 2,  label: '2', points: 0  },
   { value: 13, label: '3', points: 10 },
-  { value: 4, label: '4', points: 0 },
-  { value: 5, label: '5', points: 0 },
-  { value: 6, label: '6', points: 0 },
-  { value: 7, label: '7', points: 0 },
-  { value: 10, label: 'S', points: 2 },
-  { value: 11, label: 'C', points: 3 },
-  { value: 12, label: 'R', points: 4 }
+  { value: 4,  label: '4', points: 0  },
+  { value: 5,  label: '5', points: 0  },
+  { value: 6,  label: '6', points: 0  },
+  { value: 7,  label: '7', points: 0  },
+  { value: 10, label: 'S', points: 2  },
+  { value: 11, label: 'C', points: 3  },
+  { value: 12, label: 'R', points: 4  }
 ];
 
 class Card {
@@ -55,12 +54,10 @@ class Card {
       ctx.textBaseline = 'bottom';
       ctx.fillText(this.label, x + CARD_WIDTH - 5, y + CARD_HEIGHT - 5);
       ctx.fillText(this.symbol, x + CARD_WIDTH - 55, y + CARD_HEIGHT - 5);
-
       ctx.textAlign = 'left';
       ctx.textBaseline = 'top';
       ctx.fillText(this.symbol, x + 5, y + 5);
       ctx.fillText(this.label, x + 55, y + 5);
-
       ctx.font = 'bold 42px Arial';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
@@ -86,13 +83,15 @@ const game = {
   cpuHand: [],
   stock: [],
   trump: null,
+  trumpSuit: null, // FIX 1: persists after the trump card is physically drawn from stock
   trick: [null, null],
   trickLeaders: [null, null],
   turn: 'player',
   playerScore: 0,
   cpuScore: 0,
   phase: 'playing',
-  lastTrickBonus: false
+  lastTrickBonus: false,
+  announced: { player: [], cpu: [], tuteDeclared: { player: false, cpu: false } }
 };
 
 function createDeck() {
@@ -125,7 +124,8 @@ function initGame() {
   const deck = shuffle(createDeck());
   game.playerHand = deck.splice(0, 7);
   game.cpuHand = deck.splice(0, 7);
-  game.trump = deck[-1];
+  game.trump = deck[deck.length - 1];
+  game.trumpSuit = game.trump.suit; // FIX 1: store suit independently from card object
   game.stock = deck;
   game.trick = [null, null];
   game.trickLeaders = [null, null];
@@ -134,9 +134,42 @@ function initGame() {
   game.cpuScore = 0;
   game.phase = 'playing';
   game.lastTrickBonus = false;
+  game.announced = { player: [], cpu: [], tuteDeclared: { player: false, cpu: false } }; // FIX 2: reset before render
   sortHand(game.playerHand);
   render();
 }
+
+const CANTAR_POINTS_TRUMP = 40;
+const CANTAR_POINTS_NONTRUMP = 20;
+const TUTE_POINTS = 100;
+
+function checkAnnouncementsForHand(hand, owner) {
+  if (!hand || hand.length === 0) return;
+  const ownerScoreKey = owner === 'player' ? 'playerScore' : 'cpuScore';
+  for (const suit of SUITS) {
+    const hasCaballo = hand.some(c => c.suit === suit.id && c.label === 'C');
+    const hasRey = hand.some(c => c.suit === suit.id && c.label === 'R');
+    const pairKey = `${suit.id}-CR`;
+    if (hasCaballo && hasRey && !game.announced[owner].includes(pairKey)) {
+      // FIX 1: use game.trumpSuit instead of game.trump.suit (trump card may be gone)
+      const pts = (suit.id === game.trumpSuit) ? CANTAR_POINTS_TRUMP : CANTAR_POINTS_NONTRUMP;
+      game[ownerScoreKey] += pts;
+      game.announced[owner].push(pairKey);
+    }
+  }
+  if (!game.announced.tuteDeclared[owner]) {
+    const allCaballos = SUITS.every(s => hand.some(c => c.suit === s.id && c.label === 'C'));
+    const allReyes = SUITS.every(s => hand.some(c => c.suit === s.id && c.label === 'R'));
+    if (allCaballos || allReyes) {
+      game[ownerScoreKey] += TUTE_POINTS;
+      game.announced.tuteDeclared[owner] = true;
+      game.phase = 'finished';
+    }
+  }
+}
+
+// FIX 3: removed maybeOfferTrumpExchange — it was silently swapping the trump card
+// after every trick win, causing the trump to change constantly.
 
 function drawEmptySlot(x, y, label) {
   ctx.strokeStyle = '#888';
@@ -169,30 +202,43 @@ function render() {
   }
 
   if (game.trump) {
+    // Trump card still in stock — draw it face up
     game.trump.draw(ctx, trumpX, trumpY, true);
     ctx.fillStyle = '#fff';
     ctx.font = '18px Arial';
+    ctx.textAlign = 'left';
     ctx.fillText('Triunfo', trumpX, trumpY + CARD_HEIGHT + 18);
+  } else if (game.trumpSuit) {
+    // FIX 4: trump card drawn but suit still matters — show a suit reminder
+    const suitInfo = SUITS.find(s => s.id === game.trumpSuit);
+    ctx.fillStyle = '#fff';
+    ctx.font = 'bold 28px Arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(suitInfo ? suitInfo.symbol : game.trumpSuit, trumpX + CARD_WIDTH / 2, trumpY + CARD_HEIGHT / 2);
+    ctx.font = '14px Arial';
+    ctx.fillText('Triunfo', trumpX + CARD_WIDTH / 2, trumpY + CARD_HEIGHT / 2 + 30);
+    ctx.textBaseline = 'alphabetic';
   }
 
   ctx.fillStyle = '#fff';
   ctx.font = '18px Arial';
+  ctx.textAlign = 'left';
   ctx.fillText(`Tus puntos: ${game.playerScore}`, 1020, 28);
-  ctx.fillText(`Turno: ${game.turn === 'player' ? 'Jugador' : 'CPU'}`, 1020, 52);
+  ctx.fillText(`CPU puntos: ${game.cpuScore}`, 1020, 52);  // FIX 5: show CPU score
+  ctx.fillText(`Turno: ${game.turn === 'player' ? 'Jugador' : 'CPU'}`, 1020, 76);
 
-
-  let start=(CANVAS_WIDTH/2)-20*game.cpuHand.length
-      for (let index = 0; index < game.cpuHand.length; index++) {
-        game.cpuHand[index].draw(ctx, start + index * 40, 10, false);
-    }
-    start=(CANVAS_WIDTH/2)-50*game.playerHand.length
-    for (let index = 0; index < game.playerHand.length; index++) {
-      game.playerHand[index].draw(ctx, start + index * 100, HAND_Y, true);}
+  let start = (CANVAS_WIDTH / 2) - 20 * game.cpuHand.length;
+  for (let i = 0; i < game.cpuHand.length; i++) {
+    game.cpuHand[i].draw(ctx, start + i * 40, 10, false);
+  }
+  start = (CANVAS_WIDTH / 2) - 50 * game.playerHand.length;
+  for (let i = 0; i < game.playerHand.length; i++) {
+    game.playerHand[i].draw(ctx, start + i * 100, HAND_Y, true);
+  }
 
   const trickBaseX = 520;
   const trickBaseY = 240;
-  ctx.fillStyle = '#fff';
-  ctx.font = '16px Arial';
 
   if (game.trick[0]) game.trick[0].draw(ctx, trickBaseX, trickBaseY, true);
   else drawEmptySlot(trickBaseX, trickBaseY);
@@ -206,18 +252,18 @@ function render() {
     ctx.fillStyle = '#fff';
     ctx.font = 'bold 42px Arial';
     ctx.textAlign = 'center';
-    ctx.fillText('Partida terminada', canvas.width / 2, canvas.height / 2 - 20);
+    ctx.fillText('Partida terminada', canvas.width / 2, canvas.height / 2 - 30);
     ctx.font = '24px Arial';
-    ctx.fillText(`Ganador: ${game.playerScore > game.cpuScore ? 'Jugador' : game.playerScore < game.cpuScore ? 'CPU' : 'Empate'}`, canvas.width / 2, canvas.height / 2 + 20);
-    ctx.fillText('Pulsa para volver a jugar', canvas.width / 2, canvas.height / 2 + 60);
+    // FIX 5: show both scores in the end screen
+    ctx.fillText(`Tus puntos: ${game.playerScore}  |  CPU: ${game.cpuScore}`, canvas.width / 2, canvas.height / 2 + 15);
+    ctx.fillText(`Ganador: ${game.playerScore > game.cpuScore ? 'Jugador' : game.playerScore < game.cpuScore ? 'CPU' : 'Empate'}`, canvas.width / 2, canvas.height / 2 + 50);
+    ctx.fillText('Pulsa para volver a jugar', canvas.width / 2, canvas.height / 2 + 90);
   }
 }
 
 function getCardIndexAt(x, y) {
   for (let i = 0; i < game.playerHand.length; i++) {
-    if(game.playerHand[i].isClicked(x, y)) {
-      return i;
-    }
+    if (game.playerHand[i].isClicked(x, y)) return i;
   }
   return -1;
 }
@@ -225,18 +271,13 @@ function getCardIndexAt(x, y) {
 function playerCanPlay(card) {
   if (game.phase !== 'playing') return false;
   const leadCard = game.trick[0];
-  console.log(leadCard,card)
   if (!leadCard) return true;
-  if (card.suit === leadCard.suit || card.suit===game.trump.suit) return true;
-  for (let i = 0;i<game.playerHand.length;i++){
-    let option = game.playerHand[i];
-    console.log(option)
-  if (option.suit === leadCard.suit || option.suit===game.trump.suit){
-    console.log(1);
-    return false;
+  // FIX 1: use trumpSuit — game.trump may be null once its card is drawn
+  if (card.suit === leadCard.suit || card.suit === game.trumpSuit) return true;
+  for (let i = 0; i < game.playerHand.length; i++) {
+    const option = game.playerHand[i];
+    if (option.suit === leadCard.suit || option.suit === game.trumpSuit) return false;
   }
-  }
-  console.log(2)
   return true;
 }
 
@@ -254,24 +295,26 @@ function chooseCpuLead() {
 
 function chooseCpuResponse(leadCard) {
   const sameSuit = game.cpuHand.filter(card => card.suit === leadCard.suit);
-  const trumpCards = game.cpuHand.filter(card => card.suit === game.trump.suit);
+  // FIX 1: use trumpSuit — game.trump may be null
+  const trumpCards = game.cpuHand.filter(card => card.suit === game.trumpSuit);
   let chosen;
-
   if (sameSuit.length > 0) {
     const stronger = sameSuit.filter(card => card.rank > leadCard.rank);
-    chosen = stronger.length > 0 ? stronger.reduce((a, b) => a.rank < b.rank ? a : b) : sameSuit.reduce((a, b) => a.rank < b.rank ? a : b);
+    chosen = stronger.length > 0
+      ? stronger.reduce((a, b) => a.rank < b.rank ? a : b)
+      : sameSuit.reduce((a, b) => a.rank < b.rank ? a : b);
   } else if (trumpCards.length > 0) {
     chosen = trumpCards.reduce((a, b) => a.rank < b.rank ? a : b);
   } else {
     chosen = game.cpuHand.reduce((a, b) => a.points < b.points ? a : b);
   }
-
   return chosen;
 }
 
 function canBeat(card, other) {
   if (card.suit === other.suit) return card.rank > other.rank;
-  if (card.suit === game.trump.suit && other.suit !== game.trump.suit) return true;
+  // FIX 1: use trumpSuit — game.trump may be null
+  if (card.suit === game.trumpSuit && other.suit !== game.trumpSuit) return true;
   return false;
 }
 
@@ -283,17 +326,22 @@ function collectTrick(winner) {
   } else {
     game.cpuScore += points;
   }
+  // FIX 6: removed checkAnnouncementsForHand from here — moved to evaluateTrick
+  // so it fires at the right moment (when winner is about to lead), not inside collectTrick
+  // FIX 3: removed maybeOfferTrumpExchange call
 }
 
 function drawFromStock(winner) {
   if (game.stock.length === 0) return;
   const loser = winner === 'player' ? 'cpu' : 'player';
+
   const winnerCard = game.stock.shift();
   if (winner === 'player') {
     game.playerHand.push(winnerCard);
   } else {
     game.cpuHand.push(winnerCard);
   }
+
   if (game.stock.length > 0) {
     const loserCard = game.stock.shift();
     if (loser === 'player') {
@@ -302,7 +350,15 @@ function drawFromStock(winner) {
       game.cpuHand.push(loserCard);
     }
   }
+
+  // FIX 4: once the stock is empty the trump card has been drawn into a hand;
+  // null game.trump so the card slot clears, but game.trumpSuit still tells us the suit.
+  if (game.stock.length === 0) {
+    game.trump = null;
+  }
+
   sortHand(game.playerHand);
+  sortHand(game.cpuHand);
 }
 
 function evaluateTrick() {
@@ -331,6 +387,15 @@ function evaluateTrick() {
   if (game.stock.length > 0) drawFromStock(winner);
 
   game.turn = winner;
+
+  // FIX 6: check announcements here, after turn is assigned and new cards drawn
+  checkAnnouncementsForHand(winner === 'player' ? game.playerHand : game.cpuHand, winner);
+
+  if (game.phase === 'finished') {
+    render();
+    return;
+  }
+
   if (game.playerHand.length === 0 && game.cpuHand.length === 0) {
     game.phase = 'finished';
     render();
@@ -348,12 +413,14 @@ function evaluateTrick() {
 function cpuLead() {
   if (game.phase !== 'playing') return;
   if (game.cpuHand.length === 0) {
-    evaluateTrick();
+    // FIX 7: end the game gracefully instead of calling evaluateTrick with no cards
+    game.phase = 'finished';
+    render();
     return;
   }
   const card = chooseCpuLead();
   const index = game.cpuHand.indexOf(card);
-  let played = removeCardFromHand(game.cpuHand, index);
+  const played = removeCardFromHand(game.cpuHand, index);
   game.trick[0] = played;
   game.trickLeaders[0] = 'cpu';
   game.turn = 'player';
@@ -364,11 +431,11 @@ function playerPlay(index) {
   if (game.phase !== 'playing') return;
   const card = game.playerHand[index];
   if (!playerCanPlay(card)) {
-    console.log(2)
     render();
     return;
   }
   if (game.turn === 'player' && !game.trick[0]) {
+    // Player leads
     game.trick[0] = removeCardFromHand(game.playerHand, index);
     game.trickLeaders[0] = 'player';
     const response = chooseCpuResponse(game.trick[0]);
@@ -377,16 +444,13 @@ function playerPlay(index) {
     game.trickLeaders[1] = 'cpu';
     render();
     setTimeout(() => evaluateTrick(), 2000);
-    return;
-  }else{
+  } else {
+    // Player responds to CPU lead
     game.trick[1] = removeCardFromHand(game.playerHand, index);
     game.trickLeaders[1] = 'player';
     render();
     setTimeout(() => evaluateTrick(), 400);
-    return;
   }
-
-
 }
 
 canvas.addEventListener('click', (e) => {
@@ -396,8 +460,13 @@ canvas.addEventListener('click', (e) => {
   }
 
   const rect = canvas.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
+  // FIX 8: scale click coordinates to match the canvas internal resolution,
+  // so clicks align correctly even when the canvas is CSS-scaled
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+  const x = (e.clientX - rect.left) * scaleX;
+  const y = (e.clientY - rect.top) * scaleY;
+
   if (game.turn === 'player') {
     const cardIndex = getCardIndexAt(x, y);
     if (cardIndex >= 0) playerPlay(cardIndex);
@@ -408,7 +477,6 @@ const newGameBtn = document.getElementById('newGameBtn');
 if (newGameBtn) {
   newGameBtn.addEventListener('click', () => {
     initGame();
-    render();
   });
 }
 

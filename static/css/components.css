@@ -286,6 +286,7 @@ h1,h2,h3{
   border: 1px solid var(--black);
   height: 2em;
   border-radius: 5px;
+  margin:5px;
 }
 .game-button:hover{
   background-color: var(--dark_gray);
