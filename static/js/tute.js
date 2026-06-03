@@ -1,4 +1,4 @@
-const canvas = document.getElementById('tuteCanvas');
+  const canvas = document.getElementById('tuteCanvas');
 const ctx = canvas.getContext('2d');
 const CANVAS_WIDTH = 1200;
 const CANVAS_HEIGHT = 600;
