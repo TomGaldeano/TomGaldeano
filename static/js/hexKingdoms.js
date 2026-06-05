@@ -717,7 +717,7 @@
   function drawStacks() {
     for (const u of stacks) {
       const {x, y, s} = hexCenter(u.row, u.col);
-      const rad  = s * 0.50;
+      const rad  = s * 0.7;
       const f    = FACTIONS[u.faction];
       const done = u.moved && u.attacked;
       const sel  = selected && selected.id === u.id;
@@ -740,16 +740,16 @@
         ctx.fillStyle = g;
       }
       ctx.fill();
-      ctx.strokeStyle = sel ? "#ffffff" : f.dark;
+      ctx.strokeStyle = sel ? "#000000" : f.dark;
       ctx.lineWidth   = sel ? 2.5 : 1.2;
       ctx.stroke();
 
       // Troop count
-      const fs = Math.max(8, Math.round(s * 0.46));
+      const fs = Math.max(8, Math.round(s * 0.69));
       ctx.font         = `bold ${fs}px sans-serif`;
       ctx.textAlign    = "center";
       ctx.textBaseline = "middle";
-      ctx.fillStyle    = done ? "rgba(255,255,255,0.45)" : "#ffffff";
+      ctx.fillStyle    = done ? "rgba(255,255,255,0.45)" : "#000000";
       ctx.fillText(String(u.size), x, y);
     }
   }
