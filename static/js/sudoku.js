@@ -75,10 +75,10 @@ function sudoku_valido(puzzle) {
 }
 
 function sudoku_acabado(puzzle) {
-    // comprueba si un sudouku esta acabado
+    // comprueba si un sudoku esta acabado (sobre tablero de numeros)
     for (let i = 0; i < TAM; i++) {
-        for (let j = 0; j < puzzle[i].length; j++) {
-            if (puzzle[i][j] == 0) {
+        for (let j = 0; j < TAM; j++) {
+            if (puzzle[i][j] === 0) {
                 return false;
             }
         }
@@ -87,31 +87,28 @@ function sudoku_acabado(puzzle) {
 }
 
 function nuevo_sudoku() {
-		// limpia
-		for (let i = 0; i < TAM; i++) {
-			for (let j = 0; j < TAM; j++) {
-				sudoku[i][j] = 0;
-			}
-		}
-	}
+    // limpia
+    for (let i = 0; i < TAM; i++) {
+        for (let j = 0; j < TAM; j++) {
+            sudoku[i][j] = 0;
+        }
+    }
+}
 
 function mostrar_sudoku() {
     // muestra el sudoku
     for (let i = 0; i < TAM; i++) {
         for (let j = 0; j < TAM; j++) {
-            if (sudoku[i][j]!=0){
-                document.querySelector('.Sudoku-item[data-index="' + i + j + '"]').value = sudoku[i][j];
-            }else{
-                document.querySelector('.Sudoku-item[data-index="' + i + j + '"]').value = "";
-            }
-            }
+            const cell = document.querySelector('.Sudoku-item[data-index="' + i + j + '"]');
+            cell.value = sudoku[i][j] !== 0 ? sudoku[i][j] : "";
+        }
     }
 }
 
+// Backtracking puro: usado como fallback cuando la propagacion de restricciones
+// no es suficiente para resolver el puzzle completamente.
 function solucionar_sudoku(puzzle) {
     if (sudoku_acabado(puzzle) && sudoku_valido(puzzle)) {
-        // Return a deep copy to distinguish from original reference if needed, 
-        // though JS pass-by-reference for arrays means we are modifying the object.
         return puzzle;
     }
     for (let i = 0; i < TAM; i++) {
@@ -120,11 +117,11 @@ function solucionar_sudoku(puzzle) {
                 for (let k = 1; k <= TAM; k++) {
                     puzzle[i][j] = k;
                     if (sudoku_valido(puzzle)) {
-                        let result = solucionar_sudoku(puzzle);
+                        const result = solucionar_sudoku(puzzle);
                         if (result !== null) return result;
                     }
                 }
-                puzzle[i][j] = 0; // undo
+                puzzle[i][j] = 0; // deshacer
                 return null;
             }
         }
@@ -132,62 +129,31 @@ function solucionar_sudoku(puzzle) {
     return null;
 }
 
-function solve_sodoku(puzzle) {
-    let board = [];
-    for (let i = 0; i < TAM; i++) {
-        let row = [];
-        for (let j = 0; j < TAM; j++) {
-            if (puzzle[i][j] != 0) {
-                row.push(new Set([puzzle[i][j]]));
-            } else {
-                row.push(new Set([1, 2, 3, 4, 5, 6, 7, 8, 9]));
-            }
-        }
-        board.push(row);
-    }
-    groups = [];
-    for (let i = 0; i < TAM; i++) {
-        groups.push([board[i]]);
-    }
-    for (let j = 0; j < TAM; j++) {
-        let col = [];
-        for (let i = 0; i < TAM; i++) {
-            col.push(board[i][j]);
-        }
-        groups.push(col);
-    }
-    for (let i = 0; i < TAM; i += 3) {
-        for (let j = 0; j < TAM; j += 3) {
-            let box = [];
-            for (let k = 0; k < 3; k++) {
-                for (let l = 0; l < 3; l++) {
-                    box.push(board[i + k][j + l]);
-                }
-            }
-            groups.push(box);
-        }
-    }
-    changed = true;
-    while (changed) {
-        changed = reduce_board(board, groups);
-    }
-    if (!sudoku_acabado(board)){
-        return solucionar_sudoku(board)
-    }
-    return ssss
+// Convierte un tablero de Sets a un tablero de numeros.
+// Las celdas resueltas (Set de 1 elemento) se convierten a su valor;
+// las celdas sin resolver se dejan a 0 para que el backtracking las complete.
+function sets_a_numeros(board) {
+    return board.map(row =>
+        row.map(cell => (cell.size === 1 ? [...cell][0] : 0))
+    );
 }
+
+// Reduce las posibilidades de cada celda propagando las restricciones
+// de filas, columnas y cajas 3x3.
 function reduce_board(board, groups) {
     let changed = false;
-    for (let group of groups) {
-        let singles = new Set();
-        for (let cell of group) {
+    for (const group of groups) {
+        // Recoge los valores ya fijos en el grupo
+        const singles = new Set();
+        for (const cell of group) {
             if (cell.size === 1) {
                 singles.add([...cell][0]);
             }
         }
-        for (let cell of group) {
+        // Elimina esos valores de las celdas aun no resueltas
+        for (const cell of group) {
             if (cell.size > 1) {
-                for (let num of singles) {
+                for (const num of singles) {
                     if (cell.has(num)) {
                         cell.delete(num);
                         changed = true;
@@ -199,20 +165,70 @@ function reduce_board(board, groups) {
     return changed;
 }
 
+// Solver principal: primero aplica propagacion de restricciones para reducir
+// el espacio de busqueda y, si no basta, recurre al backtracking.
+function solve_sudoku(puzzle) {
+    // Construir tablero de Sets: celdas conocidas -> Set unitario, vacias -> {1..9}
+    const board = puzzle.map(row =>
+        row.map(val => (val !== 0 ? new Set([val]) : new Set([1, 2, 3, 4, 5, 6, 7, 8, 9])))
+    );
+
+    // Construir grupos: filas, columnas y cajas 3x3
+    const groups = [];
+
+    for (let i = 0; i < TAM; i++) {
+        groups.push(board[i]); // fila i (array de Sets, no envuelto en otro array)
+    }
+    for (let j = 0; j < TAM; j++) {
+        const col = [];
+        for (let i = 0; i < TAM; i++) {
+            col.push(board[i][j]);
+        }
+        groups.push(col);
+    }
+    for (let i = 0; i < TAM; i += 3) {
+        for (let j = 0; j < TAM; j += 3) {
+            const box = [];
+            for (let k = 0; k < 3; k++) {
+                for (let l = 0; l < 3; l++) {
+                    box.push(board[i + k][j + l]);
+                }
+            }
+            groups.push(box);
+        }
+    }
+
+    // Propagar restricciones hasta que no haya cambios
+    let changed = true;
+    while (changed) {
+        changed = reduce_board(board, groups);
+    }
+
+    // Convertir el tablero de Sets a numeros
+    const numBoard = sets_a_numeros(board);
+
+    // Si la propagacion ya resolvio el puzzle, devolver directamente
+    if (sudoku_acabado(numBoard) && sudoku_valido(numBoard)) {
+        return numBoard;
+    }
+
+    // Si no, usar backtracking sobre el tablero ya reducido (mucho menos trabajo)
+    return solucionar_sudoku(numBoard);
+}
+
 function crea_sudoku() {
     nuevo_sudoku();
     for (let i = 0; i < initial_vars; i++) {
-        keep_on = true;
+        let keep_on = true;
         while (keep_on) {
-            let a = Math.floor(Math.random() * 9);
-            let b = Math.floor(Math.random() * 9);
-            if (sudoku[a][b] == 0) {
-                for (let j = 1; j < TAM + 1; j++) {
+            const a = Math.floor(Math.random() * 9);
+            const b = Math.floor(Math.random() * 9);
+            if (sudoku[a][b] === 0) {
+                for (let j = 1; j <= TAM; j++) {
                     sudoku[a][b] = j;
                     if (sudoku_valido(sudoku)) {
                         keep_on = false;
                         break;
-
                     }
                     sudoku[a][b] = 0;
                 }
@@ -221,32 +237,31 @@ function crea_sudoku() {
     }
     mostrar_sudoku();
 }
+
 function genera_sudoku() {
     let solucionable = false;
     while (!solucionable) {
         crea_sudoku();
-        let sudoku2 = solucionar_sudoku(sudoku);
+        const sudoku2 = solve_sudoku(sudoku);
         if (sudoku2 !== null) {
             solucionable = true;
             sudoku = sudoku2;
         }
-    }    
+    }
 }
 
 function comprobar_sudoku() {
-    for(let i = 0;i<TAM;i++){
-        for(let j = 0;j<TAM;j++){
-            if(document.querySelector('.Sudoku-item[data-index="' + i + j + '"]').value == sudoku[i][j]){
-                document.querySelector('.Sudoku-td[data-index="' + i + j + '"]').classList.add("acierto");
-                setTimeout(() => document.querySelector('.Sudoku-td[data-index="' + i + j + '"]').classList.remove("acierto"), 2000);
-            }else{
-                document.querySelector('.Sudoku-td[data-index="' + i + j + '"]').classList.add("error");
-                setTimeout(() => document.querySelector('.Sudoku-td[data-index="' + i + j + '"]').classList.remove("error"), 2000);
-            }
-            
+    for (let i = 0; i < TAM; i++) {
+        for (let j = 0; j < TAM; j++) {
+            const input = document.querySelector('.Sudoku-item[data-index="' + i + j + '"]');
+            const td = document.querySelector('.Sudoku-td[data-index="' + i + j + '"]');
+            const cls = parseInt(input.value) === sudoku[i][j] ? "acierto" : "error";
+            td.classList.add(cls);
+            setTimeout(() => td.classList.remove(cls), 2000);
         }
     }
 }
+
 genera_sudoku();
 new_sudoku.addEventListener("click", () => genera_sudoku());
 comprobar.addEventListener("click", () => comprobar_sudoku());
