@@ -1,242 +1,581 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <title>Banana Tracker</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🍌 Banana HQ — Madrid</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --banana-yellow:   #F5C518;
+      --banana-dark:     #C49A00;
+      --peel-brown:      #3D2B1F;
+      --cream:           #FFFDF0;
+      --leaf-green:      #2D6A4F;
+      --soft-green:      #D8F3DC;
+      --card-bg:         #FFFFFF;
+      --muted:           #6c757d;
+      --border:          #E8E3D0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: var(--cream);
+      color: var(--peel-brown);
+      margin: 0;
+    }
+
+    /* ── HERO STRIP ── */
+    .hero {
+      background: var(--banana-yellow);
+      border-bottom: 3px solid var(--banana-dark);
+      padding: 2rem 0 1.6rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "🍌";
+      font-size: 9rem;
+      position: absolute;
+      right: -1rem;
+      top: -1rem;
+      opacity: 0.15;
+      transform: rotate(-20deg);
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--peel-brown);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 0.3rem;
+    }
+    .hero p.lead {
+      color: var(--peel-brown);
+      opacity: 0.7;
+      font-size: 1rem;
+      margin-bottom: 0;
+    }
+    .hero .badge-location {
+      display: inline-block;
+      background: var(--peel-brown);
+      color: var(--banana-yellow);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      padding: 0.25em 0.7em;
+      border-radius: 2px;
+      margin-bottom: 0.6rem;
+    }
+
+    /* ── SECTION HEADINGS ── */
+    .section-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--banana-dark);
+      margin-bottom: 0.25rem;
+    }
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--peel-brown);
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── STORE CARDS ── */
+    .store-card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.2rem;
+      height: 100%;
+      transition: box-shadow 0.15s, border-color 0.15s;
+      position: relative;
+    }
+    .store-card:hover {
+      box-shadow: 0 4px 18px rgba(61,43,31,0.1);
+      border-color: var(--banana-dark);
+    }
+    .store-chain-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.2em 0.55em;
+      border-radius: 3px;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+    .badge-mercadona  { background: #E8F5E9; color: #2E7D32; }
+    .badge-carrefour  { background: #E3F2FD; color: #1565C0; }
+    .badge-lidl       { background: #FFF3E0; color: #BF360C; }
+    .badge-elcorte    { background: #F3E5F5; color: #6A1B9A; }
+    .badge-other      { background: #F1F1F1; color: #555; }
+
+    .store-name {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+      line-height: 1.2;
+      color: var(--peel-brown);
+    }
+    .store-address {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+    .store-meta {
+      font-size: 0.8rem;
+      color: var(--peel-brown);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .store-meta .hours-pill {
+      background: var(--soft-green);
+      color: var(--leaf-green);
+      font-weight: 500;
+      padding: 0.15em 0.55em;
+      border-radius: 20px;
+      font-size: 0.75rem;
+    }
+    .store-meta .hours-pill.late {
+      background: #FFF9C4;
+      color: #826200;
+    }
+    .stars {
+      color: var(--banana-dark);
+      font-size: 0.8rem;
+      letter-spacing: -0.02em;
+    }
+    .rating-count {
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+    .maps-link {
+      font-size: 0.78rem;
+      color: var(--leaf-green);
+      text-decoration: none;
+      font-weight: 500;
+      margin-top: 0.6rem;
+      display: inline-block;
+    }
+    .maps-link:hover { text-decoration: underline; color: var(--leaf-green); }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      border: none;
+      border-top: 2px solid var(--border);
+      margin: 2.5rem 0;
+    }
+
+    /* ── BANANA TRACKER ── */
+    .tracker-wrapper {
+      background: var(--peel-brown);
+      border-radius: 12px;
+      padding: 1.6rem;
+      margin-bottom: 1rem;
+    }
+    .tracker-wrapper .section-eyebrow { color: var(--banana-yellow); }
+    .tracker-wrapper .section-title { color: var(--banana-yellow); margin-bottom: 0.5rem; }
+    .tracker-wrapper .sub-note {
+      color: rgba(255,253,240,0.6);
+      font-size: 0.85rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .online-link-row {
+      background: rgba(255,253,240,0.05);
+      border: 1.5px solid rgba(255,253,240,0.12);
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      margin-bottom: 0.65rem;
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      transition: background 0.15s;
+    }
+    .online-link-row:hover { background: rgba(255,253,240,0.1); }
+    .link-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .online-link-row .link-info { flex: 1; min-width: 0; }
+    .link-label {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--cream);
+      margin-bottom: 0.1rem;
+    }
+    .link-desc {
+      font-size: 0.77rem;
+      color: rgba(255,253,240,0.55);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .link-anchor {
+      color: var(--banana-yellow);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .link-anchor:hover { text-decoration: underline; color: var(--banana-yellow); }
+
+    /* add-link form */
+    .add-link-form {
+      background: rgba(255,253,240,0.06);
+      border: 1.5px dashed rgba(255,253,240,0.2);
+      border-radius: 8px;
+      padding: 1rem 1rem 0.8rem;
+      margin-top: 1.2rem;
+    }
+    .add-link-form label {
+      font-size: 0.78rem;
+      color: rgba(255,253,240,0.55);
+      margin-bottom: 0.25rem;
+      display: block;
+    }
+    .add-link-form input {
+      background: rgba(255,253,240,0.08);
+      border: 1.5px solid rgba(255,253,240,0.18);
+      color: var(--cream);
+      border-radius: 6px;
+      padding: 0.45rem 0.75rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      width: 100%;
+      outline: none;
+    }
+    .add-link-form input::placeholder { color: rgba(255,253,240,0.3); }
+    .add-link-form input:focus { border-color: var(--banana-yellow); }
+    .btn-add {
+      background: var(--banana-yellow);
+      color: var(--peel-brown);
+      border: none;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin-top: 0.75rem;
+    }
+    .btn-add:hover { background: var(--banana-dark); color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      border-top: 1.5px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 576px) {
+      .hero h1 { font-size: 1.8rem; }
+    }
+  </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm">
-    <div class="container">
-      <a class="navbar-brand" href="#">
-        <i class="fas fa-apple-alt"></i> Banana Tracker
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#inventory">Inventory</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#stores">Nearby Stores</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#reports">Reports</a>
-          </li>
-        </ul>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <div class="badge-location">📍 Madrid, Spain</div>
+    <h1>Banana HQ</h1>
+    <p class="lead">Nearby supermarkets &amp; your go-to banana shopping links — all in one place.</p>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="container py-4">
+
+  <!-- ── NEARBY STORES ── -->
+  <p class="section-eyebrow">In-person shopping</p>
+  <h2 class="section-title">Nearby Supermarkets &amp; Grocery Stores</h2>
+
+  <div class="row g-3">
+
+    <!-- Mercadona Atocha -->
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="store-card">
+        <span class="store-chain-badge badge-mercadona">Mercadona</span>
+        <div class="store-name">Mercadona — Ronda de Atocha</div>
+        <div class="store-address">Rda. de Atocha, 26, Centro</div>
+        <div class="store-meta">
+          <span class="stars">★★★★★</span>
+          <span class="rating-count">4.3 (4,071)</span>
+          <span class="hours-pill">Mon–Sat 9:00–21:30</span>
+        </div>
+        <a class="maps-link" href="https://maps.google.com/?q=Mercadona+Ronda+de+Atocha+26+Madrid" target="_blank">→ Open in Maps</a>
       </div>
     </div>
-  </nav>
 
-  <header class="bg-light py-5">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-7">
-          <h1 class="display-5">Track banana supplies and locate nearby stores.</h1>
-          <p class="lead text-muted">Monitor inventory, add new deliveries, and review store availability — all in one dashboard.</p>
-          <div class="mt-4">
-            <a href="#inventory" class="btn btn-success btn-lg me-2">View Inventory</a>
-            <a href="#stores" class="btn btn-outline-success btn-lg">Find Stores</a>
-          </div>
+    <!-- Mercadona Fuencarral -->
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="store-card">
+        <span class="store-chain-badge badge-mercadona">Mercadona</span>
+        <div class="store-name">Mercadona — Fuencarral</div>
+        <div class="store-address">Calle de Fuencarral, 77, Centro</div>
+        <div class="store-meta">
+          <span class="stars">★★★★★</span>
+          <span class="rating-count">4.3 (1,698)</span>
+          <span class="hours-pill">Mon–Sat 9:00–21:30</span>
         </div>
-        <div class="col-lg-5 text-center">
-          <img src="https://via.placeholder.com/400x280?text=Banana+Supply+Dashboard" class="img-fluid rounded shadow" alt="Banana tracker illustration">
-        </div>
+        <a class="maps-link" href="https://maps.google.com/?q=Mercadona+Fuencarral+77+Madrid" target="_blank">→ Open in Maps</a>
       </div>
     </div>
-  </header>
 
-  <main class="container my-5">
-    <section id="inventory" class="mb-5">
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-          <h2>Supply Inventory</h2>
-          <p class="text-muted mb-0">Overview of current banana stock and batch details.</p>
+    <!-- Mercadona Bravo Murillo -->
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="store-card">
+        <span class="store-chain-badge badge-mercadona">Mercadona</span>
+        <div class="store-name">Mercadona — Bravo Murillo</div>
+        <div class="store-address">C. de Bravo Murillo, 5, Chamberí</div>
+        <div class="store-meta">
+          <span class="stars">★★★★★</span>
+          <span class="rating-count">4.3 (4,929)</span>
+          <span class="hours-pill">Mon–Sat 9:00–21:30</span>
         </div>
-        <button class="btn btn-outline-success">Add New Delivery</button>
+        <a class="maps-link" href="https://maps.google.com/?q=Mercadona+Bravo+Murillo+5+Madrid" target="_blank">→ Open in Maps</a>
       </div>
-
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card shadow-sm h-100">
-            <div class="card-body">
-              <h5 class="card-title">Total Bunches</h5>
-              <p class="display-6 fw-bold">120</p>
-              <p class="text-muted">Overall available banana bunches in storage.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card shadow-sm h-100">
-            <div class="card-body">
-              <h5 class="card-title">Fresh Stock</h5>
-              <p class="display-6 fw-bold">85</p>
-              <p class="text-muted">Bunches expected to remain fresh for the next 3 days.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card shadow-sm h-100">
-            <div class="card-body">
-              <h5 class="card-title">Reorder Alert</h5>
-              <p class="display-6 fw-bold text-danger">3 batches</p>
-              <p class="text-muted">Batches below minimum threshold.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card shadow-sm mt-4">
-        <div class="card-body">
-          <h5 class="card-title">Manage banana deliveries</h5>
-          <form>
-            <div class="row g-3">
-              <div class="col-md-4">
-                <label for="batchNumber" class="form-label">Batch ID</label>
-                <input type="text" class="form-control" id="batchNumber" placeholder="e.g. BN-001">
-              </div>
-              <div class="col-md-4">
-                <label for="quantity" class="form-label">Quantity (bunches)</label>
-                <input type="number" class="form-control" id="quantity" placeholder="0">
-              </div>
-              <div class="col-md-4">
-                <label for="expiryDate" class="form-label">Expiry Date</label>
-                <input type="date" class="form-control" id="expiryDate">
-              </div>
-              <div class="col-md-6">
-                <label for="supplier" class="form-label">Supplier</label>
-                <input type="text" class="form-control" id="supplier" placeholder="Supplier name">
-              </div>
-              <div class="col-md-6">
-                <label for="notes" class="form-label">Notes</label>
-                <input type="text" class="form-control" id="notes" placeholder="Ripeness, storage, etc.">
-              </div>
-            </div>
-            <div class="mt-4">
-              <button type="button" class="btn btn-success">Save Delivery</button>
-              <button type="button" class="btn btn-outline-secondary ms-2">Reset Form</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section id="stores" class="mb-5">
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-          <h2>Nearby Stores</h2>
-          <p class="text-muted mb-0">Search for shops and markets selling bananas close by.</p>
-        </div>
-      </div>
-
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <form class="row g-3 mb-4">
-            <div class="col-md-6">
-              <label for="storeSearch" class="form-label">Search location</label>
-              <input type="text" class="form-control" id="storeSearch" placeholder="Enter city or zip code">
-            </div>
-            <div class="col-md-4">
-              <label for="distance" class="form-label">Within distance</label>
-              <select class="form-select" id="distance">
-                <option>5 km</option>
-                <option>10 km</option>
-                <option>20 km</option>
-                <option>50 km</option>
-              </select>
-            </div>
-            <div class="col-md-2 d-flex align-items-end">
-              <button type="button" class="btn btn-success w-100">Find Stores</button>
-            </div>
-          </form>
-
-          <div class="table-responsive">
-            <table class="table table-hover align-middle">
-              <thead class="table-light">
-                <tr>
-                  <th>Store</th>
-                  <th>Address</th>
-                  <th>Distance</th>
-                  <th>Availability</th>
-                  <th>Notes</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Green Banana Market</td>
-                  <td>123 Market Lane</td>
-                  <td>1.2 km</td>
-                  <td><span class="badge bg-success">In stock</span></td>
-                  <td>Fresh delivery today</td>
-                </tr>
-                <tr>
-                  <td>Sunrise Grocers</td>
-                  <td>890 Sunrise Ave</td>
-                  <td>3.8 km</td>
-                  <td><span class="badge bg-warning">Limited</span></td>
-                  <td>Only ripe bunches available</td>
-                </tr>
-                <tr>
-                  <td>Farmers Market</td>
-                  <td>45 Orchard Street</td>
-                  <td>7.4 km</td>
-                  <td><span class="badge bg-secondary">Unknown</span></td>
-                  <td>Verify availability</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="reports" class="mb-5">
-      <div class="row g-4">
-        <div class="col-md-6">
-          <div class="card shadow-sm h-100">
-            <div class="card-body">
-              <h5 class="card-title">Inventory Report</h5>
-              <p class="text-muted">Track how quickly supplies are moving and identify restock needs.</p>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Average daily usage: <strong>15 bunches</strong></li>
-                <li class="list-group-item">Next reorder date: <strong>May 9</strong></li>
-                <li class="list-group-item">Highest demand route: <strong>Warehouse A</strong></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card shadow-sm h-100">
-            <div class="card-body">
-              <h5 class="card-title">Store Insights</h5>
-              <p class="text-muted">Review store availability and proximity for urgent purchases.</p>
-              <div class="d-flex flex-column gap-3">
-                <div class="p-3 bg-light rounded">
-                  <strong>Nearest open store:</strong> Green Banana Market
-                </div>
-                <div class="p-3 bg-light rounded">
-                  <strong>Best price:</strong> Sunrise Grocers
-                </div>
-                <div class="p-3 bg-light rounded">
-                  <strong>Backup supplier:</strong> Farmer’s Stand</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="bg-success text-white py-4">
-    <div class="container text-center">
-      <p class="mb-0">Banana Tracker &copy; 2026 | Keep your supply chain fresh.</p>
     </div>
-  </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b0cw728qx0xwo8k3vv5+kd9lz3i9c94G4tu2gqR91q/4h8zKZv7c2zKtEe4Kha0d" crossorigin="anonymous"></script>
+    <!-- El Corte Inglés -->
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="store-card">
+        <span class="store-chain-badge badge-elcorte">El Corte Inglés</span>
+        <div class="store-name">Supermercado El Corte Inglés</div>
+        <div class="store-address">C. de Preciados, 3, Centro</div>
+        <div class="store-meta">
+          <span class="stars">★★★★★</span>
+          <span class="rating-count">4.3 (24,617)</span>
+          <span class="hours-pill">Mon–Sat 10:00–22:00</span>
+        </div>
+        <a class="maps-link" href="https://maps.google.com/?q=Supermercado+El+Corte+Ingles+Preciados+Madrid" target="_blank">→ Open in Maps</a>
+      </div>
+    </div>
+
+    <!-- Carrefour Market Valencia -->
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="store-card">
+        <span class="store-chain-badge badge-carrefour">Carrefour</span>
+        <div class="store-name">Carrefour Market — Lavapíes</div>
+        <div class="store-address">C. de Valencia, 2, Centro</div>
+        <div class="store-meta">
+          <span class="stars">★★★★☆</span>
+          <span class="rating-count">4.1 (5,137)</span>
+          <span class="hours-pill late">Open 24h</span>
+        </div>
+        <a class="maps-link" href="https://maps.google.com/?q=Carrefour+Market+Calle+Valencia+2+Madrid" target="_blank">→ Open in Maps</a>
+      </div>
+    </div>
+
+    <!-- Carrefour Market Tirso -->
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="store-card">
+        <span class="store-chain-badge badge-carrefour">Carrefour</span>
+        <div class="store-name">Carrefour Market — Tirso de Molina</div>
+        <div class="store-address">Pl. de Tirso de Molina, 15, Centro</div>
+        <div class="store-meta">
+          <span class="stars">★★★★☆</span>
+          <span class="rating-count">4.1 (2,427)</span>
+          <span class="hours-pill late">Open 24h</span>
+        </div>
+        <a class="maps-link" href="https://maps.google.com/?q=Carrefour+Market+Plaza+Tirso+de+Molina+Madrid" target="_blank">→ Open in Maps</a>
+      </div>
+    </div>
+
+    <!-- Lidl Tirso -->
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="store-card">
+        <span class="store-chain-badge badge-lidl">Lidl</span>
+        <div class="store-name">Lidl — Tirso de Molina</div>
+        <div class="store-address">Pl. de Tirso de Molina, 16, Centro</div>
+        <div class="store-meta">
+          <span class="stars">★★★★☆</span>
+          <span class="rating-count">4.0 (4,714)</span>
+          <span class="hours-pill late">Daily 9:00–23:00</span>
+        </div>
+        <a class="maps-link" href="https://maps.google.com/?q=Lidl+Plaza+Tirso+de+Molina+16+Madrid" target="_blank">→ Open in Maps</a>
+      </div>
+    </div>
+
+    <!-- Lidl Fuencarral -->
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="store-card">
+        <span class="store-chain-badge badge-lidl">Lidl</span>
+        <div class="store-name">Lidl — Fuencarral</div>
+        <div class="store-address">Calle de Fuencarral, 101, Centro</div>
+        <div class="store-meta">
+          <span class="stars">★★★★☆</span>
+          <span class="rating-count">4.2 (1,810)</span>
+          <span class="hours-pill late">Daily 9:00–23:00</span>
+        </div>
+        <a class="maps-link" href="https://maps.google.com/?q=Lidl+Fuencarral+101+Madrid" target="_blank">→ Open in Maps</a>
+      </div>
+    </div>
+
+    <!-- SuperCor -->
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="store-card">
+        <span class="store-chain-badge badge-other">SuperCor</span>
+        <div class="store-name">SuperCor — Augusto Figueroa</div>
+        <div class="store-address">C. de Augusto Figueroa, 24, Centro</div>
+        <div class="store-meta">
+          <span class="stars">★★★★☆</span>
+          <span class="rating-count">3.9 (236)</span>
+          <span class="hours-pill">Daily 9:30–22:30</span>
+        </div>
+        <a class="maps-link" href="https://maps.google.com/?q=SuperCor+Augusto+Figueroa+24+Madrid" target="_blank">→ Open in Maps</a>
+      </div>
+    </div>
+
+  </div><!-- /row -->
+
+  <hr class="section-divider" />
+
+  <!-- ── BANANA ONLINE TRACKER ── -->
+  <div class="tracker-wrapper">
+    <p class="section-eyebrow">Online delivery</p>
+    <h2 class="section-title">🍌 Where to Buy Bananas Online</h2>
+    <p class="sub-note">Your personal shortcut list — click to jump straight to bananas.</p>
+
+    <div id="link-list">
+
+      <div class="online-link-row">
+        <div class="link-icon" style="background:#FFF8E1;">🟡</div>
+        <div class="link-info">
+          <div class="link-label">Mercadona Online</div>
+          <div class="link-desc">mercadona.es — search "plátanos"</div>
+        </div>
+        <a class="link-anchor" href="https://www.mercadona.es/product/search?query=platanos" target="_blank">Visit →</a>
+      </div>
+
+      <div class="online-link-row">
+        <div class="link-icon" style="background:#E3F2FD;">🔵</div>
+        <div class="link-info">
+          <div class="link-label">Carrefour Online</div>
+          <div class="link-desc">carrefour.es — fresh produce section</div>
+        </div>
+        <a class="link-anchor" href="https://www.carrefour.es/supermercado/frutas-y-verduras/platanos/cat/frutas-y-verduras_platanos" target="_blank">Visit →</a>
+      </div>
+
+      <div class="online-link-row">
+        <div class="link-icon" style="background:#FFF3E0;">🔴</div>
+        <div class="link-info">
+          <div class="link-label">Lidl Online</div>
+          <div class="link-desc">lidl.es — delivery &amp; click &amp; collect</div>
+        </div>
+        <a class="link-anchor" href="https://www.lidl.es/p/platanos/p100401538" target="_blank">Visit →</a>
+      </div>
+
+      <div class="online-link-row">
+        <div class="link-icon" style="background:#F3E5F5;">🟣</div>
+        <div class="link-info">
+          <div class="link-label">El Corte Inglés Supermercado</div>
+          <div class="link-desc">elcorteingles.es — gourmet &amp; organic options</div>
+        </div>
+        <a class="link-anchor" href="https://www.elcorteingles.es/supermercado/buscar/?s=platanos" target="_blank">Visit →</a>
+      </div>
+
+      <div class="online-link-row">
+        <div class="link-icon" style="background:#E8F5E9;">🟢</div>
+        <div class="link-info">
+          <div class="link-label">Freshly Cosmetics / FreshFood</div>
+          <div class="link-desc">getir.com — ultra-fast delivery in Madrid</div>
+        </div>
+        <a class="link-anchor" href="https://getir.com/es/madrid" target="_blank">Visit →</a>
+      </div>
+
+    </div><!-- /#link-list -->
+
+    <!-- Add-link form -->
+    <div class="add-link-form">
+      <p style="color:rgba(255,253,240,0.55);font-size:0.8rem;margin-bottom:0.8rem;">➕ Add your own banana source</p>
+      <div class="row g-2">
+        <div class="col-12 col-sm-4">
+          <label>Store / Site name</label>
+          <input type="text" id="new-label" placeholder="e.g. Amazon Fresh" />
+        </div>
+        <div class="col-12 col-sm-4">
+          <label>Short description</label>
+          <input type="text" id="new-desc" placeholder="e.g. amazon.es — grocery" />
+        </div>
+        <div class="col-12 col-sm-4">
+          <label>URL</label>
+          <input type="url" id="new-url" placeholder="https://..." />
+        </div>
+      </div>
+      <button class="btn-add" onclick="addLink()">Add Link</button>
+    </div>
+
+  </div><!-- /.tracker-wrapper -->
+
+</div><!-- /.container -->
+
+<footer>
+  Banana HQ · Madrid · Updated June 2026 · Ratings from Google Maps
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const EMOJIS = ["🍌","🛒","🌍","⭐","📦","🌿","✅","🔗"];
+
+  function addLink() {
+    const label = document.getElementById('new-label').value.trim();
+    const desc  = document.getElementById('new-desc').value.trim();
+    const url   = document.getElementById('new-url').value.trim();
+
+    if (!label || !url) {
+      alert('Please fill in at least a name and URL.');
+      return;
+    }
+
+    const safeUrl = url.startsWith('http') ? url : 'https://' + url;
+    const emoji   = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
+
+    const row = document.createElement('div');
+    row.className = 'online-link-row';
+    row.innerHTML = `
+      <div class="link-icon" style="background:rgba(245,197,24,0.15);">${emoji}</div>
+      <div class="link-info">
+        <div class="link-label">${escHtml(label)}</div>
+        <div class="link-desc">${escHtml(desc || safeUrl)}</div>
+      </div>
+      <a class="link-anchor" href="${escHtml(safeUrl)}" target="_blank">Visit →</a>
+    `;
+
+    document.getElementById('link-list').appendChild(row);
+
+    document.getElementById('new-label').value = '';
+    document.getElementById('new-desc').value  = '';
+    document.getElementById('new-url').value   = '';
+  }
+
+  function escHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+</script>
 </body>
 </html>
