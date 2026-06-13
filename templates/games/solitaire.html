@@ -1,6 +1,25 @@
 {% include "links.html" %}
 <style>
-
+  canvas {
+    background-color: green;
+    border-radius: 8px;
+    display: block;
+  }
 </style>
 {% include "header.html" %}
+<div class="row justify-content-center container d-flex mx-auto mt-2">
+  <h1>Solitaire</h1>
+</div>
+
+<div class="row justify-content-center container d-flex mx-auto mt-3">
+<canvas id="solitaireCanvas" width="1000" height="1000" class="d-none d-lg-block"></canvas>
+<p class="plain-p text-center d-block d-lg-none no-game">
+  Por desgracia este juego
+  no esta disponible en pantallas pequeñas
+</p>
+<div class="row justify-content-center container d-flex mx-auto mb-3">
+  <button id="newGameBtn" class="d-none d-lg-block game-button mt-4">New Game</button>
+</div>
+<script src="{{ url_for('static', filename='js/solitaire.js') }}"></script>
+</div>
 {% include "footer.html" %}

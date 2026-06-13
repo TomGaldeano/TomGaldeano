@@ -1,6 +1,28 @@
 {% include "links.html" %}
 <style>
-
+  canvas {
+    background-color: green;
+    border-radius: 8px;
+    display: block;
+  }
 </style>
 {% include "header.html" %}
+<div class="row justify-content-center container d-flex mx-auto mt-4">
+  <h1>Tute</h1>
+</div>
+<div class="row justify-content-center container d-flex mx-auto mt-4">
+<canvas id="tuteCanvas" width="1200" height="600" class="d-none d-lg-block"></canvas>
+<p class="plain-p text-center d-block d-lg-none no-game">
+  Por desgracia este juego
+  no esta disponible en pantallas pequeñas
+</p>
+<div class="row justify-content-center container d-flex mx-auto mb-3">
+  <button id="tute" class="d-none d-lg-block game-button mt-4">Tute</button>
+  <button id="newGameBtn" class="d-none d-lg-block game-button mt-4">Nueva Partida</button>
+  <button id="cantar" class="d-none d-lg-block game-button mt-4">Cantar</button>
+  <button id="cambiar" class="d-none d-lg-block game-button mt-4">Cambiar Triunfo</button>
+</div>
+</div>
+
+<script src="{{ url_for('static', filename='js/tute.js') }}"></script>
 {% include "footer.html" %}

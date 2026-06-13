@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <title>Banana Tracker</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="fas fa-apple-alt"></i> Banana Tracker
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#inventory">Inventory</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#stores">Nearby Stores</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#reports">Reports</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-light py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <h1 class="display-5">Track banana supplies and locate nearby stores.</h1>
+          <p class="lead text-muted">Monitor inventory, add new deliveries, and review store availability — all in one dashboard.</p>
+          <div class="mt-4">
+            <a href="#inventory" class="btn btn-success btn-lg me-2">View Inventory</a>
+            <a href="#stores" class="btn btn-outline-success btn-lg">Find Stores</a>
+          </div>
+        </div>
+        <div class="col-lg-5 text-center">
+          <img src="https://via.placeholder.com/400x280?text=Banana+Supply+Dashboard" class="img-fluid rounded shadow" alt="Banana tracker illustration">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container my-5">
+    <section id="inventory" class="mb-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h2>Supply Inventory</h2>
+          <p class="text-muted mb-0">Overview of current banana stock and batch details.</p>
+        </div>
+        <button class="btn btn-outline-success">Add New Delivery</button>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">Total Bunches</h5>
+              <p class="display-6 fw-bold">120</p>
+              <p class="text-muted">Overall available banana bunches in storage.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">Fresh Stock</h5>
+              <p class="display-6 fw-bold">85</p>
+              <p class="text-muted">Bunches expected to remain fresh for the next 3 days.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">Reorder Alert</h5>
+              <p class="display-6 fw-bold text-danger">3 batches</p>
+              <p class="text-muted">Batches below minimum threshold.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card shadow-sm mt-4">
+        <div class="card-body">
+          <h5 class="card-title">Manage banana deliveries</h5>
+          <form>
+            <div class="row g-3">
+              <div class="col-md-4">
+                <label for="batchNumber" class="form-label">Batch ID</label>
+                <input type="text" class="form-control" id="batchNumber" placeholder="e.g. BN-001">
+              </div>
+              <div class="col-md-4">
+                <label for="quantity" class="form-label">Quantity (bunches)</label>
+                <input type="number" class="form-control" id="quantity" placeholder="0">
+              </div>
+              <div class="col-md-4">
+                <label for="expiryDate" class="form-label">Expiry Date</label>
+                <input type="date" class="form-control" id="expiryDate">
+              </div>
+              <div class="col-md-6">
+                <label for="supplier" class="form-label">Supplier</label>
+                <input type="text" class="form-control" id="supplier" placeholder="Supplier name">
+              </div>
+              <div class="col-md-6">
+                <label for="notes" class="form-label">Notes</label>
+                <input type="text" class="form-control" id="notes" placeholder="Ripeness, storage, etc.">
+              </div>
+            </div>
+            <div class="mt-4">
+              <button type="button" class="btn btn-success">Save Delivery</button>
+              <button type="button" class="btn btn-outline-secondary ms-2">Reset Form</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="stores" class="mb-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h2>Nearby Stores</h2>
+          <p class="text-muted mb-0">Search for shops and markets selling bananas close by.</p>
+        </div>
+      </div>
+
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <form class="row g-3 mb-4">
+            <div class="col-md-6">
+              <label for="storeSearch" class="form-label">Search location</label>
+              <input type="text" class="form-control" id="storeSearch" placeholder="Enter city or zip code">
+            </div>
+            <div class="col-md-4">
+              <label for="distance" class="form-label">Within distance</label>
+              <select class="form-select" id="distance">
+                <option>5 km</option>
+                <option>10 km</option>
+                <option>20 km</option>
+                <option>50 km</option>
+              </select>
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+              <button type="button" class="btn btn-success w-100">Find Stores</button>
+            </div>
+          </form>
+
+          <div class="table-responsive">
+            <table class="table table-hover align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th>Store</th>
+                  <th>Address</th>
+                  <th>Distance</th>
+                  <th>Availability</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Green Banana Market</td>
+                  <td>123 Market Lane</td>
+                  <td>1.2 km</td>
+                  <td><span class="badge bg-success">In stock</span></td>
+                  <td>Fresh delivery today</td>
+                </tr>
+                <tr>
+                  <td>Sunrise Grocers</td>
+                  <td>890 Sunrise Ave</td>
+                  <td>3.8 km</td>
+                  <td><span class="badge bg-warning">Limited</span></td>
+                  <td>Only ripe bunches available</td>
+                </tr>
+                <tr>
+                  <td>Farmers Market</td>
+                  <td>45 Orchard Street</td>
+                  <td>7.4 km</td>
+                  <td><span class="badge bg-secondary">Unknown</span></td>
+                  <td>Verify availability</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reports" class="mb-5">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">Inventory Report</h5>
+              <p class="text-muted">Track how quickly supplies are moving and identify restock needs.</p>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Average daily usage: <strong>15 bunches</strong></li>
+                <li class="list-group-item">Next reorder date: <strong>May 9</strong></li>
+                <li class="list-group-item">Highest demand route: <strong>Warehouse A</strong></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">Store Insights</h5>
+              <p class="text-muted">Review store availability and proximity for urgent purchases.</p>
+              <div class="d-flex flex-column gap-3">
+                <div class="p-3 bg-light rounded">
+                  <strong>Nearest open store:</strong> Green Banana Market
+                </div>
+                <div class="p-3 bg-light rounded">
+                  <strong>Best price:</strong> Sunrise Grocers
+                </div>
+                <div class="p-3 bg-light rounded">
+                  <strong>Backup supplier:</strong> Farmer’s Stand</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-success text-white py-4">
+    <div class="container text-center">
+      <p class="mb-0">Banana Tracker &copy; 2026 | Keep your supply chain fresh.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b0cw728qx0xwo8k3vv5+kd9lz3i9c94G4tu2gqR91q/4h8zKZv7c2zKtEe4Kha0d" crossorigin="anonymous"></script>
+</body>
+</html>

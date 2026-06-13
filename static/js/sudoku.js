@@ -131,6 +131,74 @@ function solucionar_sudoku(puzzle) {
     }
     return null;
 }
+
+function solve_sodoku(puzzle) {
+    let board = [];
+    for (let i = 0; i < TAM; i++) {
+        let row = [];
+        for (let j = 0; j < TAM; j++) {
+            if (puzzle[i][j] != 0) {
+                row.push(new Set([puzzle[i][j]]));
+            } else {
+                row.push(new Set([1, 2, 3, 4, 5, 6, 7, 8, 9]));
+            }
+        }
+        board.push(row);
+    }
+    groups = [];
+    for (let i = 0; i < TAM; i++) {
+        groups.push([board[i]]);
+    }
+    for (let j = 0; j < TAM; j++) {
+        let col = [];
+        for (let i = 0; i < TAM; i++) {
+            col.push(board[i][j]);
+        }
+        groups.push(col);
+    }
+    for (let i = 0; i < TAM; i += 3) {
+        for (let j = 0; j < TAM; j += 3) {
+            let box = [];
+            for (let k = 0; k < 3; k++) {
+                for (let l = 0; l < 3; l++) {
+                    box.push(board[i + k][j + l]);
+                }
+            }
+            groups.push(box);
+        }
+    }
+    changed = true;
+    while (changed) {
+        changed = reduce_board(board, groups);
+    }
+    if (!sudoku_acabado(board)){
+        return solucionar_sudoku(board)
+    }
+    return ssss
+}
+function reduce_board(board, groups) {
+    let changed = false;
+    for (let group of groups) {
+        let singles = new Set();
+        for (let cell of group) {
+            if (cell.size === 1) {
+                singles.add([...cell][0]);
+            }
+        }
+        for (let cell of group) {
+            if (cell.size > 1) {
+                for (let num of singles) {
+                    if (cell.has(num)) {
+                        cell.delete(num);
+                        changed = true;
+                    }
+                }
+            }
+        }
+    }
+    return changed;
+}
+
 function crea_sudoku() {
     nuevo_sudoku();
     for (let i = 0; i < initial_vars; i++) {

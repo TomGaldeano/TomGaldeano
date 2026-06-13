@@ -272,9 +272,23 @@ h1,h2,h3{
   list-style: none;
   font-size: 1.2rem;
 }
-.plain.p{
+.plain-p{
   font-size: 1.2rem;
   margin:0px 5px;
   padding: 0px 5px;
+}
+.no-game{
+  text-align: center;
+}
+.game-button{
+  background-color: var(--grey);
+  color: var(--black);
+  border: 1px solid var(--black);
+  height: 2em;
+  border-radius: 5px;
+  margin:5px;
+}
+.game-button:hover{
+  background-color: var(--dark_gray);
 }
 }
