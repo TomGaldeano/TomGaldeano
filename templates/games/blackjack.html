@@ -10,34 +10,32 @@
     display: block;
   }
 
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin: 10px 20px;
-    cursor: pointer;
-    border: none;
-    border-radius: 4px;
-    font-weight: bold;
-    transition: transform 0.1s, opacity 0.2s;
-  }
 
   button:active {
     transform: scale(0.95);
   }
 
+  #new-btn{
+    color: black;
+    font-weight: bold;
+  }
+
   #hit-btn {
     background-color: #f1c40f;
-    color: #2c3e50;
+    color: black;
+    font-weight: bold;
   }
 
   #stand-btn {
     background-color: #e74c3c;
-    color: white;
+    color: black;
+    font-weight: bold;
   }
 
   #deal-btn {
     background-color: #3498db;
-    color: white;
+    color: black;
+    font-weight: bold;
   }
 
   button:disabled {
@@ -51,7 +49,7 @@
   <h1>Blackjack</h1>
 </div>
 <div class="row justify-content-center container d-flex mx-auto">
-<h4>Player: <span id="player">0</span> House: <span id="house">0</span></h4>
+<h4 class="d-none d-lg-block">Player: <span id="player">0</span> House: <span id="house">0</span></h4>
 </div>
 <div class="row justify-content-center container d-flex mx-auto">
   <canvas id="blackjackCanvas" width="1200" height="600" class="d-none d-lg-block"></canvas>
@@ -60,11 +58,11 @@
   no esta disponible en pantallas pequeñas
 </p>
 </div>
-<div class="row justify-content-center container d-flex mx-auto">
-  <button id="new-btn">New Game</button>
-  <button id="hit-btn" disabled>Hit</button>
-  <button id="stand-btn" disabled>Stand</button>
-  <button id="deal-btn" disabled>Deal</button>
+<div class="row justify-content-center container d-lg-flex mx-auto d-none">
+  <button id="new-btn" class="game-button mx-2 my-1">New Game</button>
+  <button id="hit-btn" disabled class="game-button mx-2 my-1">Hit</button>
+  <button id="stand-btn" disabled class="game-button mx-2 my-1">Stand</button>
+  <button id="deal-btn" disabled class="game-button mx-2 my-1">Deal</button>
 </div>
 
 <script src="{{ url_for('static', filename='js/Blackjack.js') }}">

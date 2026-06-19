@@ -1,10 +1,5 @@
 {% include "links.html" %}
 <style>
-  ul{
-    list-style: none; }
-  li{
-    display: inline;
-  }
 .cell{
   width:15px;
   height: 15px;
@@ -16,16 +11,16 @@
   
 </style>
 {% include "header.html" %}
-<div class='row justify-content-md-center container d-flex mx-auto'><h1>Buscaminas</h1></div>
-<div class="row justify-content-md-center container d-flex mx-auto" id="Game">
-
-  <button id="facil" class="game-button d-none d-lg-block">Basico 8*8</li>
-  <button id="medio" class="game-button d-none d-lg-block">Intermedio 12*12</li>
-  <button id="dificil" class="d-none d-lg-block game-button">Dificil 16*16</li>
-  <button id="muy_dificil" class="d-none d-lg-block game-button">Muy dificil 20*20</li>
-<div id="tablero">
-
+<div class='row justify-content-md-center container d-flex mx-auto'><h1>Buscaminas</h1>
 </div>
+<div class="row justify-content-md-center container d-flex mx-auto" id="Game">
+  <button id="facil" class="game-button d-none d-lg-block">Basico 8*8</button>
+  <button id="medio" class="game-button d-none d-lg-block">Intermedio 12*12</button>
+  <button id="dificil" class="d-none d-lg-block game-button">Dificil 16*16</button>
+  <button id="muy_dificil" class="d-none d-lg-block game-button">Muy dificil 20*20</button>
+</div>
+<div id="tablero" class="row container mx-auto">
+
 </div>
 <script src="../../static/js/buscaminas.js"></script>
 <!-- script src="{{ url_for('static', filename='js/buscaminas.js') }}"></script -->

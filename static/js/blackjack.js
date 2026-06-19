@@ -20,7 +20,7 @@
   let deck = [];
   let playerHand = [];
   let dealerHand = [];
-    let gameOver=false;
+  let gameOver=false;
   let message = "";
 
   class Card {
@@ -122,10 +122,10 @@
 
   function startNewGame() {
     deck = createDeck();
+    gameOver = false;
     playerHand = [];
     dealerHand = [];
     message = "";
-
     playerHand.push(deck.pop(), deck.pop())
     dealerHand.push(deck.pop(), deck.pop())
     if (calculateScore(playerHand) == 21) {
