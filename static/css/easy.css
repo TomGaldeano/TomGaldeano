@@ -45,7 +45,7 @@
 }
 #box6::after{
   content:"World";
-  transform: rotateZ(180deg) rotateY(180deg) translateY(5px);
+  transform: rotateZ(180deg) rotateY(180deg);
 }
 #box7{
   background-color: green;
@@ -61,8 +61,8 @@
 
 #box9::after{
   content:"";
-        width: 100px;
-      height: 100px;
+        width: 110px;
+      height: 110px;
       border: 20px solid green;
       border-radius: 50%;
       position: relative;
@@ -75,7 +75,7 @@
       border: 20px solid green;
       border-radius: 50%;
       position: relative;
-      transform: translateX(134%);
+      transform: translateX(132%);
       background-color: green;
 }
 #box9{
@@ -103,16 +103,16 @@
 #box11::before{
   content: "";
   width: 150px;
-  height: 50px;
+  height: 100px;
   border-bottom: 30px solid green;
   border-top: 30px solid green;
   border-right: 30px solid green;
-  transform: translateX(90px) translateY(20px);
+  transform: translateX(90px) translateY(15px);
 }
 #box11::after{
   content: "";
   width: 150px;
-  height: 50px;
+  height: 100px;
   border-bottom: 30px solid green;
   border-top: 30px solid green;
   border-left: 30px solid green;
@@ -122,30 +122,30 @@
   content: "";
   width: 50px;
   height: 50px;
-  border-bottom: 30px solid white;
-  transform: translateX(-75px) translateY(-90px);
+  border-bottom: 50px solid white;
+  transform: translateX(-75px) translateY(-70px);
 }
 #box12::before{
   content: "";
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border: 30px solid green;
-  transform: translateX(30px) translateY(-0px);
+  transform: translateX(25px) translateY(-0px);
 }
 
 #box13::after{
   content: "";
-  width: 20px;
-  height: 80px;
+  width: 40px;
+  height: 100px;
   border: 10px solid white;
   background-color: green;
   border-radius: 20px;
-  transform: translateX(-70px) translateY(-40px);
+  transform: translateX(-75px) translateY(-45px);
 }
 #box13::before{
   content: "";
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border: 20px solid green;
   border-radius: 50%;
   transform: translateX(20px) translateY(-0px);

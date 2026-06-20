@@ -126,14 +126,17 @@
 
 .green_link {
   color: var(--green);
+  text-decoration: none;
 }
 
 .green_link:hover {
   color: var(--green);
   text-decoration: underline;
+  
 }
 .blue_link {
   color: var(--blue);
+  text-decoration: none;
 }
 .blue_link:hover{
   text-decoration: underline;

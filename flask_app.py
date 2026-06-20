@@ -5,7 +5,6 @@ from functools import wraps
 from flask_wtf.csrf import CSRFProtect
 import time
 
-
 def create_app():
     """
     Creates framework for it website to run (blackbox)
@@ -29,20 +28,40 @@ def home():
 def clock():
     return render_template('clock.html',hope_graduation="2027-06-19",birth30="2028-01-24")
 
-@app.route('/projects/personal')
-def pj_personal():
-    return render_template('projects/pj_personal.html')
+#
+## PERSONAL
+#
 
-@app.route('/projects/personal/div_showcase')
-def pj_per_div():
-    return render_template('projects/pj_per_div.html')
+@app.route('/personal')
+def personal():
+    return render_template('personal.html')
 
-@app.route('/projects/personal/built_in_api_showcase')
-def pj_per_built_in_api():
-    return render_template('projects/pj_per_built_in_api.html')
+@app.route('/personal/div_showcase')
+def divShow():
+    return render_template('personal/div_show.html')
 
-@app.route('/projects/games')
-def pj_games():
+@app.route('/personal/built_in_api_showcase')
+def built_in_api():
+    return render_template('personal/built_in_api.html')
+
+@app.route('/personal/operacionesBinarias')
+def operacionesBinarias():
+    return render_template('personal/sistemas_informaticos/operaciones.html')
+
+@app.route('/personal/gestion')
+def gestionProcesos():
+    return render_template('personal/sistemas_informaticos/gestion.html',options="ABCDE")
+
+@app.route('/personal/CssChallenges')
+def CssChallenges():
+    return render_template("personal/css_challenges.html")
+
+#
+## GAMES
+#
+
+@app.route('/games')
+def games():
     return render_template('games.html')
 
 @app.route('/games/sudoku')
@@ -85,25 +104,26 @@ def tute():
 def solitaire():
     return render_template("/games/solitaire.html")
 
-@app.route('/projects/ordered')
-def pj_ordered():
-    return render_template('projects/pj_ordered.html')
+#
+## ORDERED
+#
 
-@app.route('/projects/ordered/PracticaBackup')
+@app.route('/ordered')
+def ordered():
+    return render_template('ordered.html')
+
+@app.route('/ordered/PracticaBackup')
 def practicaBackup():
     return render_template('ordered/Backup.html')
 
-@app.route('/projects/operaciones')
-def pj_operaciones():
-    return render_template('projects/sistemas_informaticos/operaciones.html')
-
-@app.route('/projects/gestion')
-def pj_gestion():
-    return render_template('projects/sistemas_informaticos/gestion.html',options="ABCDE")  
-
-@app.route("/personal/")
+@app.route("/ordered/AzureSands")
 def AzureSands():
-    return render_template("/personal/AzureSands.html")
+    return render_template("/ordered/AzureSands.html")
+
+@app.route('/ordered/BananaTracker.html')
+def BananaTracker():
+    return render_template("/ordered/BananaTracker.html")
+
 
 if __name__ == '__main__':  
     app.run(host='0.0.0.0', port=5001, debug=True)
