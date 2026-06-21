@@ -217,6 +217,8 @@ li.ridge {
     border: 1px solid var(--black);
     color: var(--black);
     padding: 3px 10px;
+    margin: .6em .5em;
+    height: 30px;
 }
 
 .green_button:hover {

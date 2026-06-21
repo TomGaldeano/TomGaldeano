@@ -1,206 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sistemas informaticos 1</title>
-  <style>
-    :root {
-      --green: #15400a;
-      --white: #FFFFFF;
-      --black: #000000;
-      --grey: #cacaca;
-      --blue: #051f8a;
-      --red: #a80101;
-      --dark_gray: #929292;
-    }
-
-    .dark {
-      --red: #fc5656;
-      --green: #00ff00;
-      --grey: #363636;
-      --black: #FFFFFF;
-      --white: #000000;
-      --blue: aqua;
-      --dark_gray: #7c7c7c;
-    }
-
-    #color_changer {
-      position: relative;
-      float: right;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background-color: var(--black);
-      border: 3px solid var(--white);
-      outline: 3px solid var(--black);
-    }
-
-    body {
-      background-color: var(--white);
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 32px;
-      border-radius: 8px;
-      background: var(--grey);
-      color: var(--black);
-    }
-
-    a,
-    a:visited {
-      color: var(--blue);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    h2 {
-      margin-top: 0;
-      color: var(--black);
-      border-bottom: 2px solid var(--black);
-    }
-
-    h1 {
-      color: var(--black);
-      padding-bottom: 8px;
-      margin-bottom: 24px;
-    }
-
-    nav ul {
-      padding-left: 0%;
-    }
-
-    p {
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    nav li {
-      display: inline;
-      padding: 10px;
-      align-self: start;
-      color: var(--black);
-      border-radius: 20px;
-      background-color: var(--white);
-      text-decoration: none;
-    }
-
-    nav li:hover {
-      background-color: var(--red);
-      color: var(--white);
-    }
-
-
-    nav {
-      left: 0;
-    }
-
-    .center_suma_resta {
-      translate: 70%;
-    }
-
-    .center_suma_resta_res {
-      translate: 30%;
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 12px;
-      }
-    }
-
-    table {
-      border: 1px solid var(--black);
-      border-spacing: 0px;
-    }
-
-    caption {
-      font-weight: bold;
-      font-size: x-large;
-    }
-
-    td {
-      min-width: 70px;
-      padding: 5px;
-
-    }
-
-    tr:last-child td {
-      border-bottom: none;
-    }
-
-    tr:nth-child(even) {
-      background-color: var(--dark_gray);
-    }
-
-    .tr-operaciones {
-      border: none;
-    }
-
-    button {
-      background-color: var(--white);
-      border-radius: 20px;
-      border: none;
-      color: var(--black);
-    }
-
-    button:hover {
-      background-color: var(--green);
-      color: var(--white);
-    }
-
-    .small_column {
-      min-width: 0px;
-    }
-
-    input {
-      width: 80%;
-      box-sizing: border-box;
-      color: var(--black);
-      background-color: var(--white);
-    }
-
-    a:focus,
-    a:focus-visible,
-    button:focus,
-    button:focus-visible,
-    nav li:focus,
-    nav li:focus-visible {
-      outline: 1px solid var(--green);
-    }
-
-    .acierto {
-      background-color: var(--green) !important;
-      color: var(--white);
-
-    }
-
-    .error {
-
-      background-color: var(--red) !important;
-      color: var(--white);
-    }
-  </style>
-</head>
-
-<body class="light">
+{% include "links.html" %}
+  <link href="{{ url_for('static', filename='css/operacionesBinarias.css')}}" rel="stylesheet" />
+{% include "header.html" %}
   <div class="container">
-    <button id="color_changer"></button>
-    <div>
-      <nav>
-        <ul>
-          <li><a href="#conversion" tabindex="1">Conversion</a></li>
-          <li><a href="#operaciones" tabindex="2">Operaciones</a></li>
-          <li><a href="#complementos" tabindex="3">Complemento</a></li>
-          <li><a href="{{url_for('personal')}}" tabindex="4">Projects</a></li>
-        </ul>
-      </nav>
-    </div>
     <div>
       <h1>Ejercicios para practicar</h1>
     </div>
@@ -358,16 +159,12 @@
         </tr>
       </table>
     </div>
-    <footer>
-      <p>&copy; 2025 Tom Galdeano.</p>
-    </footer>
   </div>
   <script>
     // Utility to create a conversion exercise
     (function () {
       const rachas = [document.getElementById("conversiones_cont"), document.getElementById("operaciones_cont"), document.getElementById("complementos_cont")]
       const valor_racha = [0, 0, 0];
-      const light_dark = document.querySelector('#color_changer');
 
       function makeExercise({ valueEl, inputEl, buttonEl, resultEl, displayBase, expectedBase, randMax = 1000 }) {
         if (!valueEl || !inputEl || !buttonEl) return;
@@ -622,12 +419,6 @@
         exercises.forEach(cfg => makeExercise(cfg));
       });
 
-      // theme switcher
-      light_dark.addEventListener('click', function () {
-        document.body.classList.toggle('dark');
-      });
     })();
   </script>
-</body>
-
-</html>
+{% include "footer.html" %}

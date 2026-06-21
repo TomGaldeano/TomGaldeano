@@ -1,0 +1,164 @@
+:root {
+    --green: #15400a;
+    --white: #FFFFFF;
+    --black: #000000;
+    --grey: #cacaca;
+    --blue: #051f8a;
+    --red: #a80101;
+    --dark_gray: #929292;
+}
+
+.dark {
+    --red: #fc5656;
+    --green: #00ff00;
+    --grey: #363636;
+    --black: #FFFFFF;
+    --white: #000000;
+    --blue: aqua;
+    --dark_gray: #7c7c7c;
+}
+
+#color_changer {
+    position: relative;
+    float: right;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--black);
+    border: 3px solid var(--white);
+    outline: 3px solid var(--black);
+}
+
+body {
+    background-color: var(--white);
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 32px;
+    border-radius: 8px;
+    background: var(--grey);
+    color: var(--black);
+}
+
+h2 {
+    margin-top: 0;
+    color: var(--black);
+    border-bottom: 2px solid var(--black);
+}
+
+h1 {
+    color: var(--black);
+    padding-bottom: 8px;
+    margin-bottom: 24px;
+}
+
+nav ul {
+    padding-left: 0%;
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.bubble {
+    display: inline;
+    padding: 10px;
+    align-self: start;
+    color: var(--black);
+    border-radius: 20px;
+    background-color: var(--white);
+    text-decoration: none;
+}
+
+.bubble:hover {
+    background-color: var(--red);
+    color: var(--white);
+}
+
+
+nav {
+    left: 0;
+}
+
+.center_suma_resta {
+    translate: 70%;
+}
+
+.center_suma_resta_res {
+    translate: 30%;
+}
+
+@media (max-width: 600px) {
+    .container {
+    padding: 12px;
+    }
+}
+
+table {
+    border: 1px solid var(--black);
+    border-spacing: 0px;
+}
+
+caption {
+    font-weight: bold;
+    font-size: x-large;
+}
+
+td {
+    min-width: 70px;
+    padding: 5px;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:nth-child(even) {
+    background-color: var(--dark_gray);
+}
+
+.tr-operaciones {
+    border: none;
+}
+
+button {
+    background-color: var(--white);
+    border-radius: 20px;
+    border: none;
+    color: var(--black);
+}
+
+button:hover {
+    background-color: var(--green);
+    color: var(--white);
+}
+
+.small_column {
+    min-width: 0px;
+}
+
+input {
+    width: 80%;
+    box-sizing: border-box;
+    color: var(--black);
+    background-color: var(--white);
+}
+
+a:focus,
+a:focus-visible,
+button:focus,
+button:focus-visible,
+nav li:focus,
+nav li:focus-visible {
+    outline: 1px solid var(--green);
+}
+.acierto {
+    background-color: var(--green) !important;
+    color: var(--white);
+}
+.error {
+    background-color: var(--red) !important;
+    color: var(--white);
+}
