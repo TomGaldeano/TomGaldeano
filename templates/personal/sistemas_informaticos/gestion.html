@@ -9,7 +9,6 @@
 
   span {
     margin: 0 auto;
-
   }
 
   input {
@@ -29,6 +28,7 @@
   .lista_opcion li {
     display: inline-block;
   }
+
   .control {
     display: flex;
   }
@@ -40,7 +40,7 @@
   </div>
   <div id="procesos" class="container">
     <div class="row justify-content-md-center container d-flex mx-auto">
-      <h2>proceso de procesesos</h2>
+      <h2>proceso de procesos</h2>
     </div>
     <div class="row justify-content-md-center container d-flex mx-auto">
       <table>
@@ -57,10 +57,10 @@
           <tr>
             <td><span>{{ options[i] }}</span></td>
             <td><span class="proceso_llegada" data-index="{{ i }}"></span></td>
-            <td><span class="proceso_ejecucion" data-index="{{ i }}"></span></td>
-            <td><input class="proceso_espera" type="text" data-index="{{ i }}"></td>
-            <td><input class="proceso_retorno" type="text" data-index="{{ i }}"></td>
-            <td><input class="proceso_fin" type="text" data-index="{{ i }}"></td>
+            <td><span class="proceso_ejecucion proceso" data-index="{{ i }}"></span></td>
+            <td><input class="proceso_espera proceso" type="text" data-index="{{ i }}"></td>
+            <td><input class="proceso_retorno proceso" type="text" data-index="{{ i }}"></td>
+            <td><input class="proceso_fin proceso" type="text" data-index="{{ i }}"></td>
           </tr>
           {% endfor %}
         </tbody>
@@ -68,7 +68,7 @@
     </div>
     <div class="row justify-content-md-center container d-flex mx-auto control">
       <button id="resolver_proceso" class="green_button">Resolver</button>
-     <button id="comprobar_proceso" class="green_button">Comprobar</button>
+      <button id="nuevo_proceso" class="green_button">Nuevo</button>
         <ul class="lista_opcion">
           <li>
             <h5>Algoritmo: </h5>
@@ -93,20 +93,20 @@
         <thead>
           <th>Proceso</th>
           <th>T Llegada</th>
-          <th>T Ejecucion</th>
+          <th>Tamaño</th>
           <th>T Espera</th>
           <th>T Retorno</th>
-          <th>Tfin</th>
+          <th>T fin</th>
         </thead>
         <tbody>
           {% for i in range(5) %}
           <tr>
             <td><span>{{ options[i] }}</span></td>
             <td><span class="estatica_llegada" data-index="{{ i }}"></span></td>
-            <td><span class="estatica_ejecucion" data-index="{{ i }}"></span></td>
-            <td><input class="estatica_espera" type="text" data-index="{{ i }}"></td>
-            <td><input class="estatica_retorno" type="text" data-index="{{ i }}"></td>
-            <td><input class="estatica_fin" type="text" data-index="{{ i }}"></td>
+            <td><span class="estatica_tamaño" data-index="{{ i }}"></span></td>
+            <td><input class="estatica_espera estatica" type="text" data-index="{{ i }}"></td>
+            <td><input class="estatica_retorno estatica" type="text" data-index="{{ i }}"></td>
+            <td><input class="estatica_fin estatica" type="text" data-index="{{ i }}"></td>
           </tr>
           {% endfor %}
         </tbody>
@@ -114,13 +114,13 @@
     </div>
     <div class="row justify-content-md-center container d-flex mx-auto control">
 <button id="resolver_estatica" class="green_button">Resolver</button>
-<button id="comprobar_estatica" class="green_button">Comprobar</button>
+<button id="nuevo_estetica" class="green_button">Nuevo</button>
         <ul class="lista_opcion">
           <li>
             <h5>Algoritmo: </h5>
           </li>
           <li>
-            <select name="opcion_proceo" id="opcion_proceso">
+            <select name="opcion_estatica" id="opcion_estatica">
               <option value="best">Best Fit</option>
               <option value="worst">Worst Fit</option>
               <option value="next">Next Fit</option>
@@ -139,7 +139,7 @@
         <thead>
           <th>Proceso</th>
           <th>T Llegada</th>
-          <th>T Ejecucion</th>
+          <th>Tamaño</th>
           <th>T Espera</th>
           <th>T Retorno</th>
           <th>Tfin</th>
@@ -149,10 +149,10 @@
           <tr>
             <td><span>{{ options[i] }}</span></td>
             <td><span class="dinamica_llegada" data-index="{{ i }}"></span></td>
-            <td><span class="dinamica_ejecucion" data-index="{{ i }}"></span></td>
-            <td><input class="dinamica_espera" type="text" data-index="{{ i }}"></td>
-            <td><input class="dinamica_retorno" type="text" data-index="{{ i }}"></td>
-            <td><input class="dinamica_fin" type="text" data-index="{{ i }}"></td>
+            <td><span class="dinamica_tamaño" data-index="{{ i }}"></span></td>
+            <td><input class="dinamica_espera dinamica" type="text" data-index="{{ i }}"></td>
+            <td><input class="dinamica_retorno dinamica" type="text" data-index="{{ i }}"></td>
+            <td><input class="dinamica_fin dinamica" type="text" data-index="{{ i }}"></td>
           </tr>
           {% endfor %}
         </tbody>
@@ -160,7 +160,7 @@
     </div>
     <div class="row justify-content-md-center container d-flex mx-auto control">
 <button class="green_button" id="resolver_dinamica">Resolver</button>
-<button class="green_button" id="comprobar_dinamica">Comprobar</button>
+<button class="green_button" id="nuevo_dinamica">Nuevo</button>
         <ul class="lista_opcion">
           <li>
             <h5>Algoritmo: </h5>
@@ -197,7 +197,7 @@
             </td>
             {% for i in range(15) %}
             <td class="marco1" data-index="{{ i }}">
-              <input type="text">
+              <input type="text" class="marco">
             </td>
             {% endfor %}
           </tr>
@@ -207,7 +207,7 @@
             </td>
             {% for i in range(15) %}
             <td class="marco2" data-index="{{ i }}">
-              <input type="text">
+              <input type="text" class="marco">
             </td>
             {% endfor %}
           </tr>
@@ -217,7 +217,7 @@
             </td>
             {% for i in range(15) %}
             <td class="marco3" data-index="{{ i }}">
-              <input type="text">
+              <input type="text" class="marco">
             </td>
             {% endfor %}
           </tr>
@@ -228,7 +228,7 @@
             </td>
             {% for i in range(15) %}
             <td class="marco4" data-index="{{ i }}">
-              <input type="text">
+              <input type="text" class="marco">
             </td>
             {% endfor %}
           </tr>
@@ -237,8 +237,8 @@
     </div>
     <div class="row justify-content-md-center container d-flex mx-auto control">
       <button class="green_button" id="resolver_marcos">Resolver</button>
-      <button class="green_button" id="comprobar_marcos">Comprobar</button>
-        <ul class="lista_opcion">
+      <button class="green_button" id="nuevo_marcos">Nuevo</button>  
+      <ul class="lista_opcion">
           <li>
             <h5>Algoritmo: </h5>
           </li>
