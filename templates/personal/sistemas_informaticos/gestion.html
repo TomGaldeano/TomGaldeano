@@ -6,39 +6,33 @@
     font-weight: 700;
     padding: 5px;
   }
-
   span {
     margin: 0 auto;
   }
-
   input {
     max-width: 50px;
   }
-
   .proceso-nav {
     width: 200px;
     position: absolute;
   }
-
   .lista_opcion {
     margin-top:.4em;
     list-style-type: none;
   }
-
   .lista_opcion li {
     display: inline-block;
   }
-
   .control {
     display: flex;
   }
 </style>
 {% include "header.html" %}
 <!-- Add this just after your opening <body> tag or inside your main container -->
-  <div class="row justify-content-md-center container d-flex mx-auto">
-    <h1>Ejercicios de proceso</h1>
+  <div class="row justify-content-md-center container d-flex mx-auto text-center">
+    <h1>Ejercicios de procesos</h1>
   </div>
-  <div id="procesos" class="container">
+  <div id="procesos" class="container d-none d-lg-block">
     <div class="row justify-content-md-center container d-flex mx-auto">
       <h2>proceso de procesos</h2>
     </div>
@@ -84,15 +78,17 @@
         </ul>
     </div>
   </div>
-  <div class="container">
+  <div class="container d-none d-lg-block">
     <div class="row justify-content-md-center container d-flex mx-auto">
       <h2>Gestión de memoria estatica</h2>
+      <p>Hay tres segmentos de memoria disponibles para ser usados de 2Gb, 4Gb y 6Gb repectivamente</p>
     </div>
     <div class="row justify-content-md-center container d-flex mx-auto">
       <table>
         <thead>
           <th>Proceso</th>
           <th>T Llegada</th>
+          <th>T Ejecucion</th>
           <th>Tamaño</th>
           <th>T Espera</th>
           <th>T Retorno</th>
@@ -103,6 +99,7 @@
           <tr>
             <td><span>{{ options[i] }}</span></td>
             <td><span class="estatica_llegada" data-index="{{ i }}"></span></td>
+            <td><span class="estatica_duracion" data-index="{{ i }}"></span></td>
             <td><span class="estatica_tamaño" data-index="{{ i }}"></span></td>
             <td><input class="estatica_espera estatica" type="text" data-index="{{ i }}"></td>
             <td><input class="estatica_retorno estatica" type="text" data-index="{{ i }}"></td>
@@ -130,15 +127,17 @@
         </ul>
     </div>
   </div>
-  <div id="dinamica" class="container">
+  <div id="dinamica" class="container d-none d-lg-block">
     <div class="row justify-content-md-center container d-flex mx-auto">
       <h2>Gestión de memoria dinamica</h2>
+      <p>Se diponen de 8Gb de memoria, de los cuales se reservara 1Gb de memoria para el sistema operativo</p>
     </div>
     <div class="row justify-content-md-center container d-flex mx-auto">
       <table>
         <thead>
           <th>Proceso</th>
           <th>T Llegada</th>
+          <th>T Ejecucion</th>
           <th>Tamaño</th>
           <th>T Espera</th>
           <th>T Retorno</th>
@@ -149,6 +148,7 @@
           <tr>
             <td><span>{{ options[i] }}</span></td>
             <td><span class="dinamica_llegada" data-index="{{ i }}"></span></td>
+            <td><span class="dinamica_duracion" data-index="{{ i }}"></span></td>
             <td><span class="dinamica_tamaño" data-index="{{ i }}"></span></td>
             <td><input class="dinamica_espera dinamica" type="text" data-index="{{ i }}"></td>
             <td><input class="dinamica_retorno dinamica" type="text" data-index="{{ i }}"></td>
@@ -176,7 +176,7 @@
         </ul>
     </div>
   </div>
-  <div id="marcos" class="container">
+  <div id="marcos" class="container d-none d-lg-block">
     <div class="row justify-content-md-center container d-flex mx-auto">
       <h2>Marcos de pagina</h2>
     </div>
@@ -253,6 +253,10 @@
         </ul>
     </div>
   </div>
+  <p class="plain-p text-center d-block d-lg-none no-game">
+    Por desgracia estas activiades
+    no estan disponible en pantallas pequeñas
+  </p>
 <script src="{{ url_for('static', filename='js/gestion_sistemas.js') }}"></script>
 
 {% include "footer.html" %}

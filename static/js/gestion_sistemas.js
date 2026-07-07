@@ -22,7 +22,9 @@ function make_tabla_memoria(tipo) {
   const randMax = 6;
   for (let i = 0; i < 5; i++) {
     document.querySelector('.' + tipo + '_llegada[data-index="' + i + '"]').innerText = Math.floor(Math.random() * randMax);
-    document.querySelector('.' + tipo + '_tamaño[data-index="' + i + '"]').innerText = Math.floor(Math.random() * 5) + 1;
+    document.querySelector('.' + tipo + '_duracion[data-index="' + i + '"]').innerText = Math.floor(Math.random() * randMax) + 3;
+    const maxSize = tipo === 'estatica' ? 6 : 7;
+    document.querySelector('.' + tipo + '_tamaño[data-index="' + i + '"]').innerText = Math.floor(Math.random() * maxSize) + 1;
   }
   clearResults(tipo);
 }
@@ -68,12 +70,14 @@ function getTableData(proceso) {
 
 function getMemoriaData(tipo) {
   const llegadas = [];
+  const duraciones = [];
   const tamaños = [];
   for (let i = 0; i < 5; i++) {
     llegadas.push(parseInt(document.querySelector('.' + tipo + '_llegada[data-index="' + i + '"]').innerText));
+    duraciones.push(parseInt(document.querySelector('.' + tipo + '_duracion[data-index="' + i + '"]').innerText));
     tamaños.push(parseInt(document.querySelector('.' + tipo + '_tamaño[data-index="' + i + '"]').innerText));
   }
-  return { llegadas, tamaños };
+  return { llegadas, duraciones, tamaños };
 }
 
 function getMarcos() {
@@ -326,77 +330,249 @@ function robin() {
 //   - Each process runs for tamaño time units
 //   - The fit strategy determines scheduling order among ready processes
 
-function memorySchedule(tipo, strategy) {
-  const { llegadas, tamaños } = getMemoriaData(tipo);
-
+function memoryScheduleEstatica(strategy) {
+  const { llegadas, duraciones, tamaños } = getMemoriaData("estatica");
   const espera = Array(5).fill(0);
   const retorno = Array(5).fill(0);
   const fin = Array(5).fill(0);
-  const done = Array(5).fill(false);
-
+  
+  const partitions = [
+    { id: 0, size: 2, process: null, timeRemaining: 0 },
+    { id: 1, size: 4, process: null, timeRemaining: 0 },
+    { id: 2, size: 6, process: null, timeRemaining: 0 }
+  ];
+  
   let currentTime = 0;
   let completed = 0;
-
-  const maxTime = Math.max(...llegadas) + tamaños.reduce((a, b) => a + b, 0) + 1;
-
-  while (completed < 5 && currentTime < maxTime) {
-    // Get all arrived, not-done processes
+  let lastAllocatedIdx = 0; // For Next Fit
+  
+  const started = Array(5).fill(false);
+  
+  while (completed < 5) {
+    // Free partitions whose processes are done
+    for (let p of partitions) {
+      if (p.process !== null) {
+        if (fin[p.process] <= currentTime) {
+          p.process = null;
+        }
+      }
+    }
+    
+    // Get arrived, not-started processes
     const ready = [];
     for (let i = 0; i < 5; i++) {
-      if (!done[i] && llegadas[i] <= currentTime) {
+      if (!started[i] && llegadas[i] <= currentTime) {
         ready.push(i);
       }
     }
-
-    if (ready.length === 0) {
+    
+    // Sort ready processes by arrival time (FIFO for memory queue)
+    ready.sort((a, b) => llegadas[a] - llegadas[b] || a - b);
+    
+    for (let proc of ready) {
+      const sizeReq = tamaños[proc];
+      let chosenPartitionIdx = -1;
+      
+      const availablePartitions = partitions.map((p, index) => ({...p, index}))
+        .filter(p => p.process === null && p.size >= sizeReq);
+        
+      if (availablePartitions.length > 0) {
+        if (strategy === "first") {
+          chosenPartitionIdx = availablePartitions[0].index;
+        } else if (strategy === "best") {
+          availablePartitions.sort((a, b) => a.size - b.size || a.index - b.index);
+          chosenPartitionIdx = availablePartitions[0].index;
+        } else if (strategy === "worst") {
+          availablePartitions.sort((a, b) => b.size - a.size || a.index - b.index);
+          chosenPartitionIdx = availablePartitions[0].index;
+        } else if (strategy === "next") {
+          let found = -1;
+          for (let i = 0; i < partitions.length; i++) {
+            const idx = (lastAllocatedIdx + i) % partitions.length;
+            if (partitions[idx].process === null && partitions[idx].size >= sizeReq) {
+              found = idx;
+              break;
+            }
+          }
+          chosenPartitionIdx = found;
+        }
+      }
+      
+      if (chosenPartitionIdx !== -1) {
+        partitions[chosenPartitionIdx].process = proc;
+        started[proc] = true;
+        espera[proc] = currentTime - llegadas[proc];
+        fin[proc] = currentTime + duraciones[proc];
+        retorno[proc] = fin[proc] - llegadas[proc];
+        
+        lastAllocatedIdx = chosenPartitionIdx;
+        completed++;
+      }
+    }
+    
+    let nextTime = Infinity;
+    for (let p of partitions) {
+      if (p.process !== null && fin[p.process] > currentTime && fin[p.process] < nextTime) {
+        nextTime = fin[p.process];
+      }
+    }
+    for (let i = 0; i < 5; i++) {
+      if (!started[i] && llegadas[i] > currentTime && llegadas[i] < nextTime) {
+        nextTime = llegadas[i];
+      }
+    }
+    
+    if (nextTime !== Infinity) {
+      currentTime = nextTime;
+    } else if (completed < 5) {
       currentTime++;
-      continue;
     }
+  }
+  
+  writeResults("estatica", espera, retorno, fin);
+}
 
-    let chosen = -1;
-
-    if (strategy === "best") {
-      // Best Fit: smallest tamaño first
-      ready.sort((a, b) => tamaños[a] - tamaños[b] || llegadas[a] - llegadas[b]);
-      chosen = ready[0];
-    } else if (strategy === "worst") {
-      // Worst Fit: largest tamaño first
-      ready.sort((a, b) => tamaños[b] - tamaños[a] || llegadas[a] - llegadas[b]);
-      chosen = ready[0];
-    } else if (strategy === "first") {
-      // First Fit: first arrived
-      ready.sort((a, b) => llegadas[a] - llegadas[b] || a - b);
-      chosen = ready[0];
-    } else if (strategy === "next") {
-      // Next Fit: like first fit but cyclic — sort by index
-      ready.sort((a, b) => a - b);
-      chosen = ready[0];
-    }
-
-    if (chosen !== -1) {
-      espera[chosen] = currentTime - llegadas[chosen];
-      fin[chosen] = currentTime + tamaños[chosen];
-      retorno[chosen] = fin[chosen] - llegadas[chosen];
-      currentTime = fin[chosen];
-      done[chosen] = true;
-      completed++;
+function memoryScheduleDinamica(strategy) {
+  const { llegadas, duraciones, tamaños } = getMemoriaData("dinamica");
+  const espera = Array(5).fill(0);
+  const retorno = Array(5).fill(0);
+  const fin = Array(5).fill(0);
+  
+  let blocks = [{ start: 0, size: 7, process: null }];
+  
+  let currentTime = 0;
+  let completed = 0;
+  let lastAllocatedStart = 0;
+  
+  const started = Array(5).fill(false);
+  
+  function mergeFreeBlocks() {
+    for (let i = 0; i < blocks.length - 1; i++) {
+      if (blocks[i].process === null && blocks[i+1].process === null) {
+        blocks[i].size += blocks[i+1].size;
+        blocks.splice(i+1, 1);
+        i--;
+      }
     }
   }
 
-  writeResults(tipo, espera, retorno, fin);
+  while (completed < 5) {
+    let changed = false;
+    for (let b of blocks) {
+      if (b.process !== null) {
+        if (fin[b.process] <= currentTime) {
+          b.process = null;
+          changed = true;
+        }
+      }
+    }
+    if (changed) mergeFreeBlocks();
+    
+    const ready = [];
+    for (let i = 0; i < 5; i++) {
+      if (!started[i] && llegadas[i] <= currentTime) {
+        ready.push(i);
+      }
+    }
+    
+    ready.sort((a, b) => llegadas[a] - llegadas[b] || a - b);
+    
+    for (let proc of ready) {
+      const sizeReq = tamaños[proc];
+      let chosenBlockIdx = -1;
+      
+      const freeBlocks = blocks.map((b, index) => ({...b, index}))
+        .filter(b => b.process === null && b.size >= sizeReq);
+        
+      if (freeBlocks.length > 0) {
+        if (strategy === "first") {
+          chosenBlockIdx = freeBlocks[0].index;
+        } else if (strategy === "best") {
+          freeBlocks.sort((a, b) => a.size - b.size || a.start - b.start);
+          chosenBlockIdx = freeBlocks[0].index;
+        } else if (strategy === "worst") {
+          freeBlocks.sort((a, b) => b.size - a.size || a.start - b.start);
+          chosenBlockIdx = freeBlocks[0].index;
+        } else if (strategy === "next") {
+          let found = -1;
+          for (let fb of blocks) {
+            if (fb.process === null && fb.size >= sizeReq && fb.start >= lastAllocatedStart) {
+              found = blocks.indexOf(fb);
+              break;
+            }
+          }
+          if (found === -1) {
+            for (let fb of blocks) {
+              if (fb.process === null && fb.size >= sizeReq) {
+                found = blocks.indexOf(fb);
+                break;
+              }
+            }
+          }
+          chosenBlockIdx = found;
+        }
+      }
+      
+      if (chosenBlockIdx !== -1) {
+        const block = blocks[chosenBlockIdx];
+        
+        if (block.size > sizeReq) {
+          blocks.splice(chosenBlockIdx, 1, 
+            { start: block.start, size: sizeReq, process: proc },
+            { start: block.start + sizeReq, size: block.size - sizeReq, process: null }
+          );
+          lastAllocatedStart = block.start;
+        } else {
+          block.process = proc;
+          lastAllocatedStart = block.start;
+        }
+        
+        started[proc] = true;
+        espera[proc] = currentTime - llegadas[proc];
+        fin[proc] = currentTime + duraciones[proc];
+        retorno[proc] = fin[proc] - llegadas[proc];
+        
+        completed++;
+      }
+    }
+    
+    let nextTime = Infinity;
+    for (let b of blocks) {
+      if (b.process !== null && fin[b.process] > currentTime && fin[b.process] < nextTime) {
+        nextTime = fin[b.process];
+      }
+    }
+    for (let i = 0; i < 5; i++) {
+      if (!started[i] && llegadas[i] > currentTime && llegadas[i] < nextTime) {
+        nextTime = llegadas[i];
+      }
+    }
+    
+    if (nextTime !== Infinity) {
+      currentTime = nextTime;
+    } else if (completed < 5) {
+      currentTime++;
+    }
+  }
+  
+  writeResults("dinamica", espera, retorno, fin);
 }
 
 function best_fit(opcion) {
-  memorySchedule(opcion, "best");
+  if (opcion === "estatica") memoryScheduleEstatica("best");
+  else memoryScheduleDinamica("best");
 }
 function worst_fit(opcion) {
-  memorySchedule(opcion, "worst");
+  if (opcion === "estatica") memoryScheduleEstatica("worst");
+  else memoryScheduleDinamica("worst");
 }
 function next_fit(opcion) {
-  memorySchedule(opcion, "next");
+  if (opcion === "estatica") memoryScheduleEstatica("next");
+  else memoryScheduleDinamica("next");
 }
 function first_fit(opcion) {
-  memorySchedule(opcion, "first");
+  if (opcion === "estatica") memoryScheduleEstatica("first");
+  else memoryScheduleDinamica("first");
 }
 
 // ====================================
