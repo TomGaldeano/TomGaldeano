@@ -7,15 +7,27 @@
   <div class="container">
     <h1>Banana HQ</h1>
     <p class="lead">Nearby supermarkets &amp; your go-to banana shopping links — all in one place.</p>
+    <button class="btn" id="search-btn">Find Stores</button>
   </div>
 </div>
 <!-- MAIN -->
 <div class="container py-4">
-  <!-- ── NEARBY STORES ── -->
+  <!-- ── NEARBY STORES (search results) ── -->
   <p class="section-eyebrow">In-person shopping</p>
   <h2 class="section-title">Nearby Supermarkets &amp; Grocery Stores</h2>
-  <div class="row g-3">
-  </div><!-- /row -->
+  <ul id="near-stores" class="store-list">
+    <!-- Populated by JS after geolocation search -->
+  </ul>
+
+  <!-- ── SAVED STORES ── -->
+  <div id="saved-section" class="saved-section">
+    <hr class="section-divider" />
+    <p class="section-eyebrow">Your saved stores</p>
+    <h2 class="section-title">Favourites</h2>
+    <ul id="saved-stores" class="store-list">
+      <!-- Populated by JS from localStorage -->
+    </ul>
+  </div>
   <hr class="section-divider" />
   <!-- ── BANANA ONLINE TRACKER ── -->
   <div class="tracker-wrapper">
@@ -23,40 +35,8 @@
     <h2 class="section-title">🍌 Where to Buy Bananas Online</h2>
     <p class="sub-note">Your personal shortcut list — click to jump straight to bananas.</p>
     <div id="link-list">
-      <div class="online-link-row">
-        <div class="link-icon" style="background:#E3F2FD;">🔵</div>
-        <div class="link-info">
-          <div class="link-label">Carrefour Online</div>
-          <div class="link-desc">carrefour.es — fresh produce section</div>
-        </div>
-        <a class="link-anchor" href="https://www.carrefour.es/supermercado/frutas-y-verduras/platanos/cat/frutas-y-verduras_platanos" target="_blank">Visit →</a>
-      </div>
-      <div class="online-link-row">
-        <div class="link-icon" style="background:#FFF3E0;">🔴</div>
-        <div class="link-info">
-          <div class="link-label">Lidl Online</div>
-          <div class="link-desc">lidl.es — delivery &amp; click &amp; collect</div>
-        </div>
-        <a class="link-anchor" href="https://www.lidl.es/p/platanos/p100401538" target="_blank">Visit →</a>
-      </div>
-      <div class="online-link-row">
-        <div class="link-icon" style="background:#F3E5F5;">🟣</div>
-        <div class="link-info">
-          <div class="link-label">El Corte Inglés Supermercado</div>
-          <div class="link-desc">elcorteingles.es — gourmet &amp; organic options</div>
-        </div>
-        <a class="link-anchor" href="https://www.elcorteingles.es/supermercado/buscar/?s=platanos" target="_blank">Visit →</a>
-      </div>
-      <div class="online-link-row">
-        <div class="link-icon" style="background:#E8F5E9;">🟢</div>
-        <div class="link-info">
-          <div class="link-label">Freshly Cosmetics / FreshFood</div>
-          <div class="link-desc">getir.com — ultra-fast delivery in Madrid</div>
-        </div>
-        <a class="link-anchor" href="https://getir.com/es/madrid" target="_blank">Visit →</a>
-      </div>
-    </div><!-- /#link-list -->
-    <!-- Add-link form -->
+      <!-- Populated by JS from localStorage -->
+    </div>
     <div class="add-link-form">
       <p style="color:rgba(255,253,240,0.55);font-size:0.8rem;margin-bottom:0.8rem;">➕ Add your own banana source</p>
       <div class="row g-2">
@@ -73,8 +53,9 @@
           <input type="url" id="new-url" placeholder="https://..." />
         </div>
       </div>
-      <button class="btn-add" onclick="addLink()">Add Link</button>
+      <button class="btn-add" id="add-link-btn">Add Link</button>
     </div>
-  </div><!-- /.tracker-wrapper -->
-</div><!-- /.container -->
+  </div>
+</div>
+<script src="{{ url_for('static', filename='js/banana_tracker.js') }}"></script>
 {% include"footer.html" %}

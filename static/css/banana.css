@@ -82,13 +82,23 @@ body {
 
 /* ── STORE CARDS ── */
 .store-card {
-    background: var(--card-bg);
+    background: var(--peel-brown);
     border: 1.5px solid var(--border);
     border-radius: 10px;
     padding: 1.1rem 1.2rem;
     height: 100%;
     transition: box-shadow 0.15s, border-color 0.15s;
     position: relative;
+    color: white;
+}
+.store-list{
+    background-color: var(--banana-dark);
+    padding: 2em;
+    border-radius: 1em;
+}
+.store-type-badge{
+    color: var(--banana-yellow);
+    background-color: var(--peel-brown);
 }
 .store-card:hover {
     box-shadow: 0 4px 18px rgba(61,43,31,0.1);
@@ -104,23 +114,21 @@ body {
     border-radius: 3px;
     display: inline-block;
     margin-bottom: 0.5rem;
+    color: white;
+    background-color: var(--peel-brown);
 }
-.badge-mercadona  { background: #E8F5E9; color: #2E7D32; }
-.badge-carrefour  { background: #E3F2FD; color: #1565C0; }
-.badge-lidl       { background: #FFF3E0; color: #BF360C; }
-.badge-elcorte    { background: #F3E5F5; color: #6A1B9A; }
-.badge-other      { background: #F1F1F1; color: #555; }
+.badge-other      { background: #F1F1F1; color: white; }
 
 .store-name {
     font-size: 1rem;
     font-weight: 700;
     margin-bottom: 0.2rem;
     line-height: 1.2;
-    color: var(--peel-brown);
+    color: white;
 }
 .store-address {
     font-size: 0.82rem;
-    color: var(--muted);
+    color: whitesmoke;
     margin-bottom: 0.6rem;
 }
 .store-meta {
@@ -230,6 +238,16 @@ body {
 }
 .link-anchor:hover { text-decoration: underline; color: var(--banana-yellow); }
 
+/* actions container (Visit + Share + Remove) */
+.link-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-shrink: 0;
+}
+
+/* small action buttons inside online-link-row */
+
 /* add-link form */
 .add-link-form {
     background: rgba(255,253,240,0.06);
@@ -284,4 +302,15 @@ footer {
 
 @media (max-width: 576px) {
     .hero h1 { font-size: 1.8rem; }
+}
+#search-btn{
+    background-color: var(--peel-brown);
+    color: white;
+    margin-top: 1em;
+}
+#search-btn:hover{
+    color: var(--banana-yellow)
+}
+li{
+    list-style: none;
 }
