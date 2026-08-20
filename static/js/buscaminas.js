@@ -184,6 +184,12 @@ class Minesweeper {
 			this.numMarcadas = this.numMinas;
 			this.renderizar();
 			this.mostrarMensaje("🎉 ¡Victoria! Has despejado el campo.", "victoria");
+
+			if (window.GameTracker) {
+				const elapsed = Math.floor((Date.now() - (this.tiempoInicio || Date.now())) / 1000);
+				const calcScore = Math.max(100, Math.round((1000 - elapsed * 5) * (this.dimensiones / 8)));
+				window.GameTracker.trackScore('games/buscaminas', calcScore);
+			}
 		}
 	}
 
@@ -198,6 +204,7 @@ class Minesweeper {
 	}
 
 	iniciarTimer() {
+		if (window.GameTracker) window.GameTracker.trackTry('games/buscaminas');
 		this.tiempoInicio = Date.now();
 		const timerEl = document.querySelector("#timer-display");
 		if (timerEl) timerEl.textContent = "0";
@@ -208,6 +215,7 @@ class Minesweeper {
 			}
 		}, 1000);
 	}
+
 
 	pararTimer() {
 		if (this.timerInterval) {

@@ -148,6 +148,7 @@ function sortHand(hand) {
 }
 
 function initGame() {
+  if (window.GameTracker) window.GameTracker.trackTry('games/tute');
   const deck = shuffle(createDeck());
   game.playerHand = deck.splice(0, 7);
   game.cpuHand = deck.splice(0, 7);
@@ -168,6 +169,7 @@ function initGame() {
   updateButtons();
   render();
 }
+
 
 // ─── Points constants ───────────────────────────────────────────────────────
 const CANTAR_POINTS_TRUMP = 40;
@@ -676,10 +678,14 @@ function evaluateTrick() {
   // Check if hands are empty → finished
   if (game.playerHand.length === 0 && game.cpuHand.length === 0) {
     game.phase = 'finished';
+    if (game.playerScore > game.cpuScore && window.GameTracker) {
+      window.GameTracker.trackScore('games/tute', game.playerScore);
+    }
     updateButtons();
     render();
     return;
   }
+
 
   // Enter announce phase for the winner (player or cpu)
   enterAnnouncePhase(winner);

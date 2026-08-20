@@ -114,6 +114,7 @@
         const memo = load_memory();
         console.log(memo)
         function StartGame() {
+            if (window.GameTracker) window.GameTracker.trackTry('games/tresenraya');
             for (let i = 0; i < tablero.length; i++) {
                 tablero[i].textContent = " ";
                 tablero[i].classList.add("posible_move")
@@ -121,6 +122,7 @@
                 document.getElementById("victory").textContent = " ";
             }
         }
+
         function load_memory() {
             try {
                 const stored = JSON.parse(localStorage.getItem("memo")) || {};
@@ -219,9 +221,11 @@
             }
             if (victory && board === partida) {
                 document.getElementById("victory").textContent = "You won";
+                if (window.GameTracker) window.GameTracker.trackScore('games/tresenraya', 100);
             }
             return victory;
         }
+
 
         function computer_won(board) {
             let victory = false;

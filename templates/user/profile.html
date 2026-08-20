@@ -1,0 +1,79 @@
+{% include "links.html" %}
+{% include "header.html" %}
+
+<div class="container mt-5 mb-5">
+  <!-- User info card -->
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-8">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+          <div class="d-flex align-items-center mb-3">
+            <!-- Avatar circle -->
+            <div class="rounded-circle bg-success d-flex align-items-center justify-content-center text-white fw-bold me-3"
+                 style="width:64px;height:64px;font-size:1.6rem;flex-shrink:0;">
+              {{ current_user.username[0].upper() }}
+            </div>
+            <div>
+              <h1 class="h4 mb-0">{{ current_user.username }}</h1>
+              <p class="text-muted small mb-0">{{ current_user.email }}</p>
+              <p class="text-muted small mb-0">
+                Joined {{ current_user.created_at.strftime('%d %b %Y') if current_user.created_at else '—' }}
+              </p>
+            </div>
+            <div class="ms-auto">
+              <a href="{{ url_for('user.edit') }}" class="btn btn-outline-secondary btn-sm" id="edit-profile-btn">
+                ✏️ Edit Profile
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats table -->
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+          <h2 class="h5 mb-3">📊 Activity &amp; Scores</h2>
+
+          {% if stats %}
+            <div class="table-responsive">
+              <table class="table table-hover table-sm align-middle" id="stats-table">
+                <thead class="table-light">
+                  <tr>
+                    <th>Page / Game</th>
+                    <th class="text-center">Best Score</th>
+                    <th class="text-center">Total Tries</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for row in stats %}
+                  <tr>
+                    <td>
+                      <a href="{{ url_for(row.page_key.replace('/', '.')) }}" class="green_link">
+                        {{ row.page_key }}
+                      </a>
+                    </td>
+                    <td class="text-center fw-bold">{{ row.score }}</td>
+                    <td class="text-center text-muted">{{ row.tries }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          {% else %}
+            <div class="text-center py-5 text-muted">
+              <p class="mb-0">No activity recorded yet.</p>
+              <p class="small">Play a game or visit a learning page to start tracking!</p>
+              <a href="{{ url_for('games') }}" class="btn btn-success btn-sm mt-2">Browse Games</a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include "footer.html" %}

@@ -1,0 +1,52 @@
+{% include "links.html" %}
+{% include "header.html" %}
+
+<div class="container mt-5 mb-5" style="max-width: 440px;">
+  <div class="card shadow-sm border-0">
+    <div class="card-body p-5">
+      <h1 class="h3 text-center mb-1">Sign In</h1>
+      <p class="text-center text-muted small mb-4">Welcome back</p>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+          </div>
+        {% endfor %}
+      {% endwith %}
+
+      <form method="POST" action="{{ url_for('auth.login') }}" novalidate>
+        {{ form.hidden_tag() }}
+
+        <div class="form-group mb-3">
+          {{ form.email.label(class="form-label fw-semibold") }}
+          {{ form.email(class="form-control" + (" is-invalid" if form.email.errors else "")) }}
+          {% for error in form.email.errors %}
+            <div class="invalid-feedback">{{ error }}</div>
+          {% endfor %}
+        </div>
+
+        <div class="form-group mb-4">
+          {{ form.password.label(class="form-label fw-semibold") }}
+          {{ form.password(class="form-control" + (" is-invalid" if form.password.errors else "")) }}
+          {% for error in form.password.errors %}
+            <div class="invalid-feedback">{{ error }}</div>
+          {% endfor %}
+        </div>
+
+        <div class="d-grid">
+          {{ form.submit(class="btn btn-success btn-block w-100", id="login-submit") }}
+        </div>
+      </form>
+
+      <hr class="my-4">
+      <p class="text-center small mb-0">
+        Don't have an account?
+        <a href="{{ url_for('auth.register') }}" class="green_link">Create one</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+{% include "footer.html" %}

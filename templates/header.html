@@ -28,6 +28,28 @@
           </ul>
         </li>
       </ul>
+
+      <!-- Auth nav: right side -->
+      <ul class="nav ms-auto justify-content-end align-items-center">
+        {% if current_user.is_authenticated %}
+          <li class="nav-item text-white bg-secondary">
+            <a class="nav-link green_hover" href="{{ url_for('user.profile') }}" id="nav-profile">
+              👤 {{ current_user.username }}
+            </a>
+          </li>
+          <li class="nav-item text-white bg-secondary">
+            <a class="nav-link green_hover" href="{{ url_for('auth.logout') }}" id="nav-logout">Logout</a>
+          </li>
+        {% else %}
+          <li class="nav-item text-white bg-secondary">
+            <a class="nav-link green_hover" href="{{ url_for('auth.login') }}" id="nav-login">Login</a>
+          </li>
+          <li class="nav-item text-white bg-secondary">
+            <a class="nav-link green_hover" href="{{ url_for('auth.register') }}" id="nav-register">Register</a>
+          </li>
+        {% endif %}
+      </ul>
+
       <button id="color_changer"></button>
     </div>
   </nav>

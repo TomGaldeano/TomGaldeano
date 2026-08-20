@@ -248,17 +248,24 @@ function genera_sudoku() {
             sudoku = sudoku2;
         }
     }
+    if (window.GameTracker) window.GameTracker.trackTry('games/sudoku');
 }
 
 function comprobar_sudoku() {
+    let perfecto = true;
     for (let i = 0; i < TAM; i++) {
         for (let j = 0; j < TAM; j++) {
             const input = document.querySelector('.Sudoku-item[data-index="' + i + j + '"]');
             const td = document.querySelector('.Sudoku-td[data-index="' + i + j + '"]');
-            const cls = parseInt(input.value) === sudoku[i][j] ? "acierto" : "error";
+            const esValido = parseInt(input.value) === sudoku[i][j];
+            if (!esValido) perfecto = false;
+            const cls = esValido ? "acierto" : "error";
             td.classList.add(cls);
             setTimeout(() => td.classList.remove(cls), 2000);
         }
+    }
+    if (perfecto && window.GameTracker) {
+        window.GameTracker.trackScore('games/sudoku', 1000);
     }
 }
 

@@ -1,4 +1,4 @@
-﻿
+
 // ============================================================
 //  HEX KINGDOMS  –  hexKingdoms.js
 //  Turn-based hex strategy. Single troop type (stacks).
@@ -180,6 +180,8 @@
     phase = "play";
     selected = null; reachable = []; attackable = [];
 
+    if (window.GameTracker) window.GameTracker.trackTry('games/hexKingdom');
+
     // Each faction starts with a stack of 4 on their capital
     HOME.forEach((h, i) => makeStack(i, h.r, h.c, 4));
 
@@ -190,6 +192,7 @@
     // If turn 0 happens to be AI, start the chain
     if (turn !== playerFaction) scheduleAI();
   }
+
 
   function makeStack(faction, row, col, size) {
     const s = {
@@ -512,13 +515,20 @@
     // Only one faction remains
     if (alive.size === 1) {
       const winner = [...alive][0];
-      if (winner === playerFaction)
+      if (winner === playerFaction) {
         setOver("🏆 Victory! Your kingdom reigns supreme!", "#0f4a1e");
-      else
+        if (window.GameTracker) {
+          const myCities = grid.flat().filter(c => c.terrain === T.CITY && c.owner === playerFaction).length;
+          const score = 500 + myCities * 100;
+          window.GameTracker.trackScore('games/hexKingdom', score);
+        }
+      } else {
         setOver(`Defeated — ${FACTIONS[winner].name} wins!`, "#5a0808");
+      }
       return;
     }
   }
+
 
   function setOver(msg, color) {
     phase     = "over";

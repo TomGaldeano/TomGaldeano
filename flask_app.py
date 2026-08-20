@@ -1,24 +1,75 @@
 from flask import Flask, render_template, redirect, url_for, request, Response
 from flask_bootstrap import Bootstrap
-import werkzeug.security
-from functools import wraps
 from flask_wtf.csrf import CSRFProtect
-import time
+from config import Config
+from models import db, login_manager
+
+# ---------------------------------------------------------------------------
+# Import models so SQLAlchemy registers them before create_all()
+# ---------------------------------------------------------------------------
+import models.user      # noqa: F401
+import models.score     # noqa: F401
+import models.activity  # noqa: F401
+
 
 def create_app():
     """
-    Creates framework for it website to run (blackbox)
+    Application factory.
+    Creates and configures the Flask app, initialises extensions,
+    registers blueprints, and ensures database tables exist.
     """
-    global app
     app = Flask(__name__)
+    app.config.from_object(Config)
+
+    # Extensions
     Bootstrap(app)
-    app.config['SECRET_KEY'] = "gdfgsksdflsdfjfdswksjfkdsjfksjkfjdls"
-    csrf = CSRFProtect(app)
+    CSRFProtect(app)
+    db.init_app(app)
+    login_manager.init_app(app)
+
+    # Blueprints
+    from auth import auth_bp
+    from user import user_bp
+    app.register_blueprint(auth_bp)
+    app.register_blueprint(user_bp)
+
+    # Create DB tables if they don't exist yet
+    with app.app_context():
+        # Ensure database exists
+        try:
+            import pymysql
+            connection = pymysql.connect(
+                host=app.config['DB_HOST'],
+                port=int(app.config['DB_PORT']),
+                user=app.config['DB_USER'],
+                password=app.config['DB_PASSWORD']
+            )
+            with connection.cursor() as cursor:
+                cursor.execute(f"CREATE DATABASE IF NOT EXISTS `{app.config['DB_NAME']}` CHARACTER SET utf8mb4;")
+            connection.close()
+        except Exception as e:
+            print(f"Warning: Could not auto-create database '{app.config['DB_NAME']}': {e}")
+
+        db.create_all()
+
     return app
 
-create_app()
 
-app = Flask(__name__)
+app = create_app()
+
+
+# ---------------------------------------------------------------------------
+#  TEMPLATE CONTEXT — make current_user available in every template
+# ---------------------------------------------------------------------------
+
+@app.context_processor
+def inject_user():
+    from flask_login import current_user
+    return dict(current_user=current_user)
+
+# ---------------------------------------------------------------------------
+#  ROUTES
+# ---------------------------------------------------------------------------
 
 @app.route('/')
 def home():
@@ -26,7 +77,7 @@ def home():
 
 @app.route('/clock')
 def clock():
-    return render_template('clock.html',hope_graduation="2027-06-19",birth30="2028-01-24")
+    return render_template('clock.html', hope_graduation="2027-06-19", birth30="2028-01-24")
 
 #
 ## PERSONAL
@@ -50,7 +101,7 @@ def operacionesBinarias():
 
 @app.route('/personal/gestion')
 def gestionProcesos():
-    return render_template('personal/sistemas_informaticos/gestion.html',options="ABCDE")
+    return render_template('personal/sistemas_informaticos/gestion.html', options="ABCDE")
 
 @app.route('/personal/CssChallenges')
 def CssChallenges():
@@ -125,7 +176,5 @@ def BananaTracker():
     return render_template("/ordered/BananaTracker.html")
 
 
-if __name__ == '__main__':  
+if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001, debug=True)
-
-

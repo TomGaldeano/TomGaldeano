@@ -353,6 +353,10 @@
       ctx.fillText("Lives: " + game.lives, canvas.width - 20, 50);
     } else {
       // Game over screen
+      if (!game.scoreTracked) {
+        game.scoreTracked = true;
+        if (window.GameTracker) window.GameTracker.trackScore('games/spaceInvaders', game.score);
+      }
       ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = '#FF0000';
@@ -375,9 +379,11 @@
 
   // Restart game
   function restartGame() {
+    if (window.GameTracker) window.GameTracker.trackTry('games/spaceInvaders');
     game.score = 0;
     game.lives = 3;
     game.gameOver = false;
+    game.scoreTracked = false;
     game.wave = 1;
     player.x = canvas.width / 2 - 15;
     bullets.length = 0;
@@ -390,7 +396,8 @@
   }
 
   // Start the game
+  if (window.GameTracker) window.GameTracker.trackTry('games/spaceInvaders');
   updateScoreDisplay();
   updateLivesDisplay();
   gameLoop();
-</script>
+</script>

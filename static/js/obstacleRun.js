@@ -201,6 +201,10 @@ class Game {
 
     // Draw game over screen
     if (this.gameOver) {
+      if (!this.scoreTracked) {
+        this.scoreTracked = true;
+        if (window.GameTracker) window.GameTracker.trackScore('games/obstacleRun', this.score);
+      }
       ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
       ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
       ctx.fillStyle = '#FF0000';
@@ -218,8 +222,10 @@ class Game {
     this.obstacles = [];
     this.score = 0;
     this.gameOver = false;
+    this.scoreTracked = false;
     this.obstacleSpawnCounter = 0;
     this.updateScore();
+    if (window.GameTracker) window.GameTracker.trackTry('games/obstacleRun');
   }
 }
 
@@ -233,4 +239,4 @@ function setDifficulty(difficulty) {
 // Game loop
 setInterval(() => {
   game.draw_landscape();
-}, 40);
+}, 40);

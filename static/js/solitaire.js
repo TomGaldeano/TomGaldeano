@@ -64,6 +64,7 @@ function shuffle(deck) {
 
 // Initialize game
 function initGame() {
+  if (window.GameTracker) window.GameTracker.trackTry('games/solitaire');
   game.stock = [];
   game.waste = [];
   game.foundations = [[], [], [], []];
@@ -73,6 +74,7 @@ function initGame() {
   game.dragSourceIndex = null;
   game.dragSourceCardIndex = null;
   game.isDragging = false;
+
 
   const deck = shuffle(createDeck());
   let cardIndex = 0;
@@ -461,8 +463,10 @@ function checkWin() {
   if (game.foundations.every(f => f.length === 13)) {
     game.gameWon = true;
     game.score += 500;
+    if (window.GameTracker) window.GameTracker.trackScore('games/solitaire', game.score);
   }
 }
+
 
 // Event listeners
 canvas.addEventListener('mousedown', handleMouseDown);

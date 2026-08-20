@@ -1,0 +1,79 @@
+{% include "links.html" %}
+{% include "header.html" %}
+
+<div class="container mt-5 mb-5" style="max-width: 520px;">
+  <div class="card border-0 shadow-sm">
+    <div class="card-body p-5">
+      <h1 class="h4 mb-1">Edit Profile</h1>
+      <p class="text-muted small mb-4">
+        Leave any field blank to keep its current value.
+        Your current password is required to save any change.
+      </p>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+          </div>
+        {% endfor %}
+      {% endwith %}
+
+      <form method="POST" action="{{ url_for('user.edit') }}" novalidate>
+        {{ form.hidden_tag() }}
+
+        <div class="form-group mb-3">
+          {{ form.username.label(class="form-label fw-semibold") }}
+          {{ form.username(class="form-control" + (" is-invalid" if form.username.errors else "")) }}
+          {% for error in form.username.errors %}
+            <div class="invalid-feedback">{{ error }}</div>
+          {% endfor %}
+        </div>
+
+        <div class="form-group mb-3">
+          {{ form.email.label(class="form-label fw-semibold") }}
+          {{ form.email(class="form-control" + (" is-invalid" if form.email.errors else "")) }}
+          {% for error in form.email.errors %}
+            <div class="invalid-feedback">{{ error }}</div>
+          {% endfor %}
+        </div>
+
+        <hr class="my-3">
+        <p class="text-muted small">Change password (optional)</p>
+
+        <div class="form-group mb-3">
+          {{ form.new_password.label(class="form-label fw-semibold") }}
+          {{ form.new_password(class="form-control" + (" is-invalid" if form.new_password.errors else "")) }}
+          {% for error in form.new_password.errors %}
+            <div class="invalid-feedback">{{ error }}</div>
+          {% endfor %}
+        </div>
+
+        <div class="form-group mb-4">
+          {{ form.confirm_password.label(class="form-label fw-semibold") }}
+          {{ form.confirm_password(class="form-control" + (" is-invalid" if form.confirm_password.errors else "")) }}
+          {% for error in form.confirm_password.errors %}
+            <div class="invalid-feedback">{{ error }}</div>
+          {% endfor %}
+        </div>
+
+        <hr class="my-3">
+
+        <div class="form-group mb-4">
+          {{ form.current_password.label(class="form-label fw-semibold text-danger") }}
+          {{ form.current_password(class="form-control" + (" is-invalid" if form.current_password.errors else ""), id="current-password-input") }}
+          {% for error in form.current_password.errors %}
+            <div class="invalid-feedback">{{ error }}</div>
+          {% endfor %}
+        </div>
+
+        <div class="d-flex gap-2">
+          {{ form.submit(class="btn btn-success", id="save-profile-btn") }}
+          <a href="{{ url_for('user.profile') }}" class="btn btn-outline-secondary">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% include "footer.html" %}

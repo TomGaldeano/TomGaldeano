@@ -9,6 +9,9 @@ valor.addEventListener("input",()=>{
     let digitos = valor.value.replace(/\D/g, '');
     valor.value=digitos
 })
+// Track initial load
+if (window.GameTracker) window.GameTracker.trackTry('games/adivinaNum');
+
 boton.addEventListener("click",() => {
       
     if (valor.value != num && numIntentos<10 && valor.value != ""&& !gano){
@@ -28,10 +31,14 @@ boton.addEventListener("click",() => {
         }else if(valor.value>num){
             msg.style.backgroundColor = "#f15d59"
             msg.innerHTML=valor.value+" ES MAYOR"
-        }}else if(valor.value==num){
+        }}else if(valor.value==num && !gano){
             msg.style.backgroundColor = "#5adc37"
             msg.innerHTML="HAS GANADO"
             gano = true;
+            if (window.GameTracker) {
+                const score = Math.max(10, (11 - numIntentos) * 100);
+                window.GameTracker.trackScore('games/adivinaNum', score);
+            }
     }
 
 })
@@ -42,6 +49,8 @@ nueva.addEventListener("click",()=>{
         indice.classList.remove("morado")
     }
     numIntentos=0
+    gano = false;
+    if (window.GameTracker) window.GameTracker.trackTry('games/adivinaNum');
     let intentos = document.getElementById("intentos")
     intentos.innerHTML = "Intentos Realizados:"
     msg.innerHTML=""
@@ -49,3 +58,4 @@ nueva.addEventListener("click",()=>{
     valor.value=""
 
 })
+

@@ -121,6 +121,7 @@
   }
 
   function startNewGame() {
+    if (window.GameTracker) window.GameTracker.trackTry('games/blackjack');
     deck = createDeck();
     gameOver = false;
     playerHand = [];
@@ -132,7 +133,8 @@
       gameOver = true;
       message = "Blackjack"
       PlayerScore++
-      player.innerHTML=HouseScoree
+      player.innerHTML=PlayerScore
+      if (window.GameTracker) window.GameTracker.trackScore('games/blackjack', PlayerScore * 100);
     }else if (calculateScore(dealerHand) == 21) {
       gameOver = true;
       message = "You lose"
@@ -168,6 +170,7 @@
       gameOver = true
       PlayerScore++
       player.innerHTML=PlayerScore
+      if (window.GameTracker) window.GameTracker.trackScore('games/blackjack', PlayerScore * 100);
     }
     
     if (gameOver) {
@@ -187,6 +190,7 @@
       message = "You win"
       PlayerScore++
       player.innerHTML=PlayerScore
+      if (window.GameTracker) window.GameTracker.trackScore('games/blackjack', PlayerScore * 100);
     }
     else {
       message = "You Lose"
@@ -200,6 +204,7 @@
     standBtn.disabled = true;
     drawTable();
   }
+
 
   function deal() {
     playerHand = []
