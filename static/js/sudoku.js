@@ -95,6 +95,25 @@ function nuevo_sudoku() {
     }
 }
 
+function verificar_celda(input) {
+    const idx = input.getAttribute("data-index");
+    if (!idx || idx.length !== 2) return;
+    const i = parseInt(idx[0]);
+    const j = parseInt(idx[1]);
+    const val = parseInt(input.value);
+
+    if (!isNaN(val) && val === sudoku[i][j]) {
+        input.classList.add("correct-number");
+    } else {
+        input.classList.remove("correct-number");
+    }
+}
+
+function verificar_todas_las_celdas() {
+    const inputs = document.querySelectorAll('.Sudoku-item');
+    inputs.forEach(input => verificar_celda(input));
+}
+
 function mostrar_sudoku() {
     // muestra el sudoku
     for (let i = 0; i < TAM; i++) {
@@ -103,6 +122,7 @@ function mostrar_sudoku() {
             cell.value = sudoku[i][j] !== 0 ? sudoku[i][j] : "";
         }
     }
+    verificar_todas_las_celdas();
 }
 
 // Backtracking puro: usado como fallback cuando la propagacion de restricciones
@@ -248,6 +268,7 @@ function genera_sudoku() {
             sudoku = sudoku2;
         }
     }
+    verificar_todas_las_celdas();
     if (window.GameTracker) window.GameTracker.trackTry('games/sudoku');
 }
 
@@ -267,6 +288,15 @@ function comprobar_sudoku() {
     if (perfecto && window.GameTracker) {
         window.GameTracker.trackScore('games/sudoku', 1000);
     }
+}
+
+const sudokuBody = document.getElementById("sudoku-body");
+if (sudokuBody) {
+    sudokuBody.addEventListener("input", (e) => {
+        if (e.target && e.target.classList.contains("Sudoku-item")) {
+            verificar_celda(e.target);
+        }
+    });
 }
 
 genera_sudoku();

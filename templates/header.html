@@ -32,6 +32,13 @@
       <!-- Auth nav: right side -->
       <ul class="nav ms-auto justify-content-end align-items-center">
         {% if current_user.is_authenticated %}
+          {% if current_user.is_admin %}
+            <li class="nav-item text-white bg-secondary">
+              <a class="nav-link green_hover fw-bold text-warning" href="{{ url_for('user.admin') }}" id="nav-admin">
+                ⚙️ Admin
+              </a>
+            </li>
+          {% endif %}
           <li class="nav-item text-white bg-secondary">
             <a class="nav-link green_hover" href="{{ url_for('user.profile') }}" id="nav-profile">
               👤 {{ current_user.username }}

@@ -1,10 +1,26 @@
+from functools import wraps
 from flask import render_template, redirect, url_for, flash, request, jsonify
 from flask_login import login_required, current_user
 from user import user_bp
 from user.forms import EditProfileForm
 from models import db
+from models.user import User
 from models.score import Score
 from models.activity import Activity
+
+
+# ---------------------------------------------------------------------------
+# Admin Auth Decorator
+# ---------------------------------------------------------------------------
+
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not current_user.is_authenticated or not current_user.is_admin:
+            flash("Access denied. Admin privileges required.", "danger")
+            return redirect(url_for("home"))
+        return f(*args, **kwargs)
+    return decorated_function
 
 
 # ---------------------------------------------------------------------------
@@ -12,15 +28,27 @@ from models.activity import Activity
 # ---------------------------------------------------------------------------
 
 @user_bp.route("/profile")
+@user_bp.route("/profile/<int:user_id>")
 @login_required
-def profile():
+def profile(user_id=None):
     """
-    Displays the logged-in user's profile:
+    Displays profile for logged-in user, or for a specific user if requested by Admin:
     username, email, joined date, and a table of all tracked
     games/pages with best score and total tries.
     """
-    scores = {s.page_key: s for s in current_user.scores}
-    activities = {a.page_key: a for a in current_user.activities}
+    if user_id is not None and user_id != current_user.id:
+        if not current_user.is_admin:
+            flash("Access denied. You can only view your own profile.", "danger")
+            return redirect(url_for("user.profile"))
+        target_user = db.session.get(User, user_id)
+        if not target_user:
+            flash("User not found.", "warning")
+            return redirect(url_for("user.admin"))
+    else:
+        target_user = current_user
+
+    scores = {s.page_key: s for s in target_user.scores}
+    activities = {a.page_key: a for a in target_user.activities}
 
     # Build a merged view of all pages the user has touched
     all_keys = set(scores.keys()) | set(activities.keys())
@@ -32,7 +60,66 @@ def profile():
             "tries": activities[key].tries if key in activities else 0,
         })
 
-    return render_template("user/profile.html", stats=stats, title="My Profile")
+    is_own_profile = (target_user.id == current_user.id)
+    title = "My Profile" if is_own_profile else f"{target_user.username}'s Profile"
+
+    return render_template(
+        "user/profile.html",
+        stats=stats,
+        target_user=target_user,
+        is_own_profile=is_own_profile,
+        title=title
+    )
+
+
+# ---------------------------------------------------------------------------
+# Admin Management Routes
+# ---------------------------------------------------------------------------
+
+@user_bp.route("/admin")
+@login_required
+@admin_required
+def admin():
+    """
+    Admin Dashboard: List all users, search users by info, view profile, or delete.
+    """
+    query = request.args.get("q", "").strip()
+    if query:
+        users = User.query.filter(
+            db.or_(
+                User.username.ilike(f"%{query}%"),
+                User.email.ilike(f"%{query}%")
+            )
+        ).order_by(User.id.asc()).all()
+    else:
+        users = User.query.order_by(User.id.asc()).all()
+
+    return render_template("user/admin.html", users=users, query=query, title="Admin Dashboard")
+
+
+@user_bp.route("/admin/user/<int:user_id>/delete", methods=["POST"])
+@login_required
+@admin_required
+def delete_user(user_id):
+    """
+    Delete a user by ID. Prevents deleting the primary admin (user ID 1).
+    """
+    if user_id == 1 or user_id == current_user.id:
+        flash("Cannot delete the primary admin account.", "danger")
+        return redirect(url_for("user.admin"))
+
+    target_user = db.session.get(User, user_id)
+    if not target_user:
+        flash("User not found.", "warning")
+        return redirect(url_for("user.admin"))
+
+    username = target_user.username
+    db.session.delete(target_user)
+    db.session.commit()
+
+    flash(f"User '{username}' (ID: {user_id}) has been deleted successfully.", "success")
+    return redirect(url_for("user.admin"))
+
 
 
 # ---------------------------------------------------------------------------

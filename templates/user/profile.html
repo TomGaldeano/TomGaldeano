@@ -1,7 +1,23 @@
 {% include "links.html" %}
 {% include "header.html" %}
 
-<div class="container mt-5 mb-5">
+{% set u = target_user if target_user is defined else current_user %}
+<div class="container mt-4 mb-5">
+  {% if current_user.is_admin and target_user is defined and target_user.id != current_user.id %}
+    <div class="row justify-content-center mb-3">
+      <div class="col-md-8">
+        <div class="alert alert-info d-flex align-items-center justify-content-between mb-0 shadow-sm" role="alert">
+          <div>
+            <strong>👑 Admin Mode:</strong> Inspecting profile for user <strong>{{ u.username }}</strong> (ID: #{{ u.id }}).
+          </div>
+          <a href="{{ url_for('user.admin') }}" class="btn btn-sm btn-outline-dark">
+            ← Back to Admin Dashboard
+          </a>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
   <!-- User info card -->
   <div class="row justify-content-center mb-4">
     <div class="col-md-8">
@@ -9,21 +25,32 @@
         <div class="card-body p-4">
           <div class="d-flex align-items-center mb-3">
             <!-- Avatar circle -->
-            <div class="rounded-circle bg-success d-flex align-items-center justify-content-center text-white fw-bold me-3"
+            <div class="rounded-circle {% if u.is_admin %}bg-primary{% else %}bg-success{% endif %} d-flex align-items-center justify-content-center text-white fw-bold me-3"
                  style="width:64px;height:64px;font-size:1.6rem;flex-shrink:0;">
-              {{ current_user.username[0].upper() }}
+              {{ u.username[0].upper() }}
             </div>
             <div>
-              <h1 class="h4 mb-0">{{ current_user.username }}</h1>
-              <p class="text-muted small mb-0">{{ current_user.email }}</p>
+              <h1 class="h4 mb-0">
+                {{ u.username }}
+                {% if u.is_admin %}
+                  <span class="badge bg-danger fs-6 align-middle ms-1">👑 Admin</span>
+                {% endif %}
+              </h1>
+              <p class="text-muted small mb-0">{{ u.email }}</p>
               <p class="text-muted small mb-0">
-                Joined {{ current_user.created_at.strftime('%d %b %Y') if current_user.created_at else '—' }}
+                Joined {{ u.created_at.strftime('%d %b %Y') if u.created_at else '—' }}
               </p>
             </div>
             <div class="ms-auto">
-              <a href="{{ url_for('user.edit') }}" class="btn btn-outline-secondary btn-sm" id="edit-profile-btn">
-                ✏️ Edit Profile
-              </a>
+              {% if not target_user is defined or target_user.id == current_user.id %}
+                <a href="{{ url_for('user.edit') }}" class="btn btn-outline-secondary btn-sm" id="edit-profile-btn">
+                  ✏️ Edit Profile
+                </a>
+              {% elif current_user.is_admin %}
+                <a href="{{ url_for('user.admin') }}" class="btn btn-outline-secondary btn-sm">
+                  📋 Admin Panel
+                </a>
+              {% endif %}
             </div>
           </div>
         </div>

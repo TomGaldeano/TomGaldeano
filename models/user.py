@@ -29,6 +29,11 @@ class User(UserMixin, db.Model):
         """Verify plaintext password against stored hash."""
         return check_password_hash(self.password_hash, password)
 
+    @property
+    def is_admin(self) -> bool:
+        """User with id 1 is designated as admin."""
+        return self.id == 1
+
     def __repr__(self):
         return f"<User {self.username}>"
 
