@@ -1,121 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
-  <title>Tom Galdeano - CV</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio de Tom Galdeano, estudiante de desarrollo web en Madrid.">
+  <title>Tom Galdeano | Desarrollo web</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/animation.css">
 </head>
 
-<body class="light">
-  <div class="ball1"></div>
-  <div class="ball2"></div>
-  <div class="ball3"></div>
-  <div class="ball4"></div>
-  <div class="ball5"></div>
-  <div class="ball6"></div>
-  <div class="ball7"></div>
-  <div class="ball8"></div>
-  <div class="ball9"></div>
+<body>
+  <main>
+    <section class="hero" id="inicio">
+      <p class="eyebrow">Estudiante de desarrollo web · Madrid</p>
+      <h1>Construyo experiencias web <em>claras y útiles.</em></h1>
+      <p class="hero-copy">Soy Tom Galdeano, estudiante de FP Superior en Desarrollo Web. Busco prácticas donde pueda
+        aportar, aprender de un equipo y convertir buenas ideas en productos digitales.</p>
 
-  <div class="container">
-    <button id="color_changer"></button>
-    <h1 tabindex="1">Tomas Galdeano Williams - CV</h1>
-    <div class="contact">
-      <span tabindex="2">Email: <a href="mailto:98astom@gmail.com">98astom@gmail.com</a></span> |
-      <span tabindex="3">GitHub: <a href="https://github.com/TomGaldeano" target="_blank">TomGaldeano</a></span> |
-      <span tabindex="4">Linkedin: <a href="https://www.linkedin.com/in/tom-galdeano-williams-447577159/">Tom Galdeano
-          Williams</a></span>
-    </div>
-    <div class="section">
-      <div id="perfil" class="section-title">Profile</div>
-      <p id="perfil-texto" tabindex="5">
-        Currently a student at a technical collage studying web deveolpment with an interest in cybersecurity and AI.
-        Also interested in 3d printing and robotics.</p>
-      <p tabindex="5" id="discapacidad">I have a 33% disability due to having keratoconus in my eyes and Asperger’s
-        syndrome. Despite this, I am highly functional both in the workplace and outside of it.</p>
-      <p tabindex="6" id="portfolio-info">Below is a portfolio of the work i have done that showacases my currrent
-        skills</p>
-    </div>
-    <div class="section" id="jobs">
-      <div class="section-title">Jobs</div>
-      <div class="job">
-        <span class="job-title" tabindex="7">Garage assistant</span>
-        <span class="job-date" tabindex="8">2024 – Present</span><br>
-        <span tabindex="9">Ingemotion</span>
-        <ul>
-          <li tabindex="10">Customer service and support</li>
-        </ul>
+    </section>
+    <section class="content-section projects-section" id="proyectos">
+      <div class="section-heading">
+        <h2>Proyectos que puedes explorar</h2>
       </div>
-      <div class="job">
-        <span class="job-title">Chess teacher for kids</span>
-        <span class="job-date">2017 – 2018</span><br>
-        <ul>
-          <li>Teaching chess to kids</li>
-        </ul>
+      <div class="project-grid">
+        <a class="project-card project-card-featured" href="https://www.breadtombakery.com" target="_blank"
+          rel="noreferrer">
+          <div class="project-number">01</div>
+          <div>
+            <p class="project-type">Web · Proyecto propio</p>
+            <h3>BreadTom Bakery</h3>
+            <p>Una web para una panadería pensada para presentar el negocio y facilitar el contacto con sus clientes.
+            </p><span class="project-link">www.breadtombakery.com</span>
+          </div>
+        </a>
+        <a class="project-card" href="https://tomgaldeano.com" target="_blank" rel="noreferrer">
+          <div class="project-number">02</div>
+          <div>
+            <p class="project-type">Web · Portfolio</p>
+            <h3>TomGaldeano.com</h3>
+            <p>Mi espacio personal para experimentar, compartir proyectos y seguir creciendo como desarrollador.</p>
+            <span class="project-link">www.tomgaldeano.com</span>
+          </div>
+        </a>
       </div>
-    </div>
-    <div class="section">
-      <div class="section-title" tabindex="11">Projects</div>
-      <div class="projects">
-        <ul class="skills-list">
-          <li><a href="https://www.breadtombakery.com" tabindex="12">Bakery website</a></li>
-          <li><a href="https://tomgaldeano.com" tabindex="13">Portfolio page</a></li>
-        </ul>
+    </section>
+    <section class="content-section about-section" id="perfil">
+      <div class="section-heading">
+        <h2>Un poco sobre mí</h2>
       </div>
-    </div>
-    <div class="section">
-      <div class="section-title" tabindex="14">Education</div>
-      <div class="edu">
-        <span class="edu-title" tabindex="15">Bachiller</span>
-        <span class="edu-date" tabindex="16">jan-2016 – may-2016</span><br>
-        <span tabindex="17">Colegio Montserrat, Madrid, España</span>
+      <div class="about-grid">
+        <p class="about-lead">Me interesa crear interfaces cuidadas, entender cómo funcionan las aplicaciones de
+          principio a fin y trabajar con personas que valoren la curiosidad y el trabajo bien hecho.</p>
+        <div class="detail-column">
+          <div class="detail-block">
+            <h3>Tecnologías</h3>
+            <p>HTML · CSS · JavaScript<br>Python · SQL · Git</p>
+          </div>
+          <div class="detail-block">
+            <h3>Idiomas</h3>
+            <p>Español e inglés nativos</p>
+          </div>
+        </div>
       </div>
-      <div class="edu">
-        <span class="edu-title" tabindex="18">FP Superior Desarollo web</span>
-        <span class="edu-date" tabindex="19">2025 – present</span><br>
-        <span tabindex="20">IES Francisco de Goya, Madrid, España</span>
+    </section>
+    <section class="content-section experience-section" id="formacion">
+      <div class="section-heading">
+        <h2>Formación</h2>
       </div>
-    </div>
-    <div class="section">
-      <div tabindex="21" class="section-title" id="languages-title">Languages</div>
-      <ul class="skills-list">
-        <li id="Spanish" tabindex="22">Native Spanish</li>
-        <li id="English" tabindex="23">Native English</li>
+      <ul class="formation-list">
+        <li>
+          <span class="formation-label">2025 — actualidad</span>
+          <div>
+            <h3>FP Superior en Desarrollo Web</h3>
+            <p>IES Francisco de Goya · Madrid</p>
+          </div>
+        </li>
+        <li>
+          <span class="formation-label">2024 — actualidad</span>
+          <div>
+            <h3>Atención y soporte al cliente</h3>
+            <p>Ingemotion</p>
+          </div>
+        </li>
       </ul>
-    </div>
-    <div class="section">
-      <div class="section-title" id="skills-title" tabindex="24">Skills</div>
-      <ul class="skills-list">
-        <li id="driving-license" tabindex="35">Driving license</li>
-        <li id="good-baker" tabindex="26">Baker</li>
-        <li id="printing">3d printing</li>
-        <li><a href="https://ratings.fide.com/profile/24546879" id="chess" tabindex="27">chess</a></li>
+    </section>
+    <section class="contact-section" id="contacto">
+      <h2>Contacto</h2>
+      <ul class="contact-list">
+        <li>
+          <span class="contact-label">Email</span>
+          <a href="mailto:tomgaldeanowilliams@gmail.com">tomgaldeanowilliams@gmail.com</a>
+        </li>
+        <li>
+          <span class="contact-label">LinkedIn</span>
+          <a href="https://www.linkedin.com/in/tom-galdeano-williams-447577159/" target="_blank"
+            rel="noreferrer">/tom-galdeano-williams</a>
+        </li>
+        <li>
+          <span class="contact-label">GitHub</span>
+          <a href="https://github.com/TomGaldeano" target="_blank" rel="noreferrer">/TomGaldeano</a>
+        </li>
       </ul>
-    </div>
-    <div class="section">
-      <div class="section-title" id="programming-skills-title" tabindex="28">Programming Skills</div>
-      <ul class="skills-list">
-        <li tabindex="29">HTML</li>
-        <li tabindex="30">CSS</li>
-        <li><a href="https://www.udemy.com/certificate/UC-87fab63b-f90b-4ea2-b688-0bf8e439e1d1/"
-            tabindex="31">Pyhton</a></li>
-        <li tabindex="32">Git</li>
-        <li style="visibility: hidden;">JavaScript</li>
-        <li style="visibility: hidden;">C</li>
-        <li style="visibility: hidden;">Bash</li>
-        <li style="visibility: hidden;">SQL</li>
-        <li style="visibility: hidden;">Java</li>
-      </ul>
-    </div>
-    <footer>
-      <p>&copy; 2024 Tom Galdeano. All rights reserved.</p>
-    </footer>
-  </div>
-  
-  <script src="js/main.js"></script>
+    </section>
+  </main>
+  <footer><span>© 2026 Tom Galdeano</span>
+  </footer>
 </body>
 
 </html>
