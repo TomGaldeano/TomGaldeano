@@ -1,0 +1,177 @@
+{% include "links.html" %}
+<style>
+  .game-container {
+    max-width: 960px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .canvas-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 15px auto;
+    max-width: 100%;
+  }
+
+  #bottleCanvas {
+    background: radial-gradient(circle at center, #232a36 0%, #12161f 100%);
+    border: 2px solid var(--grey, #444);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: block;
+    max-width: 100%;
+    height: auto;
+    touch-action: none;
+    cursor: pointer;
+  }
+
+  .hud-panel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    background: rgba(40, 44, 52, 0.7);
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 10px auto;
+    max-width: 860px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .hud-item {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 5px 12px;
+    color: var(--white, #fff);
+  }
+
+  .hud-badge {
+    color: var(--green, #28a745);
+    font-size: 1.25rem;
+    margin-left: 5px;
+  }
+
+  .control-panel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 12px auto;
+    max-width: 860px;
+  }
+
+  .game-btn {
+    background-color: var(--grey, #444);
+    color: var(--white, #fff);
+    border: 1px solid var(--black, #111);
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .game-btn:hover {
+    background-color: var(--green, #28a745);
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
+  .game-btn:active {
+    transform: translateY(1px);
+  }
+
+  .game-btn.active-diff {
+    background-color: var(--green, #28a745);
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0 0 8px rgba(40, 167, 69, 0.5);
+  }
+
+  .btn-undo {
+    background-color: #2b394e;
+  }
+  .btn-undo:hover {
+    background-color: #3b5278;
+  }
+
+  .how-to-play {
+    max-width: 860px;
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 15px 20px;
+    text-align: left;
+    font-size: 0.95rem;
+    color: var(--light, #ddd);
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+  }
+
+  .how-to-play h4 {
+    color: var(--green, #28a745);
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+  }
+
+  .how-to-play ul {
+    margin-bottom: 0;
+    padding-left: 20px;
+  }
+</style>
+
+{% include "header.html" %}
+
+<div class="container game-container my-3">
+  <div class="row justify-content-center">
+    <h1 class="h1_big text-center">Water Sort Puzzle</h1>
+  </div>
+  <p class="plain-p text-center text-muted">Sort each colored liquid until every bottle contains only one single color!</p>
+
+  <!-- HUD info -->
+  <div class="hud-panel">
+    <div class="hud-item">Difficulty: <span id="hudDifficulty" class="hud-badge">Easy</span></div>
+    <div class="hud-item">Moves: <span id="hudMoves" class="hud-badge">0</span></div>
+    <div class="hud-item">Time: <span id="hudTimer" class="hud-badge">00:00</span></div>
+    <div class="hud-item">Status: <span id="hudStatus" class="hud-badge" style="color: #ffc107;">Ready</span></div>
+  </div>
+
+  <!-- Action Controls -->
+  <div class="control-panel">
+    <button id="btnUndo" class="game-btn btn-undo" title="Undo previous move">↶ Undo</button>
+    <button id="btnRestart" class="game-btn" title="Restart current puzzle">↺ Restart</button>
+    <button id="btnNewGame" class="game-btn" title="Generate a new puzzle">★ New Game</button>
+    <button id="btnSound" class="game-btn" title="Toggle audio effects">🔊 Sound: ON</button>
+  </div>
+
+  <!-- Difficulty selection -->
+  <div class="control-panel" id="diffButtons">
+    <span class="hud-item" style="font-size: 0.95rem; align-self: center;">Level:</span>
+    <button class="game-btn active-diff" data-diff="easy">Easy (3 Colors)</button>
+    <button class="game-btn" data-diff="medium">Medium (4 Colors)</button>
+    <button class="game-btn" data-diff="hard">Hard (6 Colors)</button>
+    <button class="game-btn" data-diff="expert">Expert (8 Colors)</button>
+  </div>
+
+  <!-- Canvas -->
+  <div class="canvas-wrapper">
+    <canvas id="bottleCanvas" width="900" height="540"></canvas>
+  </div>
+
+  <!-- How to play accordion / guide -->
+  <div class="how-to-play">
+    <h4>🧪 How to Play</h4>
+    <ul>
+      <li><strong>Click / tap</strong> a bottle to select it as the pouring bottle (it will lift up).</li>
+      <li><strong>Click / tap</strong> another bottle to pour the liquid into it.</li>
+      <li>You can only pour if the target bottle has space <em>and</em> its top color matches the pouring color (or the target bottle is completely empty).</li>
+      <li>All consecutive matching liquid layers will pour automatically into the available space.</li>
+      <li>Win the game by filling each bottle with 4 segments of the same color!</li>
+    </ul>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/bottleSort.js') }}"></script>
+{% include "footer.html" %}

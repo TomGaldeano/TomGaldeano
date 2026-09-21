@@ -50,7 +50,10 @@ def create_app():
         except Exception as e:
             print(f"Warning: Could not auto-create database '{app.config['DB_NAME']}': {e}")
 
-        db.create_all()
+        try:
+            db.create_all()
+        except Exception as e:
+            print(f"Warning: Could not create tables: {e}")
 
     return app
 
@@ -154,6 +157,10 @@ def tute():
 @app.route("/games/solitaire")
 def solitaire():
     return render_template("/games/solitaire.html")
+
+@app.route("/games/bottleSort")
+def bottleSort():
+    return render_template("games/bottleSort.html")
 
 #
 ## ORDERED
