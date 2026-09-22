@@ -19,10 +19,10 @@
   ];
 
   const DIFFICULTIES = {
-    easy: { colors: 3, empty: 1, name: 'Easy', multiplier: 1 },
-    medium: { colors: 4, empty: 1, name: 'Medium', multiplier: 1.5 },
-    hard: { colors: 6, empty: 1, name: 'Hard', multiplier: 2.2 },
-    expert: { colors: 8, empty: 2, name: 'Expert', multiplier: 3.5 }
+    easy: { colors: 3, empty: 2, name: 'Easy', minMoves: 7, multiplier: 1 },
+    medium: { colors: 4, empty: 2, name: 'Medium', minMoves: 11, multiplier: 1.5 },
+    hard: { colors: 6, empty: 2, name: 'Hard', minMoves: 16, multiplier: 2.2 },
+    expert: { colors: 8, empty: 2, name: 'Expert', minMoves: 22, multiplier: 3.5 }
   };
 
   const CAPACITY = 4;
@@ -215,7 +215,9 @@
       this.confetti = [];
 
       // Setup DOM elements
+      this.minMoves = 0;
       this.hudMoves = document.getElementById('hudMoves');
+      this.hudMinMoves = document.getElementById('hudMinMoves');
       this.hudTimer = document.getElementById('hudTimer');
       this.hudDifficulty = document.getElementById('hudDifficulty');
       this.hudStatus = document.getElementById('hudStatus');
@@ -338,6 +340,7 @@
 
     updateHUD() {
       if (this.hudMoves) this.hudMoves.textContent = this.moves;
+      if (this.hudMinMoves) this.hudMinMoves.textContent = this.minMoves ? `~${this.minMoves}` : '-';
       if (this.hudDifficulty) this.hudDifficulty.textContent = DIFFICULTIES[this.currentDifficulty].name;
       if (this.hudStatus) {
         if (this.gameWon) {
@@ -358,10 +361,11 @@
       const config = DIFFICULTIES[this.currentDifficulty];
       const colorCount = config.colors;
       const emptyCount = config.empty;
-      const totalBottles = colorCount + emptyCount;
 
-      // Generate solvable puzzle
-      this.bottles = this.generateSolvablePuzzle(colorCount, emptyCount);
+      // Generate challenging, solvable puzzle requiring multiple non-trivial moves
+      const generated = this.generateSolvablePuzzle(colorCount, emptyCount, config.minMoves);
+      this.bottles = generated.bottles;
+      this.minMoves = generated.minMoves;
       this.initialState = JSON.parse(JSON.stringify(this.bottles));
       this.undoStack = [];
       this.selectedIndex = null;
@@ -397,64 +401,177 @@
       }
     }
 
-    generateSolvablePuzzle(colorCount, emptyCount) {
-      // 1. Build solved state: K bottles full of identical colors + E empty bottles
-      let bottles = [];
-      for (let i = 0; i < colorCount; i++) {
-        bottles.push([i, i, i, i]);
-      }
-      for (let i = 0; i < emptyCount; i++) {
-        bottles.push([]);
-      }
-
-      // 2. Perform N random legal reverse pours from the solved state
-      // This guarantees the generated state is 100% solvable.
-      const shuffleSteps = colorCount * 25;
-      for (let step = 0; step < shuffleSteps; step++) {
-        // Pick a random source with liquid
-        const nonEmpties = bottles
-          .map((b, idx) => ({ b, idx }))
-          .filter((item) => item.b.length > 0);
-        if (nonEmpties.length === 0) break;
-
-        const src = nonEmpties[Math.floor(Math.random() * nonEmpties.length)];
-
-        // Pick a target bottle with capacity that is not the same bottle
-        const validTargets = bottles
-          .map((b, idx) => ({ b, idx }))
-          .filter((item) => item.idx !== src.idx && item.b.length < CAPACITY);
-        if (validTargets.length === 0) continue;
-
-        const tgt = validTargets[Math.floor(Math.random() * validTargets.length)];
-
-        // How many units of same color can we move?
-        const color = src.b[src.b.length - 1];
-        let units = 0;
-        for (let k = src.b.length - 1; k >= 0; k--) {
-          if (src.b[k] === color && tgt.b.length + units < CAPACITY) {
-            units++;
-          } else {
-            break;
+    solvePuzzle(initialBottles, maxStates = 10000) {
+      function isSolved(state) {
+        for (let i = 0; i < state.length; i++) {
+          const b = state[i];
+          if (b.length === 0) continue;
+          if (b.length !== CAPACITY) return false;
+          const c = b[0];
+          for (let k = 1; k < b.length; k++) {
+            if (b[k] !== c) return false;
           }
         }
-        if (units === 0) units = 1;
+        return true;
+      }
 
-        // Move the units
-        for (let u = 0; u < units; u++) {
-          tgt.b.push(src.b.pop());
+      function getCanonicalKey(state) {
+        const signatures = state.map((b) => b.join(','));
+        signatures.sort();
+        return signatures.join('|');
+      }
+
+      const queue = [{ state: initialBottles, depth: 0 }];
+      const visited = new Set([getCanonicalKey(initialBottles)]);
+      let head = 0;
+
+      while (head < queue.length && visited.size < maxStates) {
+        const { state, depth } = queue[head++];
+        if (isSolved(state)) {
+          return depth;
+        }
+
+        let seenEmpty = false;
+        for (let i = 0; i < state.length; i++) {
+          const src = state[i];
+          if (src.length === 0) continue;
+
+          // Don't pour out of an already complete single-color bottle
+          if (src.length === CAPACITY) {
+            let allSame = true;
+            for (let k = 1; k < src.length; k++) {
+              if (src[k] !== src[0]) {
+                allSame = false;
+                break;
+              }
+            }
+            if (allSame) continue;
+          }
+
+          const topColor = src[src.length - 1];
+          let count = 0;
+          for (let k = src.length - 1; k >= 0; k--) {
+            if (src[k] === topColor) count++;
+            else break;
+          }
+
+          for (let j = 0; j < state.length; j++) {
+            if (i === j) continue;
+            const tgt = state[j];
+
+            if (tgt.length === 0) {
+              if (seenEmpty) continue;
+              seenEmpty = true;
+              if (src.length === count) continue;
+
+              const newSrc = src.slice(0, src.length - count);
+              const newTgt = new Array(count).fill(topColor);
+              const newState = state.slice();
+              newState[i] = newSrc;
+              newState[j] = newTgt;
+
+              const key = getCanonicalKey(newState);
+              if (!visited.has(key)) {
+                visited.add(key);
+                queue.push({ state: newState, depth: depth + 1 });
+              }
+            } else if (tgt.length < CAPACITY && tgt[tgt.length - 1] === topColor) {
+              const space = CAPACITY - tgt.length;
+              const units = Math.min(count, space);
+
+              const newSrc = src.slice(0, src.length - units);
+              const newTgt = tgt.concat(new Array(units).fill(topColor));
+              const newState = state.slice();
+              newState[i] = newSrc;
+              newState[j] = newTgt;
+
+              const key = getCanonicalKey(newState);
+              if (!visited.has(key)) {
+                visited.add(key);
+                queue.push({ state: newState, depth: depth + 1 });
+              }
+            }
+          }
         }
       }
 
-      // Verify that it is not already solved
-      if (this.checkWinCondition(bottles)) {
-        // If coincidentally solved, do a quick swap
-        if (bottles[0].length > 0 && bottles[1].length > 0) {
-          const temp = bottles[0].pop();
-          bottles[1].push(temp);
+      return -1;
+    }
+
+    generateSolvablePuzzle(colorCount, emptyCount, minMovesTarget) {
+      let bestCandidate = null;
+      let maxFoundDepth = -1;
+
+      for (let attempt = 0; attempt < 80; attempt++) {
+        // Create full pool of colorCount * CAPACITY items
+        const pool = [];
+        for (let c = 0; c < colorCount; c++) {
+          for (let u = 0; u < CAPACITY; u++) {
+            pool.push(c);
+          }
+        }
+
+        // Shuffle pool thoroughly (Fisher-Yates)
+        for (let i = pool.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const temp = pool[i];
+          pool[i] = pool[j];
+          pool[j] = temp;
+        }
+
+        // Fill colorCount bottles with 4 segments each
+        const candidateBottles = [];
+        for (let i = 0; i < colorCount; i++) {
+          candidateBottles.push(pool.slice(i * CAPACITY, (i + 1) * CAPACITY));
+        }
+        // Add empty bottles
+        for (let i = 0; i < emptyCount; i++) {
+          candidateBottles.push([]);
+        }
+
+        // Filter 1: Check no bottle is pre-solved (all 4 same)
+        const hasSolvedBottle = candidateBottles.slice(0, colorCount).some((b) => {
+          return b.every((val) => val === b[0]);
+        });
+        if (hasSolvedBottle) continue;
+
+        // Filter 2: Check no bottle has 3 of the same color on top (prevents cheap 1-pour bottle completion)
+        const hasThreeOnTop = candidateBottles.slice(0, colorCount).some((b) => {
+          return b[3] === b[2] && b[2] === b[1];
+        });
+        if (hasThreeOnTop) continue;
+
+        // Filter 3: Check no two bottles are identical
+        let hasDuplicateBottle = false;
+        for (let a = 0; a < colorCount; a++) {
+          for (let b = a + 1; b < colorCount; b++) {
+            if (candidateBottles[a].join(',') === candidateBottles[b].join(',')) {
+              hasDuplicateBottle = true;
+              break;
+            }
+          }
+          if (hasDuplicateBottle) break;
+        }
+        if (hasDuplicateBottle) continue;
+
+        // Filter 4: Solve with BFS
+        const depth = this.solvePuzzle(candidateBottles);
+        if (depth > maxFoundDepth) {
+          maxFoundDepth = depth;
+          bestCandidate = candidateBottles;
+        }
+
+        // If it meets our required minimum moves, we accept it!
+        if (depth >= minMovesTarget) {
+          return { bottles: candidateBottles, minMoves: depth };
         }
       }
 
-      return bottles;
+      if (bestCandidate && maxFoundDepth >= 5) {
+        return { bottles: bestCandidate, minMoves: maxFoundDepth };
+      }
+
+      return { bottles: bestCandidate || [], minMoves: Math.max(minMovesTarget, 6) };
     }
 
     computeBottleLayouts() {
