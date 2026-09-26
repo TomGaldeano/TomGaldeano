@@ -4,12 +4,6 @@ from flask_wtf.csrf import CSRFProtect
 from config import Config
 from models import db, login_manager
 
-# ---------------------------------------------------------------------------
-# Import models so SQLAlchemy registers them before create_all()
-# ---------------------------------------------------------------------------
-import models.user      # noqa: F401
-import models.score     # noqa: F401
-import models.activity  # noqa: F401
 
 
 def create_app():
@@ -20,22 +14,15 @@ def create_app():
     """
     app = Flask(__name__)
     app.config.from_object(Config)
-
-    # Extensions
     Bootstrap(app)
     CSRFProtect(app)
     db.init_app(app)
     login_manager.init_app(app)
-
-    # Blueprints
     from auth import auth_bp
     from user import user_bp
     app.register_blueprint(auth_bp)
     app.register_blueprint(user_bp)
-
-    # Create DB tables if they don't exist yet
     with app.app_context():
-        # Ensure database exists
         try:
             import pymysql
             connection = pymysql.connect(
@@ -61,18 +48,10 @@ def create_app():
 app = create_app()
 
 
-# ---------------------------------------------------------------------------
-#  TEMPLATE CONTEXT — make current_user available in every template
-# ---------------------------------------------------------------------------
-
 @app.context_processor
 def inject_user():
     from flask_login import current_user
     return dict(current_user=current_user)
-
-# ---------------------------------------------------------------------------
-#  ROUTES
-# ---------------------------------------------------------------------------
 
 @app.route('/')
 def home():
