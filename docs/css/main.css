@@ -48,6 +48,7 @@ footer {
     flex-direction: column;
     justify-content: center;
     max-width: 900px;
+    margin-top: 50px;
 }
 
 .eyebrow {
