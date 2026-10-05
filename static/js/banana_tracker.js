@@ -228,6 +228,31 @@ function formatAddress(addr) {
   return parts.length ? parts.join(", ") : "Address unknown";
 }
 
+function calculateDistanceKm(lat1, lon1, lat2, lon2) {
+  const toRadians = (value) => (value * Math.PI) / 180;
+  const earthRadiusKm = 6371;
+  const dLat = toRadians(lat2 - lat1);
+  const dLon = toRadians(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(toRadians(lat1)) *
+      Math.cos(toRadians(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return earthRadiusKm * c;
+}
+
+function formatDistance(distanceKm) {
+  if (distanceKm == null || Number.isNaN(distanceKm)) {
+    return "Distancia no disponible";
+  }
+  if (distanceKm < 1) {
+    return `${Math.round(distanceKm * 1000)} m`;
+  }
+  return `${distanceKm.toFixed(1)} km`;
+}
+
 
 // ── Storage instance ────────────────────────────────────────
 const savedStoresManager = new StorageManager("banana_saved_stores", "id");
@@ -255,12 +280,15 @@ function buildStoreCard(store, { isSaved = false, onSave, onUnsave } = {}) {
       ? `https://www.google.com/maps/search/?api=1&query=${store.lat},${store.lon}`
       : null;
 
+  const distanceText = store.distanceKm != null ? formatDistance(store.distanceKm) : "Distancia no disponible";
+
   li.innerHTML = `
     <span class="store-type-badge">
     ${meta.label}
     </span>
     <h3 class="store-name">${store.name}</h3>
     <p class="store-address">${formatAddress(store.address)}</p>
+    <p class="store-distance"><strong>Distancia:</strong> ${distanceText}</p>
     <div class="store-actions">
     ${mapsUrl ? `<a class="btn btn-success mr-2" href="${mapsUrl}" target="_blank" rel="noopener">Open in Maps</a>` : ""}
     </div>
@@ -364,30 +392,34 @@ function refreshSearchButtons() {
 // ── Geolocation ─────────────────────────────────────────────
 function getLocation() {
   if (navigator.geolocation) {
-    searchRenderer.showStatus("Getting your location…");
+    searchRenderer.showStatus("Obteniendo tu ubicación…");
     navigator.geolocation.getCurrentPosition(success, error);
   } else {
-    searchRenderer.showStatus("Geolocation is not supported by this browser.");
+    searchRenderer.showStatus("La geolocalización no es compatible con este navegador.");
   }
 }
 
 function success(position) {
   const { latitude, longitude } = position.coords;
-  searchRenderer.showStatus("Searching for nearby stores…");
+  searchRenderer.showStatus("Buscando tiendas cercanas…");
 
   getNearbyStores(latitude, longitude, 1000).then((stores) => {
-    console.log(`Found ${stores.length} stores`);
-    searchRenderer.render(stores);
+    const storesWithDistance = stores.map((store) => ({
+      ...store,
+      distanceKm: calculateDistanceKm(latitude, longitude, store.lat, store.lon),
+    }));
+    console.log(`Se encontraron ${storesWithDistance.length} tiendas`);
+    searchRenderer.render(storesWithDistance);
   });
 }
 
 function error(err) {
   const messages = {
-    1: "Location permission denied. Please allow location access and try again.",
-    2: "Location information is unavailable.",
-    3: "The request to get your location timed out.",
+    1: "Permiso de ubicación denegado. Permite el acceso a la ubicación e inténtalo de nuevo.",
+    2: "La información de ubicación no está disponible.",
+    3: "La solicitud para obtener tu ubicación agotó el tiempo de espera.",
   };
-  searchRenderer.showStatus(messages[err.code] || "An unknown error occurred.");
+  searchRenderer.showStatus(messages[err.code] || "Se ha producido un error desconocido.");
 }
 
 
@@ -558,4 +590,4 @@ document.getElementById("add-link-btn").addEventListener("click", () => {
 
 // ── Init online links on page load ──────────────────────────
 refreshOnlineLinks();
-searchRenderer.showStatus("Click 'Find Nearby Stores' to search for banana sellers near you!");
+searchRenderer.showStatus("Haz clic en 'Buscar tiendas' para encontrar vendedores de patatas cerca de ti.");

@@ -161,6 +161,9 @@ def AzureSands():
 def BananaTracker():
     return render_template("/ordered/BananaTracker.html")
 
+@app.route('/ordered/PatataTracker.html')
+def PatataTracker():
+    return render_template("/ordered/PatataTracker.html")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001, debug=True)

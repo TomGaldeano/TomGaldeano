@@ -1,0 +1,62 @@
+{% include "links.html" %}
+  <link href="{{ url_for('static', filename='css/banana.css')}}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='css/potato.css')}}" rel="stylesheet" />
+{% include "header.html" %}
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <h1>Patata HQ</h1>
+    <p class="lead">Supermercados cercanos y tus enlaces favoritos para comprar patatas — todo en un mismo sitio.</p>
+    <button class="btn" id="search-btn">Buscar tiendas</button>
+  </div>
+</div>
+<!-- MAIN -->
+<div class="container py-4">
+  <!-- ── NEARBY STORES (search results) ── -->
+  <p class="section-eyebrow">Compra en persona</p>
+  <h2 class="section-title">Supermercados y tiendas de comestibles cercanos</h2>
+  <ul id="near-stores" class="store-list">
+    <!-- Populated by JS after geolocation search -->
+  </ul>
+
+  <!-- ── SAVED STORES ── -->
+  <div id="saved-section" class="saved-section">
+    <hr class="section-divider" />
+    <p class="section-eyebrow">Tus tiendas guardadas</p>
+    <h2 class="section-title">Favoritos</h2>
+    <ul id="saved-stores" class="store-list">
+      <!-- Populated by JS from localStorage -->
+    </ul>
+  </div>
+  <hr class="section-divider" />
+  <!-- ── POTATO ONLINE TRACKER ── -->
+  <div class="tracker-wrapper">
+    <p class="section-eyebrow">Compra online</p>
+    <h2 class="section-title">🥔 ¿Dónde comprar patatas online?</h2>
+    <p class="sub-note">Tu lista de accesos directos — haz clic para ir directamente a la patata.</p>
+    <div id="link-list">
+      <!-- Populated by JS from localStorage -->
+    </div>
+    <div class="add-link-form">
+      <p style="color:rgba(255,253,240,0.55);font-size:0.8rem;margin-bottom:0.8rem;">➕ Añade tu propia fuente de patatas</p>
+      <div class="row g-2">
+        <div class="col-12 col-sm-4">
+          <label>Nombre de la tienda / sitio</label>
+          <input type="text" id="new-label" placeholder="p. ej. Mercadona" />
+        </div>
+        <div class="col-12 col-sm-4">
+          <label>Descripción breve</label>
+          <input type="text" id="new-desc" placeholder="p. ej. mercadona.es — verdulería" />
+        </div>
+        <div class="col-12 col-sm-4">
+          <label>URL</label>
+          <input type="url" id="new-url" placeholder="https://..." />
+        </div>
+      </div>
+      <button class="btn-add" id="add-link-btn">Añadir enlace</button>
+    </div>
+  </div>
+</div>
+<script src="{{ url_for('static', filename='js/banana_tracker.js') }}"></script>
+{% include"footer.html" %}

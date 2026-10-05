@@ -1,0 +1,22 @@
+/* Potato theme overrides. Load after banana.css to preserve the original theme. */
+:root {
+    --banana-yellow: #D6A756;
+    --banana-dark: #96633B;
+    --peel-brown: #3F2A1D;
+    --cream: #FFF8E9;
+    --leaf-green: #536B3B;
+    --soft-green: #E2E8D4;
+    --border: #E7D8BE;
+}
+
+.hero::before {
+    content: "🥔";
+}
+
+.store-meta {
+    color: var(--cream);
+}
+
+.badge-other {
+    color: var(--peel-brown);
+}
