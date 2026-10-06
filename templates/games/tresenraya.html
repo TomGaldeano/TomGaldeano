@@ -220,7 +220,7 @@
                 victory = true;
             }
             if (victory && board === partida) {
-                document.getElementById("victory").textContent = "You won";
+                document.getElementById("victory").textContent = "¡Has ganado!";
                 if (window.GameTracker) window.GameTracker.trackScore('games/tresenraya', 100);
             }
             return victory;
@@ -247,7 +247,7 @@
                 victory = true;
             }
             if (victory && board === partida) {
-                document.getElementById("victory").textContent = "Game Over";
+                document.getElementById("victory").textContent = "Has perdido";
             }
             return victory;
         }
@@ -267,7 +267,7 @@
                     }
                 }
                 if (draw && board === partida) {
-                    document.getElementById("victory").textContent = "draw";
+                    document.getElementById("victory").textContent = "Empate";
                 }
                 return draw;
             }

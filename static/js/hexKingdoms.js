@@ -23,10 +23,10 @@
   // 4 AI+player factions; 4 = neutral (cities only, never acts)
   const NEUTRAL = 4;
   const FACTIONS = [
-    { name:"North", color:"#4a90d9", dark:"#1e4f8a" },
-    { name:"East",  color:"#c0392b", dark:"#7b1a14" },
-    { name:"South", color:"#27ae60", dark:"#145c32" },
-    { name:"West",  color:"#e67e22", dark:"#8c4a0e" },
+    { name:"Norte", color:"#4a90d9", dark:"#1e4f8a" },
+    { name:"Este",  color:"#c0392b", dark:"#7b1a14" },
+    { name:"Sur",   color:"#27ae60", dark:"#145c32" },
+    { name:"Oeste", color:"#e67e22", dark:"#8c4a0e" },
   ];
   // Where each faction's capital sits (corner positions)
   const HOME = [
@@ -167,7 +167,7 @@
     phase = "pick";
     selected = null; reachable = []; attackable = [];
     if (endTurnBtn) endTurnBtn.classList.add("d-none");
-    setStatus("Choose your kingdom to begin.");
+    setStatus("Elige tu reino para comenzar.");
     render();
   }
 
@@ -508,7 +508,7 @@
 
     // Player is eliminated
     if (!alive.has(playerFaction)) {
-      setOver("💀 You have been defeated!", "#5a0808");
+      setOver("💀 ¡Has sido derrotado!", "#5a0808");
       return;
     }
 
@@ -516,14 +516,14 @@
     if (alive.size === 1) {
       const winner = [...alive][0];
       if (winner === playerFaction) {
-        setOver("🏆 Victory! Your kingdom reigns supreme!", "#0f4a1e");
+        setOver("🏆 ¡Victoria! ¡Tu reino se alza con la victoria!", "#0f4a1e");
         if (window.GameTracker) {
           const myCities = grid.flat().filter(c => c.terrain === T.CITY && c.owner === playerFaction).length;
           const score = 500 + myCities * 100;
           window.GameTracker.trackScore('games/hexKingdom', score);
         }
       } else {
-        setOver(`Defeated — ${FACTIONS[winner].name} wins!`, "#5a0808");
+        setOver(`Derrota — ¡${FACTIONS[winner].name} gana!`, "#5a0808");
       }
       return;
     }
@@ -791,7 +791,7 @@
     ctx.fillText(overMsg, canvas.width/2, by + bh*0.38);
     ctx.font         = `${Math.round(fs*0.68)}px sans-serif`;
     ctx.fillStyle    = "rgba(255,255,255,0.70)";
-    ctx.fillText("Press Restart to play again", canvas.width/2, by + bh*0.72);
+    ctx.fillText("Pulsa Reiniciar para jugar de nuevo", canvas.width/2, by + bh*0.72);
   }
 
   // ── Colour helpers ────────────────────────────────────────
@@ -816,7 +816,7 @@
   // ── Status bar ────────────────────────────────────────────
   function updateStatus(extra) {
     if (phase === "over") return;
-    if (playerFaction < 0) { setStatus("Choose your kingdom."); return; }
+    if (playerFaction < 0) { setStatus("Elige tu reino."); return; }
 
     const f      = FACTIONS[turn];
     const myT    = stacks.filter(s=>s.faction===playerFaction).reduce((a,s)=>a+s.size,0);
@@ -824,8 +824,8 @@
     const isMyT  = turn === playerFaction;
 
     let base = isMyT
-      ? `Your turn &nbsp;·&nbsp; Troops: <strong>${myT}</strong> &nbsp;·&nbsp; Cities: <strong>${myC}</strong>`
-      : `<strong style="color:${f.color}">${f.name}</strong> is moving…`;
+      ? `Tu turno &nbsp;·&nbsp; Tropas: <strong>${myT}</strong> &nbsp;·&nbsp; Ciudades: <strong>${myC}</strong>`
+      : `<strong style="color:${f.color}">${f.name}</strong> se está moviendo…`;
 
     setStatus(extra ? `${base} &nbsp;·&nbsp; ${extra}` : base);
   }

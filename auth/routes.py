@@ -17,10 +17,10 @@ def register():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash("Account created! You can now log in.", "success")
+        flash("¡Cuenta creada! Ya puedes iniciar sesión.", "success")
         return redirect(url_for("auth.login"))
 
-    return render_template("auth/register.html", form=form, title="Register")
+    return render_template("auth/register.html", form=form, title="Registrarse")
 
 
 @auth_bp.route("/login", methods=["GET", "POST"])
@@ -35,17 +35,17 @@ def login():
             login_user(user)
             # Redirect to the page user was trying to access, or profile
             next_page = request.args.get("next")
-            flash(f"Welcome back, {user.username}!", "success")
+            flash(f"¡Bienvenido de nuevo, {user.username}!", "success")
             return redirect(next_page or url_for("user.profile"))
         else:
-            flash("Invalid email or password.", "danger")
+            flash("Correo electrónico o contraseña incorrectos.", "danger")
 
-    return render_template("auth/login.html", form=form, title="Login")
+    return render_template("auth/login.html", form=form, title="Iniciar sesión")
 
 
 @auth_bp.route("/logout")
 @login_required
 def logout():
     logout_user()
-    flash("You have been logged out.", "info")
+    flash("Has cerrado sesión correctamente.", "info")
     return redirect(url_for("home"))

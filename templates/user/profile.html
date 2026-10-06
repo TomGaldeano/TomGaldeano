@@ -8,10 +8,10 @@
       <div class="col-md-8">
         <div class="alert alert-info d-flex align-items-center justify-content-between mb-0 shadow-sm" role="alert">
           <div>
-            <strong>👑 Admin Mode:</strong> Inspecting profile for user <strong>{{ u.username }}</strong> (ID: #{{ u.id }}).
+            <strong>👑 Modo Administrador:</strong> Inspeccionando perfil del usuario <strong>{{ u.username }}</strong> (ID: #{{ u.id }}).
           </div>
           <a href="{{ url_for('user.admin') }}" class="btn btn-sm btn-outline-dark">
-            ← Back to Admin Dashboard
+            ← Volver al Panel de Administración
           </a>
         </div>
       </div>
@@ -38,17 +38,17 @@
               </h1>
               <p class="text-muted small mb-0">{{ u.email }}</p>
               <p class="text-muted small mb-0">
-                Joined {{ u.created_at.strftime('%d %b %Y') if u.created_at else '—' }}
+                Registrado el {{ u.created_at.strftime('%d/%m/%Y') if u.created_at else '—' }}
               </p>
             </div>
             <div class="ms-auto">
               {% if not target_user is defined or target_user.id == current_user.id %}
                 <a href="{{ url_for('user.edit') }}" class="btn btn-outline-secondary btn-sm" id="edit-profile-btn">
-                  ✏️ Edit Profile
+                  ✏️ Editar perfil
                 </a>
               {% elif current_user.is_admin %}
                 <a href="{{ url_for('user.admin') }}" class="btn btn-outline-secondary btn-sm">
-                  📋 Admin Panel
+                  📋 Panel de administración
                 </a>
               {% endif %}
             </div>
@@ -63,16 +63,16 @@
     <div class="col-md-8">
       <div class="card border-0 shadow-sm">
         <div class="card-body p-4">
-          <h2 class="h5 mb-3">📊 Activity &amp; Scores</h2>
+          <h2 class="h5 mb-3">📊 Actividad y Puntuaciones</h2>
 
           {% if stats %}
             <div class="table-responsive">
               <table class="table table-hover table-sm align-middle" id="stats-table">
                 <thead class="table-light">
                   <tr>
-                    <th>Page / Game</th>
-                    <th class="text-center">Best Score</th>
-                    <th class="text-center">Total Tries</th>
+                    <th>Página / Juego</th>
+                    <th class="text-center">Mejor puntuación</th>
+                    <th class="text-center">Intentos totales</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -92,9 +92,9 @@
             </div>
           {% else %}
             <div class="text-center py-5 text-muted">
-              <p class="mb-0">No activity recorded yet.</p>
-              <p class="small">Play a game or visit a learning page to start tracking!</p>
-              <a href="{{ url_for('games') }}" class="btn btn-success btn-sm mt-2">Browse Games</a>
+              <p class="mb-0">Aún no hay actividad registrada.</p>
+              <p class="small">¡Juega a un juego o visita una página de aprendizaje para empezar a registrar!</p>
+              <a href="{{ url_for('games') }}" class="btn btn-success btn-sm mt-2">Ver juegos</a>
             </div>
           {% endif %}
         </div>

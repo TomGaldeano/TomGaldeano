@@ -17,7 +17,7 @@ def admin_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if not current_user.is_authenticated or not current_user.is_admin:
-            flash("Access denied. Admin privileges required.", "danger")
+            flash("Acceso denegado. Se requieren privilegios de administrador.", "danger")
             return redirect(url_for("home"))
         return f(*args, **kwargs)
     return decorated_function
@@ -38,11 +38,11 @@ def profile(user_id=None):
     """
     if user_id is not None and user_id != current_user.id:
         if not current_user.is_admin:
-            flash("Access denied. You can only view your own profile.", "danger")
+            flash("Acceso denegado. Solo puedes ver tu propio perfil.", "danger")
             return redirect(url_for("user.profile"))
         target_user = db.session.get(User, user_id)
         if not target_user:
-            flash("User not found.", "warning")
+            flash("Usuario no encontrado.", "warning")
             return redirect(url_for("user.admin"))
     else:
         target_user = current_user
@@ -61,7 +61,7 @@ def profile(user_id=None):
         })
 
     is_own_profile = (target_user.id == current_user.id)
-    title = "My Profile" if is_own_profile else f"{target_user.username}'s Profile"
+    title = "Mi perfil" if is_own_profile else f"Perfil de {target_user.username}"
 
     return render_template(
         "user/profile.html",
@@ -94,7 +94,7 @@ def admin():
     else:
         users = User.query.order_by(User.id.asc()).all()
 
-    return render_template("user/admin.html", users=users, query=query, title="Admin Dashboard")
+    return render_template("user/admin.html", users=users, query=query, title="Panel de Administración")
 
 
 @user_bp.route("/admin/user/<int:user_id>/delete", methods=["POST"])
@@ -105,19 +105,19 @@ def delete_user(user_id):
     Delete a user by ID. Prevents deleting the primary admin (user ID 1).
     """
     if user_id == 1 or user_id == current_user.id:
-        flash("Cannot delete the primary admin account.", "danger")
+        flash("No se puede eliminar la cuenta del administrador principal.", "danger")
         return redirect(url_for("user.admin"))
 
     target_user = db.session.get(User, user_id)
     if not target_user:
-        flash("User not found.", "warning")
+        flash("Usuario no encontrado.", "warning")
         return redirect(url_for("user.admin"))
 
     username = target_user.username
     db.session.delete(target_user)
     db.session.commit()
 
-    flash(f"User '{username}' (ID: {user_id}) has been deleted successfully.", "success")
+    flash(f"El usuario '{username}' (ID: {user_id}) ha sido eliminado con éxito.", "success")
     return redirect(url_for("user.admin"))
 
 
@@ -134,8 +134,8 @@ def edit():
     if form.validate_on_submit():
         # Require current password to authorize any change
         if not current_user.check_password(form.current_password.data):
-            flash("Current password is incorrect.", "danger")
-            return render_template("user/edit.html", form=form, title="Edit Profile")
+            flash("La contraseña actual es incorrecta.", "danger")
+            return render_template("user/edit.html", form=form, title="Editar perfil")
 
         if form.username.data:
             current_user.username = form.username.data
@@ -145,14 +145,14 @@ def edit():
             current_user.set_password(form.new_password.data)
 
         db.session.commit()
-        flash("Profile updated successfully!", "success")
+        flash("¡Perfil actualizado con éxito!", "success")
         return redirect(url_for("user.profile"))
 
     # Pre-fill form with current values on GET
     form.username.data = form.username.data or current_user.username
     form.email.data = form.email.data or current_user.email
 
-    return render_template("user/edit.html", form=form, title="Edit Profile")
+    return render_template("user/edit.html", form=form, title="Editar perfil")
 
 
 # ---------------------------------------------------------------------------

@@ -155,7 +155,7 @@ class Game {
   }
 
   updateScore() {
-    document.getElementById('score').textContent = `Score: ${this.score}`;
+    document.getElementById('score').textContent = `Puntuación: ${this.score}`;
   }
 
   draw_landscape() {
@@ -210,10 +210,10 @@ class Game {
       ctx.fillStyle = '#FF0000';
       ctx.font = 'bold 48px Arial';
       ctx.textAlign = 'center';
-      ctx.fillText('GAME OVER', CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
+      ctx.fillText('FIN DE LA PARTIDA', CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2);
       ctx.fillStyle = '#FFFF00';
       ctx.font = '24px Arial';
-      ctx.fillText(`Final Score: ${this.score}`, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 + 50);
+      ctx.fillText(`Puntuación final: ${this.score}`, CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2 + 50);
     }
   }
 

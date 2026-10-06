@@ -137,7 +137,7 @@
       if (window.GameTracker) window.GameTracker.trackScore('games/blackjack', PlayerScore * 100);
     }else if (calculateScore(dealerHand) == 21) {
       gameOver = true;
-      message = "You lose"
+      message = "Has perdido"
       HouseScore++
       house.innerHTML=HouseScore
     }
@@ -161,7 +161,7 @@
     playerHand.push(deck.pop())
     if (calculateScore(playerHand) > 21) {
       gameOver = true;
-      message = "You bust"
+      message = "Te has pasado"
       HouseScore++
       house.innerHTML=HouseScore
     }
@@ -187,13 +187,13 @@
     if (gameOver) return;
     while (calculateScore(dealerHand) <= 17) dealerHand.push(deck.pop());
     if (calculateScore(dealerHand) > 21 || calculateScore(dealerHand) < calculateScore(playerHand)) {
-      message = "You win"
+      message = "Has ganado"
       PlayerScore++
       player.innerHTML=PlayerScore
       if (window.GameTracker) window.GameTracker.trackScore('games/blackjack', PlayerScore * 100);
     }
     else {
-      message = "You Lose"
+      message = "Has perdido"
       HouseScore++
       house.innerHTML=HouseScore
     }
@@ -219,7 +219,7 @@
       player.innerHTML=HouseScore
     }else if (calculateScore(dealerHand) == 21) {
       gameOver = true;
-      message = "You lose"
+      message = "Has perdido"
       HouseScore++
       house.innerHTML=HouseScore
     }
@@ -240,4 +240,4 @@
 
   ctx.fillStyle = "white";
   ctx.font = "30px Arial";
-  ctx.fillText("Press 'New Game' to Start", 425, 300);
+  ctx.fillText("Pulsa 'Nueva partida' para empezar", 400, 300);

@@ -29,12 +29,12 @@
 </div>
 <div class="row justify-content-center container d-flex mx-auto">
   <div id="gameContainer">
-    <div id="score">Score: 0</div>
-    <div id="lives">Lives: 3</div>
+    <div id="score">Puntuación: 0</div>
+    <div id="lives">Vidas: 3</div>
     <canvas id="spaceCanvas" width="1200" height="600" class="d-none d-lg-block"></canvas>
     <p class="plain-p text-center d-block d-lg-none no-game">
   Por desgracia este juego
-  no esta disponible en pantallas pequeñas
+  no está disponible en pantallas pequeñas
 </p>
   </div>
 </div>
@@ -291,12 +291,12 @@
 
   // Update score display
   function updateScoreDisplay() {
-    document.getElementById('score').textContent = `Score: ${game.score}`;
+    document.getElementById('score').textContent = `Puntuación: ${game.score}`;
   }
 
   // Update lives display
   function updateLivesDisplay() {
-    document.getElementById('lives').textContent = `Lives: ${game.lives}`;
+    document.getElementById('lives').textContent = `Vidas: ${game.lives}`;
   }
 
   // Game loop
@@ -349,8 +349,8 @@
       ctx.fillStyle = '#00FF00';
       ctx.font = '16px Arial';
       ctx.textAlign = 'right';
-      ctx.fillText(`Wave: ${game.wave}`, canvas.width - 20, 30);
-      ctx.fillText("Lives: " + game.lives, canvas.width - 20, 50);
+      ctx.fillText(`Oleada: ${game.wave}`, canvas.width - 20, 30);
+      ctx.fillText("Vidas: " + game.lives, canvas.width - 20, 50);
     } else {
       // Game over screen
       if (!game.scoreTracked) {
@@ -362,12 +362,12 @@
       ctx.fillStyle = '#FF0000';
       ctx.font = 'bold 60px Arial';
       ctx.textAlign = 'center';
-      ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2 - 50);
+      ctx.fillText('FIN DE LA PARTIDA', canvas.width / 2, canvas.height / 2 - 50);
       ctx.fillStyle = '#00FF00';
       ctx.font = '28px Arial';
-      ctx.fillText(`Final Score: ${game.score}`, canvas.width / 2, canvas.height / 2 + 40);
-      ctx.fillText(`Waves Survived: ${game.wave}`, canvas.width / 2, canvas.height / 2 + 90);
-      ctx.fillText('Press R to Restart', canvas.width / 2, canvas.height / 2 + 140);
+      ctx.fillText(`Puntuación final: ${game.score}`, canvas.width / 2, canvas.height / 2 + 40);
+      ctx.fillText(`Oleadas superadas: ${game.wave}`, canvas.width / 2, canvas.height / 2 + 90);
+      ctx.fillText('Pulsa R para reiniciar', canvas.width / 2, canvas.height / 2 + 140);
 
       if (keys['r'] || keys['R']) {
         restartGame();

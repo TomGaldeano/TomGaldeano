@@ -19,10 +19,10 @@
   ];
 
   const DIFFICULTIES = {
-    easy: { colors: 3, empty: 2, name: 'Easy', minMoves: 7, multiplier: 1 },
-    medium: { colors: 4, empty: 2, name: 'Medium', minMoves: 11, multiplier: 1.5 },
-    hard: { colors: 6, empty: 2, name: 'Hard', minMoves: 16, multiplier: 2.2 },
-    expert: { colors: 8, empty: 2, name: 'Expert', minMoves: 22, multiplier: 3.5 }
+    easy: { colors: 3, empty: 2, name: 'Fácil', minMoves: 7, multiplier: 1 },
+    medium: { colors: 4, empty: 2, name: 'Medio', minMoves: 11, multiplier: 1.5 },
+    hard: { colors: 6, empty: 2, name: 'Difícil', minMoves: 16, multiplier: 2.2 },
+    expert: { colors: 8, empty: 2, name: 'Experto', minMoves: 22, multiplier: 3.5 }
   };
 
   const CAPACITY = 4;
@@ -293,7 +293,7 @@
       if (btnSound) {
         btnSound.addEventListener('click', () => {
           const on = this.sound.toggle();
-          btnSound.textContent = on ? '🔊 Sound: ON' : '🔈 Sound: OFF';
+          btnSound.textContent = on ? '🔊 Sonido: ACTIVADO' : '🔈 Sonido: DESACTIVADO';
           btnSound.style.opacity = on ? '1' : '0.6';
         });
       }
@@ -344,13 +344,13 @@
       if (this.hudDifficulty) this.hudDifficulty.textContent = DIFFICULTIES[this.currentDifficulty].name;
       if (this.hudStatus) {
         if (this.gameWon) {
-          this.hudStatus.textContent = '🎉 Solved!';
+          this.hudStatus.textContent = '🎉 ¡Resuelto!';
           this.hudStatus.style.color = '#2ecc71';
         } else if (this.selectedIndex !== null) {
-          this.hudStatus.textContent = 'Selected';
+          this.hudStatus.textContent = 'Seleccionado';
           this.hudStatus.style.color = '#3498db';
         } else {
-          this.hudStatus.textContent = 'In Progress';
+          this.hudStatus.textContent = 'En progreso';
           this.hudStatus.style.color = '#f1c40f';
         }
       }
@@ -1128,24 +1128,24 @@
       ctx.fillStyle = '#2ecc71';
       ctx.font = 'bold 32px "Segoe UI", Arial, sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText('PUZZLE SOLVED!', this.logicalWidth / 2, cardY + 55);
+      ctx.fillText('¡PUZLE RESUELTO!', this.logicalWidth / 2, cardY + 55);
 
       // Stats
       ctx.fillStyle = '#f8fafc';
       ctx.font = '18px "Segoe UI", Arial, sans-serif';
-      ctx.fillText(`Difficulty: ${DIFFICULTIES[this.currentDifficulty].name}`, this.logicalWidth / 2, cardY + 95);
-      ctx.fillText(`Moves Taken: ${this.moves}`, this.logicalWidth / 2, cardY + 125);
+      ctx.fillText(`Dificultad: ${DIFFICULTIES[this.currentDifficulty].name}`, this.logicalWidth / 2, cardY + 95);
+      ctx.fillText(`Movimientos realizados: ${this.moves}`, this.logicalWidth / 2, cardY + 125);
       const mins = Math.floor(this.timerSeconds / 60);
       const secs = this.timerSeconds % 60;
       ctx.fillText(
-        `Time: ${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`,
+        `Tiempo: ${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`,
         this.logicalWidth / 2,
         cardY + 155
       );
 
       ctx.fillStyle = '#94a3b8';
       ctx.font = '14px "Segoe UI", Arial, sans-serif';
-      ctx.fillText('Click "New Game" above to play again!', this.logicalWidth / 2, cardY + 200);
+      ctx.fillText('¡Haz clic en "Nueva partida" arriba para volver a jugar!', this.logicalWidth / 2, cardY + 200);
 
       ctx.restore();
     }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<title>Tom's reportoire</title>
+<title>El repertorio de Tom</title>
 </head>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <body class="d-flex flex-column min-vh-100 justify-content-between light">
@@ -7,23 +7,23 @@
     <div class="container-fluid bg-secondary">
       <ul class="nav justify-content-start">
         <li class="nav-item text-white bg-secondary">
-          <a class="nav-link green_hover" href="{{ url_for('home') }}">Home</a>
+          <a class="nav-link green_hover" href="{{ url_for('home') }}">Inicio</a>
         </li>
         <li class="nav-item text-white bg-secondary dropdown">
           <a class="nav-link green_hover dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-            id="dropdownMenuLink" aria-expanded="false">Projects</a>
+            id="dropdownMenuLink" aria-expanded="false">Proyectos</a>
           <ul class="bg-secondary dropdown-menu" aria-labelledby="dropdownMenuLink">
             <li class="text-white">
-              <a class="link-item green_hover" href="{{ url_for('personal')}}">Personal Websites</a>
+              <a class="link-item green_hover" href="{{ url_for('personal')}}">Webs personales</a>
             </li>
             <li class="text-white">
-              <a class="link-item green_hover" href="{{ url_for('games')}}">Games</a>
+              <a class="link-item green_hover" href="{{ url_for('games')}}">Juegos</a>
             </li>
             <li class="text-white">
-              <a class="link-item green_hover" href="{{ url_for('ordered')}}">Ordered Websites</a>
+              <a class="link-item green_hover" href="{{ url_for('ordered')}}">Webs por encargo</a>
             </li>
             <li class="text-white">
-              <a class="link-item green_hover" href="{{ url_for('clock') }}">Clock</a>
+              <a class="link-item green_hover" href="{{ url_for('clock') }}">Reloj</a>
             </li>
           </ul>
         </li>
@@ -45,14 +45,14 @@
             </a>
           </li>
           <li class="nav-item text-white bg-secondary">
-            <a class="nav-link green_hover" href="{{ url_for('auth.logout') }}" id="nav-logout">Logout</a>
+            <a class="nav-link green_hover" href="{{ url_for('auth.logout') }}" id="nav-logout">Cerrar sesión</a>
           </li>
         {% else %}
           <li class="nav-item text-white bg-secondary">
-            <a class="nav-link green_hover" href="{{ url_for('auth.login') }}" id="nav-login">Login</a>
+            <a class="nav-link green_hover" href="{{ url_for('auth.login') }}" id="nav-login">Iniciar sesión</a>
           </li>
           <li class="nav-item text-white bg-secondary">
-            <a class="nav-link green_hover" href="{{ url_for('auth.register') }}" id="nav-register">Register</a>
+            <a class="nav-link green_hover" href="{{ url_for('auth.register') }}" id="nav-register">Registrarse</a>
           </li>
         {% endif %}
       </ul>

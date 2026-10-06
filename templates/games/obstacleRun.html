@@ -32,23 +32,23 @@
 </style>
 {% include "header.html" %}
 <div class="row justify-content-center container d-flex mx-auto">
-  <h1>Obstacle Run</h1>
+  <h1>Carrera de obstáculos</h1>
 </div>
 <div class="row justify-content-center container d-flex mx-auto game-area">
   <div id="gameContainer">
-    <div id="score">Score: 0</div>
+    <div id="score">Puntuación: 0</div>
     <canvas id="runCanvas" width="1200" height="600" class="d-none d-lg-block"></canvas>
     <p class="plain-p text-center d-block d-lg-none no-game">
   Por desgracia este juego
-  no esta disponible en pantallas pequeñas
+  no está disponible en pantallas pequeñas
 </p>
   </div>
 </div>
 <div class="row justify-content-center container d-flex mx-auto difficulty-buttons d-none d-lg-block" id="difficultyButtons">
-  <button onclick="setDifficulty('easy')" class="d-none d-lg-block game-button">Easy</button>
-  <button onclick="setDifficulty('medium')" class="d-none d-lg-block game-button">Medium</button>
-  <button onclick="setDifficulty('hard')" class="d-none d-lg-block game-button">Hard</button>
-  <button onclick="setDifficulty('hell')" class="d-none d-lg-block game-button">Hell</button>
+  <button onclick="setDifficulty('easy')" class="d-none d-lg-block game-button">Fácil</button>
+  <button onclick="setDifficulty('medium')" class="d-none d-lg-block game-button">Medio</button>
+  <button onclick="setDifficulty('hard')" class="d-none d-lg-block game-button">Difícil</button>
+  <button onclick="setDifficulty('hell')" class="d-none d-lg-block game-button">Infierno</button>
 </div>
 
 <script src="{{ url_for('static', filename='js/obstacleRun.js') }}"></script>

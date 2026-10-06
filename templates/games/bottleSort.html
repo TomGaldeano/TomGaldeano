@@ -128,32 +128,32 @@
   <div class="row justify-content-center">
     <h1 class="h1_big text-center">Water Sort Puzzle</h1>
   </div>
-  <p class="plain-p text-center text-muted">Sort each colored liquid until every bottle contains only one single color!</p>
+  <p class="plain-p text-center text-muted">¡Ordena cada líquido de color hasta que cada botella contenga un solo color!</p>
 
   <!-- HUD info -->
   <div class="hud-panel">
-    <div class="hud-item">Difficulty: <span id="hudDifficulty" class="hud-badge">Easy</span></div>
-    <div class="hud-item">Moves: <span id="hudMoves" class="hud-badge">0</span></div>
-    <div class="hud-item">Target: <span id="hudMinMoves" class="hud-badge">-</span></div>
-    <div class="hud-item">Time: <span id="hudTimer" class="hud-badge">00:00</span></div>
-    <div class="hud-item">Status: <span id="hudStatus" class="hud-badge" style="color: #ffc107;">Ready</span></div>
+    <div class="hud-item">Dificultad: <span id="hudDifficulty" class="hud-badge">Fácil</span></div>
+    <div class="hud-item">Movimientos: <span id="hudMoves" class="hud-badge">0</span></div>
+    <div class="hud-item">Objetivo: <span id="hudMinMoves" class="hud-badge">-</span></div>
+    <div class="hud-item">Tiempo: <span id="hudTimer" class="hud-badge">00:00</span></div>
+    <div class="hud-item">Estado: <span id="hudStatus" class="hud-badge" style="color: #ffc107;">Listo</span></div>
   </div>
 
   <!-- Action Controls -->
   <div class="control-panel">
-    <button id="btnUndo" class="game-btn btn-undo" title="Undo previous move">↶ Undo</button>
-    <button id="btnRestart" class="game-btn" title="Restart current puzzle">↺ Restart</button>
-    <button id="btnNewGame" class="game-btn" title="Generate a new puzzle">★ New Game</button>
-    <button id="btnSound" class="game-btn" title="Toggle audio effects">🔊 Sound: ON</button>
+    <button id="btnUndo" class="game-btn btn-undo" title="Deshacer movimiento anterior">↶ Deshacer</button>
+    <button id="btnRestart" class="game-btn" title="Reiniciar el puzle actual">↺ Reiniciar</button>
+    <button id="btnNewGame" class="game-btn" title="Generar un nuevo puzle">★ Nueva partida</button>
+    <button id="btnSound" class="game-btn" title="Activar/desactivar efectos de sonido">🔊 Sonido: ACTIVADO</button>
   </div>
 
   <!-- Difficulty selection -->
   <div class="control-panel" id="diffButtons">
-    <span class="hud-item" style="font-size: 0.95rem; align-self: center;">Level:</span>
-    <button class="game-btn active-diff" data-diff="easy">Easy (3 Colors)</button>
-    <button class="game-btn" data-diff="medium">Medium (4 Colors)</button>
-    <button class="game-btn" data-diff="hard">Hard (6 Colors)</button>
-    <button class="game-btn" data-diff="expert">Expert (8 Colors)</button>
+    <span class="hud-item" style="font-size: 0.95rem; align-self: center;">Nivel:</span>
+    <button class="game-btn active-diff" data-diff="easy">Fácil (3 colores)</button>
+    <button class="game-btn" data-diff="medium">Medio (4 colores)</button>
+    <button class="game-btn" data-diff="hard">Difícil (6 colores)</button>
+    <button class="game-btn" data-diff="expert">Experto (8 colores)</button>
   </div>
 
   <!-- Canvas -->
@@ -163,13 +163,13 @@
 
   <!-- How to play accordion / guide -->
   <div class="how-to-play">
-    <h4>🧪 How to Play</h4>
+    <h4>🧪 Cómo jugar</h4>
     <ul>
-      <li><strong>Click / tap</strong> a bottle to select it as the pouring bottle (it will lift up).</li>
-      <li><strong>Click / tap</strong> another bottle to pour the liquid into it.</li>
-      <li>You can only pour if the target bottle has space <em>and</em> its top color matches the pouring color (or the target bottle is completely empty).</li>
-      <li>All consecutive matching liquid layers will pour automatically into the available space.</li>
-      <li>Win the game by filling each bottle with 4 segments of the same color!</li>
+      <li><strong>Haz clic / toca</strong> una botella para seleccionarla (se elevará).</li>
+      <li><strong>Haz clic / toca</strong> otra botella para verter el líquido en ella.</li>
+      <li>Solo puedes verter si la botella de destino tiene espacio <em>y</em> su color superior coincide con el que vas a verter (o la botella de destino está completamente vacía).</li>
+      <li>Todas las capas consecutivas del mismo color se verterán automáticamente en el espacio disponible.</li>
+      <li>¡Gana la partida llenando cada botella con 4 segmentos del mismo color!</li>
     </ul>
   </div>
 </div>

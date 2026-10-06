@@ -203,7 +203,7 @@ function render() {
       ctx.font = '12px Arial';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText('ACE', pos.x + CARD_WIDTH / 2, pos.y + CARD_HEIGHT / 2);
+      ctx.fillText('AS', pos.x + CARD_WIDTH / 2, pos.y + CARD_HEIGHT / 2);
     }
   }
 
@@ -242,7 +242,7 @@ function render() {
   ctx.fillStyle = '#000';
   ctx.font = '16px Arial';
   ctx.textAlign = 'left';
-  ctx.fillText(`Score: ${game.score}`, PADDING, canvas.height - 20);
+  ctx.fillText(`Puntuación: ${game.score}`, PADDING, canvas.height - 20);
 
   // Draw game won message
   if (game.gameWon) {
@@ -252,9 +252,9 @@ function render() {
     ctx.font = 'bold 48px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('YOU WIN!', canvas.width / 2, canvas.height / 2);
+    ctx.fillText('¡HAS GANADO!', canvas.width / 2, canvas.height / 2);
     ctx.font = '24px Arial';
-    ctx.fillText(`Final Score: ${game.score}`, canvas.width / 2, canvas.height / 2 + 50);
+    ctx.fillText(`Puntuación final: ${game.score}`, canvas.width / 2, canvas.height / 2 + 50);
   }
 }
 

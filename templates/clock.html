@@ -16,15 +16,15 @@
 
 <body>
   <div class="justify-content-center container d-flex mx-auto">
-    <h1 class="text-center h1_big">Countdown's</h1>
+    <h1 class="text-center h1_big">Cuentas atrás</h1>
   </div>
   <!DOCTYPE html>
   <div class="justify-content-center container d-flex mx-auto">
-    <h2 class="h2_big text-center">Countdown to our hopeful graduation</h2>
+    <h2 class="h2_big text-center">Cuenta atrás para nuestra esperada graduación</h2>
   </div>
   <div id="countdown" class="time container d-flex mx-auto justify-content-center"></div>
   <div class="mt-5 justify-content-center container d-flex mx-auto">
-    <h2 class="h2_big text-center">Countdown to birthday</h2>
+    <h2 class="h2_big text-center">Cuenta atrás para el cumpleaños</h2>
   </div>
   <div id="countdown0" class="time container d-flex mx-auto justify-content-center"></div>
 
@@ -34,7 +34,7 @@
       const now = new Date();
       const diff = targetDate - now;
       if (diff <= 0) {
-        document.getElementById('countdown').textContent = "Time's up!";
+        document.getElementById('countdown').textContent = "¡Se acabó el tiempo!";
         return;
       }
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -43,7 +43,7 @@
       const seconds = Math.floor((diff / 1000) % 60);
       const diffs = targetDate0 - now;
       if (diffs <= 0) {
-        document.getElementById('countdown').textContent = "Time's up!";
+        document.getElementById('countdown0').textContent = "¡Se acabó el tiempo!";
         return;
       }
       const days0 = Math.floor(diffs / (1000 * 60 * 60 * 24));

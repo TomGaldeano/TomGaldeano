@@ -7,40 +7,40 @@ from models.user import User
 
 class EditProfileForm(FlaskForm):
     username = StringField(
-        "Username",
+        "Nombre de usuario",
         validators=[Length(min=3, max=80)],
-        render_kw={"placeholder": "New username"},
+        render_kw={"placeholder": "Nuevo nombre de usuario"},
     )
     email = StringField(
-        "Email",
+        "Correo electrónico",
         validators=[Optional(), Email()],
-        render_kw={"placeholder": "New email"},
+        render_kw={"placeholder": "Nuevo correo electrónico"},
     )
     new_password = PasswordField(
-        "New Password",
+        "Nueva contraseña",
         validators=[Optional(), Length(min=8)],
-        render_kw={"placeholder": "Leave blank to keep current"},
+        render_kw={"placeholder": "Dejar en blanco para mantener la actual"},
     )
     confirm_password = PasswordField(
-        "Confirm New Password",
-        validators=[Optional(), EqualTo("new_password", message="Passwords must match")],
-        render_kw={"placeholder": "Repeat new password"},
+        "Confirmar nueva contraseña",
+        validators=[Optional(), EqualTo("new_password", message="Las contraseñas deben coincidir")],
+        render_kw={"placeholder": "Repite la nueva contraseña"},
     )
     current_password = PasswordField(
-        "Current Password (required to save changes)",
+        "Contraseña actual (requerida para guardar cambios)",
         validators=[],
-        render_kw={"placeholder": "Enter your current password"},
+        render_kw={"placeholder": "Introduce tu contraseña actual"},
     )
-    submit = SubmitField("Save Changes")
+    submit = SubmitField("Guardar cambios")
 
     def validate_username(self, username):
         if username.data and username.data != current_user.username:
             user = User.query.filter_by(username=username.data).first()
             if user:
-                raise ValidationError("That username is already taken.")
+                raise ValidationError("Ese nombre de usuario ya está en uso.")
 
     def validate_email(self, email):
         if email.data and email.data != current_user.email:
             user = User.query.filter_by(email=email.data).first()
             if user:
-                raise ValidationError("That email is already registered.")
+                raise ValidationError("Ese correo electrónico ya está registrado.")

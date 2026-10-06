@@ -4,10 +4,10 @@
 <div class="container mt-5 mb-5" style="max-width: 520px;">
   <div class="card border-0 shadow-sm">
     <div class="card-body p-5">
-      <h1 class="h4 mb-1">Edit Profile</h1>
+      <h1 class="h4 mb-1">Editar perfil</h1>
       <p class="text-muted small mb-4">
-        Leave any field blank to keep its current value.
-        Your current password is required to save any change.
+        Deja cualquier campo en blanco para conservar su valor actual.
+        Es necesaria tu contraseña actual para guardar cualquier cambio.
       </p>
 
       {% with messages = get_flashed_messages(with_categories=true) %}
@@ -39,7 +39,7 @@
         </div>
 
         <hr class="my-3">
-        <p class="text-muted small">Change password (optional)</p>
+        <p class="text-muted small">Cambiar contraseña (opcional)</p>
 
         <div class="form-group mb-3">
           {{ form.new_password.label(class="form-label fw-semibold") }}
@@ -69,7 +69,7 @@
 
         <div class="d-flex gap-2">
           {{ form.submit(class="btn btn-success", id="save-profile-btn") }}
-          <a href="{{ url_for('user.profile') }}" class="btn btn-outline-secondary">Cancel</a>
+          <a href="{{ url_for('user.profile') }}" class="btn btn-outline-secondary">Cancelar</a>
         </div>
       </form>
     </div>
