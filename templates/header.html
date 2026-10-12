@@ -2,61 +2,63 @@
 <title>El repertorio de Tom</title>
 </head>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<body class="d-flex flex-column min-vh-100 justify-content-between light">
-  <nav class="navbar navbar-expand-sm bg-secondary">
-    <div class="container-fluid bg-secondary">
+<body class="d-flex flex-column min-vh-100 light">
+  <nav class="navbar navbar-expand-sm">
+    <div class="container-fluid">
       <ul class="nav justify-content-start">
-        <li class="nav-item text-white bg-secondary">
-          <a class="nav-link green_hover" href="{{ url_for('home') }}">Inicio</a>
+        <li class="nav-item text-white">
+          <a class="nav-link blue_hover" href="{{ url_for('home') }}">Inicio</a>
         </li>
-        <li class="nav-item text-white bg-secondary dropdown">
-          <a class="nav-link green_hover dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+        <li class="nav-item text-white dropdown">
+          <a class="nav-link blue_hover dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
             id="dropdownMenuLink" aria-expanded="false">Proyectos</a>
-          <ul class="bg-secondary dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <ul class="grey-background dropdown-menu" aria-labelledby="dropdownMenuLink">
             <li class="text-white">
-              <a class="link-item green_hover" href="{{ url_for('personal')}}">Webs personales</a>
+              <a class="link-item blue_hover" href="{{ url_for('personal')}}">Webs personales</a>
             </li>
             <li class="text-white">
-              <a class="link-item green_hover" href="{{ url_for('games')}}">Juegos</a>
+              <a class="link-item blue_hover" href="{{ url_for('games')}}">Juegos</a>
             </li>
             <li class="text-white">
-              <a class="link-item green_hover" href="{{ url_for('ordered')}}">Webs por encargo</a>
+              <a class="link-item blue_hover" href="{{ url_for('ordered')}}">Webs por encargo</a>
             </li>
             <li class="text-white">
-              <a class="link-item green_hover" href="{{ url_for('clock') }}">Reloj</a>
+              <a class="link-item blue_hover" href="{{ url_for('clock') }}">Reloj</a>
             </li>
           </ul>
         </li>
       </ul>
 
-      <!-- Auth nav: right side -->
-      <ul class="nav ms-auto justify-content-end align-items-center">
+      <!-- Auth nav and controls: right side -->
+      <div class="d-flex align-items-center ms-auto" >
+      <ul class="nav justify-content-end" style="visibility: hidden;">
         {% if current_user.is_authenticated %}
           {% if current_user.is_admin %}
-            <li class="nav-item text-white bg-secondary">
-              <a class="nav-link green_hover fw-bold text-warning" href="{{ url_for('user.admin') }}" id="nav-admin">
+            <li class="nav-item text-white ">
+              <a class="nav-link blue_hover fw-bold text-warning" href="{{ url_for('user.admin') }}" id="nav-admin">
                 ⚙️ Admin
               </a>
             </li>
           {% endif %}
-          <li class="nav-item text-white bg-secondary">
-            <a class="nav-link green_hover" href="{{ url_for('user.profile') }}" id="nav-profile">
+          <li class="nav-item text-white ">
+            <a class="nav-link blue_hover" href="{{ url_for('user.profile') }}" id="nav-profile">
               👤 {{ current_user.username }}
             </a>
           </li>
-          <li class="nav-item text-white bg-secondary">
-            <a class="nav-link green_hover" href="{{ url_for('auth.logout') }}" id="nav-logout">Cerrar sesión</a>
+          <li class="nav-item text-white ">
+            <a class="nav-link blue_hover" href="{{ url_for('auth.logout') }}" id="nav-logout">Cerrar sesión</a>
           </li>
         {% else %}
-          <li class="nav-item text-white bg-secondary">
-            <a class="nav-link green_hover" href="{{ url_for('auth.login') }}" id="nav-login">Iniciar sesión</a>
+          <li class="nav-item text-white ">
+            <a class="nav-link blue_hover" href="{{ url_for('auth.login') }}" id="nav-login">Iniciar sesión</a>
           </li>
-          <li class="nav-item text-white bg-secondary">
-            <a class="nav-link green_hover" href="{{ url_for('auth.register') }}" id="nav-register">Registrarse</a>
+          <li class="nav-item text-white ">
+            <a class="nav-link blue_hover" href="{{ url_for('auth.register') }}" id="nav-register">Registrarse</a>
           </li>
         {% endif %}
       </ul>
 
       <button id="color_changer"></button>
+      </div>
     </div>
   </nav>

@@ -1,10 +1,20 @@
 {% include "links.html" %}
   <link href="{{ url_for('static', filename='css/banana.css')}}" rel="stylesheet" />
   <link href="{{ url_for('static', filename='css/potato.css')}}" rel="stylesheet" />
-{% include "header.html" %}
+
+<header class="potato-header">
+  <nav class="potato-nav" aria-label="Navegación principal">
+    <a class="potato-brand" href="#top">🥔 Patata HQ</a>
+    <div class="potato-nav-links">
+      <a class="potato-nav-link" href="https://www.google.com/maps/search/supermercados+cerca+de+m%C3%AD" target="_blank" rel="noopener">Mapa</a>
+      <a class="potato-nav-link" href="{{ url_for('auth.login') }}">Iniciar sesión</a>
+      <a class="potato-nav-link potato-register-link" href="{{ url_for('auth.register') }}">Registrarse</a>
+    </div>
+  </nav>
+</header>
 
 <!-- HERO -->
-<div class="hero">
+<div class="hero" id="top">
   <div class="container">
     <h1>Patata HQ</h1>
     <p class="lead">Supermercados cercanos y tus enlaces favoritos para comprar patatas — todo en un mismo sitio.</p>

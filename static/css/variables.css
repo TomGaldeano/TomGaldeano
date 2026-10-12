@@ -1,8 +1,8 @@
 /* Variables (Global) */
 :root {
   --black: #000000;
-  --blue: #051f8a;
-  --dark_gray: #929292;
+  --blue: navy;
+  --dark_gray: #bcbaba;
   --green: #15400a;
   --grey: #cacaca;
   --orange: #ff9800;
@@ -15,7 +15,7 @@
 .dark {
   --black: #FFFFFF;
   --blue: aqua;
-  --dark_gray: #7c7c7c;
+  --dark_gray: #4d4b4b;
   --green: #00ff00;
   --grey: #363636;
   --orange: #fcb852;

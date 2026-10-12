@@ -20,3 +20,88 @@
 .badge-other {
     color: var(--peel-brown);
 }
+
+.potato-header {
+    width: 100%;
+    background: var(--peel-brown);
+    border-bottom: 3px solid var(--banana-dark);
+}
+
+.potato-nav {
+    width: min(100% - 2rem, 1140px);
+    min-height: 68px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.potato-brand,
+.potato-nav-link {
+    color: var(--cream);
+    text-decoration: none;
+}
+
+.potato-brand {
+    font-size: 1.15rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.potato-nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.potato-nav-link {
+    display: inline-block;
+    padding: 0.55rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.potato-nav-link:hover,
+.potato-nav-link:focus-visible {
+    color: var(--cream);
+    background: rgba(255, 248, 233, 0.12);
+    text-decoration: none;
+}
+
+.potato-register-link {
+    color: var(--peel-brown);
+    background: var(--banana-yellow);
+    font-weight: 700;
+}
+
+.potato-register-link:hover,
+.potato-register-link:focus-visible {
+    color: var(--peel-brown);
+    background: var(--cream);
+}
+
+@media (max-width: 480px) {
+    .potato-nav {
+        width: calc(100% - 1.5rem);
+        min-height: 0;
+        padding: 0.75rem 0;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .potato-nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 0.25rem;
+    }
+
+    .potato-nav-link {
+        padding: 0.45rem 0.6rem;
+        font-size: 0.85rem;
+    }
+}

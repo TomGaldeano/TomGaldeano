@@ -22,7 +22,8 @@ def create_app():
     from user import user_bp
     app.register_blueprint(auth_bp)
     app.register_blueprint(user_bp)
-    with app.app_context():
+    
+    """    with app.app_context():
         try:
             import pymysql
             connection = pymysql.connect(
@@ -40,7 +41,7 @@ def create_app():
         try:
             db.create_all()
         except Exception as e:
-            print(f"Warning: Could not create tables: {e}")
+            print(f"Warning: Could not create tables: {e}")"""
 
     return app
 
@@ -155,15 +156,15 @@ def practicaBackup():
 
 @app.route("/ordered/AzureSands")
 def AzureSands():
-    return render_template("/ordered/AzureSands.html")
+    return render_template("ordered/AzureSands.html")
 
-@app.route('/ordered/BananaTracker.html')
+@app.route('/ordered/BananaTracker')
 def BananaTracker():
-    return render_template("/ordered/BananaTracker.html")
+    return render_template("ordered/BananaTracker.html")
 
-@app.route('/ordered/PatataTracker.html')
+@app.route('/ordered/PatataTracker')
 def PatataTracker():
-    return render_template("/ordered/PatataTracker.html")
+    return render_template("ordered/PatataTracker.html")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001, debug=True)

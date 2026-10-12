@@ -1,18 +1,4 @@
-/* ==========================
-  Variables (Global)
-  ========================== */
-
-  :root {
-  --black: #000000;
-  --blue: #051f8a;
-  --dark_gray: #929292;
-
-  /* shim style.css — imports modular CSS files. Keep this as a compatibility layer for templates
-     that still reference `style.css`. The actual styles are split into three files under
-     `static/css/` (variables, layout, components). */
-
-  @import url('css/variables.css');
-  @import url('css/layout.css');
-  @import url('css/components.css');
-  
-}
+/* Shared stylesheet entry point; keep the rules modular by concern. */
+@import url('css/variables.css');
+@import url('css/layout.css');
+@import url('css/components.css');

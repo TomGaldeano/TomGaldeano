@@ -7,12 +7,6 @@ body {
   padding: 0;
 }
 
-#box-example {
-  margin: 40px auto;
-  position: relative;
-  width: 300px;
-}
-
 .grid-container {
   display: grid;
   grid-template-columns: 33.3% 33.3% 33.3%;
@@ -44,22 +38,6 @@ div.mycontainer div {
 
 .parent-inline {
   font-size: 0;
-}
-
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-.div-clearfix {
-  border: 1px solid var(--black);
-  margin: 10px;
-  padding: 10px;
-}
-
-.img-clearfix {
-  float: left;
 }
 
 table {
