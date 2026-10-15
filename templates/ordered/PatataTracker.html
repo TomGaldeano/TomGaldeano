@@ -1,12 +1,17 @@
+{% set html_lang = 'es' %}
 {% include "links.html" %}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
   <link href="{{ url_for('static', filename='css/banana.css')}}" rel="stylesheet" />
   <link href="{{ url_for('static', filename='css/potato.css')}}" rel="stylesheet" />
 
+<a class="skip-link" href="#main-content">Saltar al contenido principal</a>
 <header class="potato-header">
   <nav class="potato-nav" aria-label="Navegación principal">
-    <a class="potato-brand" href="#top">🥔 Patata HQ</a>
+    <a class="potato-brand" href="#top">Patata HQ</a>
     <div class="potato-nav-links">
-      <a class="potato-nav-link" href="https://www.google.com/maps/search/supermercados+cerca+de+m%C3%AD" target="_blank" rel="noopener">Mapa</a>
+      <a class="potato-nav-link" href="https://www.google.com/maps/search/supermercados+cerca+de+m%C3%AD" target="_blank" rel="noopener" aria-label="Mapa de supermercados cercanos (se abre en una pestaña nueva)">Mapa</a>
       <a class="potato-nav-link" href="{{ url_for('auth.login') }}">Iniciar sesión</a>
       <a class="potato-nav-link potato-register-link" href="{{ url_for('auth.register') }}">Registrarse</a>
     </div>
@@ -14,59 +19,79 @@
 </header>
 
 <!-- HERO -->
-<div class="hero" id="top">
+<section class="hero" id="top" aria-labelledby="page-title">
   <div class="container">
-    <h1>Patata HQ</h1>
+    <h1 id="page-title">Patata HQ</h1>
     <p class="lead">Supermercados cercanos y tus enlaces favoritos para comprar patatas — todo en un mismo sitio.</p>
     <button class="btn" id="search-btn">Buscar tiendas</button>
   </div>
-</div>
+ </section>
 <!-- MAIN -->
-<div class="container py-4">
+<main class="container py-4" id="main-content">
   <!-- ── NEARBY STORES (search results) ── -->
+  <section aria-labelledby="nearby-title">
   <p class="section-eyebrow">Compra en persona</p>
-  <h2 class="section-title">Supermercados y tiendas de comestibles cercanos</h2>
-  <ul id="near-stores" class="store-list">
+  <h2 class="section-title" id="nearby-title">Supermercados y tiendas de comestibles cercanos</h2>
+  <div class="store-sort-control">
+    <label for="nearby-sort">Ordenar tiendas por</label>
+    <select id="nearby-sort">
+      <option value="distance">Distancia</option>
+      <option value="name">Nombre</option>
+      <option value="type">Tipo de tienda</option>
+    </select>
+  </div>
+  <ul id="near-stores" class="store-list" aria-live="polite" aria-relevant="additions text" aria-busy="false">
     <!-- Populated by JS after geolocation search -->
   </ul>
+  </section>
 
   <!-- ── SAVED STORES ── -->
-  <div id="saved-section" class="saved-section">
+  <section id="saved-section" class="saved-section" aria-labelledby="saved-title">
     <hr class="section-divider" />
     <p class="section-eyebrow">Tus tiendas guardadas</p>
-    <h2 class="section-title">Favoritos</h2>
+    <h2 class="section-title" id="saved-title">Favoritos</h2>
+    <div class="store-sort-control">
+      <label for="saved-sort">Ordenar tiendas por</label>
+      <select id="saved-sort">
+        <option value="name">Nombre</option>
+        <option value="distance">Distancia</option>
+        <option value="type">Tipo de tienda</option>
+      </select>
+    </div>
     <ul id="saved-stores" class="store-list">
       <!-- Populated by JS from localStorage -->
     </ul>
-  </div>
+  </section>
   <hr class="section-divider" />
   <!-- ── POTATO ONLINE TRACKER ── -->
-  <div class="tracker-wrapper">
+  <section class="tracker-wrapper" aria-labelledby="online-title">
     <p class="section-eyebrow">Compra online</p>
-    <h2 class="section-title">🥔 ¿Dónde comprar patatas online?</h2>
+    <h2 class="section-title" id="online-title">¿Dónde comprar patatas online?</h2>
     <p class="sub-note">Tu lista de accesos directos — haz clic para ir directamente a la patata.</p>
-    <div id="link-list">
+    <div id="link-list" role="list" aria-label="Tiendas online guardadas">
       <!-- Populated by JS from localStorage -->
     </div>
-    <div class="add-link-form">
-      <p style="color:rgba(255,253,240,0.55);font-size:0.8rem;margin-bottom:0.8rem;">➕ Añade tu propia fuente de patatas</p>
+    <form class="add-link-form" id="online-link-form">
+      <h3 class="form-title">Añade tu propia fuente de patatas</h3>
       <div class="row g-2">
         <div class="col-12 col-sm-4">
-          <label>Nombre de la tienda / sitio</label>
-          <input type="text" id="new-label" placeholder="p. ej. Mercadona" />
+          <label for="new-label">Nombre de la tienda / sitio (obligatorio)</label>
+          <input type="text" id="new-label" name="label" autocomplete="organization" placeholder="p. ej. Mercadona" maxlength="80" required />
         </div>
         <div class="col-12 col-sm-4">
-          <label>Descripción breve</label>
-          <input type="text" id="new-desc" placeholder="p. ej. mercadona.es — verdulería" />
+          <label for="new-desc">Descripción breve (opcional)</label>
+          <input type="text" id="new-desc" name="description" placeholder="p. ej. mercadona.es — verdulería" maxlength="160" />
         </div>
         <div class="col-12 col-sm-4">
-          <label>URL</label>
-          <input type="url" id="new-url" placeholder="https://..." />
+          <label for="new-url">URL (obligatoria)</label>
+          <input type="url" id="new-url" name="url" autocomplete="url" placeholder="https://ejemplo.com" aria-describedby="url-hint" required />
         </div>
       </div>
-      <button class="btn-add" id="add-link-btn">Añadir enlace</button>
-    </div>
-  </div>
-</div>
+      <p class="form-hint" id="url-hint">Los campos obligatorios están indicados. La URL debe comenzar por http:// o https://.</p>
+      <button class="btn-add" id="add-link-btn" type="submit">Añadir enlace</button>
+      <p class="form-status" id="online-link-status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
 <script src="{{ url_for('static', filename='js/banana_tracker.js') }}"></script>
 {% include"footer.html" %}

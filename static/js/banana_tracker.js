@@ -27,7 +27,6 @@ async function getNearbyStores(lat, lon, radiusMeters = 1000) {
   try {
     const response = await fetch(url, {
       method: "POST",
-      body: query,
       headers: {
         "Content-Type": "text/plain",
       },
@@ -64,24 +63,23 @@ async function getNearbyStores(lat, lon, radiusMeters = 1000) {
  *  REUSABLE MODULE 1 — StorageManager
  *  -----------------------------------------------------------
  *  Generic localStorage helper. Stores an array of objects
- *  identified by a unique key (default: "id").
  *
  *  Usage:
  *    const mgr = new StorageManager("myItems", "id");
  *    mgr.save({ id: 42, name: "Thing" });
  *    mgr.getAll();          // → [{ id: 42, name: "Thing" }]
- *    mgr.has(42);           // → true
+        const status = document.getElementById("online-link-status");
+        navigator.clipboard.writeText(`Tienda: ${store.name}\nDirección: ${formatAddress(store.address)}\nGoogle Maps: ${mapsUrl || "No disponible"}`)
+          .then(() => { status.textContent = `Información de ${store.name} copiada.`; })
+          .catch(() => { status.textContent = "No se pudo copiar la información."; });
  *    mgr.remove(42);        // deletes it
  * ============================================================ */
 class StorageManager {
   /**
-   * @param {string} storageKey  – the localStorage key name
-   * @param {string} idField     – property used as unique identifier
-   */
-  constructor(storageKey, idField = "id") {
+        saveBtn.textContent = alreadySaved ? "✓ Guardada" : "☆ Guardar";
     this.storageKey = storageKey;
     this.idField = idField;
-  }
+          btn.textContent = still ? "✓ Guardada" : "☆ Guardar";
 
   /** Return all saved items (parsed). */
   getAll() {
@@ -186,6 +184,7 @@ class ListRenderer {
     this.clear();
     const el = document.createElement("li");
     el.className = "list-status-msg";
+    el.setAttribute("role", "status");
     el.textContent = message;
     this.container.appendChild(el);
   }
@@ -194,6 +193,7 @@ class ListRenderer {
   _showEmpty() {
     const el = document.createElement("li");
     el.className = "list-empty-state";
+    el.setAttribute("role", "listitem");
     el.textContent = this.emptyText;
     this.container.appendChild(el);
   }
@@ -209,23 +209,23 @@ class ListRenderer {
 
 // ── Helpers ─────────────────────────────────────────────────
 const SHOP_TYPE_META = {
-  supermarket: { label: "Supermarket"},
-  grocery:     { label: "Grocery"},
-  greengrocer: { label: "Greengrocer"},
+  supermarket: { label: "Supermercado" },
+  grocery: { label: "Tienda de comestibles" },
+  greengrocer: { label: "Frutería" },
 };
 
 function getShopMeta(shopType) {
-  return SHOP_TYPE_META[shopType] || { label: shopType || "Unknown" };
+  return SHOP_TYPE_META[shopType] || { label: shopType || "Desconocido" };
 }
 
 function formatAddress(addr) {
-  if (!addr) return "Address unknown";
+  if (!addr) return "Dirección desconocida";
   const parts = [
     [addr.street, addr.housenumber].filter(Boolean).join(" "),
     addr.postcode,
     addr.city,
   ].filter(Boolean);
-  return parts.length ? parts.join(", ") : "Address unknown";
+  return parts.length ? parts.join(", ") : "Dirección desconocida";
 }
 
 function calculateDistanceKm(lat1, lon1, lat2, lon2) {
@@ -253,79 +253,114 @@ function formatDistance(distanceKm) {
   return `${distanceKm.toFixed(1)} km`;
 }
 
+function sortStores(stores, sortBy) {
+  const sortedStores = [...stores];
+  if (sortBy === "distance") {
+    return sortedStores.sort((a, b) =>
+      (a.distanceKm ?? Number.POSITIVE_INFINITY) -
+      (b.distanceKm ?? Number.POSITIVE_INFINITY)
+    );
+  }
+  if (sortBy === "type") {
+    return sortedStores.sort((a, b) =>
+      getShopMeta(a.shopType).label.localeCompare(getShopMeta(b.shopType).label, "es", { sensitivity: "base" })
+    );
+  }
+  return sortedStores.sort((a, b) =>
+    (a.name || "").localeCompare(b.name || "", "es", { sensitivity: "base" })
+  );
+}
 
 // ── Storage instance ────────────────────────────────────────
 const savedStoresManager = new StorageManager("banana_saved_stores", "id");
-
+let nearbyStores = [];
 
 // ── Card builder (shared for search results & saved list) ───
-/**
- * Builds a store card <li> element.
- * @param {Object}  store           – store data object
- * @param {Object}  opts
- * @param {boolean} opts.isSaved    – render "Unsave" vs "Save" button
- * @param {Function} opts.onSave    – callback(store)
- * @param {Function} opts.onUnsave  – callback(store)
- */
 function buildStoreCard(store, { isSaved = false, onSave, onUnsave } = {}) {
   const li = document.createElement("li");
   li.className = "store-card";
   li.dataset.storeId = store.id;
 
   const meta = getShopMeta(store.shopType);
-
-  // Google Maps link
   const mapsUrl =
     store.lat && store.lon
       ? `https://www.google.com/maps/search/?api=1&query=${store.lat},${store.lon}`
       : null;
+  const distanceText = store.distanceKm != null
+    ? formatDistance(store.distanceKm)
+    : "Distancia no disponible";
 
-  const distanceText = store.distanceKm != null ? formatDistance(store.distanceKm) : "Distancia no disponible";
+  const typeBadge = document.createElement("span");
+  typeBadge.className = "store-type-badge";
+  typeBadge.textContent = meta.label;
+  const name = document.createElement("h3");
+  name.className = "store-name";
+  name.textContent = store.name;
+  const address = document.createElement("p");
+  address.className = "store-address";
+  address.textContent = formatAddress(store.address);
+  const distance = document.createElement("p");
+  distance.className = "store-distance";
+  const distanceLabel = document.createElement("strong");
+  distanceLabel.textContent = "Distancia: ";
+  distance.append(distanceLabel, document.createTextNode(distanceText));
+  const actions = document.createElement("div");
+  actions.className = "store-actions";
+  li.append(typeBadge, name, address, distance, actions);
 
-  li.innerHTML = `
-    <span class="store-type-badge">
-    ${meta.label}
-    </span>
-    <h3 class="store-name">${store.name}</h3>
-    <p class="store-address">${formatAddress(store.address)}</p>
-    <p class="store-distance"><strong>Distancia:</strong> ${distanceText}</p>
-    <div class="store-actions">
-    ${mapsUrl ? `<a class="btn btn-success mr-2" href="${mapsUrl}" target="_blank" rel="noopener">Open in Maps</a>` : ""}
-    </div>
-  `;
+  if (mapsUrl) {
+    const mapsLink = document.createElement("a");
+    mapsLink.className = "btn btn-success mr-2";
+    mapsLink.href = mapsUrl;
+    mapsLink.target = "_blank";
+    mapsLink.rel = "noopener";
+    mapsLink.textContent = "Abrir mapa";
+    mapsLink.setAttribute("aria-label", `Abrir ${store.name} en Google Maps (se abre en una pestaña nueva)`);
+    actions.appendChild(mapsLink);
+  }
 
-  const actionsDiv = li.querySelector(".store-actions");
-
-  const shareBtn = document.createElement("button");
-  shareBtn.className = "btn btn-warning mr-2 btn-share";
-  shareBtn.textContent = "Share";
-  shareBtn.addEventListener("click", () => {
-    navigator.clipboard.writeText(`Store: ${store.name}\nAddress: ${formatAddress(store.address)}\nGoogle Maps: ${mapsUrl || "N/A"}`);
+  const shareButton = document.createElement("button");
+  shareButton.type = "button";
+  shareButton.className = "btn btn-warning mr-2 btn-share";
+  shareButton.textContent = "Compartir";
+  shareButton.setAttribute("aria-label", `Compartir ${store.name}`);
+  shareButton.addEventListener("click", () => {
+    const status = document.getElementById("online-link-status");
+    navigator.clipboard.writeText(
+      `Tienda: ${store.name}\nDirección: ${formatAddress(store.address)}\nGoogle Maps: ${mapsUrl || "No disponible"}`
+    ).then(() => {
+      status.textContent = `Información de ${store.name} copiada.`;
+    }).catch(() => {
+      status.textContent = "No se pudo copiar la información.";
+    });
   });
-  actionsDiv.appendChild(shareBtn);
+  actions.appendChild(shareButton);
 
   if (isSaved) {
-    // Unsave button
-    const unsaveBtn = document.createElement("button");
-    unsaveBtn.className = "btn-action btn btn-danger btn-unsave";
-    unsaveBtn.textContent = "Remove";
-    unsaveBtn.addEventListener("click", () => {
+    const removeButton = document.createElement("button");
+    removeButton.type = "button";
+    removeButton.className = "btn-action btn btn-danger btn-unsave";
+    removeButton.textContent = "Quitar";
+    removeButton.setAttribute("aria-label", `Quitar ${store.name} de favoritos`);
+    removeButton.addEventListener("click", () => {
       if (onUnsave) onUnsave(store);
     });
-    actionsDiv.appendChild(unsaveBtn);
+    actions.appendChild(removeButton);
   } else {
-    // Save button (check if already saved)
     const alreadySaved = savedStoresManager.has(String(store.id));
-    const saveBtn = document.createElement("button");
-    saveBtn.className = "btn-action btn btn-primary btn-save";
-    saveBtn.textContent = alreadySaved ? "✓ Saved" : "☆ Save";
-    saveBtn.disabled = alreadySaved;
-    saveBtn.addEventListener("click", () => {
+    const saveButton = document.createElement("button");
+    saveButton.type = "button";
+    saveButton.className = "btn-action btn btn-primary btn-save";
+    saveButton.textContent = alreadySaved ? "✓ Guardada" : "☆ Guardar";
+    saveButton.setAttribute("aria-label", `${alreadySaved ? "Tienda guardada" : "Guardar"}: ${store.name}`);
+    saveButton.disabled = alreadySaved;
+    saveButton.addEventListener("click", () => {
       if (onSave) onSave(store);
-      saveBtn.textContent = "✓ Saved";
-      saveBtn.disabled = true;
+      saveButton.textContent = "✓ Guardada";
+      saveButton.setAttribute("aria-label", `Tienda guardada: ${store.name}`);
+      saveButton.disabled = true;
     });
-    actionsDiv.appendChild(saveBtn);
+    actions.appendChild(saveButton);
   }
 
   return li;
@@ -343,7 +378,7 @@ const searchRenderer = new ListRenderer({
         refreshSavedList();
       },
     }),
-  emptyText: "No stores found nearby. Try moving to a different location or expanding the search radius.",
+  emptyText: "No se encontraron tiendas cercanas. Prueba otra ubicación o amplía el radio de búsqueda.",
 });
 
 const savedRenderer = new ListRenderer({
@@ -358,14 +393,23 @@ const savedRenderer = new ListRenderer({
         refreshSearchButtons();
       },
     }),
-  emptyText: "No saved stores yet. Search and save your favourites!",
+  emptyText: "Todavía no hay tiendas favoritas. Busca tiendas y guárdalas aquí.",
+});
+
+document.getElementById("nearby-sort")?.addEventListener("change", (event) => {
+  searchRenderer.render(sortStores(nearbyStores, event.target.value));
+});
+
+document.getElementById("saved-sort")?.addEventListener("change", () => {
+  refreshSavedList();
 });
 
 
 // ── Refresh helpers ─────────────────────────────────────────
 function refreshSavedList() {
   const saved = savedStoresManager.getAll();
-  savedRenderer.render(saved);
+  const sortBy = document.getElementById("saved-sort")?.value || "name";
+  savedRenderer.render(sortStores(saved, sortBy));
   // Show / hide the saved section heading
   const section = document.getElementById("saved-section");
   if (section) {
@@ -382,7 +426,8 @@ function refreshSearchButtons() {
     const btn = card.querySelector(".btn-save");
     if (btn) {
       const still = savedStoresManager.has(String(id));
-      btn.textContent = still ? "✓ Saved" : "☆ Save";
+      btn.textContent = still ? "✓ Guardada" : "☆ Guardar";
+      btn.setAttribute("aria-label", `${still ? "Tienda guardada" : "Guardar"}: ${card.querySelector(".store-name")?.textContent || "tienda"}`);
       btn.disabled = still;
     }
   });
@@ -392,9 +437,11 @@ function refreshSearchButtons() {
 // ── Geolocation ─────────────────────────────────────────────
 function getLocation() {
   if (navigator.geolocation) {
+    document.getElementById("near-stores").setAttribute("aria-busy", "true");
     searchRenderer.showStatus("Obteniendo tu ubicación…");
     navigator.geolocation.getCurrentPosition(success, error);
   } else {
+    document.getElementById("near-stores").setAttribute("aria-busy", "false");
     searchRenderer.showStatus("La geolocalización no es compatible con este navegador.");
   }
 }
@@ -404,16 +451,19 @@ function success(position) {
   searchRenderer.showStatus("Buscando tiendas cercanas…");
 
   getNearbyStores(latitude, longitude, 1000).then((stores) => {
-    const storesWithDistance = stores.map((store) => ({
+    document.getElementById("near-stores").setAttribute("aria-busy", "false");
+    nearbyStores = stores.map((store) => ({
       ...store,
       distanceKm: calculateDistanceKm(latitude, longitude, store.lat, store.lon),
     }));
-    console.log(`Se encontraron ${storesWithDistance.length} tiendas`);
-    searchRenderer.render(storesWithDistance);
+    console.log(`Se encontraron ${nearbyStores.length} tiendas`);
+    const sortBy = document.getElementById("nearby-sort")?.value || "distance";
+    searchRenderer.render(sortStores(nearbyStores, sortBy));
   });
 }
 
 function error(err) {
+  document.getElementById("near-stores").setAttribute("aria-busy", "false");
   const messages = {
     1: "Permiso de ubicación denegado. Permite el acceso a la ubicación e inténtalo de nuevo.",
     2: "La información de ubicación no está disponible.",
@@ -450,25 +500,25 @@ const DEFAULT_ONLINE_LINKS = [
   {
     id: "default-amazon",
     label: "Amazon",
-    desc: "amazon.com — global marketplace",
+    desc: "amazon.com — mercado global",
     url: "https://www.amazon.com",
   },
   {
     id: "default-ebay",
     label: "eBay",
-    desc: "ebay.com — auctions & buy-it-now",
+    desc: "ebay.com — subastas y compra inmediata",
     url: "https://www.ebay.com",
   },
   {
     id: "default-walmart",
     label: "Walmart",
-    desc: "walmart.com — groceries & everyday essentials",
+    desc: "walmart.com — alimentación y productos cotidianos",
     url: "https://www.walmart.com",
   },
   {
     id: "default-aliexpress",
     label: "AliExpress",
-    desc: "aliexpress.com — international deals & shipping",
+    desc: "aliexpress.com — ofertas y envíos internacionales",
     url: "https://www.aliexpress.com",
   },
 ];
@@ -477,13 +527,6 @@ const DEFAULT_ONLINE_LINKS = [
 if (onlineLinksManager.getAll().length === 0) {
   DEFAULT_ONLINE_LINKS.forEach((link) => onlineLinksManager.save(link));
 }
-
-// ── Random icon/color for user-added links ──────────────────
-
-function randomFrom(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
 
 // ── Card builder for an online link row ─────────────────────
 /**
@@ -495,21 +538,42 @@ function buildOnlineLinkRow(link) {
   const row = document.createElement("div");
   row.className = "online-link-row";
   row.dataset.linkId = link.id;
+  row.setAttribute("role", "listitem");
 
-  row.innerHTML = `
-    <div class="link-info">
-      <div class="link-label">${link.label}</div>
-      <div class="link-desc">${link.desc}</div>
-    </div>
-    <div class="link-actions">
-      <a class="btn btn-success" href="${link.url}" target="_blank" rel="noopener">Visit</a>
-      <button class="link-btn-share btn btn-warning" title="Share this link">Share</button>
-      <button class="link-btn-remove btn btn-danger" title="Remove this link">Remove</button>
-    </div>
-  `;
+  const info = document.createElement("div");
+  info.className = "link-info";
+  const label = document.createElement("div");
+  label.className = "link-label";
+  label.textContent = link.label;
+  const description = document.createElement("div");
+  description.className = "link-desc";
+  description.textContent = link.desc || link.url;
+  info.append(label, description);
+
+  const actions = document.createElement("div");
+  actions.className = "link-actions";
+  const visitLink = document.createElement("a");
+  visitLink.className = "btn btn-success";
+  visitLink.href = link.url;
+  visitLink.target = "_blank";
+  visitLink.rel = "noopener";
+  visitLink.textContent = "Visitar";
+  visitLink.setAttribute("aria-label", `Visitar ${link.label} (se abre en una pestaña nueva)`);
+  const shareButton = document.createElement("button");
+  shareButton.type = "button";
+  shareButton.className = "link-btn-share btn btn-warning";
+  shareButton.textContent = "Compartir";
+  shareButton.setAttribute("aria-label", `Compartir ${link.label}`);
+  const removeButton = document.createElement("button");
+  removeButton.type = "button";
+  removeButton.className = "link-btn-remove btn btn-danger";
+  removeButton.textContent = "Quitar";
+  removeButton.setAttribute("aria-label", `Quitar ${link.label}`);
+  actions.append(visitLink, shareButton, removeButton);
+  row.append(info, actions);
 
   // ── Share button ──
-  row.querySelector(".link-btn-share").addEventListener("click", () => {
+  shareButton.addEventListener("click", () => {
     const shareText = `${link.label}\n${link.desc}\n${link.url}`;
 
     // Use Web Share API if available, otherwise copy to clipboard
@@ -517,18 +581,19 @@ function buildOnlineLinkRow(link) {
       navigator.share({ title: link.label, text: link.desc, url: link.url }).catch(() => {});
     } else {
       navigator.clipboard.writeText(shareText).then(() => {
-        const btn = row.querySelector(".link-btn-share");
-        const original = btn.textContent;
-        btn.textContent = "Copied!";
-        setTimeout(() => (btn.textContent = original), 1500);
+        document.getElementById("online-link-status").textContent = `Enlace de ${link.label} copiado.`;
+      }).catch(() => {
+        document.getElementById("online-link-status").textContent = "No se pudo copiar el enlace. Selecciónalo y cópialo manualmente.";
       });
     }
   });
 
   // ── Remove button ──
-  row.querySelector(".link-btn-remove").addEventListener("click", () => {
+  removeButton.addEventListener("click", () => {
     onlineLinksManager.remove(link.id);
     refreshOnlineLinks();
+    document.getElementById("online-link-status").textContent = `Se quitó ${link.label} de la lista.`;
+    document.getElementById("new-label").focus();
   });
 
   return row;
@@ -539,7 +604,7 @@ function buildOnlineLinkRow(link) {
 const onlineLinksRenderer = new ListRenderer({
   container: document.getElementById("link-list"),
   buildCard: buildOnlineLinkRow,
-  emptyText: "No online stores saved. Add one below!",
+  emptyText: "No hay tiendas online guardadas. Añade una a continuación.",
 });
 
 function refreshOnlineLinks() {
@@ -549,33 +614,52 @@ function refreshOnlineLinks() {
 
 
 // ── Add-link form handler ───────────────────────────────────
-document.getElementById("add-link-btn").addEventListener("click", () => {
+document.getElementById("online-link-form").addEventListener("submit", (event) => {
+  event.preventDefault();
   const labelInput = document.getElementById("new-label");
   const descInput = document.getElementById("new-desc");
   const urlInput = document.getElementById("new-url");
+  const status = document.getElementById("online-link-status");
 
   const label = labelInput.value.trim();
   const desc = descInput.value.trim();
   const url = urlInput.value.trim();
 
   if (!label || !url) {
-    // Briefly highlight empty required fields
-    if (!label) labelInput.style.borderColor = "#e74c3c";
-    if (!url) urlInput.style.borderColor = "#e74c3c";
-    setTimeout(() => {
-      labelInput.style.borderColor = "";
-      urlInput.style.borderColor = "";
-    }, 1500);
+    status.textContent = "Completa el nombre y la URL para añadir el enlace.";
     return;
   }
 
+  let parsedUrl;
+  try {
+    parsedUrl = new URL(url);
+  } catch {
+    status.textContent = "Introduce una URL válida, por ejemplo https://ejemplo.com.";
+    urlInput.focus();
+    return;
+  }
+  if (!["http:", "https:"].includes(parsedUrl.protocol)) {
+    status.textContent = "Por seguridad, la URL debe usar http:// o https://.";
+    urlInput.focus();
+    return;
+  }
+  const duplicate = onlineLinksManager.getAll().some((link) => {
+    try {
+      return new URL(link.url).href === parsedUrl.href;
+    } catch {
+      return false;
+    }
+  });
+  if (duplicate) {
+    status.textContent = "Ese enlace ya está en tu lista.";
+    urlInput.focus();
+    return;
+  }
   const newLink = {
     id: "user-" + Date.now(),
     label,
     desc: desc || url,
-    url,
-    icon: randomFrom(USER_LINK_ICONS),
-    iconBg: randomFrom(USER_LINK_COLORS),
+    url: parsedUrl.href,
   };
 
   onlineLinksManager.save(newLink);
@@ -585,9 +669,10 @@ document.getElementById("add-link-btn").addEventListener("click", () => {
   labelInput.value = "";
   descInput.value = "";
   urlInput.value = "";
+  status.textContent = "Enlace añadido correctamente.";
 });
 
 
 // ── Init online links on page load ──────────────────────────
 refreshOnlineLinks();
-searchRenderer.showStatus("Haz clic en 'Buscar tiendas' para encontrar vendedores de patatas cerca de ti.");
+searchRenderer.showStatus("Pulsa «Buscar tiendas» para encontrar tiendas cercanas.");
